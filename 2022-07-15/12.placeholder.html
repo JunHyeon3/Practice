@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>형식을 가진 텍스트 입력</title>
+</head>
+<body>
+    <h3>회원 정보를 입력해주세요.</h3>
+    <hr>
+    <form>
+        <!-- placeholder
+        입력창에 간략한 설명을 다는 목적
+        코드를 실행하면 초기에 글자가 쓰이게 되는데
+        텍스트박스를 클릭하면 사라진다.
+        type 종류 추가
+        email : 이메일 타입 입력 @를 쓰지 않으면 오류 출력
+        url : url주소를 입력받는 창, http://가 없으면 오류 발생
+        tel : 전화번호 양식 -->
+        email : <input type="email" placeholder="id@host"><br>
+        홈페이지 : <input type="url" placeholder="http://"><br>
+        전화번호 : <input type="tel" placeholder="010-1234-5678">
+                    <input type="submit" value="제출"><br><br>
+        <hr>
+        검색어 : <input type="search" placeholder="검색어"><br>
+        <input type="button" value="찾기"><br><br>
+    </form>
+</body>
+</html>

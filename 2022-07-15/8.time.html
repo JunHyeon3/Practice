@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간 정보를 입력하는 폼 활용</title>
+</head>
+<body>
+    <h3>시간 정보 입력 HTML5 폼 요소들</h3>
+    초기 세팅 : 2016년 9월 1일 밤 9시 30분(10초 32)<br>
+    시간을 변경해 보세요
+    <hr>
+    <form>
+        <!-- 복습 pre태그 : 문자 입력 그대로 표현하는 태그  -->
+        <pre>
+            <!-- month : 월 표시
+            week : 주 표시 (1년 중 몇 번째 주인지 표시)
+            date : 날짜 표시 (가장 흔하게 사용하는 표시)
+            time : 시간 태그
+            datetime-local : 사용자 지역의 시차를 따짐 -->
+            month : <input type="month" value="2016-09"><br>
+            week  : <input type="week" value="2016-w36"><br>
+            date  : <input type="date" value="2016-09-01"><br>
+            time  : <input type="time" value="21:30"><br>
+            local : <input type="datetime-local" value="2016-09-01T21:30:10.32"><br>
+        </pre>
+    </form>
+</body>
+</html>

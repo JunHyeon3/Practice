@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼이 있는 입력 폼</title>
+</head>
+<body>
+    <h3>버튼을 만들자</h3>
+    <form>
+       <!-- button 타입 종류 
+       button : 일반 버튼
+       submit : 제출 버튼, form태그의 action명령에 따라 이동 가능
+       reset : 입력 창의 정보를 없애는 리셋 버튼
+       image : 문자형 버튼 대신 이미지로 대신함 -->
+       <!-- 자바에서 타입이 중요!! -->
+        검색 : <input type="text" size="10" value="">
+              <input type="button" value="Q1">
+              <button type="button">Q2</button><br><br>
+        submit 버튼 : <input type="submit" value="전송1">
+                      <button type="submit">전송2</button><br><br>
+        reset 버튼 : <input type="reset" value="리셋1">
+                      <button type="reset">리셋2</button><br><br>
+        이미지 버튼 : <input type="image" src="media/button.png"
+                                            alt="이미지 버튼">
+                    <button type="button"><img src="media/button.png"
+                                            alt="이미지 버튼"></button>
+    </form>
+</body>
+</html>

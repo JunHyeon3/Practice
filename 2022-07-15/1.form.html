@@ -1,0 +1,33 @@
+<!-- 폼 태그 <form> 태그로 둘러싸는 모양
+name 속성
+폼의 이름지정
+action 속성
+폼 데이터를 처리할 웹 서버 응용프로그램의 이름
+submit 버튼이 눌리면 브라우저는 action에 지정된 웹 서버 응용프로그램 실행
+웹 서버 응용프로그램은 java, jsp, php, c/c++등 다양한 언어로 작성
+method 속성
+폼 데이터를 웹 서버로 전송하는 형식
+대표적인 전송 방식 : GET, POST -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 입력 폼</title>
+</head>
+<body>
+    <!-- <ul>
+        <li>눈누 상업용 무료한</li>
+    </ul> -->
+    <h3><mark>자기 소개서 작성</mark></h3>
+    <hr>
+    <!-- size : 값을 입력하는 칸의 크기를 지정 -->
+    <form name="fo" method="get">
+        이름 : <input type="text" size="15" value=""><br>
+        암호 : <input type="password" size="15" value=""><br>
+        <!-- textarea : 문장을 입력받는 상자, 일반 text보다 훨씬 큰 상자 생성 -->
+        자소서 : <textarea></textarea>
+    </form>
+</body>
+</html>

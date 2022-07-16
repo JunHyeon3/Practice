@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML TEXT Basic Page</title>
+</head>
+<body>
+    <!-- a 태그 : a href 이런 식으로 페이지 이동 링크를 표시
+    <a href="링크 주소">하이퍼링크가 걸릴 문자</a>
+    아주 자주 쓰임-->
+    <a href="http://hanb.co.kr">한빛</a><br /> 
+    <a href="http://naver.com">네이버</a><br /> 
+    <a href="http://daum.net">다음</a><br /> 
+    <!-- 외부 링크 뿐 아니라 내부 태그로도 이동이 가능함
+    #alpha : 태그 id="alpha"인 부분으로 이동함
+    # -> iddla 나중에 중요해짐
+    태그에 엄청나게 많은 기능들이 있음 -->
+    <a href="#alpha">Alpha 부분</a>
+    <a href="#beta">Beta 부분</a>
+    <a href="#gamma">Gamma 부분</a>
+    <hr />
+    <h1 id="alpha">Alpha</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Morbi rutrum pretium elit,
+        at iaculis dui congue facilisis. Lorem ipsum dlor sit amet,
+        consectetur adipiscing elip
+    </p>   
+
+    <h1 id="beta">Beta</h1> 
+    <p>
+            <p>&lt;a&gt;에서 사용할 수 있는 속성 값</p>
+        <p><a href=“https://www.naver.com/” target = “_blank” title = “html5 specification”></a>
+        target : 새 창 or 새 탭에서 링크를 열때 사용한다.
+        _blank(새로운 탭,창), _self(현재 탭,창), _parent(현재 화면을 불러낸 부모 탭), _top(최상위 탭,창),
+        title : 링크의 툴팁을 표시( 커서를 올렸을때 나오는 설명), 
+        id :  같은 페이지안에서 이동할 때 사용
+    </p>
+
+    <h1 id="gamma">Gamma</h1>    
+    <p>
+        :anchor, 웹 페이지나 외부 사이트 연결
+        <!-- <a href = "연결할 링크의 경로">내용</a>
+        ex) <h1><a href=“index.html”>WEB</a></h1>
+        다른 문서나 사이트를 연결해 주는 것을 하이퍼링크(hyperlink) 또는 링크(link)라고 한다.
+        이 링크를 만들 때 <a>를 사용한다. 링크로 사용할 텍스트나 이미지를 <a>로 묶고 
+        href속성을 이용해 연결할 웹 페이지의 이름이나 웹사이트 주소를 지정하면 된다. -->
+    </p>
+</body>
+</html>

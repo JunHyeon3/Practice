@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간 정보를 입력하는 폼 활용</title>
+</head>
+<body>
+    <h3>생일축하합니다.</h3>
+    당신의 생일은 2000년 5월 20일 입니다. 틀리면 수정하시고
+    파티 시간과 장소를 입력하세요.
+    <hr>
+    <form>
+        <!-- 복습 table태그 : 표를 만드는 태그
+        tr: 행, td: 열  -->
+        <table>
+            <tr><td>생일<td>
+                <input type="date" value="2000-05-20"></tr>
+            <tr><td>생일파티 시간<td>
+                <input type="time"></tr>
+            <tr><td>생일파티 장소<td>
+                <input type="text"></tr>
+        </table>
+    <!-- </td>로 작성해서 오류발생함 -->
+    </form>
+</body>
+</html>
