@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상대 배치</title>
+    <style>
+        /* normal flow의 '기본 위치'에서 left, top, bottom, right
+        프로퍼티의 값만큼 이동한 '상대 위치'에 배치
+    
+        div태그가 있는 부분에 박스 생성
+        가로 세로 : 5px, border : 1px */
+        div {display: inline-block; height: 50px; width: 50px; 
+            border: 1px solid lightgray; text-align: center; 
+            color: white; background: red;}
+        /* #이 붙었기 때문에 id : down인 태그에 적용
+        hover 기능이 붙었기 때문에 left, top 20px씩 이동
+        position : relative 지정되어 있어 다른 도형 위치에 관련되 배치됨 */
+        #down:hover {position: relative; left: 20px; top: 20px; background: green;}
+        /* #이 붙었기 때문에 id : up인 태그에 적용
+        up도 down과 비슷한 이동을 함, 이동 위치가 다를뿐
+        hover를 동작 시켜보면 무슨 의미인지 알 수 있음
+        결국 버튼누르기 이다. 안쪽은 +증가, 바깥쪽은 -감소이다*/
+        #up:hover {position: relative; right: 20px; bottom: 20px; background: green;}
+    </style>
+</head>
+<body>
+    <h3>상대 배치, relative</h3>
+    <div>T</div>
+    <div id="down">h</div>
+    <div>a</div>
+    <div>n</div>
+    <div id="up">k</div>
+    <div>s</div>
+</body>
+</html>

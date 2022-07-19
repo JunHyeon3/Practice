@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하이폰으로 연결한 단어에 스타일 적용된다 |= 값은 한단어로 일치해야 한다.</title>
+    <style>
+        ul {list-style: none;}
+        li {display: inline; float: left; margin: 10px;}
+        li a {padding: 5px 20px; font-size: 14px;
+              color: blue; text-decoration: none;}
+        /* a태그의 title속성 값이 "us"이거나 "us"로 시작하는 요소 선택 */
+        /* 단, "us" 뒤에 연결되는 단어는 하이픈(-)이어야 함 */
+        a[title |="us"] {background: url(../media/us.png) no-repeat left center;
+                         padding: 5px 25px;}
+        /* a태그의 title속성 값이 "us"이거나 "jap"로 시작하는 요소 선택 */
+        /* 단, "jap"뒤에 연결되는 단어는 하이픈(-)이어야 함 */
+        a[title |="jap"] {background: url(../media/jp.png) no-repeat left center;
+                         padding: 5px 25px;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li>외국어 서비스 : </li>
+        <li><a href="#" title="us">영어</a></li>
+        <li><a href="#" title="us-english">영어</a></li>
+        <li><a href="#" title="jap-anese">일본어</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>하이폰으로 연결한 단어에 스타일 적용된다 |= 값은 한단어로 일치해야 한다.</title>
+    <style>
+        ul {list-style: none;}
+        li {display: inline; float: left; margin: 10px;}
+        li a {padding: 5px 20px; font-size: 14px;
+              color: blue; text-decoration: none;}
+        a[title |="us"] {background: url(../../media/us.png) no-repeat 
+                         left center; padding: 5px 25px;}
+        a[title |="jap"] {background: url(../../media/jp.png) no-repeat 
+                          left center; padding: 5px 25px;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li>외국어 서비스 : </li>
+        <li><a href="#" title="us">영어</a></li>
+        <li><a href="#" title="us-english">영어</a></li>
+        <li><a href="#" title="jap-anese">일본어</a></li>
+    </ul>
+</body>
+</html>
+<!-- 
+박스의 배치
+normal flow
+    웹 페이지에 나타난 순서대로 HTML 태그배치
+    position 프로퍼티를 이용하여 normal flow 무시가능
+position 프로퍼티를 이용한 배치 방법
+    정적 배치 - position : static (디폴트)
+    상대 배치 - position : relative
+    절대 배치 - position : absolute
+    고정 배치 - position : fixed
+    유동 배치 - float : left 혹은 float : right
+position 프로퍼티를 사용할 때, 태그의 위치와 크기
+top, bottom, left, right, width, height 프로퍼티로 지정
+이들 프로퍼티는 배치 방법에 따라 다르게 사용됨 
+-->

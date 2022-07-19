@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>셀렉터 만들기</title>
+    <style>
+        /* 스타일 셀렉터
+        스타일이 적용되는 위치를 구분하는 방법
+        아래와 같이 h3,li 라고 되어있으면
+        h3태그와 li태그에 스타일이 적용되어 글자의 색이 brown이 된다. */
+        h3,li{color:brown}
+    </style>
+</head>
+<body>
+    <h3>Web Programming</h3>
+    <div>
+        <div>2학기<strong>학습 내용</strong></div>
+        <ul>
+            <li>HTML5</li>
+            <li><strong>CSS</strong></li>
+            <li>JAVASCRIPT</li>
+        </ul>
+        <div>60점 이하는 F!</div>
+    </div>
+</body>
+</html>
+<!-- type="text/css"는 스타일의 유형이 텍스트 이고 파일은 css라는 뜻이다.
+    후손(하위) 선택자 .. 아들 딸 손자들
+    후선(하위) 선택자 (Descendand selector)는 특정 태그의 후손 태그를 선택한다.
+ul strong
+    { 자손 후손 하위 셀렉터
+    형식 선택자 선택자{속성:값;}        
+        자식 선택자.. 직계 .. 아들 딸
+        형식 선택자 > 선택자{속성:값;}   부모 > 자식{속성:값;}
+
+        형제 선택자(sibling selector)
+        형식 선택자 ~ 선택자{속성:값;}   형제1 ~ 형제4{속성:값;}
+                                       형제1 + 형제2{속성:값;} 인접형제 선택자
+    }
+2개 이상의 셀렉터 조합
+    조합에 적합한 HTML 태그에만 적용     
+조합 선택자는 기본선택자 2개 이상을 한번에 사용하는 선택자이다.
+    그룹, 자식, 자손(하위), 인접 형제 선택자가 있다.
+
+가상 클래스 (pseudo-class) 셀렉터
+CSS스타일의 가상 클래스 선택자
+    특정 유형 (상황)에 대한 스타일 적용이 필요할 때 사용된다.
+    (각 요소의 상태에 따라 선택이 이루어짐)
+마우스 : hover 마우스가 요소 위에 올라갈 때 스타일 적용
+      : active 마우스로 요소를 누르고 있는 상황에서 스타일 적용
+폼요소 : focus 폼 요소가 키보드나 마우스 클릭으로 포커스를 받을 때 스타일 적용
+링크 : link 방문하지 않은 링크에 스타일 적용
+    : visited 방문한 링크에 스타일 적용
+블록 : first-letter <p>, <div> 등과 같은 블록형 태그의 첫 글자에 스타일 적용
+    :: first-ltter 와 동일하며, <span>과 같은 인라인 태그에는 적용되지 않음
+    
+    :first-line <p>, <div> 등과 같은 블록형 태그의 첫 라인에 스타일 적용
+    ::first-line과 동일
+구조 : nth-child(even) 짝수번째 모든 자식 태그에 스타일 적용
+     : nth-child(1) 첫 번째 자식 태그에 스타일 적용
+
+속성 셀렉터
+    html태그의 특정 속성(attribute)에 대해 값이 일치하는 태그에만
+    스타일을 적용하는 셀렉터
+    input[type=text] {color:red;}
+    type 속성값이 "text"인 <input>태그에 적용
+    <input type="text">
+
+전체 셀렉터(universal selector)
+    와일드 문자(*)를 사용하여 모든 태그에 적용시키는 셀렉터
+    ex) *{color:green;}
+    웹페이지의 모든 태그에 적용, 텍스트 색을 green으로 설정
+    
+-->

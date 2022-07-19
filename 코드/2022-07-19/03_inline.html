@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+</head>
+    <style>
+        div{border : 2px solid yellowgreen;
+            color : blue;
+            background: aliceblue;}
+        span{border: 3px dotted red;
+            background : yellow;}
+    </style>
+<body>
+    <h3>인라인, 인라인 블록, 블록</h3>
+    <!-- style="display:none" 명령에 의해 출력되지 않음 -->
+    나는 <div style="display:none">div(none)</div>입니다.<br><br>
+    <!-- inline이란 : 컨텐츠(출력대상) 범위를 감싸고 있는 선, 컨텐츠와 패딩을 구분하는 선이다 -->
+    나는 <div style="display:inline;">div(inline)</div>입니다.<br><br>
+    나는 <div style="display:inline-block; height: 50px;">div(inline-block)</div>입니다.<br><br>
+    나는 <div>div<span style="display:block">div(block)</span></div>입니다.<br><br>
+</body>
+</html>

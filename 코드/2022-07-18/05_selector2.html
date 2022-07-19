@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>셀렉터 만들기</title>
+    <style>
+        /* 태그 이름 셀렉터
+            h3와 li가 붙은 것은 전부 brown출력 */
+        h3, li {color: brown;}
+        /* 자식 셀렉터
+            <div> 내부에 <strong> 백그라운드 색 yellow */
+        div > div > strong {background-color: yellow;}
+        /* 자손 셀렉터
+            <ul>내부 자손은 <strong>의 글자색을 dodgerblue로 변경 */
+        ul strong {color: dodgerblue;}
+        /* class 셀렉터
+            점 찍으면 클래스를 나타냄 */
+        .warning {color: red;}
+        /* class 셀렉터 */
+        body.main {background-color: aliceblue;}
+        /* id 셀렉터
+            태그 앞에 #을 쓰면 id를 표현함 */
+        #list { background-color: mistyrose;}
+        /* 자손 셀렉터*/
+        #list span {color: forestgreen;}
+        /* 가상 클래스 셀렉터
+            블록형 태그에만 적용 가능한 첫 글자만 적용 인라인 태그 안됨
+            :first-line 첫 라인만 적용 */
+        h3:first-letter {color: red;}
+        /* 가상 클래스 셀렉터
+            마우스가 올라가 있을 때만 색이 변함
+            hover 스타일을 활용하면 마우스 동작에 따른 움직임을 줄 수 있음*/
+        li:hover {background-color: yellowgreen;}
+    </style>
+</head>
+
+<body class="main">
+    <h3>Web Programming</h3><hr>
+    <div>
+        <div>2학기 <strong>학습 내용</strong>입니다.</div>
+        <ul id="list">
+            <li><span>HTML5</span></li>
+            <li><strong>CSS</strong></li>
+            <li>JAVASCRIPT</li>
+        </ul>
+        <div class="warning">60점 이하는 F!</div>
+    </div>
+</body>
+</html>

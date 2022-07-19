@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div 박스에 배경 꾸미기</title>
+    <style>
+        /* div태그 위치에 다음 스타일 태그 입력 */
+        div{
+            /* 배경색 지정 */
+            background-color: skyblue;
+            /* 배경 사이즈 지정 */
+            background-size: 100px 100px;
+            /* 배경 이미지 지정 */
+            background-image: url("..\media\spongebob.png");
+            /* 배경 이미지 연속해서 출력 */
+            background-repeat: repeat-y;
+            /* 배경 이미지 기본 위치, x축 y축 모두 센터 */
+            background-position: center center;
+        }
+
+        /* div태그 위치에 스타일 태그 추가 */
+        div{
+            /* 200x200 크기의 보라색 배경 생성 */
+            width: 200px;
+            height: 200px;
+            color: blueviolet;
+            font-size: 16px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h3>div 박스에 배경 꾸미기</h3>
+    <div>SpngeBob is an over-optimistic
+        sponge that annoys other characters.
+    </div>
+</body>
+</html>

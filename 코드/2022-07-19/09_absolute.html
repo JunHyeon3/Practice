@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>절대 배치</title>
+    <style>
+        /* 절대배치 */
+        div {display: inline-block; position: absolute; border: 1px solid lightgray;}
+        div > p {display: inline-block; position: absolute; height: 20px; width: 15px; background: lightgray;}
+    </style>
+</head>
+<body>
+    <h3>Merry Christmas!</h3>
+    <p>예수님이 탄생하셨습니다.</p>
+    <div>
+        <img src="../media/christmastree.png" width="200" height="200" alt="크리스마스 트리">
+        <!-- 절대 배치는 좌표값을 따름, 상대 배치는 이전에 존재하는 이미지를 기준으로 배치함
+        그래서 상대배치는 상황에 따라 위치가 변함 -->
+        <p style="left: 50px; top: 30px">M</p>
+        <p style="left: 100px; top: 00px">M</p>
+        <p style="left: 100px; top: 80px">M</p>
+        <p style="left: 150px; top: 110px">M</p>
+        <p style="left: 30px; top: 130px">M</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>형제 선택자</title>
+    <style>
+        /* 인접형제 선택자 : h1 뒤에 있는 h2 요소만 선택가능 */
+        h1+h2 {color: red;}
+        h1+h6 {color: green;} /* 얘는 h1과 인접해 있지 않기 때문에 적용 안됨. */
+        /* 일반형제 선택자 : h1뒤에 있는 모든 요소 (h2, h3, h4, h5, h6) 선택 가능 */
+        h1~h2 {background-color: yellow;}
+        h1~h3:hover {color: blue;}
+        h1~h4 {background-color: black; color: white;}
+    </style>
+</head>
+<body>
+    <h1>Have a nice day</h1>
+    <h2>Have a nice day</h2>
+    <h3>Have a nice day</h3>
+    <h4>Have a nice day</h4>
+    <h5>Have a nice day</h5>
+    <h6>Have a nice day</h6>
+</body>
+</html>
+
+<!-- 형제 선택자는 (sibling selector) 특정태그의 형제 태그를 선택한다.
+선택자 ~ 선택자 {속성 : 값;}
+인접 형제 선택자는 특정 태그의 형제 태그 중 첫 번째 태그를 선택한다.
+선택자 + 선택자 {속성 : 값;} -->
+

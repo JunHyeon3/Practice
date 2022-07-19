@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>부모 스타일 상속</title>
+</head>
+<body>
+    <h3>부모 스타일 상속</h3>
+    <!-- p태그 안에 있는 em태그는 p태그의 자식 태그가 되고
+    p태그의 모든 스타일 요소를 상속받는다. -->
+    <p style="color: greenyellow;">자식 태그는 부모의 스타일을
+    <!-- em태그 내 문자는 기울어짐 스타일 적용 -->
+        <em style="font-size: 25px;">상속</em>받는다.
+    </p>
+</body>
+</html>
+<!-- CSS3 스타일은 부모 태그로부터 상속
+부모태그(부모요소)
+자신을 둘러싸는 태그
+<p> 태그는 <em>의 부모태그
+<em> 태그의 출력
+글자 크기는 25px, 글자색은 부모의 <p> 태그를 상속받아 green
+p태그 블록 안에 em태그가 포함되어 있다.
+1. p태그 : 부모 태그
+2. em태그 : 자식 태그 
+
+자식 태그는 부모 태그의 스타일도 적용받지만
+부모 태그는 자식 태그의 스타일을 적용받을 수 없다.
+em태그가 걸린 "상속"은 em에 적용된 스타일과
+p에 정의된 스타일 2가지 모두 적용한다. -->

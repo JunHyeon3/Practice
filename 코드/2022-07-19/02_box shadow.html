@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div에 박스 그림자 만들기</title>
+    <style>
+        /* 그림자 x축, 그림자 y축, 그림자 색 */
+        /* x축이 양수면 오른쪽, 음수면 왼쪽 */
+        /* y축이 양수면 아래쪽, 음수면 위쪽 */
+        .redbox{box-shadow: 10px 10px red;}
+        /* 그림자 x축, 그림자 y축, 그림자 번짐 정도, 그림자 색 */
+        .blurbox{box-shadow: 10px 10px 5px skyblue;}
+        /* 그림자 x축, 그림자 y축, 그림자 번짐 정도, 그림자 색 */
+        /* 그림자 번짐과 색 2개씩 추가 */
+        .multieffet{box-shadow: 2px 2px 2px black,
+                    0 0 25px blue,
+                    0 0 5px darkblue
+                    ;}
+        div{
+            /* width, height : 패딩의 가로, 세로 크기라 볼 수 있음 */
+            width: 150px;
+            height: 70px;
+            padding: 10px;
+            border: 10px solid lightgray;
+            background-image: url(../media/spongebob.png);
+            background-size: 150px 100px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <h3>박스 그림자 만들기</h3>
+    <hr>
+    <div class="redbox">뚱이와 함께</div><br>
+    <div class="blurbox">뚱이와 함께</div><br>
+    <div class="multieffet">뚱이와 함께</div><br>
+</body>
+</html>

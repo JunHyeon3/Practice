@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>속성 선택자</title>
+    <style>
+        ul {list-style: none;}
+        li {width: 100px; display: inline; 
+            float: left; margin: 10px;}
+        li a {padding: 5px 20px; font-size: 11px; 
+              color: blue; text-decoration: none;}
+        a[href] {background-color: yellow;}
+        a.flat {background-color: blue; color: white;}
+        [class ~="button"] {border: 2px solid black;
+                            box-shadow: rgb(0,0,0,0.3) 5px 5px;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="#">메인 메뉴1</a></li>
+        <li><a href="#">메인 메뉴2</a></li>
+        <li><a href="#" class="button">메인 메뉴3</a></li>
+        <li><a href="#" class="flat button">메인 메뉴4</a></li>
+    </ul>
+</body>
+</html>
