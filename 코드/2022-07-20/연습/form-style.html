@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>폼 스타일 주기</title>
+    <style>
+        input[type=text] {color: red;}
+        input:hover, textarea:hover {background: aliceblue;}
+        input[type=text]:focus, input[type=email]:focus {font-size: 120%;}
+        label {display: block; padding: 10px;}
+        label span {float: left; width: 90px; text-align: right; padding: 10px;}
+    </style>
+</head>
+<body>
+    <h3>CONTACT us</h3>
+    <form>
+        <label>
+            <span>name</span><input type="text" placeholder="현택이"><br>
+        </label>
+        <label>
+            <span>email</span>
+            <input type="email" placeholder="citadell@naver.com"><br>
+        </label>
+        <label>
+            <span>Comment</span><textarea placeholder="메세지를 남겨주세요"></textarea>
+        </label>
+        <label>
+            <span></span><input type="submit" value="숙제 제출"><br>
+        </label>
+    </form>
+</body>
+</html>

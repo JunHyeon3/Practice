@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 스타일 주기</title>
+    <style>
+        /* text창에만 적용 */
+        input[type=text] {color: red;}
+        /* 마우스 올라올 때 */
+        input:hover, textarea:hover {background: lightblue;}
+        /* 포커스 받을 때 */
+        input[type=text]:focus, input[type=email]:focus {font-size: 120%;}
+        /* 새 라인에서 시작 */
+        label {display: block; padding: 10px;}
+        label span {float: right; width: 90px; text-align: right; padding: 10px;}
+
+    </style>
+</head>
+<body>
+    <h3>CONTACT us</h3>
+    <form>
+        <label>
+            <span>name</span><input type="text" placeholder="현택이"><br>
+        </label>
+        <label>
+            <span>email</span>
+            <input type="email" placeholder="citadell@naver.com"><br>
+        </label>
+        <label>
+            <span>Comment</span><textarea placeholder="메세지를 남겨주세요"></textarea>
+        </label>
+        <label>
+            <span></span><input type="submit" value="숙제 제출"><br>
+        </label>
+    </form>
+</body>
+</html>

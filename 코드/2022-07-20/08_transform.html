@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다양한 변환 사례</title>
+    <style>
+        div {display: inline-block; padding: 5px;
+             color: white; background: olivedrab;}
+        /* 변환 : 각태그의 초기상태 */
+        div#rotate {transform: rotate(20deg);}
+        div#skew {transform: skew(0deg,-20deg);}
+        div#translate {transform: translateY(100px);}
+        div#scale {transform: scale(3,1);}
+        /* 마우스 올릴 때 추가 변환 */
+        div#rotate:hover {transform: rotate(80deg);}
+        div#skew:hover {transform: skew(0deg,-60deg);}
+        div#translate:hover {transform: translate(50px, 100px);}
+        div#scale:hover {transform: scale(4,2);}
+        /* 마우스 올릴 때 추가 변환 */
+        div#scale:active {transform: scale(1,5);}        
+    </style>
+</head>
+<body>
+    <h3>다양한 transform</h3>
+    아래는 회전(rotate), 기울임(skew), 이동(transition),
+    확대/축소(scale)가 적용된 사례이다.
+    또한 마우스를 올리면 추가적 변환이 일어난다. <hr>
+    <div id="rotate">rotate(20deg)</div>
+    <div id="skew">skew(0,-20deg)</div>
+    <div id="translate">translateY(100px)</div>
+    <div id="scale">scale(3,1)</div>
+</body>
+</html>
+
+<!-- 지정된 시작 동작부터 끝 동작을 지정된 시간동안 동작하며, 지정된 횟수만큼 반복
+
+위치이동 : translate(x,y) translateX(n) translateY(n)
+확대/축소 : scale(w,h) scaleX(n) scaleY(n) 
+회전 : rotate(angle) 시계방향
+기울임 : skew(x-angle, y-angle) skewX(angle) skewY(angle)
+
+변환
+텍스트나 이미지를 회전, 확대 다양한 기하학적인 모양으로 출력
+회전 각도의 단위는 deg이며 시계방향으로 회전
+ -->

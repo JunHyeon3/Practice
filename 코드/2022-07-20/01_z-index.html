@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>z-index 프로퍼티</title>
+    <style>
+        /* 절대 경로와 좌표를 활용해 배치
+        z-index : 이미지가 먼저 배치되는 순서를 나타냄
+        z라는건 상하좌우의 2차원이 아닌 앞, 뒤 3차원 개념임
+        z인덱스 값이 작을 수록 먼저 표현되므로 나중에 표현되는 값에 좌표상 겹치면 가려짐 */
+        div { position: absolute;}
+        img { position: absolute;}
+        #spadeA {z-index: -3; left: 10px; top: 20px;}
+        #spade2 {z-index: 2; left: 40px; top: 30px;}
+        #spade3 {z-index: 3; left: 80px; top: 40px;}
+        #spade7 {z-index: 7; left: 120px; top: 50px;}
+    </style>
+</head>
+<body>
+    <h3>z-index 프로퍼티</h3>
+    <div>
+        <img id="spadeA" src="../media/spade-A.png"
+             width="100" height="140" alt="스페이드A">
+        <img id="spade2" src="../media/spade-2.png"
+             width="100" height="140" alt="스페이드2">
+        <img id="spade3" src="../media/spade-3.png"
+             width="100" height="140" alt="스페이드3">
+        <img id="spade7" src="../media/spade-7.png"
+             width="100" height="140" alt="스페이드7">
+    </div>
+</body>
+</html>

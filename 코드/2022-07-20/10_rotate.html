@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+    <style>
+        /* @keyframes 어노테이션을 활용해 애니메이션 객체 생성
+        transform 0%는 초기상태, 100%는 완료상태
+        rotate는 회전에 관한 것, deg는 60분법 각도
+        키 프레임 리스트가 유효하려면 최소한 0%와 100% 같은 시간에대한 규칙은 포함해야합니다.
+        (%가 의미하는 것은 애니메이션의 시작과 끝 상태를 의미)
+        개발자가 애니메이션 중간 중간의 특정 지점들을 거칠 수 있는 키프레임들을 설정함으로써 CSS 애니메이션 과정의 중간 절차를 제어할 수 있게 합니다.
+        이 룰은 브라우저가 자동으로 애니메이션을 처리하는 것 보다 더 세밀하게 중간 동작을 제어할 수 있다. */
+        @keyframes imagerotation {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}}
+        /* 다음과 같이 할 수도 있다.
+        이 경우 회전하는 모양이 약간씩 다르다.
+        0% {transform : rotation(0deg);}
+        25% {transform : rotation(90deg);}
+        50% {transform : rotation(180deg);}
+        75% {transform : rotation(270deg);}
+        100% {transform : rotation(360deg);} */
+        /* animation-name : imagerotation = name은 @keyframes imagarotation에서 사용된 이름을 써야 애니메이션 동작이 적용됨 */
+        /* animation-duration : 1s =  애니메이션 1회 동작당 시간 */
+        /* animation-interation-count : infinite = 애니메이션 반복횟수 무한 */
+        #tran {animation-name: imagerotation; animation-duration: 1s; animation-iteration-count: infinite; }
+    </style>
+</head>
+<body>
+    <h3>어지러워요</h3>
+    <img id=tran src="../media/spongebob.png" width="100" height="100" alt="animation">
+</body>
+</html>

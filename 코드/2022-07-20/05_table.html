@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 응용</title>
+    <style>
+        /* 테이블 선을 단선으로 하는 속성
+        collapse : 중복된 테두리를 제거해서 테두리 합치기 효과 */
+        table {border-collapse: collapse;}
+        td,th {text-align: left; padding: 5px; height: 15px; width: 100px;}
+        /* <thead>,<tfoot>의 모든 셀에 적용
+        <thead> : 테이블의 맨 윗행
+        <tfoot> : 테이블의 맨 아래행 */
+        thead, tfoot {background: darkgray; color: yellow;}
+        /* 짝수 <tr>에 적용 */
+        tbody tr:nth-child(even) {background: aliceblue;}
+        /* hover를 활용해, 마우스가 올라가면 tbody태그의 tr에 배경색 변경 */
+        tbody tr:hover {background: pink;}
+    </style>
+</head>
+<body>
+    <h3>1학기 성적</h3>
+    <table>
+        <thead>
+            <tr><th>이름</th><th>HTML</th><th>CSS</th></tr>
+        </thead>
+        <tfoot>
+            <tr><th>합</th><th>310</th><th>249</th></tr>
+        </tfoot>
+        <tbody>
+            <tr><td>박샘이</td><td>80</td><td>70</td></tr>
+            <tr><td>홍길동</td><td>95</td><td>99</td></tr>
+            <tr><td>문재롱</td><td>85</td><td>90</td></tr>
+            <tr><td>김정은</td><td>50</td><td>40</td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

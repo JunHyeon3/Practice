@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+    <style>
+        /* 애니메이션 어노테이션
+        from : 시작상태, to : 애니메이션 종료 상태 */
+        @keyframes bomb {from {font-size: 500%;} to {font-size: 100%;}}
+        /* @keyframes의 이름 bomb를 사용해 애니메이션 동작사용 */
+        /* animation-duration: 1s; = 1회 애니메이션 실행 시간 1초  */
+        /* animation-interation-count: infinite = 애니메이션 반복횟수 무한 */
+        h3 {animation: bomb; animation-duration: 1s; animation-iteration-count: infinite;}
+    </style>
+</head>
+<body>
+    <h3>꽝!</h3><hr>
+    <p>
+        꽝! 글자가 3초동안 500%에서 시작하여
+        100%로 바뀌는 애니메이션입니다.
+        세 번 반복합니다.
+    </p>
+</body>
+</html>
+
+<!-- CSS Style 동적변화 - animation
+(1) animation 속성을 사용하여 요소의 현재 스타일을 다른 스타일로 천천히 변화시킬 수 있음
+(2) CSS2에선 자바스크립트가 필요 했지만 CSS3에ㅔ선 자바스크립트 없이 이런 효과 적용이 가능
+(3) 애니메이션 효과를 사용하기 위해서 우선 애니메이션에 대한 키 프레임(keyframe)을 정의해야함
+(4) 키 프레임(keyframe)에는 특정한 시간에 해당 요소가 가져야 할 CSS스타일을 명시
+(5) 애니메이션 효과가 동작하기 위해서는 먼저 animation-name 속성을 이용하여 요소와 키 프레임을 연결
+(6) from 키워드에는 처음 시작점 스타일을 명시하고, to 키워드에는 마지막 종료점 스타일을 명시
+(7) 좀 더 복잡한 애니메이션 효과를 나타내기 위해서는 퍼센트(%)fmf tkdyd
+(8) 0%에는 처음 스타일, 100%에는 마지막 스타일을 명시하고, 중간에 원하는 수만큼의 키프레임을 생성 -->

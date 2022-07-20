@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전환</title>
+    <style>
+        /* transition : 애니메이션 기능 제공 */
+        span {transition: font-size 5s;}
+        /* hover 기능을 활용해 애니메이션 같은 효과를 줌
+        5초에 걸쳐 500까지 글자 키우는 전환 */
+        span:hover {font-size: 500%;}
+    </style>
+</head>
+<body>
+    <h3>font-size에 대한 전환</h3>
+    <p><span>헉!</span>글자에 마우스를 올려보세요.</p>
+</body>
+</html>
+<!-- 
+CSS3로만 HTML태그 모양의 동적 변화 가능
+자바스크립트로 구현하던 것을 CSS3로 작성가능
+3가지 방법
+1. 애니메이션(animation)
+    5초를 주기로 <span>태그의 글자색을 파란색 ,초록색, 빨간색으로 바꾸는 애니메이션 무한 반복
+
+2. 전환(transition)
+    HTML태그에 적용된 CSS3속성 값의 변화를 서서히 진행시켜 애니메이션 효과 생성
+    (1) transition 속성을 사용하여 정해진 시간 동안 요소의 속성값을 부드럽게 변화시킬 수 있음
+    (2) 해당 요소에 추가할 CSS스타일 전환(transition) 효과를 설정
+    (3) 추가할 전환 효과가 지속될 시간을 설정
+    (4) 해당 요소의 여러 속성을 동시에 변경할 수도 있음
+
+3. 변환(transform)
+    텍스트나 이미지를 회전, 확대 다양한 기하학적인 모양으로 출력 
+-->
