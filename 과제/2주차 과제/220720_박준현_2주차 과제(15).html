@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포토 갤러리</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        body {background-color: #eeeeee; font-family: "돋움"; font-size: 12px; color: #666666;}
+        div > div> ul> li > a > img {width: 60px; height: 60px;}
+        img#main_img {width: 600px; height: 350px;}
+
+        div#header {width: 800px; height: 40px; background-color: #dddddd;} 
+        div#logo {float:left; font-size: 16px; color: #3e2b23; padding-top: 10px; padding-left: 30px;}
+        div#top_menu {float:right; padding-top: 10px; padding-right: 10px;}
+        
+        div#left {float: left; width: 150px; height: 600px; background-color: #343333; color: #e2e2e2;}
+        div#left h2 {font-weight: normal; padding-top: 20px; padding-left: 30px;}
+        div#left ul {font-size: 14px; padding-top: 10px; padding-right: 10px; padding-bottom: 5px; padding-left: 25px;}
+        div#left li#submenu {padding: 3px;}
+
+        div#right {float: left; width: 650px; height: 600px; background-color: #252525;}
+        div#right div#main_title {width: 572px; padding: 10px; border: solid 5px #444444; 
+            margin-top: 24px; margin-right: 24px; margin-left: 24px; font-size: 18px; color: white; font-weight: bold;}
+
+        img#main_img {padding-top: 15px; padding-left: 24px; padding-right: 24px;}
+
+        div#thumnail {padding-top: 30px; padding-left: 70px; width: 600px;}
+        div#thumnail > #move_left {margin-top: 20px; margin-right: 5px; margin: 40px;}
+        div#thumnail > #photos {margin-top: 3px; margin-left: 10px;}
+        /* div#thumnail > #photos > li {margin-left: 10px;} */
+        div#thumnail > #move_right {margin-top: 20px; margin-left: 20px;}
+
+
+        div > div> ul> li > a > img {border: 5px solid #3d3d3d;}
+        div > div> ul> li > a > img:hover {border: 5px solid #ffffff; }
+        
+        li { list-style: none;}
+        div > div> ul> li {display: inline;}
+        .clear {clear: both;}
+    </style>
+</head>
+
+<body>
+    <!-- 상단 -->
+    <div id="header">
+        <div id="logo">PHOTO GallERY</div>
+        <div id="top_menu">로그인 | 회원가입 | 방명록</div>
+    </div>
+    <!-- 왼쪽 -->
+    <div id="left">
+        <h2>포토갤러리</h2>
+        <ul>
+            <li class="submenu">+ 풍경</li>
+            <li class="submenu">+ 일상</li>
+            <li class="submenu">+ 인물</li>
+            <li class="submenu">+ 가족</li>
+        </ul>
+    </div> 
+    
+
+    <!-- 오른쪽 -->
+    <div id="right">
+        <div id="main_title">풍경 사진</div>
+        <img id="main_img" src="s-1.jpg"}>
+        <div id="thumnail">
+            <ul id="photos">
+                <li><a href="#"><img id="move_left" src="bt_move_left.png"></a></li>
+                <li><a href="#"><img id="thums-1" src="s-1.jpg"></a></li>
+                <li><a href="#"><img id="thums-2" src="s-2.jpg"></a></li>
+                <li><a href="#"><img id="thums-3" src="s-3.jpg"></a></li>
+                <li><a href="#"><img id="thums-4" src="s-4.jpg"></a></li>
+                <li><a href="#"><img id="thums-5" src="s-5.jpg"></a></li>
+                <li><a href="#"><img id="move_right" src="bt_move_right.png"></a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
