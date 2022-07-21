@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>외부 파일에 자바스크립트 작성</title>
+    <!-- script태그를 활용해 외부 js파일 import시킴
+    .js : JavaScript형식 파일 확장자 -->
+    <script src="lib.js"></script>
+</head>
+<body>
+    <h3>마우스를 올려 보세요</h3>
+    <img src="../media/mio.png" alt="이미지" 
+        onmouseover="over(this)"
+        onmouseout="out(this)">
+</body>
+</html>
+
+<!-- event.html에서 한거와 같이 마우스 이벤트를 실행시키면,
+lib.js에 코딩되어있는 over와 out 함수가 실행됨 -->

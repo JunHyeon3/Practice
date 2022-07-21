@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프롬프트 확인 경고</title>
+</head>
+<body>
+    <h3>자바스크립트로 사용자 입력 및 대화</h3>
+    <!-- 버튼 사용 결과가 출력되는 부분
+    제목 밑에 hr 바로 아래에 출력됨 -->
+    <div id="result"></div>
+    <script>
+        // document.getElementById 아주 중요
+        // 현재 코드에서는 활용되지 않음
+        var result = document.getElementById("result");
+        function promptEX() {
+            // prompt는 입력할 수 있는 경고창 생성
+            var ret = prompt("이름을 입력하세요", "대장동");
+            // var ret에 저장된 값이 null이면 다음 if문 수행
+            if(ret == null) {
+                // 취소 버튼이나 다이얼 로그를 닫은경우, 출력되는 멘트
+                result.innerHTML = "취소나 그냥 닫았군요"
+            }
+            else {
+                // ret에는 사용자가 입력한 문자열
+                // 아무값도 입력하지 않으면, ret=""
+                result.innerHTML = ret;
+            }
+        }
+        function confirmEX() {
+            var ret = confirm("전송할까요?");
+            if(ret == true) {
+                // 사용자가 "확인" 버튼을 누른경우
+                result.innerHTML = "확인을 눌렀군요";
+            }
+            else {
+                result.innerHTML = "취소나 그냥 닫았군요";
+            }
+        }
+        // innerHTML 프로퍼티 : 시작태그와 종료태그 사이에 들어있는 HTML 컨텐츠
+        // innerHTML 프로퍼티 수정 => HTML 태그의 컨텐츠 변경
+        function alertEX() {
+            alert("알림말")
+        }
+    </script>
+    <button onclick="promptEX()">프롬프트 다이얼로그</button>
+    <button onclick="confirmEX()">확인 다이얼로그</button>
+    <button onclick="alertEX()">경고 다이얼로그</button>
+</body>
+</html>
+<!-- 
+prompt("메세지", "디폴트 입력값") 함수 프롬프트 다이얼로그
+사용자로부터 문자열을 입력 받아 리턴
+
+confirm("메세지") 함수 확인 다이얼로그
+"메세지"를 출력하고 '확인/취소' 버튼이나 강제로 다이얼로그를 닫으면 false리턴
+
+alert("메세지") 함수 경고 다이얼로그
+'메세지'와 '확인' 버튼을 가진 다이얼로그 출력, 메세지 전달. 
+-->
+

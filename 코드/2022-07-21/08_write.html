@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document.write() 활용</title>
+</head>
+<body>
+    <h3>document.write() 활용</h3><hr>
+    <!-- document.write()함수
+    javascript에서만 활용 가능
+    write 내부에 HTML태그를 활용할 수 있음 -->
+    <script>
+        document.write("<h3>welcome~</h3>");
+        document.write("2+5는 <br>");
+        document.write("<mark>7 입니다</mark>");
+        document.writeln();
+        document.write("<mark>7 입니다.</mark>");
+    </script>
+</body>
+</html>
+
+<!-- 
+자바스크립트로 HTML콘텐츠를 웹 페이지에 직접 삽입
+바로 브라우저 윈도우에 출력 document.write()
+    ex) document.write("<h3>welcome~</h3>");
+        document.writeln()
+writeln()은 텍스트에 '\n'을 덧붙여 출력
+'\n'을 덧붙이는 것은 빈칸 하나 출력
+다음 줄로 넘어가는것은 아님 
+-->

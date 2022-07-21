@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typeof를 통한 데이터 타입 알아보기</title>
+</head>
+<body>
+    <script>
+        //변수 값이 없다.
+        var num; 
+        //객체 변수 값이 없다.
+        var obj=null; 
+        // typeof를 통해 데이터 타입을 알 수 있다.
+        //number 정수
+        document.write(typeof 100+"<br>");
+        //number 정수
+        document.write(typeof 10.5+"<br>");
+        //string 문자, 문자열
+        document.write(typeof "홍길동"+"<br>");
+        //boolean 참, 거짓
+        document.write(typeof true+"<br>");
+        //object 배열
+        document.write(typeof [1,2,3]+"<br>");
+        //object : 데이터 속성과 값으로 이루어짐{이름, 값}
+        //object
+        document.write(typeof {name:'홍길동',age:25}+"<br>");
+        //undefined 정해지지 않음
+        document.write(typeof num+"<br>");
+        //obj 최상위 객체
+        document.write(typeof obj+"<br>");
+    </script>
+</body>
+</html>
