@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>대입 연산</title>
+</head>
+<body>
+    <h3>대입 연산</h3><hr>
+    <script>
+        var x=3, y=3, z=3;
+        document.write("x=" + x + ", y=" + y);
+        document.write(", z=" + z + "<br><br>");
+
+        x += 3;
+        y *= 3;
+        z %= 2;
+
+        document.write("x += 3; 실행 후, x=" + x + "<br>");
+        document.write("y *= 3; 실행 후, y=" + y + "<br>");
+        document.write("x %= 2; 실행 후, z=" + z + "<br><hr>");
+        
+        var x=13, y=7;
+        document.write("x=" + x + ", y=" + y + "<br><br>");
+        document.write("x == y : " + (x == y) + "<br>");
+        document.write("x != y : " + (x != y) + "<br><hr>");
+
+        var x=true, y=false;
+        document.write("x=" + x + ", y" + y + "<br><br>");
+        document.write("x && y : " + (x&&y) + "<br>");
+        document.write("x || y : " + (x||y) + "<br>");
+        document.write("!x : " + (!x) + "<br>");
+        document.write("<hr>");
+        document.write("(3>2) && (3<4) : " + ((3>2)&&(3<4)) + "<br>");
+        document.write("(3==-2) || (-1<0) : " + ((3==-2)||(-1<0)) + "<br><hr>");
+
+        var num1 = 35;
+        document.write("num1=" + num1 + "<br>")
+        var num2 = num1++;
+        document.write("num2=" + num2 + "<br>")
+        var num3 = ++num1;
+        document.write("num3=" + num3 + "<br><hr>")
+
+        document.write("abc" + 23 + "<br>")
+        document.write(23 + "abc" + "<br>")
+        document.write(23 + "35" + "<br>")
+        document.write(23 + 35 + "<br>")
+        document.write("abc" + 23 + "<br>")
+        document.write(23 + 35 + "abc" + "<br>")
+        document.write("abc" + 23 + 35 + "<br>")
+    </script>
+</body>
+</html>

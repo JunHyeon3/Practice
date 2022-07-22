@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대입 연산</title>
+</head>
+<body>
+    <h3>대입 연산</h3><hr>
+    <script>
+        var x=3, y=3, z=3;
+        document.write("x=" + x + ", y=" + y);
+        document.write(", z=" + z + "<br>");
+
+        x += 3;
+        y *= 3;
+        z %= 2;
+
+        document.write("x += 3; 실행 후, x=" + x + "<br>");
+        document.write("y *= 3; 실행 후, y=" + y + "<br>");
+        document.write("x %= 2; 실행 후, z=" + z + "<br><hr>");
+        
+        var x=13, y=7;
+        document.write("x=" + x + ", y=" + y + "<br>");
+        document.write("x == y : " + (x == y) + "<br>");
+        document.write("x != y : " + (x != y) + "<br>");
+
+        var x=true, y=false;
+        document.write("x=" + x + ", y" + y + "<br>");
+        document.write("x && y : " + (x&&y) + "<br>");
+        document.write("x || y : " + (x||y) + "<br>");
+        document.write("!x : " + (!x) + "<br>");
+        document.write("<hr>");
+        document.write("(3>2) && (3<4) : " + ((3>2)&&(3<4)) + "<br>");
+        document.write("(3==-2) || (-1<0) : " + ((3==-2)||(-1<0)) + "<br><hr>");
+
+        // 전향 후향 연산자
+        var num1 = 35;
+        document.write("num1=" + num1 + "<br>")
+        //++이 뒤에오는 경우 해당 라인에서 가산 되지 않고 다음줄에서 된다.
+        //(선 출력 후 연산)
+        var num2 = num1++;
+        document.write("num2=" + num2 + "<br>")
+        //++가 먼저오는 경우 최우선으로 연산이 진행된다.
+        //(선 연산 후 출력)
+        var num3 = ++num1;
+        document.write("num3=" + num3 + "<br><hr>")
+
+        //문자열 연산
+        document.write("abc" + 23 + "<br>")
+        document.write(23 + "abc" + "<br>")
+        document.write(23 + "35" + "<br>")
+        document.write(23 + 35 + "<br>")
+        document.write("abc" + 23 + "<br>")
+        document.write(23 + 35 + "abc" + "<br>")
+        document.write("abc" + 23 + 35 + "<br>")
+    </script>
+</body>
+</html>
+<!-- 
+비교연산 : 두 값 비교, true나 false의 결과를 내는 연산
+논리연산 : AND, OR, NOT
+a && b : 논리AND연산 ab모두 true일 때 true 리턴
+a || b : 논리OR연산 ab중 하나라도 true일 때 true 리턴
+!a     : 논리AND연산 a가 true일 때 false 리턴 
+
+조건 연산(삼항연산)
+condition ? expT : expF
+    condition이 true이면 전체 결과는 expT의 계산값, false이면 expF의 계산값
+
+증감 연산자 : ++, --
+    a++ : a=a+1
+    a-- : a=a-1
+-->

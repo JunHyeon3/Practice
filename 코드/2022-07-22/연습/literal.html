@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>상수</title>
+</head>
+<body>
+    <h3>상수 Literal</h3><hr>
+    <script>
+        var oct =0o15;
+        var hex =0x15;
+        var condition = true;
+
+        document.write("8진수 0o15는 10진수로" + oct + "<br>");
+        document.write("16진수 0x15sms 10진수로" + hex + "<br>");
+        document.write("condition은" + condition + "<br>");
+        document.write('문자열 : 단일 인용부호로도 표현' + "<br>");
+        document.write("그녀는 \"누구세요\"라고 했습니다." + "<br><hr>");
+
+        var x = 32;
+        var total = 100+x*2/4-3;
+        var div = x/10;
+        var mod = x%2;
+        document.write("x : " + x + "<br>");
+        document.write("100 + x*2/4 - 3 = " + total + "<br>");
+        document.write("x/10 = " + div + "<br>");
+        document.write("x%2 = " + mod + "<br><hr>");
+
+        var x=13, y=7;
+        document.write("x : " + x + ", y=" + y + "<br>");
+        document.write("x == y : " + (x == y) + "<br>");
+        document.write("x != y : " + (x != y) + "<br>");
+        document.write("x >= y : " + (x >= y) + "<br>");
+        document.write("x > y : " + (x > y) + "<br>");
+        document.write("x <= y : " + (x <= y) + "<br>");
+        document.write("x < y : " + (x < y) + "<br><hr>");
+
+        var a=3, b=5;
+        document.write("a=" + a + ", b=" + b + "<br>");
+        document.write("두 수의 차이 : " + ((a>b)?(a-b):(b-a)) + "<br><hr>");
+
+        var name = "kitae";
+        document.write(name == "kitae");
+        document.write("<br>");
+        document.write(name > "park");
+
+    </script>
+</body>
+</html>
