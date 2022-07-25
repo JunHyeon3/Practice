@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule</title>
+    <style>
+        body {font-family: "돋움"; font-size: 12px; 
+              color: #444444;}
+        ul {list-style: none; font-size: 14px; 
+            margin-top: 10px; margin-left: 210px;}
+        li {display: inline-block;}
+        table {margin-top: 15px; border-collapse: collapse;
+               border-color: #aaaaaa; 
+               border-top: 2px solid #aaaaaa;}
+        tr {height: 60px; vertical-align: top;}
+        td {width: 76px; padding: 5px;}
+        tr#day {height: 20px; background: #f8f9f2; 
+                font-weight: bold; text-align: center;}
+        .red {color: red;}
+        .blue {color: blue;}
+    </style>
+</head>
+<body>
+    <h3><img src="title.png" width="610" height="40px"></h3>
+    <ul id="date">
+        <li><img src="left.png" width="12px" height="12px"></li>
+        <li>2017년 6월</li>
+        <li><img src="right.png" width="12px" height="12px"></li>
+    </ul>
+    <table id="sched_tbl" border="1px">
+        <tr id="day">
+            <td><span class="red">일</span></td>
+            <td>월</td>
+            <td>화</td>
+            <td>수</td>
+            <td>목</td>
+            <td>금</td>
+            <td><span class="blue">토</span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td><span class="blue">5</span></td>
+        </tr>
+        <tr>
+            <td><span class="red">6</span></td>
+            <td>7</td>
+            <td>8</td>
+            <td>9<br>특강</td>
+            <td>10</td>
+            <td>11</td>
+            <td><span class="blue">12</span></td>
+        </tr>
+        <tr>
+            <td><span class="red">13</span></td>
+            <td>14<br>기말고사</td>
+            <td>15<br>기말고사</td>
+            <td>16<br>기말고사</td>
+            <td>17<br>기말고사</td>
+            <td>18<br>기말고사</td>
+            <td><span class="blue">19</span></td>
+        </tr>
+        <tr>
+            <td><span class="red">20</span></td>
+            <td>21<br>하계방학</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td><span class="blue"></span>26</td>
+        </tr>
+        <tr>
+            <td><span class="red">27</span></td>
+            <td>28</td>
+            <td>29<br>MT</td>
+            <td>30<br>MT</td>
+            <td>31</td>
+            <td></td>
+            <td><span class="blue"></span></td>
+        </tr>
+    </table>
+</body>
+</html>
