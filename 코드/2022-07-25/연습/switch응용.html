@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head>
+    <title>Switch 문 응용</title>
+</head>
+<body>
+    <h3>출근 스위치문을 만들어보자</h3>
+    <h1>출퇴근 판독</h1>
+    <br>
+    <script>
+        var go=0;
+        var day = prompt("요일을 입력하세요.", "")
+        switch(day) {
+            case "" :
+            case "월" : go = 1; break;
+            case "화" : go = 1; break;
+            case "수" : go = 1; break;
+            case "목" : go = 1; break;
+            case "금" : go = 1; break;
+            case "토" : go = 0; break;
+            case "일" : go = 0; break;
+            default : go=2; break;
+        }
+        if(go == 1) {document.write(day + "요일은 출근입니다.");}
+        else if (go == 0) {document.write(day + "요일은 휴무입니다.");}
+        else {alert("잘못된 입력입니다.");
+              document.write(day + "는 잘못된 입력입니다.");
+        }
+    </script>
+</body></html>

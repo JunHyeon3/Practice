@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>for 문</title>
+</head>
+<body>
+    <h3>for 문으로 10px ~ 35px 크기 출력</h3>
+    <script>
+        for(var size=10; size<=35; size+=5) {
+            document.write("<span ");
+            document.write("style = 'font-size:" + size + "px'>");
+            document.write(size + "px");
+            document.write("</span>");
+        }
+
+        document.write("<br><br>");
+
+        var n= prompt("0보다 큰 정수를 입력하세요",0);
+        n = parseInt(n);
+
+        var i=0, sum=0;
+        while(i<=n) {
+            sum += i;
+            i++
+        }
+        document.write("0에서" + n + "까지의 합은" + sum);
+    </script>
+</body>
+</html>
+
+<!-- for문과 while문 모두 c곙ㄹ 언어들과 문법이 거의 동일하다.
+for문 활용법
+(1) 처음 for문 실행시 맨 왼쪽 부분만 실행되고 반복문을 실행
+(2) 다음 반복문을 실행할 때 맨 끝에 변수를 가(감)산한 후 가운데 조건을 비교
+    size++ 같은 선 출력 후 연산을 하더라도 이미 가감산이 끝난 상태가 되는데
+    이유는 ; 때문이다. ; 표시가 있으면 같은 줄이라도 다른줄로 인식한다.  -->
