@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>상수</title>
+</head>
+<body>
+    <script>
+        function evall() {
+            var str = prompt("수식을 입력하시오", "1+2+3+4+5");
+
+            if(str == "") {
+                document.write("입력된 식이 없습니다.");
+            }
+            else {
+                var sum = eval(str);
+                document.write(str + " = " + sum);
+            }
+        }
+    </script>
+    <h3>상수</h3><hr>
+    <script>
+        evall();
+    </script>
+</body>
+</html>
+

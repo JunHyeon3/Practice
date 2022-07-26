@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상수</title>
+</head>
+<body>
+    <script>
+        function evall() {
+            var str = prompt("수식을 입력하시오", "1+2+3+4+5");
+
+            if(str == "") {
+                document.write("입력된 식이 없습니다.");
+            }
+            else {
+                var sum = eval(str);
+                document.write(str + " = " + sum);
+            }
+        }
+    </script>
+    <h3>상수</h3><hr>
+    <script>
+        evall();
+    </script>
+</body>
+</html>
+

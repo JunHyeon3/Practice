@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date객체로 현재시간 알아내기</title>
+</head>
+<body>
+    <h3>Date객체로 현재시간 알아내기</h3>
+    <script>
+        var now = new Date();
+        document.write("현재 시간 : " + now.toUTCString() + "<br><hr>");
+        document.write(now.getFullYear() + "년도<br>");
+        document.write(now.getMonth() + "월<br>");
+        document.write(now.getDate() + "일<br>");
+        document.write(now.getHours() + "시<br>");
+        document.write(now.getMinutes() + "분<br>");
+        document.write(now.getSeconds() + "초<br>");
+        //밀리초 : 1/1000초 밀리미터같은 개념
+        document.write(now.getMilliseconds() + "밀리초<br>");
+        //숫자 순서대로 : 년도, 월, 일, 시, 분, 초 (월은 +1되서 8월로 출력됨)
+        var next = new Date(2017, 7, 15, 12, 12, 12);
+        document.write("next.toLocalString() : " + next.toLocaleString() + "<br>");
+    </script>
+</body>
+</html>

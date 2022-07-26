@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 객체로 배열 만들기</title>
+</head>
+<body>
+    <h3>Array 객체로 배열 만들기</h3><hr>
+    <script>
+        //Array로 배열 객체 생성, 변수 생성한 것과 동일하다.
+        var degrees = new Array();
+        degrees[0] = 15.1;
+        degrees[1] = 15.4;
+        degrees[2] = 16.1;
+        degrees[3] = 17.5;
+        degrees[4] = 19.2;
+        degrees[5] = 21.4;
+
+        var sum = 0;
+        for(var i=0; i<degrees.length; i++) { 
+            sum += degrees[i];
+        }
+        document.write("평균 온도는 " + sum/degrees.length + "<br>");
+        document.write("배열의 원소 수는? " + degrees.length);
+    </script>
+</body>
+</html>

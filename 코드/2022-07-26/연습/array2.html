@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[]로 배열 만들기</title>
+</head>
+<body>
+    <h3>[]로 배열만들기</h3>
+    <script>
+        document.write("var plots = [20, 5, 8, 15, 20]" + "<br>");
+        var plots = [20, 5, 8, 15, 20];
+
+        for(var i=1; i<=5; i++) {
+            for(var j=1; j<=plots[i-1]; j++) {
+                document.write("*");
+            }
+            document.write(plots[i-1] + "<br>");
+        }
+    </script>
+</body>
+</html>

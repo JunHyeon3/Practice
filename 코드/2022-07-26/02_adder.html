@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+    <script>
+        function adder(a,b) {
+            var sum;
+            sum = a + b;
+            return sum;
+        }
+    </script>
+</head>
+<body>
+    <h3>함수 adder()</h3>
+    <script>
+        var n = adder(24567, 98374);
+        document.write("24567 + 98374는 " + n + "<br>");
+        </script>
+</body>
+</html>
+
+<!-- 
+js함수도 다른 언어와 동일한 구조로 되어있다.
+호출부(주로 main)에서 인수(argument)를 전송하면
+함수의 매개변수(parameter)로 값을 받아들여 동작한다
+js에는 변수형을 지정하지 않으므로 매개변수에 변수형을 지정하지 않는다 
+-->
+
+<!-- 
+함수란? 
+목적을 가지고 작성된 코드 블록
+데이터를 전달받아 처리한 후 결과를 돌려주는 코드 블록
+
+(1) 하나의 특별한 목적의 작업을 수행하도록 설계된 독립적인 블록
+(2) 필요할 때마다 호출하여 해당 작업을 반복해서 수행 가능
+(3) 자바스크립트에서는 함수도 하나의 타입(data type)
+(4) 함수를 변수에 대입하거나, 함수에 프로퍼티를 지정하는 것도 가능
+(5) 다른 함수 내에 중첩되어 정의할 수 있음
+
+함수 정의
+function 함수이름(매개변수) {
+    실행문;
+}
+매개변수는 함수를 호출할 때 인수로 전달된 값을 함수 내부에서 사용할수 있게 해주는 변수
+
+-->
+
