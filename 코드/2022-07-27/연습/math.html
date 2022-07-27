@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math()를 활용한 구구단 연습</title>
+    <script>
+        function randomInt() {
+            return Math.floor(Math.random()*9 + 1);
+        }
+    </script>
+</head>
+<body>
+    <h3>Math()를 활용한 구구단 연습</h3>
+    <script>
+        var ques = randomInt() + "*" + randomInt();
+        var user = prompt(ques + "의 답은??", 0);
+        if(user == null) {
+            document.write("연습을 종료합니다.");
+        }
+        else {
+            var ans=eval(ques);
+            if(ans == user) {document.write("정답!");}
+            else {
+                document.write("오답..");
+                document.write(ques + "=" + "<strong>" + ans + "</strong>입니다.");
+            }
+        }
+    </script>
+</body>
+</html>

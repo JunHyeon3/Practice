@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방문 시간에 따라 변하는 배경색</title>
+</head>
+<body>
+    <h3>페이지 방문 초시간이 짝수일 때와 홀수일 때의 색</h3>
+    <script>
+        var current = new Date();
+        // 매 초마다 배경이 바뀌는 if문
+        // 현재 초가 짝수라면
+        if(current.getSeconds()%2 == 0) {
+            document.body.style.backgroundColor = "violet";
+        }
+        // 현재 초가 홀수라면
+        else { 
+            document.body.style.backgroundColor = "lightskyblue";
+        }
+            document.write("현재 시간 : ");
+            document.write(current.getHours(), "시,");
+            document.write(current.getMinutes(), "분,");
+            document.write(current.getSeconds(), "초<br>");
+
+    </script>
+</body>
+</html>

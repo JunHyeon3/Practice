@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>new Object()로 사용자 객체 만들기</title>
+        <script>
+        // body위에 지정해 둬야지만 사용이 가능하다.
+        //이 변수들을 여기서 지정해 두었기에 따로 함수에서 this로 사용한다.
+        function inquiry() {return this.balance;}
+        //입금
+        function deposit(money) {this.balance += money;}
+        //인출
+        function withdraw(money) {this.balance -= money;}
+
+        //사용자 객체 만들기
+        //account.변수명 => js의 모든 변수는 var
+        var account = new Object(); 
+        //계좌 주인 프로퍼티 생성 및 초기화
+        account.owner = "대장동"; 
+        //코드 프로퍼티 생성 및 초기화
+        account.code = "1111";      
+        //잔액 프로퍼티 생성 및 초기화
+        account.balance = 35000;
+        // object 변수 account에 위에 정의해둔 함수를 통해 메소드 작성 inquiry함수 사용
+        //상단에 작성된 함수인데, 함수명만 작성해야 동작함
+        //메소드 작성 inquiry함수 사용
+        account.inquiry = inquiry;    
+        //메소드 작성 deposit함수 사용
+        account.deposit = deposit;    
+        //메소드 작성 withdraw함수 사용
+        account.withdraw = withdraw;    
+    </script>
+</head>
+<body>
+    <h3>new Object()로 사용자 객체 만들기</h3>
+    <script>
+        //객체 활용 데이터 출력
+        document.write("account : ");
+        document.write(account.owner + ", ");
+        document.write(account.code + ", ");
+        document.write(account.balance + "원<br>");
+        //10000원 입금
+        account.deposit(10000); 
+        document.write("10000원 저금 후 잔액은 " + account.inquiry() + "<br>");
+        //5000원 인출
+        account.withdraw(5000); 
+        document.write("5000원 인출 후 잔액은 " + account.inquiry() + "<br>");
+    </script>
+</body>
+</html>

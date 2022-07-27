@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h2>정답의 동적 삽입</h2><hr>
+    
+    <p>Q. 거울아 거울아 세상에서 누가 가장 예쁘니?</p>
+    <input type="button" value="정답보기" onclick="a()">
+    <p id="a1"></p>
+    
+    <p>Q. 죽느냐 사느냐 그것이 문제로다.</p>
+    <input type="button" value="정답보기" onclick="b()">
+    <p id="b1"></p>
+
+    <script>
+        function a(){
+            document.getElementById('a1').innerHTML='너';
+        }
+        function b(){
+            document.getElementById('b1').innerHTML='그렇다.';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string 객체의 메소드 활용</title>
+</head>
+<body>
+    <h3>string 객체의 메소드 활용</h3>
+    <script>
+        var a = new String("Boys and Girls");
+        var b = "!!";
+        document.write("a : " + a + "<br>");
+        document.write("b : " + b + "<br><hr>");
+
+        //charAt(0) : 첫 번째 글자 출력
+        document.write(a.charAt(0) + "<br>");
+        //a 문자열에 b를 출력하라는 뚯
+        document.write(a.charAt(b, "입니다.") + "<br>");
+        //a.indesOf("s") : s가 문장 내 몇 번째에 있는지 출력
+        document.write(a.indexOf("And") + "<br>");
+        //slice : 문자열 잘라서 출력, 6번째 부터 9번째 문자 까지 따로 출력
+        document.write(a.slice(5, 8) + "<br>");
+        //substr : 6번째 글자부터 3글자만 따로 출력
+        document.write(a.substr(5, 3) + "<br>");
+        //toUpperCase : 문자열을 모두 대문자로 표시
+        document.write(a.toUpperCase() + "<br>");
+        //replace : 좌측 키워드를 우측 키워드로 변경
+        document.write(a.replace("and", "or") + "<br>");
+        //trim : 해당 문자열의 양 끝 공백 제거 (문자들 사이 공백은 안건드림)
+        document.write("  kitae  ".trim() + "<br><hr>");
+
+        var sub = a.split(" ");
+        document.write("a를 빈칸으로 분리<br>");
+        for(var i=0; i<sub.length; i++) {
+            document.write("sub" + i + "=" + sub[i] + "<br>");
+        }
+
+        document.write("<hr>String 메소드 실행한 후 a와 b변함 없음<br>");
+        document.write("a" + a + "<br>");
+        document.write("b" + b + "<br>");
+    </script>
+</body>
+</html>
+
+<!--  
+CharAt(index)                   지정된 위치에서 문자찾기    
+indexOf(string)                 지정된 문자의 위치를 왼쪽부터 찾기
+lastIndexOf(string)             지정된 문자의 위치를 오른쪽부터 찾기
+substring(index1, index2)       지정된 위치에 있는 문자열 리턴
+toLowerCase()                   소문자로 변환하기
+toUpperCase()                   대문자로 변환하기
+contact(string)                 두 문자열 합치기
+slice(start_index, end_index)   문자열의 일부 추출하기
+split([분리자])                 문자열 분리하기
+substring(start_index, length)  문자열을 length만큼 잘라내기
+-->
+
+
+<!--  중요!!
+    indexOf(문자)
+        해당 문자가 들어있는 위치 인덱스를 반환 (문자가 없으면 -1 반환)
+
+        ex) "abcde".indexOf("e"); 에서는 4를 반환 (index는 0부터 시작하므로)
+
+    subString(인수, 인수)
+        charAt은 문자 하나를 읽어내지만 subString은 문자열을 읽어냄
+        첫 번째 인수는 시작지점 문자(반환값에 포함)
+        두 번째 인수는 끝지점 문자 (반환값에 미포함) 즉, 두 번째 인수 이전 문자까지만 반환
+
+        ex) "abcde".subString(1, 3)은 "bc"를 반환
+
+    lastIndexOf(searchValue[, fromIndex])
+        string 오브젝트에서 fromIndex로 부터 반대 방향으로 찾기 시작하여
+        특정 값이 일치하는 마지막 인덱스를 반환 (일치하는게 없으면 -1 반환)
+        str.length-1 이라서 기본적으로 전체 문자열을 모두 검색
+        str.substring(start) 문자열 start위치 부터 끝까지 문자열 자르기
+        str.substring(start, end) 문자열 start위치 부터 end 전까지 문자열 자르기
+
+        ex) String str = "ABCDEFG"; //A=0 ~ G=6의 인덱스를 가짐
+            str.substring(3); //결과값 DEFG
+            str.substring(3, 6); //결과값 DEF
+    ----------------------------------------------------------------        
+    마지막 3글자 자르기
+    String str = "ABCDEFG"
+    String result = str.substring(str.length()-3, str.length()); //결과값 EFG
+
+    특정문자 이후의 문자열 제거
+    String str = "ABCD/DEFGH"
+    String result = str.substring(str.lastIndexOf("/")+1); //결과값 DEFGH
+-->
