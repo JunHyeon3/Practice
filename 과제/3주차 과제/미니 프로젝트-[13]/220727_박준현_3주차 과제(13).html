@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>member</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        ul {list-style: none;}
+        div#mem_title {width: 700px; height: 25px; margin: 10px 0 0 20px;
+                        border-bottom: 2px solid #1b894d;}
+        form > ul#mem_form {width: 700px; margin-left: 20px; 
+                            font-family: "돋움"; font-size: 12px; 
+                            color: #888888; padding-top: 5px;}
+        li.row {height: 30px; margin-top: 10px; border-bottom: 1px solid #cccccc;}
+        input {width: 80px; height: 16px; border: 1px solid #cccccc; vertical-align: middle;}
+        select {width: 80px; height: 20px; border: 1px solid #cccccc; font-size: 12px;}
+        li.col1 {width: 120px; text-align: right; float: left; margin-right: 10px;}
+        li.col2 > ul > li {display: inline-block; vertical-align: middle;}
+        li > img {height: 20px; vertical-align: middle;}
+        div#buttons {width: 700px; padding: 20px; text-align: center;}
+    </style>
+</head>
+<body>
+    <div id="mem_title">
+        <img src="join_title.PNG" style="width: 12px;">회원가입 정보
+    </div>
+    <form>
+        <ul id="mem_form">
+            <li class="row">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_id.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="text"></li>
+                            <li><img id="chk_id" src="chk_id.png"></li>
+                            <li>영문, 숫자 조합으로 4~12자 이내</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="row">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_pw.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="password"></li>
+                            <li>영문, 숫자 조합으로 4~12자 이내</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row" id="pw_confirm">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_pw2.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="password"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row" id="name">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_name2.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="text"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row" id="birthday">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_birthday.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="text" style="width:40px"></li>
+                            <li>년&nbsp;</li>
+                            <li><input type="text" style="width:20px"></li>
+                            <li>월&nbsp;</li>
+                            <li><input type="text" style="width:20px"></li>
+                            <li>일&nbsp;</li>
+                            <li><input type="radio" style="width:10px" name="year" checked></li>
+                            <li>음력&nbsp;</li>
+                            <li><input type="radio" style="width:10px" name="year"></li>
+                            <li>양력&nbsp;</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row" id="email">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_email.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="text"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_hp.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="text" style="width:30px"></li>
+                            <li>-</li>
+                            <li><input type="text" style="width:40px"></li>
+                            <li>-</li>
+                            <li><input type="text" style="width:40px"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="row" id="job">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_job.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li>
+                                <select>
+                                    <option>직업선택</option>
+                                    <option>직장인</option>
+                                    <option>사업가</option>
+                                    <option>학생</option>
+                                    <option>기타</option>
+                                </select>
+                            </li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </li>      
+            
+            <li class="row" id="target">
+                <ul class="item">
+                    <li class="col1">
+                        <img src="txt_target.png">
+                    </li>
+                    <li class="col2">
+                        <ul>
+                            <li><input type="checkbox" style="width:10px"></li>
+                            <li>시험대비</li>
+                            <li><input type="checkbox" style="width:10px"></li>
+                            <li>업무상</li>
+                            <li><input type="checkbox" style="width:10px"></li>
+                            <li>취미</li>
+                            <li><input type="checkbox" style="width:10px"></li>
+                            <li>기타</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div id="buttons">
+            <img src="btn_cancel.png">&nbsp;<img src="btn_ok.png">
+        </div>
+    </form>
+</body>
+</html>
