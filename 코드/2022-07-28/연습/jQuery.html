@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery활용</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function() {
+                $("button").hide();
+            });
+            $("p").mouseover(function() {
+                $("button").show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>메시지 : 제이쿼리를 공부하고 있습니다.</p>
+    <button>메시지 삭제</button>
+</body>
+</html>

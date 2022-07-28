@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>innerHTML 활용</title>
+    <style>
+        #result {
+            background-color: yellow;
+            color: darkblue;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function change() {
+            result.innerHTML = 
+    "나의 <img src='../media/mio.png' width='100px' height='100px'> 고양이"
+        }
+    </script>
+</head>
+<body>
+    <h3>innerHTML 활용</h3>
+    <p id="firstP" style="color: blue;" onclick="change()">
+        여기를 <span style="color: red;">클릭하세요</span>
+    </p>
+    <p id="result">궁금해</p>
+</body>
+</html>

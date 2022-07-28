@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서의 동적 구조</title>
+    <script>
+        function createDIV() {
+            //body 태그 객체 생성
+            var obj = document.getElementById("parent");
+            var newDIV = document.createElement("div");
+            //div DOM 객체 생성
+            //newDIV객체에 새로 생성된 DIV입니다. 문구 생성
+            newDIV.innerHTML = "새로 생성된 DIV입니다."
+            // innerHTML 내부변경 명령어
+            // newDIV 객체의 id속성에 myDiv값을 입력
+            newDIV.setAttribute("id", "myDiv");
+            //newDIV 객체의 스타일 지정
+            newDIV.style.backgroundColor = "yellow";
+            //newDIV 객체에 클릭 동작이 실행되면 함수 수행
+            newDIV.onclick = function() {
+                //이부분을 실행하면 newDIV객체가 부모 객체의 요소를 물려받고
+                //자신은 부모 클래스로부터 독립된다.
+                var p = this.parentElement; //부모 HTML 태그요소
+                p.removeChild(this); //자신을 부모로 부터 제거
+            }
+            //newDIV객체를 parent태그 객체의 자식 객체로 만듦
+            obj.appendChild(newDIV);
+        }
+    </script>
+</head>
+<body id="parent">
+    <h3>DIV객체를 동적으로 생성, 삽입, 삭제</h3><hr>
+    <p>
+        DOM 트리에 동적으로 객체를 삽입할 수 있습니다.
+        createElement(), appendChild(), removeChild()
+        메소드를 이용하여 새로운 객체를 
+        생성, 삽입, 삭제하는 예제입니다.
+    </p>
+    <!-- 이 부분을 클릭하면 createDIV함수 실행 -->
+    <p><a href="javascript:createDIV()">DIV 생성</a></p>
+</body>
+</html>
+
+<!-- 
+1. <p><a href="javascript:createDIV()">DIV 생성</a></p> 
+자바스크립트 script에 있는 createDIV()함수를 호출한다.
+
+2. var obj = document.getElementById("parent");
+obj에 id가 parent인 값을 넣는다. 즉 body태그를 받는다.
+
+3. var newDIV = document.createElement("div");
+새롭게 newDIV라는 변수에 div라는 요소를 생성한다. (없던 값을 만듦)
+
+4. newDIV.innerHTML = "새로 생성된 DIV입니다."
+만든 곳에 문구, 색, id속성값도 넣고 여러 설정을 한다.
+
+5. 만약 1번 DIV생성 이라는 text를 클릭했을 때 createDIV가 실행
+    var p = this.parentElement; //부모 HTML 태그요소
+    //그 요소에서 자식(newDIV)값을 삭제한다.(독립한다.)
+    p.removeChild(this); 
+    그 내용 안에는, p라는 변수에 부모 태그요소를 가져온 다음
+    그 부모 태그요소 안에 있는 newDIV라는 값을 삭제한다. 이 값은 부모와 독립한다.
+
+6. 독립한 다음에 다시 obj.appendChile(newDIV); 속성값으로 들어간다.
+클릭할 때마다 새롭게 문구등장
+-->

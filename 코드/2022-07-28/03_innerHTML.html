@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>innerHTML 활용</title>
+    <style>
+        #result {
+            background-color: yellow;
+            color: darkblue;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function change() {
+            //innerHTML 프로퍼티를 활용해 이미지 삽입
+            //result.innerHTML : id가 result인 태그에 정보 입력
+            result.innerHTML = 
+    "나의 <img src='../media/mio.png' width='100px' height='100px'> 고양이"
+        }
+    </script>
+</head>
+<body>
+    <h3>innerHTML 활용</h3>
+    <p id="firstP" style="color: blue;" onclick="change()">
+        여기를 <span style="color: red;">클릭하세요</span>
+    </p>
+    <p id="result">궁금해</p>
+</body>
+</html>
+
+<!-- 
+innerHTML 프로퍼티
+시작태그와 종료태그 사이에 들어 있는 HTML컨텐츠
+innerHTML 프로퍼티 수정 -> HTML 태그의 콘텐츠 변경
+var p = document.getElementById("firstP");
+p.innerHTML = "나의 <img src='puppy.png'> 강아지입니다." -->

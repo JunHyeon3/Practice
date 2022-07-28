@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM 트리</title>
+</head>
+<body>
+    <h3>DOM객체의 p의 프로퍼티, 스타일, 이벤트 리스너</h3><hr>
+    <p id="firstP" style="color: blue; background:yellow;"
+    onclick="this.style.color='teal'">
+        이것은 <span style="color: red;">문장입니다.</span>
+    </p>
+    <script>
+        //id=firstP인 태그의 정보를 객체 p에 입력함
+        var p = document.getElementById("firstP");
+        //p객체의 정보들을 입력함
+        var text = "p.id = " + p.id + "\n";
+        text += "p.tagName = " + p.tagName + "\n";
+        text += "p.innerHTML = " + p.innerHTML + "\n";
+        text += "p.style.color = " + p.style.color + "\n";
+        text += "p.onclick = " + p.onclick + "\n";
+        text += "p.childElementCount = " + p.childElementCount + "\n";
+        text += "너비 = " + p.offsetWidth + "\n";
+        text += "높이 = " + p.offsetHeight + "\n";
+        //경고창 메소드를 활요해 위 정보들을 출력
+        alert(text);
+        //이 for문은 "p.id = " + p.id + "\n" 이 문장의 8가지 값들을 출력
+        //출력될 때는 p.id의 값인 firstP중에 일부인 fi가 출력됨
+        //이 값은 p 태그가 끝난 다음에 출력됨
+        //js는 순차지향이기 때문에 이 값은 먼저 입력된 p태그가 끝난 다음에 출력됨
+        //같은 body 태그 안에 있기 때문에 위에서부터 우선순위가 있음
+        //text는 문자열 배열이 아니라 문자열 릴터럴이기 때문에
+        //문자1개가 1개의 인덱스를 차지
+        //id=firstP에다가 style과 onclick이벤트를 적용했다.
+        //이런것들을 var p=document.getElementById("firstP");
+        //변수 p에다가 넣어주고 p.~~로
+        //text += "p.innerHTML = " + p.innerHTML + "\n";
+        //사용해서 allert창에 모두 출력해준다
+        for(var i=0; i<=8; i++) {
+            document.write(text[i]);
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+
+getElementById(id) 메소드로 DOM(Document Object Model)을 가져와 활용
+해당하는 id에 대한 요소 객체를 가져와 해당 객체의 상세정보를 파싱하여 활용 가능
+DOM이란?
+문서 객체 모델 (DOM)은 HTML, XML 문서의 프로그래밍 interface이다. 
+DOM은 문서의 구조화된 표현(structured representation)을 제공하며
+프로그래밍 언어가 DOM구조에 접근할 수 있는 방법을 제공하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.
+DOM은 구조화된 nodes와 property와 method를 갖고 있는 object로 문서를 표현한다.
+이들은 웹페이지를 스크립트 또는 프로그래밍 언어들에서 사용할 수 있게 연결시켜주는 역할을 담당한다.
+웹 페이지는 일종의 문서(document)다.
+이 문서는 웹브라우저를 통해 그 내용이 해석되어
+웹 브라우저 화면에 나타나거나 HTML소스 자체로 나타나기도 한다.
+동일한 문서를 사용하여 이처럼 다른 형태로 나타날 수 있다는 점에 주목할 필요가 있다.
+DOM은 동일한 문서를 표현하고, 저장하고, 조작하는 방법을 제공한다.
+DOM은 웹페이지의 객체지향 표현이며, 자바스크립트와 같은 스크립팅 언어를 이용해 DOM을 수정할 수 있다.
+
+예를 들어, 표준 DOM에서는 문서 안에서 모든 <p> elements에 대한 list를 리턴하는 getElementsByTagName 메소드를 정의하고 있다.
+웹 페이지를 수정하거나 생성하는데 사용되는 property, method, event들은 object로 구성된다.
+예를 들어, document object는 document자체를 의미하며, 
+table object는 HTML table에 접긓나기 위한 HTMLTableElement DOM 인터페이스를 구성한 것이다.
+이 문서는 Gecko기반의 브라우저에서 구현된 DOM에 대한 object-by-object reference를 제공한다.
+자바스크립트 코드는 브라우저로부터 3가지 유형의 객체를 제공받아 활용한다.
+1.BOM객체 2.DOM객체 3.코어객체
+DOM 트리
+    HTML 태그의 포함관계에 따라 DOM객체의 트리(tree) 생성
+    DOM 트리는 부모 자식 관계
+DOM 객체
+    DOM 트리의 한 노드
+    HTML 태그 당 하나의 DOM객체 생성
+    DOM 노드, DOM 엘리먼트 라고도 불림
+-->

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery활용</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        //이런 형태가 jquery
+        //$(document).ready(function()) : 제이쿼리 기본형
+        $(document).ready(function () {
+            //button태그에 클릭 동작이 실행되면 button태그를 숨김
+            $("button").click(function() {
+                $("button").hide();
+            });
+            //p태그에 마우스가 올라가면
+            $("p").mouseover(function() {
+                //button 태그가 보임
+                $("button").show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>메시지 : 제이쿼리를 공부하고 있습니다.</p>
+    <button>메시지 삭제</button>
+</body>
+</html>
+
+<!--  
+제이쿼리란?
+자바스크립트 코드를 좀 더 직관적으로 이해할 수 있도록 짧고 단순한 코드 형태로 변형하여 제공하는 것
+자바스크립트 : document.getElementById("p").innerHTML="웹 프로그래밍";
+제이쿼리 : $("#p").html("웹 프로그래밍");
+
+제이쿼리를 사용하는 이유
+1. 자바스크립트의 문서 객체 모델 DOM과 이벤트 객체는 호환성이 떨어지는 단점이 있다.
+예를 들어 인접요소 선택자 중 다음 요소 선택자는 브라우저별로 결과가 달랐다.
+이를 해결하기 위해 등장한 제이쿼리는 호환성 문제를 해결했다.
+
+2. 편리한 애니메션 효과 기능 구현이다.
+자바스크립트로 애니메이션 효과를 구현하려면 정말 ㅁ낳은 코드가 필요하다.
+때문에 개발에 있어서 너무 많은 시간을 사용해야 하지만
+제이쿼리에는 다양한 애니메이션 효과를 지원한다.
+
+버전3 : jQuery 3.2.1
+    2014년 19월에 배포된 제이쿼리 버전3는 제이쿼리의 차세대 표쥰
+    기존 버전과의 호환성을 유지한 채 더욱 간결하게 작성되고, 더욱 빠르게 동작
+
+제이쿼리 적용방법
+jQuery 파일은 자바스크립트 파일(.js) 형태로 존재
+웹페이지에서 사용하기 위해서는 파일을 먼저 웹페이지에 로드해야 함
+(1) 방법 1 : jQuery파일을 다운받아 로드. 
+            https://jquery.com/download/ 에서 제이쿼리를 다운받아 원하는 위치에 저장
+    
+    방법 2 : CDN을 이용하여 로드하는 방법
+            -CDN(Content Delivery Network)이란 웹사이트 접속자가 서버에서 
+            콘텐츠를 다운 받을 때, 자동으로 가장 가까운 서버에서 다운 받도록 하는 기술
+            -이 기술을 이용하면 특정 서버에 트래픽이 집중되지 않고,
+            콘텐츠 전송 시간이 매우 빨라지는 장점
+            -이러한 CDN을 이용하면 제이쿼리 파일을 서버에 따로 저장하지 않아도 제이쿼리를 사용할 수 있음
+            -인터넷이 끊기면 적용이 안되기 때문에, 네트워크 연결이 확실하거나 유선 인터넷 사용 권장
+            jQuery.com CDN : 
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            구글 CDN : 
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            
+    
+
+-->

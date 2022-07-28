@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS스타일 동적변경</title>
+    <script>
+        function change() {
+            //getElementById : myspan 태그 객체 생성
+            //태그에 스타일 적용
+            var span = document.getElementById("myspan");
+            span.style.color = "green";
+            span.style.fontSize = "30px";
+            span.style.display = "block";
+            span.style.width = "6em";
+            span.style.border = "3px dotted magenta";
+            span.style.margin = "20px";
+        }
+    </script>
+</head>
+<body>
+    <h3>CSS 스타일 동적 변경</h3><hr>
+    <p style="color: blue;">
+        이것은 <span id="myspan" style="color: red;">문장입니다.</span>
+        <input type="button" value="스타일 변경" onclick="change()">
+    </p>
+</body>
+</html>
+
+<!--  
+HTML요소의 선택
+document.getElementId(아이디)              해당 아이디의 요소를 선택
+document.getElementByTagName(태그이름)     해당 태그 이름의 요소를 모두 선택
+document.getElementByClassName(클래스이름) 해당 클래스에 속한 요소를 모두 선택
+document.getElementByName(name 속성값)     해당 name 속성값을 가지는 요소를 모두 선택
+document.querySelectorAll(선택자)          해당 선택자로 선택되는 요소를 모두 선택
+※document.querySelectorAll() 메서드는 브라우저 별로 지원여부가 다름(사용시 확인)
+
+Document 메서드 - HTML요소의 생성
+document.createElement(HTML요소)           지정된 HTML요소를 생성
+document.write(텍스트)                     HTML 출력 스트림을 통해 텍스트 출력
+
+Document 메서드 - HTML이벤트 핸들러 추가
+document.getElementById(아이디).onclick = function() {실행할 코드}
+마우스 클릭 이벤트와 연결될 이벤트 핸들러 코드를 추가
+-->
