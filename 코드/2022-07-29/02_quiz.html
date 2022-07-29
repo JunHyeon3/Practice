@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            //아래 코드가 없어도 작동에는 문제없음
+            //하지만 이 코드를 작성하지 않으면 원래 숨겨져 있어야 할 정답이 출력됨
+            //최초 동작으로 보이지 않게 하기 위해서 작성된 코드
+            $("ans").hide();
+            $("p.q1").click(function() {
+                $("ans.q1").show();
+            });
+            $("ans.q1").click(function() {
+                $(this).hide();
+            });            
+            $("p.q2").click(function() {
+                $("ans.q2").show();
+            });
+            $("ans.q2").click(function() {
+                $(this).hide();
+            });            
+        });
+    </script>
+</head>
+<body>
+    <h2>질문1 : 대한믹국의 수도는 어디입니까?</h2>
+    <!-- p.q1 클래스 클릭하면 jquery의 show메소드가 실행 -->
+    <p class="q1">[정답보기]</p>
+    <!-- 정답보기 부분을 누르면 아래 문자가 출력되는데 
+        ans태그의 q1이며 이 부분을 클릭하면 ans.q1 부분의 hide 메소드가 실행되어
+        정답을 감춘다. -->
+    <ans class="q1">대한민국의 수도는 <strong>서울</strong>입니다.</ans>
+    <br><br>
+    <h2>질문2 : 대한민국의 국보 1호는 무엇입니까?</h2>
+    <p class="q2">[정답보기]</p>
+    <ans class="q2">대한민국의 국보 1호는 <strong>숭례문</strong>입니다.</ans>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일 변경</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            //초기 박스 사이즈
+            var xWidth=100, yHeight=100;
+            $("div").click(function() {
+                //클릭하면 박스 치수를 -10씩
+                xWidth = xWidth-10;
+                yHeight = yHeight-10;
+                //그 결과를 해당 div 태그에 적용시킴, box스타일도 적용
+                $(this).width(xWidth).addClass("box");
+                $(this).height(yHeight).addClass("box");
+            });
+        });
+    </script>
+    <style>
+        div {width: 100px; height: 100px; float: left;
+            margin: 5px; background: yellow;}
+        .box {background: red;}
+    </style>
+</head>
+<body>
+    <div>박스1</div>
+    <div>박스2</div>
+    <div>박스3</div>
+    <div>박스4</div>
+    <div>박스5</div>
+</body>
+</html>

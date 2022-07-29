@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Basic</title>
+    <!-- jQuery주소를 입력해서 코드를 사용 -->
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            //스타일 속성을 변경, 무조건 실행
+            //h1태그의, css(스타일) 글자와 배경색 변경
+            $("h1").css("color", "red");
+            $("h1").css("background", "black");
+        });
+    </script>
+</head>
+<body>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <h1>Header</h1>
+</body>
+</html>
+
+<!--  
+$(CSS 선택자) 함수 : 태그를 검색해서 반환하는 역할
+jQuery는 태그를 찾을 때 BOM이나 DOM을 사용하지 않고 CSS선택자를 사용한다.
+
+1. 태그 선택자 : $("div").css("color","blue");
+2. 아이디 선택자 : $("#box1").css("color","red");
+    id는 키 역할을 하므로 특정 요소, 객체, 태그를 제어하기 위해서 사용
+3. class 선택자 : $(".box").css("color", "yellow");
+    class는 공통적인 속성을 가진, 즉 그룹핑 되어있는 요소들을 묶어서 제어하기 위해 사용
+4. 자식/자손 선택자 : $("#list1 li").css("color", "green");
+    list1이라는 id를 가진 태그안에 있는 li태그들을 모두 선택, 적용 depth 1이상
+    바로 아래 자식태그만이 아니라 list1의 모든 자식들
+    $("#list1 > li").css("color", "green");
+    >가 있으면, list1이라는 id를 가진 태그안에 있는 바로 1depth 아래있는 자식들중 li태그만 선택
+5. 형제/인접 선택자 : $("div[title]").css("color", "pink");
+    div중에 title 속성이 있는 태그들만 가져온다. 활용하는 곳이 많다.
+    개발하는 도중 특정 속성이 있는 태그들을 가져올때 편하다.
+
+제이쿼리 $(document).ready()
+ready(header)는 DOM이 완전히 불러와지면 실행되는 EVENT이다.
+일반적으로 브라우저가 HTML을 보여주기 위해서는 먼저 문서 구조를 만들고
+만들어진 문서 구조 위에 디자인을 입히는 형식을 취하는데
+이 과정에서 디자인이 입혀지지 않은 상태로 문서 구조가 만들어진 시점에 실행되는
+EVENT가 바로 .ready()이다.
+
+-->

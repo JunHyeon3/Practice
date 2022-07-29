@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>스타일 변경</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                $("h1,h2,p,div").toggleClass("red");
+            });
+        });
+    </script>
+    <style>
+        .red {color: red; border: 1px solid blue;}
+    </style>
+</head>
+<body>
+    
+    <h1>HTML</h1> <h2>CSS3</h2> <h3>자바스크립트</h3>
+    <div>제이쿼리</div>
+    <button class="add">CSS 적용/해제</button>
+</body>
+</html>

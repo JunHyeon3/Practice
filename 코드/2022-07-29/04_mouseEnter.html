@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        var n=0;
+        $(document).ready(function() {
+            //마우스가 div class="out" 부분에 이동하면 실행
+            $("div.out").mouseenter(function() {
+                //p:first -> 첫번째 p태그, 윗줄
+                $("p:first").text("마우스 포인트 들어옴");
+                //++n 숫자증가
+                //p:last -> 마지막 p 태그, 아랫줄
+                $("p:last").text(++n);
+            });
+            $("div.out").mouseleave(function() {
+                //마우스가 나가면 윗줄이 다시 변함
+                //p태그의 첫 번째 text를 변경
+                $("p:first").text("마우스 이벤트 알아보기");
+            });
+        });
+    </script>
+    <style>
+        /* div.out 태그 스타일 */
+        div.out {
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="out">
+        <p>마우스 이벤트 알아보기</p>
+        <p>0</p>
+    </div>
+</body>
+</html>

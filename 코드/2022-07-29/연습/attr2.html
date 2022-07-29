@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>메시지가 사라졌네</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("img").attr("src", function(index) {
+                var size = (index+1)*100;
+                return "https://via.placeholder.com/" + size + "x100";
+            });
+        });
+    </script>
+</head>
+<body>
+    <img />
+    <img />
+    <img />
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>스타일 변경</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                $("p").toggleClass("yellow");
+            });
+        });
+    </script>
+    <style>
+        .yellow {background-color: yellow; font-size: xxx-large;}
+    </style>
+</head>
+<body>
+    <p>홍길동</p>
+    <div>02-123-4567</div>
+    <p>왕바우</p>
+    <div>042-567-2929</div>    
+    <button>CSS 적용/해제</button>
+</body>
+</html>
