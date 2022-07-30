@@ -23,7 +23,7 @@ main {
     padding-top: 30px;
 }
 
-
+/* aside */
 aside, .col1, section h3 {
     float: left;
 }
@@ -59,7 +59,7 @@ aside .end {
     border-bottom: 3px solid gray;
 }
 
-
+/* section */
 section {
     display: inline-flex;
     flex-direction: column;
@@ -90,4 +90,61 @@ section .btns img {
 }
 section .product ul {
     margin-left: 10px;
+}
+
+/* top */
+top .top_1 {
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
+}
+top .logo_text {
+    padding: 50px 0 20px 20px;
+    color: gray;
+}
+top .menu {
+    font-weight: bold;
+    padding-bottom: 20px;
+    align-self: flex-end;
+    margin-left: auto;
+}
+top ul {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+top ul li {
+    font-size: 18px;
+    font-weight:bold;
+    color: #1cbdb8;
+    border-bottom: 5px solid #1cbdb8;
+    width: 150PX;
+    height: 40px;
+}
+top ul li:hover {
+    background-color: #1cbdb8;
+    color: white;
+}
+
+/* footer */
+footer {
+    width: 980px;
+    margin: 25px auto;
+    display: flex;
+}
+footer .footer_1 {
+    color: gray;    
+}
+footer .footer_2 {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+footer .service {
+    font-weight: bold;
+    font-size: 25px;
+    color: #1cbdb8;
 }
