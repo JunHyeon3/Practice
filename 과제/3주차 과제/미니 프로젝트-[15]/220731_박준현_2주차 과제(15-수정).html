@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>포토 갤러리</title>
+    <link type="text/css" rel="stylesheet" href="15.css">
+</head>
+<body>
+    <!-- 상단 -->
+    <div id="header">
+        <div id="logo">PHOTO GallERY</div>
+        <div id="top_menu">로그인 | 회원가입 | 방명록</div>
+    </div>
+    <!-- 왼쪽 -->
+    <div id="left">
+        <h2>포토갤러리</h2>
+        <ul>
+            <li class="submenu">+ 풍경</li>
+            <li class="submenu">+ 일상</li>
+            <li class="submenu">+ 인물</li>
+            <li class="submenu">+ 가족</li>
+        </ul>
+    </div>     
+    <!-- 오른쪽 -->
+    <div id="right">
+        <div id="main_title">풍경 사진</div>
+        <img id="main_img" src="s-1.jpg"}>
+        <div id="thumnail">
+            <ul id="photos">
+                <li><a href="#"><img class="move_left" src="bt_move_left.png"></a></li>
+                <li><a href="#"><img class="thum_nail" src="s-1.jpg"></a></li>
+                <li><a href="#"><img class="thum_nail" src="s-2.jpg"></a></li>
+                <li><a href="#"><img class="thum_nail" src="s-3.jpg"></a></li>
+                <li><a href="#"><img class="thum_nail" src="s-4.jpg"></a></li>
+                <li><a href="#"><img class="thum_nail" src="s-5.jpg"></a></li>
+                <li><a href="#"><img class="move_right" src="bt_move_right.png"></a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var main_img = document.querySelector("#main_img");
+        var thum_nail = document.querySelectorAll(".thum_nail");
+        
+        for(var i=0; i < thum_nail.length; i++){
+            thum_nail[i].addEventListener("click",changepic);
+        }
+        function changepic(){
+            var thumnailAttribute = this.getAttribute("src");
+            main_img.setAttribute("src", thumnailAttribute);
+        }
+    </script>
+</body>
+</html>  

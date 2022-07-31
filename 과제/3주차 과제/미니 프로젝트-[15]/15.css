@@ -1,0 +1,133 @@
+* {
+    margin: 0; 
+    padding: 0;
+}
+li { list-style: none;}
+body {
+    background-color: #eeeeee; 
+    font-family: "돋움"; 
+    font-size: 12px; 
+    color: #666666;}
+div#thumnail img {
+    width: 60px; 
+    height: 60px;}
+img#main_img {
+    width: 600px; 
+    height: 350px;
+}
+
+/* 상단 */
+div#logo {
+    font-size: 16px; 
+    color: #3e2b23;
+    padding-top: 10px; 
+    padding-left: 30px;
+}
+div#top_menu {
+    padding-top: 10px; 
+    padding-right: 10px;
+}
+div#header {
+    width: 800px; 
+    height: 40px; 
+    background-color: #dddddd;
+} 
+
+/* 왼쪽 */
+div#left {
+    width: 150px; 
+    height: 600px; 
+    background-color: #343333; 
+    color: #e2e2e2;
+}
+div#left h2 {
+    font-weight: normal; 
+    padding-top: 20px; 
+    padding-left: 30px;
+}
+div#left ul {
+    font-size: 14px; 
+    padding-top: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 5px; 
+    padding-left: 25px;
+}
+div#left #submenu {
+    padding: 3px;
+}
+
+/* 오른쪽 */
+div#right {
+    width: 650px; 
+    height: 600px; 
+    background-color: #252525;
+}
+div#right #main_title {
+    width: 572px; 
+    padding: 10px; 
+    border: solid 5px #444444; 
+    margin-top: 24px; 
+    margin-right: 24px; 
+    font-size: 18px; 
+    color: white; 
+    font-weight: bold;
+}
+img#main_img {
+    padding-top: 15px; 
+    padding-left: 24px;
+}
+div#thumnail {
+    padding-top: 30px; 
+}
+div#thumnail #move_left {
+    margin-top: 20px; 
+    margin-right: 5px; 
+    margin-left: 30px;}
+div#thumnail #photos {
+    margin-top: 3px;
+}
+div#thumnail > #move_right {
+    margin-top: 20px; 
+    margin-left: 20px;
+}
+div#thumnail li {
+    margin-left: 10px;
+}
+ul#photos img {
+    border: 5px solid #3d3d3d;
+}
+ul#photos img:hover {
+    border: 5px solid #ffffff;
+}
+
+
+/* 상단 */
+div#header {
+    display: flex;
+}
+div#header #top_menu {
+    margin-left: auto;
+}
+/* 왼쪽 */
+div#left {
+    float: left;
+    display: inline-flex;
+    flex-direction: column;
+}
+div#left li {
+    line-height: 160%;
+}
+
+/* 오른쪽 */
+div#right {
+    display: inline-flex;
+    flex-direction: column;
+}
+div#main_title {
+    margin-left: auto;
+}
+ul#photos li {
+    display: inline-block;
+}
+
+/* 이미지 바꾸기 기능 */
