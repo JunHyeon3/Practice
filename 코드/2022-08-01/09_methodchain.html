@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>method chaining</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            //메소드 체이닝 : 메소드들을 .으로 연결하여 여러 동작들을 순서대로 수행
+            //slide를 2초간 내리고, 투명도를 0.3으로 바꾼 후 
+            //slide를 다시 2초간 올려 사라지게 한다.
+            $("#panel").css("color", "red")
+                        .slideDown(2000)
+                        .fadeTo("slow",0.3)
+                        .slideUp(2000);
+            $("#slide").css("color", "black")
+                        .fadeTo("10000",0.3)
+                        .fadeTo("10000",1.0);
+        });
+    </script>
+    <style>
+        #slide, #panel{
+            padding: 5px;
+            text-align: center;
+            background-color: lightblue;
+            border: 1px solid blue;
+        }
+        #panel {
+            padding: 50px;
+            display: none;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="slide">[오늘의 공지사항]</div>
+    <div id="panel">오늘은 jQuery 프로그램을 학습합니다.<br>
+        예제를 작성한 후 실행해 보세요</div>
+</body>
+</html>
+
+
+<!--  
+메소드 체이닝(method chaining)
+제이쿼리 라이브러리에서 문서 객체를 조작하는 메소드는
+호출 이후에 자기 자신을 다시 반환함.
+따라서 메소드를 연속해서 사용가능
+이렇게 메소드를 사용하는 것을 메소드 체이닝이라고 부름
+메소드 체이닝 전
+    const dbc = new DBConnector();
+    dbc.setHost('127.0.0.1');
+    dbc.setPort('8080');
+    dbc.setUser('username');
+    dbc.setPasswd('passwd');
+    dbc.connect();
+메소드 체이닝 후
+    const dbc = new DBConnector().setHost('127.0.0.1').setPort('8080')
+                                .setUser('username').setPasswd('passwd').connect();
+메소드 체이닝을 적용한 후를 확인해보면 코드가 좀 더 간결해짐
+
+-->

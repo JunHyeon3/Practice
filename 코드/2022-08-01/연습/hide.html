@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#hide").click(function(){
+                $("img").hide("slow");
+            });            
+            $("#show").click(function(){
+                $("img").show("fast");
+            });
+            $("#toggle").click(function(){
+                $("img").toggle(3000);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="toggle">toggle</button>
+    <p></p>
+    <img name="pic1" src="../..//media/spongebob.png" 
+        alt="tkwls" style:position="absolute">
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>method chaining2</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>        
+        //객체를 클릭하면 move명령이 수행되고
+        //객체를 정지시킨후 animate 메소드에 의해 시작점에서 좌측으로 
+        //500px 만큼 지정된 속도로 이동
+        function move(object, speed) {
+            $(object).stop().animate({left:-500}, speed);
+        }
+        //초기화 상태라는 버튼을 클리하면, 객체를 정지시킨 후
+        //animate메소드에 의해 원점으로 복귀
+        function back() {
+            $(".moving img").stop().animate({left:0},);
+        }
+    </script>
+    <style>
+        .moving {
+            border: 1px solid black;
+            margin: 20px auto 0 auto;
+            text-align: right;
+            width: 650px;
+        }
+        .moving img {
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="init">
+        <!-- 버튼 클릭시 moving 클래스 내의 img요소들을 인수로 back함수 호출 -->
+        <!-- back('.moving img')에서 .moving img는 필요없음 -->
+        <button type="button" onclick="back('.moving img')">초기화</button>
+    </div>
+    <div class="moving">
+        <img onclick="move(this,6000)" src="../media/mio.png"><br>
+        <img onclick="move(this,3000)" src="../media/mio.png"><br>
+        <img onclick="move(this,1000)" src="../media/mio.png"><br>
+    </div>
+</body>
+</html>
+
+<!-- 
+    자바스크립트 코드와 제이쿼리 코드를 섞어 쓸 수있다
+    자바스크립트 함수 내에 동작 명령 관련 제이쿼리 코드를 넣어준다.
+    제이쿼리의 속성:속성값은 속성값에 ""을 써줘야 한다
+    $(i).animate({right:"350px"},ms) 매개변수로 받은 ms
+ -->

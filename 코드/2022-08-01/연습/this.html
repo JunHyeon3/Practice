@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <script>
+        var User = {
+            name: "kim",
+            age: 25,
+            view: function() {
+                document.write('My name is ' + this.name + "<br>");
+                document.write("My age is " + this.age + "<br>");
+            }
+        }
+        document.write(typeof User + "<br>");
+        User.view();
+    </script>
+</head>
+<body>
+    리터럴을 이용한 객체 생성 자기 자신을 가리키는 this
+</body>
+</html>
+

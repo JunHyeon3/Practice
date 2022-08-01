@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>method chaining</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#panel").css("color", "red")
+                        .slideDown(2000)
+                        .fadeTo("slow",0.3)
+                        .slideUp(2000);
+            $("#slide").css("color", "black")
+                        .fadeTo("10000",0.3)
+                        .fadeTo("10000",1.0);
+        });
+    </script>
+    <style>
+        #slide, #panel{ padding: 5px; text-align: center;
+            background-color: lightblue; border: 1px solid blue; }
+        #panel { padding: 50px; display: none; background: yellow; }
+    </style>
+</head>
+<body>
+    <div id="slide">[오늘의 공지사항]</div>
+    <div id="panel">오늘은 jQuery 프로그램을 학습합니다.<br>
+        예제를 작성한 후 실행해 보세요</div>
+</body>
+</html>

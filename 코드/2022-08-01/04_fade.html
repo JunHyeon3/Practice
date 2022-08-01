@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opacity</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#out").click(function(){
+                //fade : 부드럽고 천천히 사라짐
+                //slow : 천천히, fast : 빠르게
+                $("img").fadeOut("slow");
+            });
+            $("#in").click(function(){
+                $("img").fadeIn("slow");
+            });
+            $("#toggle").click(function(){
+                $("img").fadeToggle("slow");
+            });
+            $("#to50").click(function(){
+                //fadeTo는 투명도
+                //0이면 투명, 1이면 원래상태
+                $("img").fadeTo("slow", 0.5);
+            });
+            $("#to10").click(function(){
+                $("img").fadeTo("slow", 0.1);
+            });
+            $("#to100").click(function(){
+                $("img").fadeTo("slow", 1);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="out">fadeOut</button>
+    <button id="in">fadeIn</button>
+    <button id="toggle">fadeToggle</button>
+    <button id="to50">opacity 50%</button>
+    <button id="to10">opacity 10%</button>
+    <button id="to100">opacity 100%</button>
+    <p></p>
+    <img name="pic1" src="..//media//spongebob.png" alt="사진">
+</body>
+</html>
+
+<!-- 
+프로토타입의 원래 뜻은 원형, 초기형태 등을 가리키는 것이지만,
+공학에서 말하는 프로토타입이란 어떤 구조물이나 장비에 대하여,
+형상이나 설계, 적합성 또는 성능 등을 평가하기위해 만든 실물 크기의 모형을 말한다.
+시제품 이라고도 한다.
+ -->

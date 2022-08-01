@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인코딩과 디코딩</title>
+    <!-- 인코딩 : 인간의 언어를 기계언어로 번역하는 과정
+         디코딩 : 인코딩된 언어를 인간이 이해할 수 있는 언어로 번역하는 과정 -->
+    <script>
+        function ex1() {
+            alert(encodeURI("가나다라마바사") + "\n" + decodeURI("%EA%B0%80%EB%82%98%EB%8B%A4"));
+        }
+        function ex2() {
+            var x=10, y=15;
+            alert(String(x) + String(y));
+        }
+        function ex3() {
+            var ob1=eval("var num=5+2");
+            var ob2=eval("({'a':1, 'b':2, 'c':3})");
+            alert(num + "\n" + ob2.b);
+        }
+    </script>
+</head>
+<body>
+    <form name="frm">
+        <!-- 1번 버튼을 클릭하면 인코딩 값과 디코딩 값이 출력된다. -->
+        <input type="button" onclick="ex1()" value="연습1">&nbsp;&nbsp;
+        <!-- 2번 버튼을 클ㄹ기하면 10과 15가 문자열이 되어 1015가 출력된다. -->
+        <input type="button" onclick="ex2()" value="연습2">&nbsp;&nbsp;
+        <!-- 3번 버튼을 클릭하면 7과 2가 출력된다. -->
+        <input type="button" onclick="ex3()" value="연습3">&nbsp;&nbsp;
+    
+    </form>
+</body>
+</html>
+<!--  
+1) encodeURI() 함수 (인코딩)
+(1) URI의 특정한 문자를 UTF-8로 인코딩해 하나,둘,셋 혹은 네 개의 연속된 이스케이프 문자로 나타냄
+(2) 두 개의 대리 문자로 이루어진 문자만 이스케이프 문자 네개로 변환
+(3) 매개변수 : 완전한 URI
+(4) 반환 값 : 주어진 문자열을 URI로서 인코딩한 새로운 문자열
+(5) encodeURI() 함수는 URI에서 특별한 뜻을 가진 문자는 인코딩 하지 않음
+(6) 인코딩 불가 문자 : A~Z, a~z, 0~9, ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+(7) 위와 같이 완전한 URI를 형성하는데 필요한 문자는 인코딩 하지 않음
+(8) 따라서 완전한 URI를 인코딩하려면 encodeURICompnent() 함수를 사용하는 것이 좋음
+
+2) decodeURI() 함수 (디코딩)
+(1) encodeURI 이나 비슷한 루팅으로 사전에 만들어진 URI를 해독
+(2) 매개변수 : 완전하고 암호화된 인터넷 식별자(URI)
+(3) 반환 값 : 주어진 암호화된 URI의 암호화 되지 않은 버전을 나타내는 새 문자열
+(4) 예외 : encodeURI에 유효하지 않은 문자열이 포함된 경우
+            URIError ("malformed URI sequence") 예외를 던짐
+(5) 암호화된 URI의 각 이스케이프 문자를 자신을 나타내는 문자로 변환
+(6) encodeURI에서 도입할 수 없었던 이스케이프 시퀀스는 해독하지 않음
+    : A~Z, a~z, 0~9, ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+-->

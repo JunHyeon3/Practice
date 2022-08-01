@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head> <title>method chaining2</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>      
+        function move(object, speed) {
+            $(object).stop().animate({left:-500}, speed);
+        }
+        function back() {
+            $(".moving img").stop().animate({left:0},);
+        }
+    </script>
+    <style>
+        .moving { border: 1px solid black; margin: 20px auto 0 auto;
+            text-align: right; width: 650px; }
+        .moving img { cursor: pointer; position: relative; }
+    </style>
+</head>
+<body>
+    <div class="init">
+        <button type="button" onclick="back('.moving img')">초기화</button>
+    </div>
+    <div class="moving">
+        <img onclick="move(this,6000)" src="../../media/mio.png"><br>
+        <img onclick="move(this,3000)" src="../../media/mio.png"><br>
+        <img onclick="move(this,1000)" src="../../media/mio.png"><br>
+    </div>
+</body>
+</html>

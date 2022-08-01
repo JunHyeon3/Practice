@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animate 실습2</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button.expand").click(function(){
+                $("img").animate({
+                    width: "500px"
+                });
+            });
+            $("button.reduce").click(function(){
+                $("img").animate({
+                    width: "125px"
+                });
+            });
+            $("button.init").click(function(){
+                $("img").animate({
+                    width: "250px"
+                });
+            });
+        });
+    </script>
+    <style>
+        .css_pic {
+            height: 430px;
+        }
+        .css_pic img {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Animate 실습</h3><hr>
+    <div class="css_pic">
+        <p>버튼을 누르면 그림의 크기가 바뀝니다.</p>
+        <button class="expand">확대</button>
+        <button class="reduce">축소</button>
+        <button class="init">복귀</button><br><br> 
+        <img name="pic1" src="../media/spongebob.png"
+            alt="스폰지밥" style="position: absolute;" >
+    </div>
+</body>
+</html>

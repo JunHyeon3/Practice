@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animate 실습</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#b1").click(function(){
+                $("img").animate({
+                    width:"100px"
+                });
+            });
+            $("#b2").click(function(){
+                $("img").animate({
+                    width:"200px"
+                });
+            });
+            $("#b3").click(function(){
+                $("img").animate({
+                    width:"300px"
+                });
+            });
+        });
+    </script>
+    <style>
+        .css_pic {
+            height: 430px;
+            text-align: center;
+        }
+        .css_pic img {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Animate 실습</h3><hr>
+    <div class="css_pic">
+        <p>버튼을 누르면 그림의 크기가 바뀝니다.</p>
+        <button id="b1">가로 100px</button>
+        <button id="b2">가로 200px</button>
+        <button id="b3">가로 300px</button><br><br> 
+        <img src="../../media/mio.png">
+    </div>
+</body>
+</html>
