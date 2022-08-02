@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">        
+        <title>getElementsByTagName</title>
+        <script>
+            function choice(){
+                //li 태그의 값들을 받아온 후
+                //getElementsByTagName : 태그 이름의 객체를 생성
+                var x = document.getElementsByTagName("li");
+                var text="";
+                for(var i=0; i<x.length; i++){
+                    //이 값들을 text 변수에 붙임
+                    text += x[i].innerHTML;
+                    text += "&nbsp&nbsp";                    
+                }
+                //결과값을 id="demo"인 div 태그에 전송함
+                document.getElementById("demo").innerHTML=text;
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="choice()">클릭하시오</button><br>
+        <ul>
+            <li>아메리카노</li>
+            <li>카페라떼</li>
+            <li>콜드브루</li>
+        </ul>
+        <div id="demo"></div>
+    </body>
+</html>
