@@ -1,0 +1,60 @@
+<!-- 마우스 이벤트 리스너 종류
+onmousemove : 해당 요소의 안에서 마우스를 움직일 때 
+ondblclick : 해당 요소를 더블 클릭했을 때 (두 번 눌렀다 떼었을 때)
+onclick : 해당 요소를 클릭했을 때 (눌렀다 떼었을 때)
+마우스 이벤트 객체의 프로퍼티 (포인터 좌표)
+  (1) x, y
+	- 타겟 객체의 부모 객체 내에서의 마우스 좌표(문서의 좌상단이 기준 0,0)
+	- 비표준
+  (2) clientX, clientY
+	- 브라우저 윈도우의 문서 출력 영역 내의 마우스 좌표(문서의 좌상단이 기준 0,0)
+	- 표준
+	- 많이 사용 됨
+  (3) screenX, screenY
+	- 사용자 모니터 화면 기준 좌표(모니터 좌상단이 기준 0,0)
+	- 잘 안쓰임
+  (4) offsetX, offsetY
+	- 이벤트 발생한 객체(타겟 객체)내에서의 마우스 좌표(해당 요소의 좌상단이 기준 0,0)
+	- 많이 사용 됨
+-->
+<!DOCTYPE html>
+<html lang="kr">
+       <head><title>마우스 이벤트 객체의 프로퍼티</title>
+       <style>
+           div {
+               background : skyblue;
+               width : 250px;
+           }
+        </style></head>
+    <body>
+        <h3>마우스 이벤트 객체의 프로퍼티와 onmousemove</h3>
+        이미지 위에 마우스를 움직일 때
+        onmousemove 리스너가 실행되고,
+        마우스의 위치를 보여줍니다.<p>
+        <img src="c:\Html\media/beach.png"
+                onmousemove="where(event)"><p>
+        <!--이 부분에 좌표 정보 생성-->
+        <div id="div"></div>
+        <script>
+            var div = document.getElementById("div");
+            function where(e) {
+                //js에서 에서 좌표는 좌상단이 0, 0 이며
+                //우하단으로 갈 수록 증가한다
+                var text = "버튼=" + e.button + "<br>";
+                //var text = ""
+                text += "(screenX, screenY)=" + 
+                        e.screenX + "," + e.screenY + "<br>";
+                text += "(clientX, clientY)=" + 
+                        e.clientX + "," + e.clientY + "<br>";
+                text += "(offsetX, offsetY)=" + 
+                        e.offsetX + "," + e.offsetY + "<br>";
+                text += "(x, y)=" + e.x + "," + e.y + "\n";
+                //입력된 텍스트 정보를 div 태그에 전송
+                //clientX, clientY 브라우저 윈도우의 문서출력영역 내의 마우스 좌표
+                //screenX, screenY 스크린을 기준으로 한 마우스 좌표
+                //offsetX, offsetY 타겟 객체 내에서의 마우스 좌표
+                div.innerHTML = text;
+            }
+        </script>        
+    </body>
+</html>

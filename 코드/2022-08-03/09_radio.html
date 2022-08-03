@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kr">
+        <head><title>라디오버튼</title>
+        <script>
+            function findChecked() {
+                var found = null;
+                //name ->city인 태그 객체 생성
+                var kcity = document.getElementsByName("city");
+                //city 태그 객체들 중 체크된 것만 found에 저장
+                for(var i=0; i<kcity.length; i++) {
+                    if(kcity[i].checked == true)
+                    found = kcity[i];
+                }
+                //저장 내용 출력
+                if(found != null)
+                    alert(found.value + "이 선택되었음");
+                //무조건 체크된 상태이지만 이런 안전장치를 해주는 것이 항상 좋다
+                else
+                    alert("선택된 것이 없음");
+            }
+        </script></head>
+    <body>
+        <h3>버튼을 클릭하면 선택된 라디오 버튼의 value를 출력합니다.</h3><hr>
+        <form>
+            <!--radio 버튼을 활용해 선택된 객체를 전송하여 출력-->
+            <input type="radio" name="city" value="seoul" checked>서울
+            <input type="radio" name="city" value="busan">부산
+            <input type="radio" name="city" value="chunchen">춘천
+            <!--find checked 버튼을 클릭하면 findChecked함수 실행-->
+            <input type="button" value="find checked" onclick="findChecked()">
+        </form>
+    </body>
+</html>

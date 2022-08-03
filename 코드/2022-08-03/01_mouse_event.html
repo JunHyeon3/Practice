@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <title>마우스 이벤트</title>
+     <script>
+          var width = 1;
+          // 마우스 다운 이벤트
+          function down(obj) {
+               obj.style.fontStyle = "italic";
+          }
+          // 마우스 업 이벤트
+          function up(obj) {
+               obj.style.fontStyle = "normal";
+          }
+          // 마우스 오버 이벤트
+          function over(obj) {
+               obj.style.borderColor = "violet";
+          }
+          // 마우스 아웃 이벤트
+          function out(obj) {
+               obj.style.borderColor = "lightgray";
+          }
+          // 마우스 휠 이벤트
+          function wheel(e, obj) {
+               // 휠을 아래 방향으로 굴릴 때
+               if(e.wheelDelta < 0) {
+                    // 폭 1씩 감소
+                    width--;
+                    // 폭이 0보다 작지 않게 하게
+                    if(width < 0)
+                         width = 0;
+               }
+               // 휠을 위로 굴릴 때
+               else
+                    // 폭 1씩 증가
+                    width++;
+               obj.style.borderStyle = "ridge";
+               obj.style.borderWidth = width + "px";
+          }
+     </script>
+</head>
+<body>
+     <h3>마우스 관련 이벤트 리스너</h3><hr>
+     <div>마우스 관련
+          <!-- span태그에 다섯 가지 이벤트 조건을 걸고 -->
+          <span onmousedown="down(this)"
+                    onmouseup="up(this)"
+                    onmouseover="over(this)"
+                    onmouseout="out(this)"
+                    onmousewheel="wheel(event, this)"
+                    style="display: inline-block;">이벤트
+          </span>가 발생합니다.
+     </div>
+</body>
+</html>
