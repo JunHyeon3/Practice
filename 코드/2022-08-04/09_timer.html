@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeout</title>
+</head>
+<body>
+    <h3>이미지에 마우스를 올리고 5초간 그대로 있을 때 사이트로 이동</h3>
+    <!-- 이미지 태그 내부에 이벤트가 발생하면
+    startTimer와 cancleTimer 함수를 실행함 -->
+    <img id="img" src="..//media/mio.png"
+            onmouseover="startTimer(5000)"
+            onmouseout="cancleTimer()">
+    <script>
+        //timer 초기값 null
+        var timerID=null;
+        function startTimer(time) {
+            //setTimeout : 타이머 메소드, time시간이 지나면 좌측 명령 실행
+            timerID = setTimeout("load('http://www.naver.com')",time);
+            //이미지에 마우스를 올리면 나타나는 메시지
+            document.getElementById("img").title = "타이머 작동 시작";
+        }
+        function cancleTimer() {
+            if(timerID != null) {
+                //타이머 중단
+                clearTimeout(timerID)
+            }
+        }
+        //window객체를 활용해 url 사이트 실행
+        function load(url) {
+            //현재 윈도우에 url사이트 로드
+            window.location = url;
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+타이머(Timer)
+setTimeout() 메소드
+(1) setTimeout() 메소드는 명시된 시간이 지난뒤에 지정된 함수를 호출
+    window.setTimeout(호출할 함수, 지연시간);
+(2) 이 메소드가 성공적으로 호출되면, 설정된 timeoutID를 반환
+(3) 이 메소드는 밀리초(milliseconds) 단위로 지연시간을 설정 가능
+    ex) function startTimeout() {
+            setTimeout(printCurrentDate, 2000);
+        }
+        function printCurrentDate() {
+            document.getElimentById("date").innerHTML = new Date();
+        }
+    
+
+setInterval() 메소드
+(1) setInterval() 메소드는 지정된 시간 간격마다 지정된 함수를 반복적으로 호출
+    window.setInterval(호출할함수, 지연시간);
+(2) 이 메소드가 성공적으로 호출되면, 설정된 timeoutID를 반환
+(3) 이 메소드는 밀리초(milliseconds) 단위로 지연 시간을 설정 가능
+    ex) function startInterval() {
+            setInterval(printCurrentDate, 2000);   
+            // 지연시간 2초 간격으로 printCurrentDate 함수 호출
+        }
+        function printCurrentDate() {
+            document.getElementById("date").innerHTML += new Date() + "<br>";
+        }
+
+clearTimeout() 메소드
+(1) setTimeout() 메소드의 반환값을 clearTimeout() 메소드의 인수로 전달하면, 계획된 함수의 호출을 취소
+    window.clearTimeout(timeoutID);
+(2) 이 메소드는 setTimeout() 메소드에 의해 함수가 호출되기 전에 실행되어야 호출을 취소 가능
+(3) 함수가 호출된 이후에 이 메소드를 호출하면 아무런 동작도 하지 않음
+    ex) var timeoutId;
+        function startTimeout() {
+            timeoutId = setTimeout(printCurrentDate, 2000);   
+            // 2초 후에 printCurrentDate 함수를 실행하는 동작이 예약되면
+            // timeoutID 반환하여 저장            
+        }
+        function cancelTimeout() {
+            clearTimeout(timeoutId);   
+            // timeoutId의 setTimeout 메소드가 2초 되기 전에 실행하면 예약 취소
+        }
+        function printCurrentDate() {
+            document.getElementById("date").innerHTML += new Date() + "<br>";
+        }
+-->

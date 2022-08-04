@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON stringify와 parse</title>
+    <script>
+        user = {
+            name : "admin", email : "namgarambooks@naver.com",
+            phone : "032-444-5555"
+        };
+        //user에 저장된 값을 출력
+        //[object Object]
+        alert(user);
+
+        //stringify : JSON 객체를 string객체로 변환
+        userStr = JSON.stringify(user);
+        alert(userStr);
+
+        //parse : string 객체를 JSON객체로 변환
+        JSON.parse(userStr, function(key,value) {
+            alert(key + " " + value);
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
+<!-- 
+AJAX 통신 구현 시 JSON 응답을 처리할 때는
+    우선 서버로부터 응답된 JSON 내용을 문자열로 읽어 들이기 위해
+    XMLHttpRequest 객체의 responseText 속성을 사용함
+    추출된 JSON 문자열은 JSON.parse( ) 메서드를 호출하여 JavaScript 객체로 변화해서
+    name과 value로 구성된 내용을 추출해서 사용
+    stringify() JSON 객체를 String 객체로 변환 메서드
+    parse() string 객체를 JSON 객체로 변환 메서드
+AJAX란 (중요)
+    Asynchronous Javascript And Xml (비동기식 자바스크립트와 xml)의 약자
+    자바스크립트를 이용해 서버와 브라우저가 비동기 방식으로 데이터를 교환할 수 있는 통신 기능
+    브라우저가 가지고있는 XMLHttpRequest 객체를 이용해서 전체 페이지를 새로 고치지 않고도
+    페이지의 일부만을 위한 데이터를 로드하는 기법
+    즉, 자바스크립트를 통해서 서버에 데이터를 비동기 방식으로 요청하는 것
+비동기 방식이란
+    비동기 방식은 웹페이지를 리로드하지 않고 데이터를 불러오는 방식이며,
+    AJAX를 통해서 서버에 요청을 한 후 멈추어 있는 것이 아니라 
+    그 프로그램은 계속 돌아간다는 의미
+-->

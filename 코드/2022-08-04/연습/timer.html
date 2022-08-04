@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timeout</title>
+</head>
+<body>
+    <h3>이미지에 마우스를 올리고 5초간 그대로 있을 때 사이트로 이동</h3>
+    <img id="img" src="../../media/mio.png"
+            onmouseover="startTimer(5000)"
+            onmouseout="cancleTimer()">
+    <script>
+        var timerID=null;
+        function startTimer(time) {
+            timerID = setTimeout("load('http://www.naver.com')",time);
+            document.getElementById("img").title = "타이머 작동 시작";
+        }
+        function cancleTimer() {
+            if(timerID != null) {
+                clearTimeout(timerID)
+            }
+        }
+        function load(url) {
+            window.location = url;
+        }
+    </script>
+</body>
+</html>

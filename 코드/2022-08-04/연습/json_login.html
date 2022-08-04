@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON 로그인</title>
+    <script>
+        function logIn() {
+            var emp = { "name" : "홍길동", "point" : "15,000",
+                        "id" : "hong", "pw" : "1234" };
+            var a = document.getElementById("id").value;
+            var b = document.getElementById("pw").value;
+            if(emp.id == a && emp.pw == b) {
+                document.getElementById("confirm").innerHTML = 
+                    "<span style='color:green'>" + emp.name 
+                    + "님 환영합니다.<br>현재 포인트는 " 
+                    + emp.point + "점 입니다.</span>"; }
+            else {
+                document.getElementById("confirm").innerHTML = 
+                "<span style='color:red'>아이디 또는 비밀번호가 틀립니다.</span>"; }
+        }
+    </script></head>
+<body>
+    <label for="input">[로그인 화면]</label><br><br>
+    <input type="id" id="id" name="id">아이디를 입력하세요. <br>
+    <input type="password" id="pw" name="pw">비밀번호를 입력하세요. <br>
+    <input type="button" onclick="logIn()" value="login">
+    <div id="confirm"></div>
+</body></html>

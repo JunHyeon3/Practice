@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윈도우 열기</title>
+    <script>
+        function load(URL) {
+            //window : 최상위 BOM객체
+            //DOM객체가 문서 전용 객체라면
+            //BOM객체는 브라우저용 객체
+            //window.open 메소드를 활용해 링크에 맞는 페이지를 호출하고 출력 상황을 지정할 수 있다.
+            window.open(URL, "myWin", "left=300,top=300,width=400,height=300");
+        }
+    </script>
+</head>
+<body>
+    <!-- 각 text링크를 클릭하면 해당 url로 이동한다.
+        링크를 클릭하면 자바스크립트의 load(url) 메소드가 실행된다. -->
+    <h3>window.open()으로 윈도우 열기</h3><hr>
+    <a href="javascript:load('http://www.graceland.com')">
+        엘비스 프레슬리 홈페이지
+    </a><br>
+    <a href="javascript:load('http://www.universalorlando.com')">
+        유니버셜 올랜드 홈페이지
+    </a><br>
+    <a href="javascript:load('http://www.disneyworld.com')">
+        디즈니월드 홈페이지
+    </a><br>
+</body>
+</html>
+
+<!-- 
+window.open(URL, "myWin", "left=300,top=300,width=400,height=300") 
+창의 넓이, 높이, 크기를 미리 지정
+
+myWin이름의 윈도우가 열려있지 않은 경우
+버튼을 클리하면, myWin이름의 새 윈도우를 열고 출력한다.
+myWin이름의 윈도우가 열려있다면
+이미 열려있는 윈도우에 출력
+-->
+
+<!-- 
+브라우저 객체 모델 (Browser Object Model, BOM) 
+(1) 자바스크립트를 이용해 브라우저의 정보에 접근하거나 브라우저의 여러 기능들을 제어할 때 사용하는 객체 모델
+(2) 브라우저 객체 모델(BOM)은 문서 객체모델(DOM)과는 달리 W3C의 표준 객체 모델은 아니다.
+(3) 자바스크립트가 브라우저의 기능적인 요소들을 직접 제어하고 관리할 방법을 제공한다.
+(4) 자바스크립트에서는 이러한 BOM모델의 객체들을 전역 객체(global object)로 사용가능
+
+타이머 (Timer)
+(1) window 객체는 일정 시간이 지난 뒤에 함수를 호출할 수 있도록 다음 메소드를 제공
+	- setTimeout()
+	- setInterval()
+(2) 설정된 함수의 호출을 취소할 수 있도록 다음 메소드를 제공
+	- clearTimeout()
+	- clearInterval()
+
+브라우저 객체 종류
+(1) window : 브라우저 윈도우 모양 제어. 새 윈도우 열기/닫기
+(2) navigator : 브라우저에 대한 다양한 정보 제공
+(3) history : 브라우저 윈도우에 로드한 URL 리스트의 히스토리 관리
+(4) location : 브라우저 윈도우에 로드된 HTML 페이지의 URL 관리
+(5) screen : 브라우저가 실행되고 있는 스크린 장치에 대한 정보 제공
+
+-->

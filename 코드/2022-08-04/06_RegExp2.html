@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규 표현식2</title>
+    <script>
+        function process() {
+            var id=document.getElementById("mid").value;
+            var patt=new RegExp("^[0-9]{4}\-(0[1-9]|1[0-2])\-(0[1-9]|1[0-9]|2[0-9]|3[01])$");
+            if(patt.test(id)) {
+                alert("입사 축하");
+            }
+            else {
+                alert("다시입력");
+            }
+        }
+    </script>
+</head>
+<body>
+    <label>날짜 입력</label>
+    <input type="text" name="mid" id="mid">
+    <input type="button" value="commit" onclick="process()">
+</body>
+</html>
+
+<!-- 정규표현식 기본적인 메타문자들 요약 
+?. : 모든 문자와 일치
+?[] : 대괄호 사이에 존재하는 문자들 중 하나에 일치
+?[^] : 대괄호 사이의 가장 첫 번째 문자로 ^ 문자가 있을 때, 
+	    그 문자 이후에 존재하는 문자들을 제외한 모든 문자와 일치
+[a-z] : 대괄호 사이에 특정문자1-특정문자2 가 존재할 때, 특정문자1 과 특정문자2 사이의 모든 문자와 일치
+        [a-z] 의 경우 a부터 z까지 모든 영문자 소문자와 일치
+^? : 대괄호 사이에 존재할 때는 부정을 나타내지만, 대괄호 밖에서는 문자열의 시작과 일치
+?$ : ^와 반대로, 문자열의 끝과 일치
+?* : 앞에 존재하는 문자가 0번 혹은 그 이상 반복되는 문자를 찾을 때 사용
+?+ : 앞에 존재하는 문자가 1번 혹은 그 이상 반복되는 문자를 찾을 때 사용
+?? : 앞에 존재하는 문자가 있을 수도, 없을 수도 있을 때 사용
+\ :  . 혹은 [] 등 특수한 목적으로 사용되는 메타 문자를 문자열에서 찾고 싶을 때,
+    메타 문자를 문자 그대로 사용할 수 있도록 변환해주는 기호
+.은 모든 문자와 일치하지만, \.의 경우 .문자와 일치
+\d : 숫자와 일치
+\s : 공백 문자
+\w : 영문자 및 _문자와 일치
+---------- 대문자는 제외하는 의미가 있다 ----------
+\D : 숫자를 제외한 문자와 일치
+\S : 공백 문자를 제외한 문자와 일치
+\W : 영문자를 제외한 문자와 일치
+{n} : 앞에 존재하는 문자가 n번 반복
+
+-->

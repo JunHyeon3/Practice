@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규 표현식</title>
+    <!-- 정규 표현식 : 입력 정보에 제한을 두는식
+        아이디나 비밀번호 생성 조건을 거는 것이 이 정규 표현식 이다.-->
+    <script>
+        function process() {
+            var id=document.getElementById("mid").value;
+            //RegExp 안에 들어있는 것이 정규표현식
+            //지금 뜻은 대소문자 알파벳, 모든 숫자를 사용할 수 있고, 아이디 길이는 총 5~8글자라는 뜻
+            var patt=new RegExp("^[a-zA-Z][0-9a-zA-z]{4,7}$");
+            //test 메소드를 활용해 id 객체에 입력된 데이터가 patt의 정보를 만족하는지 검사
+            if(patt.test(id)) {
+                alert("성공");
+            }
+            else {
+                alert("다시입력");
+                document.getElementById("mid").value="";
+                document.getElementById("mid").focus();
+            }
+        }
+    </script>
+</head>
+<body>
+    <label>아이디</label>
+    <input type="text" name="mid" id="mid">
+    <input type="button" value="commit" onclick="process()">
+</body>
+</html>
+
+<!--
+정규 표현식 (Regular Expression)
+    (1) 문자열에서 특정한 규칙을 가지는 문자열의 집합을 찾아내기 위한 검색 패턴
+    (2) 이러한 검색 패턴은 모든 종류의 문자열 검색이나 교체등의 작업에서 사용 가능
+    
+괄호 (Bracket) - 정규 표현식에서 사용할 수 있는 여러가지 괄호의 의미
+    
+    a(b)c
+    전체 패턴을 검색한 후에 괄호 안에 명시된 문자열을 저장
+    ex) "abc"를 검색한 후에 b를 저장
+    
+    [abc]
+    대괄호 안에 명시된 문자를 검색
+    ex) "abc"를 검색
+    
+    [0-3]
+    대괄호 안에 명시된 숫자를 검색
+    ex) 0부터 3까지의 숫자를 검색
+
+    [\b]
+    백스페이스 문자를 검색 (\b와 [\b]는 다르다)
+
+    {n}
+    앞의 문자가 정확히 n번 나타나는 경우를 검색
+
+    {m,n}
+    앞의 문자가 최소 m번 이상, 최대 n번 이하로 나타나는 경우를 검색
+
+위치문자 - 패턴을 검색할 단어의 위치를 지정 가능
+
+    ^a
+    단어의 맨 앞에 위치한 해당 패턴만을 검색
+    ex) 'a'로 시작하는 단어의 'a'만을 검색
+    
+    a$
+    단어의 맨 뒤에 위치한 해당 패턴만을 검색
+    ex) 'a'로 끝나는 단어의 'a'만을 검색
+-->
