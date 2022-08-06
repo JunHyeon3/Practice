@@ -12,7 +12,7 @@ body {
     width: 1200px;
     margin: 0 auto;
 }
-/* ------------------------상단 영역------------------------ */
+/* ------------------------상단 영역 *.html nav_bar------------------------ */
 .nav_bar {
     display: flex;
     justify-content: space-between;
@@ -55,7 +55,7 @@ body {
     padding: 0px 12px 50px;
 }
 
-/* ------------------------메인 영역------------------------ */
+/* ------------------------메인 영역 index.html------------------------ */
 .main {
     display: flex;
     justify-content: space-evenly;
@@ -102,7 +102,7 @@ body {
     background-color: blue;
 }
 
-/* ------------------------하단 영역------------------------ */
+/* ------------------------하단 영역 index.html------------------------ */
 .footer {
     height: 100px;
     background-color: #263343;
@@ -112,13 +112,14 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    margin-top: 30px;
 }
 .footer div {
     margin-right: 25px;
     margin-bottom: 10px;
 }
 
-/* ------------------------로그인 영역------------------------ */
+/* ------------------------로그인 영역 login.html------------------------ */
 .login p {
     text-align: center;
     font-size: 50px;
@@ -155,6 +156,10 @@ body {
     height: 40px;
     margin-top: 15px;
 }
+#login_submit input:hover{
+    background-color: #263343;
+    color: white;
+}
 #login_serve {
     margin: 10px auto;
     width: 248px;
@@ -162,7 +167,7 @@ body {
     justify-content: space-between;
 }
 
-/* ------------------------회원가입 영역------------------------ */
+/* ------------------------회원가입 영역 join.html------------------------ */
 .sign {
     width: 900px;
     margin: 0 auto;
@@ -183,7 +188,7 @@ body {
     padding: 10px;
 }
 .sign_box ul{
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     border-bottom: 3px solid gray;
@@ -214,22 +219,23 @@ body {
     background-color: #263343;
     color: white;
 }
-.sign_box .submit:hover{
+.sign_box  .submit:hover{
     background-color: #263343;
     color: white;
 }
-.sign_box .submit {
+.sign_box  .submit {
     width: 150px;
     height: 40px;
-    font-size: 25px;
+    font-size: 20px;
     background-color: #7fbbbd;
     border-radius: 5px;
     border: none;
     margin-left: 390px;
 }
+
 .sign_box .check {
-    width: 25px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     vertical-align:bottom;
 }
 .sign_box .select {
@@ -246,4 +252,196 @@ body {
     width: 200px;
     float: left;
     padding-top: 5px;
+}
+
+
+/* ------------------------게시판 영역 board_main.html------------------------ */
+#board_main {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 게시판 왼쪽영역 */
+#board_aside {
+    width: 250px;
+    padding-top: 50px;
+    text-align: center;
+}
+#board_aside h3 {      
+    font-size: 30px;
+    font-weight: 900;
+    color: #263343;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-bottom: 5px solid #263343;
+}
+.aside_ul {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+}
+.aside_ul li {
+    font-weight: 900;
+    font-size: 20px;
+    height: 40px;
+    padding-top: 20px;
+}
+.aside_first {
+    border-top: 3px solid gray;
+    border-bottom: 1px solid lightgray;
+}
+.aside_last {
+    border-bottom: 3px solid gray;
+    border-top: 1px solid lightgray;
+}
+.aside_ul a:hover {
+    background-color: #263343;
+    color: white;
+}
+
+
+/* 게시판 메인영역(문의하기) */
+#board_inquiry {
+    width: 900px;
+    padding-top: 50px;
+}
+#board_main h3 {      
+    font-size: 30px;
+    font-weight: 900;
+    color: #263343;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-bottom: 5px solid #263343;
+}
+
+#board_inquiry table {
+    margin: 0 auto;
+    font-size: 20px;
+    border-collapse: collapse;
+    border-top: 3px solid gray;
+}
+#board_inquiry .thead {
+    background-color: #26334320;
+    border-bottom: 1px solid lightgray;
+}
+#board_inquiry .row {
+    border-bottom: 1px solid lightgray;
+}
+#board_inquiry .col1 {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+#board_inquiry .col2 {
+    width: 450px;
+    height: 50px;
+    padding-left: 30px;
+}
+#board_inquiry .col3 {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+#board_inquiry .col4 {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+}
+
+/* 페이지 이동과 글쓰기 버튼 */
+.page_move {
+    display: flex;
+    justify-content: center;
+}
+.number {
+    width:  250px;
+    font-weight: 900;
+    font-size: 20px;
+    margin-top: 20px;
+    position: absolute;
+}
+.write_list_modify {
+    text-align: center;
+    font-size: 20px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: #263343;
+    padding: 5px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: 40px;
+}
+.write_list_modify a {
+    color: white;
+}
+
+
+/* ------------------------게시판 영역 board_read.html------------------------ */
+
+#read_inquiry {
+    width: 900px;
+    padding-top: 50px;
+}
+#read_inquiry table {
+    font-size: 15px;
+    margin: 0 auto;
+    width: 830px;
+    border-collapse: collapse;
+    border-top: 3px solid gray;
+}
+#read_inquiry table td {
+    
+    border-bottom: 1px solid lightgrey;
+    padding: 15px;
+}
+.title {
+    font-weight: 400;
+    font-size: 20px;
+}
+.content {
+    height: 200px;
+    border-bottom: 3px solid gray;
+}
+/* ------------------------게시판 영역 board_write.html------------------------ */
+#write_inquiry {
+    width: 900px;
+    padding-top: 50px;
+}
+.write_box {
+    margin: 0 auto;
+    width: 700px;
+}
+.write_box ul {
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+}
+.write_box li {
+    border-bottom: 1px solid lightgray;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 6px
+}
+.write_box li input {
+    width: 100%;
+    border: none;
+    height: 30px;
+    font-size: 15px;
+}
+.write_box li textarea {
+    width: 100%;
+    border: none;
+    font-size: 15px;
+    resize: none;
+}
+
+#write_inquiry .submit{    
+    background-color: #263343;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    margin-top: 15px;
+    float: right;
 }
