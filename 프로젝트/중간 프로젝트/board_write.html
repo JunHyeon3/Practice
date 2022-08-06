@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JH Company</title>
+    <link type="text/css" rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="nav_bar">
+        <div class="nav_logo">
+            <i class="fa-solid fa-dice-d20"></i>
+            <a href="">HI RENT</a>
+        </div>
+        
+        <ul class="nav_menu">
+            <li><a href="index.html">홈으로</a></li>
+            <li><a href="">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="">마이페이지</a></li>
+        </ul>
+
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </nav>
+
+    <div id="board_main">
+        <div id="board_aside">
+            <h3>고객 센터</h3>
+            <ul class="aside_ul">
+                <li class="aside_first"><a href="">공지사항</a></li>
+                <li class="aside_li"><a href="">자주묻는 질문</a></li>
+                <li class="aside_last"><a href="">문의하기</a></li>
+            </ul>
+        </div>
+        <div id="write_inquiry">
+            <h3>문의하기</h3>
+            <form class="write_box" method = "post" action = "board_main.html">
+                <ul>
+                    <li>제목</li>
+                    <li><input class="write_title" type="text" placeholder="제목을 입력하세요."></li>
+                    <li>내용</li>
+                    <li><textarea class="write_content" cols="50" rows="10" placeholder="문의내용을 입력하세요."></textarea></li>
+                </ul>
+                <input type="submit" class="submit" value="작성하기">
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>하이미디어아카데미</div>
+        <div>Made By 박준현</div>
+    </footer>
+</body>
+</html>
