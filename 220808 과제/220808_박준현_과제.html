@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>    
+    <link type="text/css" rel="stylesheet" href="220808_과제.css">
+    <script>
+        var action = true;
+        function imfo_enter(object) {
+            if(action){
+                document.getElementById("alert1").innerHTML = "영문자 대/소문자 특수문자, 숫자 포함 8~32자";
+                action = false;
+            }
+        }
+        function check_enter(object) {
+            var count;
+            if(object.id == "id"){ count=0;}
+            else if(object.id == "pw") {count=1;}
+            else if(object.id == "pw_check") {count=2;}
+
+            if(object.value == "") {
+                document.getElementById("alert"+count).innerHTML = "필수 입력 항목입니다."
+                object.focus();
+            }
+            else{
+                document.getElementById("alert"+count).innerHTML = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <ul>
+            <li>
+                <div class="enter_name"><label>아이디</label></div>
+                <input type="text" id="id" size="25" onblur="check_enter(this)">
+                <div id="alert0"></div>
+            </li>
+            <li>
+                <div class="enter_name"><label>비밀번호</label></div>
+                <input type="password" id="pw" size="25" onfocus="imfo_enter(this)"
+                                                        onblur="check_enter(this)">
+                <div id="alert1"></div>
+            </li>
+            <li>
+                <div class="enter_name"><label>비밀번호 확인</label></div>
+                <input type="password" id="pw_check" size="25" onblur="check_enter(this)">                
+                <div id="alert2"></div>
+            </li>
+            <li>
+                <div class="enter_name"><label for="">이메일</label></div>
+                <input type="text" size="9"> @ <input type="text" size="9">              
+            </li>
+            <li>
+                <div class="enter_name"><label>주소</label></div>
+                <input type="text" size="25">
+            </li>
+        </ul>
+        <input type="submit" id="submit" value="가입">
+    </form>
+</body>
+</html>
