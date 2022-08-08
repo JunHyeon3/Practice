@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>로컬 스토리지</title>
+    <script>
+        window.onload = function() {
+            var btn = document.getElementById("countbtn");
+            countbtn.onclick = function() {
+                if(typeof(localStorage != "undefined")) {
+                    if(localStorage.clickcount) {
+                        localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                    }
+                    else {
+                        localStorage.clickcount = 1;
+                    }
+                    document.getElementById("counter").innerHTML = "counter의 현재 수는 "
+                        + localStorage.clickcount + "입니다.";
+                } 
+                else {
+                    document.getElementById("counter").innerHTML = 
+                        "사용자의 웹 브라우저가 web Storage API를 지원하지 않습니다."
+                }
+            }
+            clearbtn.onclick = function() {
+                localStorage.clear();
+                document.getElementById("counter").innerHTML = "counter의 현재 수는"
+                    + localStorage.clickcount + "입니다."
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>localStorage로 데이터 저장하기</h2>
+    <p>브라우저 탭이나 창을 닫아도 counter의 수는 초기화 되지 않습니다.</p>
+    <p>
+        <button id="countbtn">카운트 증가</button>
+        <button id="clearbtn">리셋</button>
+    </p>
+    <div id="counter"></div>
+</body>
+</html>

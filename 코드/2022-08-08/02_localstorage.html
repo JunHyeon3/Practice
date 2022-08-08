@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로컬 스토리지</title>
+    <script>
+        //아래 명령어를 통해 함수를 실행
+        //함수명이 없기 때문에 무명함수
+        window.onload = function() {
+            //countbtn 태그 객체 생성
+            var btn = document.getElementById("countbtn"); //없어도 됨
+            countbtn.onclick = function() {
+                //localStorage라고 하는 저장소가 또 있다, 정보 만료 날짜가 없다.
+                //localStorage를 생성하지 않았을 때
+                //localStorgae는 키와 값의 형태로 저장한다.
+                if(typeof(localStorage != "undefined")) {
+                    //이전에 localStorge.clickcount가 됐다면
+                    if(localStorage.clickcount) {
+                        //기존 값에 +1 하고
+                        localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                    }
+                    else {
+                        //1의 값을 입력
+                        localStorage.clickcount = 1;
+                    }
+                    document.getElementById("counter").innerHTML = "counter의 현재 수는 "
+                        + localStorage.clickcount + "입니다.";
+                } 
+                else {
+                    document.getElementById("counter").innerHTML = 
+                        "사용자의 웹 브라우저가 web Storage API를 지원하지 않습니다."
+                }
+            }
+            clearbtn.onclick = function() {
+                localStorage.clear();
+                document.getElementById("counter").innerHTML = "counter의 현재 수는"
+                    + localStorage.clickcount + "입니다."
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>localStorage로 데이터 저장하기</h2>
+    <p>브라우저 탭이나 창을 닫아도 counter의 수는 초기화 되지 않습니다.</p>
+    <p>
+        <button id="countbtn">카운트 증가</button>
+        <button id="clearbtn">리셋</button>
+    </p>
+    <div id="counter"></div>
+</body>
+</html>
+
+<!--  
+로컬 스토리지 (LocalStorage) 객체
+    (1) 보관 기한이 없는 데이터를 저장
+    (2) 윈도우에 상관없이 웹 서버(웹 사이트)당 하나씩 생성
+    (3) 브라우저 종료하거나 컴퓨터가 꺼져도 존재
+    (4) 웹 사이트의 모든 웹 페이지가 로컬 스토리지 공유
+    (5) 오프라인 상태에서 웹 애플리케이션이 로컬 컴퓨터의 로컬 스토리지에 저장 가능
+-->

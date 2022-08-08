@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선으로 삼각형 그리기</title>
+</head>
+<body>
+    <h3>선으로 삼각형 그리기</h3>
+    <canvas id="myCanvas" style="background-color: aliceblue;"
+                            width="200" height="150"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        //빈 경로 만들기
+        context.beginPath();
+        //120, 20 지점을 시작점으로 설정
+        context.moveTo(120, 20);
+        //120, 20에서 20, 50 까지 직선추가
+        context.lineTo(20, 50);
+        //20, 50에서 150, 120 까지 직선추가
+        context.lineTo(150, 120);
+        //150, 120에서 120, 20 까지 직선추가
+        context.lineTo(120, 20);
+        //선의 색 설정
+        context.strokeStyle = "magenta";
+        //경로를 캔버스에 그린다.
+        context.stroke();
+    </script>
+</body>
+</html>
+

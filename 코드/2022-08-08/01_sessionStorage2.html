@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세션 스토리지2</title>
+</head>
+<body>
+    <h2>sessionStorage로 데이터 저장하기</h2>
+    <p>웹 브라우저 탭이나 창을 닫으면 counter는 리셋됩니다.</p>
+    <p>하지만 F5키를 누르면 리셋되지 않습니다.</p>
+    <div id="counter"></div>
+    <!-- 카운터 증가와 리셋버튼 -->
+    <p><button onclick="clickGrowth()">카운트 증가</button></p>
+    <p><button onclick="reset()">리셋</button></p>
+    <script>
+        function clickGrowth() {
+            //세션이 정의 되었을 때
+            if(typeof(sessionStorage) != undefined) {
+                //세션 스토리지의 clickcount값이 존재한다면
+                if(sessionStorage.clickcount) {
+                    //그 값에 1을 더함
+                    sessionStorage.clickcount++;
+                }
+                //clickcount값이 없으면
+                else {
+                    //그 값을1로 설정
+                    sessionStorage.clickcount = 1;
+                }
+                //clickcounter 값을 div태그에 출력
+                document.getElementById("counter").innerHTML = "Counter의 현재 수는 "
+                    + sessionStorage.clickcount + "입니다.";
+            }
+            else {
+                document.getElementById("counter").innerHTML = 
+                    "사용자의 웹 브라우저가 web Storage API를 지원하지 않습니다.";
+            }
+        }
+        function reset() {
+            //세션 스토리지 리셋
+            sessionStorage.clear();
+            //초기화된 세션 스토리지 값을 출력
+            document.getElementById("counter").innerHTML = "Counter의 현재 수는 "
+                + sessionStorage.clickcount + "입니다.";
+        }
+        
+    </script>
+</body>
+</html>

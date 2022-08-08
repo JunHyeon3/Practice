@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 그리기</title>
+</head>
+<body>
+    <h3>마우스 드래깅으로 캔버스에 그림 그리기</h3>
+    <canvas id="myCanvas" style="background-color: beige"
+                    width="300" height="250"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        var img = new Image();
+        img.onload = function() {
+            context.drawImage(img, 10, 10, 100, 200);
+            // context.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+        img.src = "../../media/puppy.png"
+    </script>
+</body>
+</html>

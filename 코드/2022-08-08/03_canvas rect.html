@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캔버스 그리기</title>
+</head>
+<body>
+    <h3>캔버스 그리기</h3>
+    <canvas id="myCanvas" style="background-color: aliceblue"
+                            width="250"; height="150"></canvas>
+    <script>
+        //cavas 객체 생성
+        var canvas = document.getElementById("myCanvas");
+        //getContext("2d") : 랜더링 컨텍스트와 그리기 함수를 사용할 수 있게 하는 메소드
+        //사각형 그림 디자인을 위해 사용해야 하는 것 같음
+        var context = canvas.getContext("2d");
+
+        //파란색으로 사각형 그리기
+        //빈 경로 만들기
+        context.beginPath();
+        //선색 결정
+        context.strokeStyle = "blue";
+        //30, 30에서 50x50 크기의 사각형을 경로에 삽입
+        context.rect(30, 30, 50, 50);
+        //경로에 있는 모든 도형의 외곽선 그리기
+        context.stroke();
+
+        //violet 색으로 채운사각형 그리기
+        //빈 경로 만들기
+        context.beginPath();
+        //채우기 색 결정
+        context.fillStyle = "violet";
+        //60, 60에서 50x50 크기의 사각형을 경로에 삽입
+        context.rect(60, 60, 50, 50);
+        //경로에 있는 모든 도형의 내부만 채워 그리기
+        context.fill();
+
+        //green 색으로 채운 텍스트 내부만 그리기
+        context.font = "20px Gothic";
+        //채우기 색 결정
+        context.fillStyle = "green";
+        //텍스트를 경로에 넣지 않고 바로 그리기
+        context.fillText("Text in canvas", 100, 50);
+    </script>
+</body>
+</html>
+
+<!-- 
+캔버스 요소는 웹 페이지에 그래픽을 그려주는 쉽고 강력한 방법이
+이 요소는 그래픽을 위한 컨테이너(container) 역할만을 수행
+따라서 실제 그래픽을 그리기 위해선 자바스크립트 등 스크립트 언어를 이용해야 함
+
+<캔버스 요소 속성>
+canvas 요소는 테두리(border)도 콘텐츠(content)도 없는 웹 페이지 내의 단순 사각형 공간
+그러므로 반드시 style 속성을 이용하여 캔버스의 크기를 설정해야 함
+
+캔버스는 처음에 비어있으며, 무언가를 표시하기위해서는 어떤 스크립트가 랜더링 컨텍스트에 접근하여 그리도록해야 함
+<canvas> 요소는 getContext() 메서드를 호출해서, 랜더링 컨텍스트와 그리기 함수들을 사용할 수 있음
+<canvas> 요소가 있으면 getContext() 메서드를 사용하여 드로잉 컨텍스트에 엑세스가 가능
+getContext() 메소드의 존재여부를 활용하여 지원하지 않는 브라우저에 대한 처리를 할 수 있음
+
+ex) <canvas id=“myCanvas" style="width:300px; height:200px; border: 1px solid blue;">
+        이 문장은 사용자의 웹 브라우저가 canvas 요소를 지원하지 않을 때 나타납니다! </canvas>
+
+사각형 그리기
+    선만 있는 사각형 혹은 채워진 사각형 그리기
+    ex) context.strokeRect(10, 10, 250, 130);      // x, y 좌표 10, 10에 가로250, 세로130 선만 있는 사각형 그리기
+        context.fillStyle = ＂rgba(255,0,0,1)＂;   // 채워진 사각형의 색상 rgba(빨강, 초록, 파랑, 투명도) = red 색상
+        context.fillRect(20, 20, 200, 100);        // x, y 좌표 20, 20에 가로200, 세로100 채워진 사각형 그리기
+        context.clearRect(30, 30, 150, 50);        // x, y 좌표 30, 30에 가로150, 세로50 사각형 모양만큼 투명하게 만들기
+
+사각형 그리기 메소드
+    Rect(x좌표, y좌표, 가로 너비, 세로 높이)
+    fillStyle()   : 사각형 영역을 채울 색상을 설정, 색상 값만 사용할 수도 있고 투명도까지 명시할 수도 있음 
+    strokeStyle() : 사각형 테두리 선 색상을 설정
+    fillRect()    : 사각형을 그리기 시작할 시작점의 x, y좌표와 사각형의 너비, 높이 등을 설정
+    strokeRect()  : 사각형 영역에 테두리를 그릴 때 사용
+    clearRect()   : 지정된 사각형 영역을 투명하게 만듦
+
+선 그리기
+    Point와 Point를 잇는 직선 그리기 
+    ex) context.moveTo(0, 0);       // 첫 번째 Point
+        context.lineTo(300, 100);   // 두 번째 Point
+        context.lineTo(150, 150);   // 세 번째 Point
+        context.stroke();           // 각 포인트를 선으로 잇기
+
+직선 뿐만 아니라 선들을 이어 도형을 만들고, 만든 도형에 색을 채워 넣을 수도 있음
+삼각형 그리기
+    ex) context.moveTo(0, 0);       // 시작 점
+        context.lineTo(300, 200);   // 두 번째 점
+        context.lineTo(150, 0);     // 세 번째 점
+        context.lineTo(0, 0);       // 끝 점 (원점으로 돌아옴)
+        context.fillStyle = “blue"; // 채우기 색상 설정
+        context.fill();             // 도형 채우기
+        context.stroke();           // 그리기
+
+선 그리기 메소드
+    moveTo()   선이 시작될 좌표를 설정
+    lineTo()   선이 끝나는 좌표를 설정, lineTo() 함수를 연속적으로 사용할 때의 시작 위치는 이전 선 그리기가 끝난 위치로 자동 설정됨
+    stroke()   선그리기 시작
+
+원 그리기
+    context.beginPath();                         // 도형 그리기를 시작
+    context.arc(150, 100, 50, 0, 2 * Math.PI);   // (중심점x좌표, 중심점y좌표, 반지름, 시작각도, 종료각도) [라디안각]
+                                                 // 2 * Math.PI = 360 도 (360도를 라디안으로 하면 2파이)
+    context.stroke();                            // 선 그리기
+
+원호(부채꼴) 그리기
+    context.beginPath();        // 도형 그리기 시작
+    context.moveTo(100, 100);   // 원의 중심 점 x좌표, y좌표
+    context.arc(100, 100, 120, 0, Math.PI * 0.5); // arc(원 그리기 시작점x좌표, 원 그리기 시작점y좌표, 시작각도, 종료각도) [라디안각]
+                                                  // Math.PI * 0.5 = 90 도
+    context.closePath();        // 도형 그리기 종료
+    context.stroke();           // 선 그리기
+    beginPath()                 //도형그리기를 시작
+    arc()  //원의 중심 좌표와 반지름, 원을 그리기 시작할 시작 위치와 종료 위치의 좌표, 
+           //그리는 방향 등을 설정 (각도는 라디안 각도)
+    closePath()                 //도형그리기를 마침
+
+텍스트 그리기
+    테두리만 있는 글자 혹은 채워진 글자
+    ex) context.font = "40px Arial";          // 폰트 크기 40픽셀, 폰트 종류 Arial
+        context.fillText("CANVAS", 50, 90);   // 채워진 글자 그리기 (입력문자, 시작점x좌표, 시작점y좌표)
+        context.strokeText("HTML5", 80, 150); // 테두리만 있는 글자 그리기 (입력문자, 시작점x좌표, 시작점y좌표)
+
+텍스트 그리기 메서드
+    font()       텍스트의 크기, 폰트(font)와 색상 등을 설정
+    fillText()   텍스트의 내용과 텍스트를 그리기 시작할 시작 위치의 좌표를 설정
+    strokeText() 테두리만 있는 텍스트를 그릴때 사용
+
+이미지 그리기
+    스크립트를 이용하여 canvas 요소에 이미지 그리기 
+    ex) <p><button onclick="drawImage()">이미지 그리기</button></p>  
+        <script>
+            function drawImage() {
+                var srcImg = “d:\\media/apple.png”;   
+                // 이미지 주소 경로
+                context.drawImage(srcImg, 10, 10);   
+                // 이미지 그리기 (이미지 주소, x좌표, y 좌표[, 가로너비, 세로높이])
+            }
+        </script> 
+-->
+-->

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 그리기</title>
+</head>
+<body>
+    <h3>텍스트 그리기</h3>
+    <canvas id="myCanvas" style="background-color: beige"
+                        width="500" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        //선 색(글자 색)
+        context.strokeStyle = "blue";
+        //font 프로퍼티로 다양한 크기의 서체 활용
+        //1~4번 글자
+        for(var i=0; i<4; i++) {
+            //폰트 크기, 폰트 종류
+            context.font = (10+i*10) + "px forte";
+            //strokeText를 활용하여 글자를 출력
+            //strokeText(문자열, x좌표, y좌표)
+            context.strokeText("javascript 재밌다", 10, 30+i*50);
+        }
+        //5번 글자
+        //폰트 스타일, 폰트 크기, 폰트 종류
+        context.font = "italic 50px forte";
+        //선 색(글자 색)
+        context.strokeStyle = "magenta";
+        //선 두께 (글자 두께)
+        context.lineWidth = 3;
+        //좌로 정렬
+        context.textAlign = "left";
+        //입력 글자, x좌표, y좌표
+        context.strokeText("javascript 재밌다", 50, 250);
+
+        //6번 글자 (fill로 글자 내부 채우기)
+        //채우기 색상
+        context.fillStyle = "green";
+        //text를 캔버스 내부에서 우측정렬
+        context.textAlign = "right";
+        context.fillText("javascript 재밌다", 490, 300);
+
+
+    </script>
+</body>
+</html>

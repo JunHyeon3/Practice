@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>세션 스토리지2</title>
+</head>
+<body>
+    <h2>sessionStorage로 데이터 저장하기</h2>
+    <p>웹 브라우저 탭이나 창을 닫으면 counter는 리셋됩니다.</p>
+    <p>하지만 F5키를 누르면 리셋되지 않습니다.</p>
+    <div id="counter"></div>
+    <p><button onclick="clickGrowth()">카운트 증가</button></p>
+    <p><button onclick="reset()">리셋</button></p>
+    <script>
+        function clickGrowth() {
+            if(typeof(sessionStorage) != undefined) {
+                if(sessionStorage.clickcount) {
+                    sessionStorage.clickcount++;
+                } else {
+                    sessionStorage.clickcount = 1;
+                }
+                document.getElementById("counter").innerHTML = "Counter의 현재 수는 "
+                    + sessionStorage.clickcount + "입니다.";
+            } else {
+                document.getElementById("counter").innerHTML = 
+                    "사용자의 웹 브라우저가 web Storage API를 지원하지 않습니다.";
+            }
+        }
+        function reset() {
+            sessionStorage.clear();
+            document.getElementById("counter").innerHTML = "Counter의 현재 수는 "
+                + sessionStorage.clickcount + "입니다.";
+        }        
+    </script>
+</body>
+</html>
