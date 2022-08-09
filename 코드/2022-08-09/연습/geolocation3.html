@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>geolocation3</title>
+    <style>
+        #myCanvas {width: 500px; height: 400px; background-color: #ccc;}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4"></script>
+    <script>
+        function myMap() {
+            var mapCanvas = document.getElementById("myCanvas");
+            var myLatLng = new google.maps.LatLng(37.498146, 127.027557);
+            var mapOptions = {
+                center : myLatLng,
+                zoom : 16,
+                mapTypeId : google.maps.MapTypeId.ROADMAP 
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({
+                position : myLatLng,
+                map : map,
+                draggable : true,
+                title : "지하철 강남역에서 하차"
+            });
+            var contentString = "<div style='width:100px; height:50px;'>여기서 만나자</div>";
+            var infowindow = new google.maps.InfoWindow({
+                content : contentString,
+                size : new google.maps.Size(200,100)
+            });
+            google.maps.event.addListener(marker, "click", function() {
+                infowindow.open(map,marker);
+                if(marker.getAnimation() != null) {marker.setAnimation(null);}
+                else {marker.setAnimation(google.maps.Animation.BOUNCE);}
+            });
+            marker.setMap(map);
+        }
+    </script>
+</head>
+<body onload="myMap()">
+    <div id="myCanvas"></div>
+</body>
+</html>

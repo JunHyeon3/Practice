@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>오디오 재생 종료 ended 이벤트 받기</title>
+</head>
+<body>
+    <h3>오디오가 끝나면 배경이 노란색으로 바뀜</h3>
+    <audio id="audio" src="../media/EmbraceableYou.mp3" autoplay controls></audio>
+    <script>
+        var audio = document.getElementById("audio");
+        audio.onended = function(e) {
+            document.body.style.backgroundColor = "yellow";
+        }
+    </script>
+</body>
+</html>

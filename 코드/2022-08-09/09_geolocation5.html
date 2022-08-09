@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            height: 50%;
+        }
+        #map{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+    <!-- 지도가 표시될 영역 -->
+    <div id="map"></div>
+    <!-- 각 버튼을 누르면 initMap() 함수 호출 -->
+    <button onclick="initMap(seoul);">Seoul</button>
+    <button onclick="initMap(london);">London</button>
+    <!-- 구글 맵 api 사용 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4"></script>
+    <script>
+        // pos는 나라명을 나타내는 매개변수
+        function initMap(pos) {
+            //myLatLng 변수에 매개변수로 들어오는 나라의 위도와 경도를 저장
+            var myLatLng = pos;
+            //id가 map인 곳에, zoom이 4이고 center가 myLatLng 좌표인 맵을 생성
+            var map = new google.maps.Map(document.getElementById("map"), {zoom:4, center:myLatLng});
+            //맵의 myLatLng 좌표에 마커를 생성하고, 마커에 마우스를 올리면 나타나는 메시지 설정
+            var marker = new google.maps.Marker({position:myLatLng, map:map, title:"click to zoom"});
+
+            //맵의 중앙이 바뀌면 발생되는 이벤트 추가
+            map.addListener("center_changed",function(){
+                //setTimeout함수로 3000ms 후에 무명함수 실행
+                window.setTimeout(function() {
+                    //panTo는 지정된 LatLng으로 지도의 중심으로 바꿔주는 메소드
+                    //변경 사항이 지도의 너비와 높이보다 작으면 전환이 부드럽게 애니메이션으로 바뀜
+                    map.panTo(marker.getPosition());
+                }, 3000);
+            });
+            //마커가 클릭되면 발생되는 이벤트 추가
+            marker.addListener("click", function(){
+                //맵의 zoom이 4에서 8로 바뀜
+                map.setZoom(8);
+                //getPosition 메소드를 사용하여 마커의 위치를 가져옴
+                //setCenter로 맵의 center를 다시 설정
+                map.setCenter(marker.getPosition());
+            });
+        }
+        // 서울과 런던의 위도와 경도를 지정
+        var seoul = {lat: 37.566535, lng: 126.977969};
+        var london = {lat: 51.507351, lng: -0.127758};
+        //default 지도
+        initMap(seoul);
+    </script>
+</body>
+</html>

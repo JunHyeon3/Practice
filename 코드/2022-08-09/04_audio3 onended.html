@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오디오 재생 종료 ended 이벤트 받기</title>
+</head>
+<body>
+    <h3>오디오가 끝나면 배경이 노란색으로 바뀜</h3>
+    <audio id="audio" src="../media/EmbraceableYou.mp3" autoplay controls></audio>
+    <script>
+        var audio = document.getElementById("audio");
+        audio.onended = function(e) {
+            document.body.style.backgroundColor = "yellow";
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+onended : 오디오/비디오의 재생이 완료되었을 때 호출되는 이벤트 리스너
+    ex) 리스너 작성 사례
+    <audio id="audio" src="media/EmbraceableYou.mp3" autoplay controls></audio>
+    <script>
+        var audio = document.getElementById("audio");
+        audio.onended = function (e) {
+                // ended 이벤트 처리 코드 
+        }
+    </script>
+
+<audio src="..." loop> : loop 속성이 설정되면 onended 이벤트 리스너 호출되지 않음
+
+현재 재생 중인 미디어를 변경하는 단계
+audio.src="media/Aegukga.mp3"; // 새로운 미디어 지정
+audio.load();                  // src에 지정된 미디어 새로 로딩. 생략 가능
+audio.play();                  // 로딩된 미디어 재생 
+-->

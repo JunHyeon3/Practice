@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>geolocation3</title>
+    <style>
+        #myCanvas {width: 500px; height: 400px; background-color: #ccc;}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4"></script>
+    <script>
+        function myMap() {
+            //mapCanvas 객체 변수 생성
+            var mapCanvas = document.getElementById("myCanvas");
+            //지도에 표시하고 싶은 기준 좌표 설정
+            var myLatLng = new google.maps.LatLng(37.498146, 127.027557);
+
+            var mapOptions = {
+                //센터는 입력한 위도, 경도
+                center : myLatLng,
+                //16배로 확대
+                zoom : 16,
+                //로드맵 형태
+                mapTypeId : google.maps.MapTypeId.ROADMAP 
+            };
+            //구글 맵 생성
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var marker = new google.maps.Marker({
+                position : myLatLng,
+                map : map,
+                //마커 드래그 가능
+                draggable : true,
+                //도움말 풍선 (마우스 오버시)
+                title : "지하철 강남역에서 하차"
+            });
+            //다음 내용을 담은 말풍선 생성
+            var contentString = "<div style='width:100px; height:50px;'>여기서 만나자</div>";
+            //말풍선 내용
+            var infowindow = new google.maps.InfoWindow({
+                content : contentString,
+                size : new google.maps.Size(200,100)
+            });
+            //마커를 클릭하면 이벤트를 만들 수 있음
+            google.maps.event.addListener(marker, "click", function() {
+                infowindow.open(map,marker);
+
+                if(marker.getAnimation() != null) {
+                    marker.setAnimation(null);
+                }
+                else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+            marker.setMap(map);
+        }
+    </script>
+</head>
+<body onload="myMap()">
+    <div id="myCanvas"></div>
+</body>
+</html>
+
+<!--  
+Google Map API는 위치 기반 지도를 서비스하기 위한 지도 기반 앱을 만든다.
+
+zoom은 지도에서 표시의 크기를 나타낸다.
+
+mapTypeId  지도 유형
+    google.maps.MapTypeId.ROADMAP: 도로 지도 뷰를 표시 (기본 지도 유형)
+    google.maps.MapTypeId.SATELLITE: 위성 지도 표시를 표시
+    google.maps.MapTypeId.HYBRID: 일반 뷰와 위성 뷰를 섞어서 표시
+    google.maps.MapTypeId.TERRAIN: 지형 정보를 기반으로 실제 지도를 표시
+
+google.maps.Marker   마커를 표시한다.
+setMap() 메서드를 호출하여 마커를 추가한다.
+center   위도와 경도 설정한다.
+
+-->

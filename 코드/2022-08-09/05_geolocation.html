@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>geolocation</title>
+    <script>
+        function showPosition(pos) {
+            //p태그 아래 내용을 출력
+            document.getElementById("demo").innerHTML = 
+                //pos.coords.latitude  : 위도(x축)
+                //pos.coords.longitude : 경도(y축)
+                "위도 : " + pos.coords.latitude + "br" +
+                "경도 : " + pos.coords.longitude;
+        }
+        function locationEventHandler() {
+            if(navigator.geolocation){
+                //사용자의 위치를 받는 메소드, showPosition 함수 실행
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else {
+                //p태그에 아래 내용 출력
+                document.getElementById("demo").innerHTML = 
+                    "브라우저가 geolocation을 지원하지 않습니다."
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>현재 위치가 궁금한가요?</p>
+    <button onclick="locationEventHandler()">위도/경도</button>
+    <p id="demo"></p>
+</body>
+</html>
+
+<!--  
+HTML5의 위치 정보 서비스란?
+    컴퓨터/모바일 장치의 위도와 경도를 자바스크립트 코드에게 공급
+
+geolocation 객체
+    위치 정보 서비스를 제공하는 자바스크립트 객체
+    navigator.geolocation, window.navigator.geolocation
+
+위치 정보 서비스 2가지
+    현재 위치 서비스 : 요청 시 현재 위치를 알려주는 서비스
+    반복 위치 서비스 : 위치가 변경될 때마다 반복하여 알려주는 서비스
+
+getCurrentPosition() : 현재위치 얻기
+    ※ navigator.getlocation.getCurrentPosition(showYourLocation, [showErrorMsg], [option]);
+    (1) getCurrentPosition() 메소드를 이용하면 사용자의 위치에 대한 위도와 경도 값을 얻을 수 있다
+    (2) 이 메소드의 첫 번째 인수로는 가져온 사용자의 위치 정보를 출력하는 함수가 들어간다
+    ex) function findLocation() {
+            if (navigator.geolocation) { 
+                // showYourLocation : 가져온 정보 출력 함수
+                navigator.geolocation.getCurrentPosition(showYourLocation);
+            } 
+            else { 
+                loc.innerHTML = "이 문장은 사용자의 웹 브라우저가 Geolocation API를 지원하지 않을 때 나타납니다!"; 
+            }
+        }
+watchPosition() : 사용자의 현재 위치를 가져오고 나서, 사용자의 움직임에 따라 지속적으로 위치 정보를 갱신
+
+clearWatch() : watchPosition() 메소드의 실행을 중지
+
+브라우저의 위치 정보 서비스 지원 여부 확인하기
+if(navigator.geolocation) {
+    //브라우저가 위치 정보 서비스를 제공한다.
+}
+
+현재 위치 얻기
+getCurrentPosition() 메소드 호출
+getCurrentPosition()은 호출 즉시 현재 위치를 리턴하는 것이 아님
+위치가 파악되면 호출될 콜백 함수 positionCallback(Position) 등록
+navigator.geolocation.getCurrentPosition(found); // found()를 콜백 함수로 등록
+위치가 파악되면 found() 호출, 위치 정보가 있는 position 객체가 매개 변수로 전달
+function found(position) { 
+	var lat = position.coords.latitude; // 위도
+	var lon = position.coords.longitude; // 경도
+	alert("현재위치(" + lat + ", " + lon + ")");
+}
+-->

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>원본 크기로 비디오 재생</title>
+</head>
+<body>
+    <h3>원본 크기로 비디오 재생</h3><hr>
+    <video id="video" width="0" height="0" controls autoplay>
+        <source src="../../media/bear.mp4" type="video/mp4">
+        웹 브라우저가 video 태그를 지원하지 않습니다.
+    </video>
+    <script>
+        var video = document.getElementById("video");
+        video.onloadedmetadata = function(e) {
+            alert(video.videoWidth + "x" + video.videoHeight);
+            video.width = video.videoWidth;
+            video.height = video.videoHeight;
+        }
+    </script>
+</body>
+</html>

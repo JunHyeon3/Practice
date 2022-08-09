@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트로 오디오 제어</title>
+</head>
+<body>
+    <h3>자바스크립트로 오디오 제어</h3><hr>
+    <audio id="audio" src="../media/EmbraceableYou.mp3"></audio>
+    <div id="msg">오디오 제어 메시지 출력</div>
+    <button id="play" onclick="control(event)">play</button>
+    <button id="pause" onclick="control(event)">pause</button>
+    <button id="replay" onclick="control(event)">replay</button>
+    <button id="vol-" onclick="control(event)">vol-</button>
+    <button id="vol+" onclick="control(event)">vol+</button>
+    <button id="mute on/off" onclick="control(event)">mute on/off</button>
+    <script>
+        var div = document.getElementById("msg");
+        var audio = document.getElementById("audio");
+        function control(e) {
+            var id = e.target.id;
+            if (id == "play") {
+                audio.play();
+                div.innerHTML = audio.src + "재생합니다.";
+            }
+            else if (id == "pause") {
+                audio.pause();
+                div.innerHTML = "일시중지되었습니다.";
+            }
+            else if (id == "replay") {
+                //src에 지정된 미디어 다시 로딩
+                audio.load();
+                audio.play();
+                div.innerHTML = audio.src + "를 처음부터 재생합니다.";
+            }
+            else if (id == "vol-") {
+                audio.volume -= 0.1;
+                if(audio.volume < 0.1) {audio.volume = 0;}
+                div.innerHTML = "음량 0.1 감소" + "현재 " + audio.volume;
+            }
+            else if (id == "vol+") {
+                audio.volume += 0.1;
+                if(audio.volume > 0.9) {audio.volume = 1.0;}
+                div.innerHTML = "음량 0.1 증가" + "현재 " + audio.volume;
+            }
+            else if (id == "mute on/off") {
+                //음소거 토글
+                audio.muted = !audio.muted;
+                if(audio.muted) {div.innerHTML = "음소거";}
+                else {div.innerHTML = "음소거 해제";}
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+오디오 DOM 객체 알아내기
+var audio = document.getElementById("audio");
+
+오디오 재생 및 일시 중지
+audio.play(); // 재생. 중지된 이후부터 재생
+audio.pause(); // 일시 중지
+
+오디오 처음부터 재생
+audio.load(); // src에 지정된 오디오 데이터 로드
+audio.play(); // 처음부터 재생
+
+오디오 음량 제어와 음소거
+audio.volume += 0.1; // 0.1 만큼 음량 증가
+audio.muted = true; // 음소거. 음량(volume) 변경 없음 
+-->

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>geolocation</title>
+      <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaDoQGBmSkAqo-jzrVtcPUr1CDgfMj4MY&callback=initMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4"></script>
+    <script>
+        //알고 싶은 좌표 입력
+        var myCenter = new google.maps.LatLng(37.498146, 127.027557);
+        function myMap() {
+            //mapProp 변수에 다음 값들을 지정
+            var mapProp = {
+                //표시될 지도의 중심은 입력한 좌표
+                center:myCenter,
+                //확대 되는 정도
+                zoom:5,
+                //map 출력 방식, 로드맵 형태
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            //지정된 그글맵 정보를 div 태그에 출력
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            //지정된 위치에 마커 생성
+            var marker = new google.maps.Marker({
+                position:myCenter,
+                //마커 애니메이션
+                animation:google.maps.Animation.BOUNCE
+            });
+            marker.setMap(map);
+        }
+    </script>
+</head>
+<body onload="myMap()">
+    <div id="googleMap" style="width: 500px; height: 380px;"></div>
+</body>
+</html>
