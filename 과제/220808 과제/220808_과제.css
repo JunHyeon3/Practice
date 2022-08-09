@@ -11,9 +11,7 @@ form {
 }
 ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    line-height: 60px;
+    line-height: 35px;
 }
 input {
     border: none;
@@ -36,7 +34,9 @@ input {
     width: 100px;
     display: inline-block;
     padding-left: 9px;
+    height: 30px;
 }
 #alert0, #alert1, #alert2 {
     color: red;
+    padding-left: 10px;
 }
