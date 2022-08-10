@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+            //문서객체를 선택
+            //querySelectorAll CSS선택자("#",".")를 이용해 모든 요소를 찾아옴
+            //querySelector은 첫번째 요소 한개만 찾음, id 속성 탐색에 사용
+            //여기서는 [0],[1] 같이 배열로 표시하여 1번째와 2번째 input태그를 가져옴
+            var input_1 = document.querySelectorAll("input")[0];
+            var input_2 = document.querySelectorAll("input")[1];
+            
+            input_1.onkeydown = function() {
+                //글자 개수가 여섯개 이상일 경우
+                //첫번째 텍스트 칸에 6글자를 초과하는 입력을 할 수 없음
+                if(6 <= input_1.value.length) {
+                    input_2.focus();
+                };
+            };
+            input_2.onkeydown = function(event) {
+                //이벤트 객체를 추출
+                var event = event || window.envent;
+                //사용자 입력이 백스페이스 이고 입력된 글자가 없는경우
+                //keycode reference table 참고해서 백스페이스의 키코드는 8 
+                if(event.keyCode == 8 && input_2.value.length == 0) {
+                    input_1.focus();
+                }; 
+                //새로고침 금지등 제한기능을 적용할 때 eventkeyCode를 사용
+            };
+        }
+    </script>
+</head>
+<body>
+    <input type="text" maxlength="6">
+    <!-- 공간차지용 span -->
+    <span></span>
+    <input type="text" maxlength="7">
+</body>
+</html>

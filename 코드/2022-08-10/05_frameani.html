@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frameani</title>
+    <script>
+        window.onload = function() {
+            //변수를 선언합니다.
+            var count = 0;
+            //img 태그 객체 생성
+            var image = document.getElementById("image");
+            //이미지 배열 객체를 생성
+            var frames = [
+                "../media/1.png", "../media/2.png", "../media/3.png",
+                "../media/4.png", "../media/5.png", "../media/6.png",
+                "../media/7.png", "../media/8.png", "../media/9.png",
+                "../media/10.png", "../media/11.png", "../media/12.png",
+                "../media/13.png", "../media/14.png"
+            ];
+            //setInterval : 해당 동작을 반복적으로 실행함
+            setInterval(function() {
+                    //%연산이기 때문에 길이 값에 도달하지 않는 이상 해당 값이 그래도 출력됨
+                    //1~14번 그림 반복
+                    image.src = frames[count % frames.length];
+                    //다음 이미지 출력을 위한 +1
+                    count = count + 1;
+                }, 1000/20); //1초 동안 반복
+        };
+    </script>
+</head>
+<body>
+    <img src="" id="image">
+</body>
+</html>

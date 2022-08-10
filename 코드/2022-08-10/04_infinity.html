@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            var appendDocument = function() {
+                for(var i=0; i<20; i++) {
+                //문서객체를 생성
+                $("<h1>Infinity Scroll</h1>").appendTo("body");
+            }
+            };    
+        //초기에 문서 객체를 추가합니다.
+        //여기서 문서 기본 출력
+        appendDocument(); 
+        //이벤트 연결
+        $(window).scroll(function() {
+            //변수를 선언합ㄴ디ㅏ.
+            var scrollHeight = $(window).scrollTop() + $(window).height();
+            //스크롤의 시작부터 창의 스크롤 총 길이 까지
+            var documentHeight = $(document).height();
+            //스크롤 한 높이와 위에서 구한 문서의 높이가 같으면
+            if(scrollHeight == documentHeight) {
+                //스크롤 높이와 문서 높이가 일치 = 스크롤이 바닥에 도착
+                appendDocument();
+            }
+        });
+        
+    });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<!-- 
+무한 스크롤 
+스크롤을 맨 아래까지 내리면 자동으로 데이터를 추가해주는 기능
+페이스북, 핀터레스트, 쿠팡 등에서 사용된다.
+무한 스크롤 이벤트가 발생하면 다음 조건을 확인하고 데이터 추가
+전체 문서의 높이 = 스크롤 높이 + 브라우저 창의 높이
+append : 선택된 요소의 마지막에 새로운 요소나 콘텐츠를 추가한다.
+appendTo : 선택된 요소를 해당 요소의 마지막에 추가한다.
+body 쪽에서 작성해서 적용할 수 있다 
+
+1. $(window).scrollTop()
+    : 스크롤 위치에 따라 변하는 값(세로 좌표), 맨 위에서 0으로 시작하여 맨 아르 도달 시 스크롤 길이 max 값을 가진다. 
+
+2.  $(window).height()
+    : 보여지는 창의 높이 길이
+
+3. . $(document).height()
+    : jsp, html 등 문서의 높이 길이
+    : 보여지는 창의 높이 길이보다 문서의 길이가 길다면 스크롤이 생긴다.
+
+-->

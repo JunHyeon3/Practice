@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script>
+        $(function() {
+            $("#map").append(getmap())
+        });
+        function getmap() {
+            if(!navigator.geolocation) { throw "위치정보가 지원되지 않습니다"; }
+
+            //결과를 표시할 새로운 <img>요소를 생성한 다음 반환
+            var image = document.createElement("img");
+
+            //geolocation 요청
+            navigator.geolocation.getCurrentPosition(setMapURL, showError);
+            return image;
+            //geolocation 요청이 성공하면 호출되는 콜백 함수;
+            function setMapURL(pos) {
+                //전달된 인자 객체로부터 위치정보를 가져온다.
+                //위도
+                var latitude = pos.coords.latitude;
+                //경도
+                var longitude = pos.coords.longitude;
+                //정확도
+                var accuracy = pos.coords.accuracy;
+
+                //소숫점이하 자리가 너무길어서 유효숫자 6자리로 자름
+                latitude = latitude.toPrecision(6);
+                longitude = longitude.toPrecision(6);
+
+                //해당 위치의 구글 지도에 대한 정적 이미지 url을 생성
+                var map_url = "http://maps.google.com/maps/api/staticmap"
+                + "?center=" + latitude + "," + longitude + "&size=640x640&sensor=true";
+
+                //대략적으로 지도 줌 레벨을 계산하여 설정
+                var zoomlevel = 20;
+                //위치가 부정확할 경우 축소
+                if(accuracy > 80) {
+                    //zoom 지도에서 표시의 크기를 나타내는데 설정범위는 0~22
+                    zoomlevel -= Math.round(Math.log(accuracy / 50) / Math.LN2);
+                }
+                //줌 레벨을 url에 추가
+                map_url += "&zoom" + zoomlevel;
+
+                //api key추가
+                map_url += "&key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4";
+
+                //이미지객체에 지도를 출력
+                image.src = map_url;
+                //timestamp : 1970년 1월 1일 자정부터 지금까지 지난 시각을 초 단위로 바꾼 값
+                //맵 스테틱에서 키 받아보자
+                //타임스탬프를 사용하면 날짜를 숫자형태로 간편하게 나타낼 수 있음
+                var now = new Date(pos.timestamp);
+
+                var text = "현재 시간" + now.toUTCString() + "<br>"
+                text += "현재 위치(위도 " + latitude + "º, 경도 " + longitude + "º) <br>";
+                text += "정확도 " + accuracy + "m<br>";
+                document.getElementById("msg").innerHTML = text;
+            }
+            //geolocation 요청이 실패하면 호출되는 콜백 함수
+            function showError(err) {
+                var errors = [err.message, "사용자가 권한 거부", 
+                                "위치를 찾을 수 없음", "요청 응답시간 초과"];
+                alert("[" + err.code + "]" + errors[err.code]);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>getCurrentPosition()으로 현재 위치 파악</h3><hr>
+    <div id="msg">이곳에 위치정보 출력</div>
+    <div id="map"></div>
+</body>
+</html>

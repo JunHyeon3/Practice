@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jqueryDom</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            for(var i=0; i<10; i++) {
+                //문서객체를 생성
+                //해당 태그 내용을 appendTo를 활용해 body태그 뒤에 오게함
+                //body태그안에 h1태그를 생성하고 그 안에 값을 입력한 것과 동일
+                $("<h1>Create Document Object + " + i + "</h1>")
+                    .css({backgroundColor: "black", color:"red"})
+                    .appendTo("body");
+            }
+        });
+    </script>
+</head>
+<body>
+        
+</body>
+</html>
+<!-- 
+요소의 추가
+(1) 제이쿼리는 새로운 요소나 콘텐츠를 손쉽게 추가할 수 있도록 여러 메소드를 제공
+(2) 기존 요소의 내부에 추가
+    - .append()     : 선택한 요소의 "마지막"에 새로운 요소나 콘텐츠를 추가
+    - .prepend()    : 선택한 요소의 "처음"에 새로운 요소나 콘텐츠를 추가
+    - .appendTo()   : 선택한 요소를 해당 요소의 "마지막"에 삽임
+    - .prependTo()  : 선택한 요소를 해당 요소의 "처음"에 삽임
+(3) 기존 요소의 외부에 추가
+    -  before()         : 선택한 요소의 "바로 앞"에 새로운 요소나 콘텐츠를 추가
+    - .after()          : 선택한 요소의 "바로 뒤"에 새로운 요소나 콘텐츠를 추가
+    - .insertBefore()   : 선택한 요소를 해당 요소의 "앞"에 삽임
+    - .insertAfter()    : 선택한 요소를 해당 요소의 "뒤"에 삽임
+(4) 기존 요소를 포함하는 요소의 추가
+    -  wrap()       : 선택한 요소를 포함하는 새로운 요소를 추가
+    - .wrapAll()    : 선택한 모든요소를 포함하는 새로운 요소를 추가
+    - .wrapInner()  : 선택한 요소에 포함되는 새로운 요소를 추가
+
+기존 요소의 내부에 추가
+(1) .append() 메소드 : 선택한 요소의 '마지막'에 새로운 요소나 콘텐츠를 추가
+(2) .prepend() 메소드 : 선택한 요소의 '처음'에 새로운 요소나 콘텐츠를 추가
+
+    ex) 뒤에 추가
+    $(function() {
+        $("button").on("click", function() {
+            $("#list").append("<li>신규 요소 뒤에 추가</li>");   // id가 list인 요소 내부의 뒤에 신규 요소 추가
+        });
+    });
+
+    ex) 앞에 추가
+    $(function() {
+        $("button").on("click", function() {
+            $("li").prepend(＂앞에 새로 추가된 요소에요!＂);   // li 태그 요소 내부의 앞에 신규 요소 추가
+        });
+    });
+
+(3) .appendTo() 메소드 : 선택한 요소를 '해당 요소의 마지막'에 삽입
+    동작은 .append() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+(4) .prependTo() 메소드 : 선택한 요소를 '해당 요소의 처음'에 삽입
+	동작은 .prepend() 메소드와 같지만, 소스(source)와 타겟(target)의 위치가 서로 반대
+    
+    ex) 뒤에 추가
+    $(function() {
+        $("#firstBtn").on("click", function() {
+            $("#firstItem").appendTo("#list");   // id가 "list"인 요소의 맨 마지막에 id가 "firstItem"인 요소를 추가
+        });
+    });
+
+    ex) 앞에 추가
+    $(function() {
+        $("button").on("click", function() {
+            $("<b>앞에 새로 추가된 콘텐츠에요!</b>").prependTo(".item");
+        });
+    });
+ -->

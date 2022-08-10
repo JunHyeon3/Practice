@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script>
+        $(function() {
+            $("#map").append(getmap())
+        });
+        function getmap() {
+            if(!navigator.geolocation) { throw "위치정보가 지원되지 않습니다"; }
+            var image = document.createElement("img");
+            navigator.geolocation.getCurrentPosition(setMapURL, showError);
+            return image;
+            function setMapURL(pos) {
+                var latitude = pos.coords.latitude;
+                var longitude = pos.coords.longitude;
+                var accuracy = pos.coords.accuracy;
+                latitude = latitude.toPrecision(6);
+                longitude = longitude.toPrecision(6);
+                var map_url = "http://maps.google.com/maps/api/staticmap"
+                + "?center=" + latitude + "," + longitude + "&size=640x640&sensor=true";
+                var zoomlevel = 20;
+                if(accuracy > 80) {
+                    zoomlevel -= Math.round(Math.log(accuracy / 50) / Math.LN2);
+                }
+                map_url += "&zoom=" + zoomlevel;
+                map_url += "&key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4";
+                image.src = map_url;
+                var now = new Date(pos.timestamp);
+                var text = "현재 시간" + now.toUTCString() + "<br>"
+                text += "현재 위치(위도 " + latitude + "º, 경도 " + longitude + "º) <br>";
+                text += "정확도 " + accuracy + "m<br>";
+                document.getElementById("msg").innerHTML = text;
+            }
+            function showError(err) {
+                var errors = [err.message, "사용자가 권한 거부", 
+                                "위치를 찾을 수 없음", "요청 응답시간 초과"];
+                alert("[" + err.code + "]" + errors[err.code]);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>getCurrentPosition()으로 현재 위치 파악</h3><hr>
+    <div id="msg">이곳에 위치정보 출력</div>
+    <div id="map"></div>
+</body>
+</html>
