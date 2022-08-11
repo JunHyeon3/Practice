@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src = "http://masonry.desandro.com/masonry.pkgd.min.js"></script>
+    <script>
+        //3개의 이미지를 배열로 저장
+        var image_arr = ["apple.png",
+                        "banana.png",
+                        "mango.png"]
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            background: black;
+            margin: 5px;
+            border: 1px solid blue;
+        }
+    </style>
+    <script>
+        // 이벤트 연결
+        $(document).ready(function(){
+            // for문으로 아래의 동작을 100번 실행함
+            for(var i=0; i<100; i++){
+                // div박스를 만들고, class를 box로 지정
+                $("<div></div>").addClass("box")
+                    .css({ 
+                        // 박스의 width는 100으로 고정
+                        width:100, 
+                        // 박스의 height는 Math의 random 메소드를 사용하여 51~150의 숫자로 설정
+                        // floor메소드로 인하여 랜덤의 수가 1부터 시작한다.
+                        height:Math.floor(Math.random()*100)+50, 
+                    })
+                    // 생성된 div박스의 배경이미지로 image_arr에 저장된 3개의 이미지를 번갈아 가며 사용
+                    // i%3의 나머지 연산으로 인하여 0부터 2까지 반복된다.
+                    .css("background-image", "url(" + image_arr[i%3]  + ")")
+                    // 만든 div박스들을 body안에 추가한다.
+                    .appendTo("body");
+            }
+            //masonry 플러그인 적용
+            $("body").masonry({ 
+                //열 넓이를 110으로 지정
+                //기본 width 100에 padding 5*2 이기 때문에 110으로 지정
+                columWidth : 110 
+            })
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
