@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>watchPosition()으로 반복 위치 서비스</title>
+</head>
+<body>
+    <h3>watchPosition()으로 반복 위치 서비스</h3>
+    <div id="msg">이곳에 위치 서비스</div>
+    <div id="map"></div>
+    <script>
+        if(!navigator.geolocation) { aldert("지원하지 않음"); }
+        else {
+            var options = { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 };
+            var img = new Image();
+            var count = 0;
+            var watchID = navigator.geolocation.watchPosition(changed, null, options);
+        }
+        function changed(position) {
+            if(count == 5) {
+                navigator.geolocation.clearWatch(watchID);
+                document.getElementById("msg").innerHTML = "위치 서비스 종료";
+                return;
+            }
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            var text = count + ": (위도 " + lat + "º, 경도 " + lon + "º) 로 변경됨 <br>";
+            document.getElementById("msg").innerHTML = text;
+            img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lon 
+                + "&zoom=13&size=400x300&sensor=false&markers=color:red%7Clabel:C%7C"
+                + lat +"," +lon + "&key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4";
+            if(count == 0) { document.getElementById("map").appendChild(img); }
+            count++;
+        }
+    </script>
+</body>
+</html>
