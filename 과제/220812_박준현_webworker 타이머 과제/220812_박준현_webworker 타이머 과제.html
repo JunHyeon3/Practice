@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>타이머를 가진 웹 워커 만들기</title>
+</head>
+<body>
+    <h3>타이머를 가진 웹 워커 만들기</h3><hr>
+    <div><span id="timer">타이머 카운트</span></div>
+    <!-- 버튼을 눌렀을 때 각 함수 실행 -->
+    <button id="start" onclick="start()">start</button>
+    <button id="stop" onclick="stop()">stop</button>
+    <script>
+        //워커 태스크 생성
+        var addWorker = new Worker("timer.js");
+
+        function start() {
+            //e에 start 데이터 전송
+            addWorker.postMessage("start");
+        }
+        function stop() {
+            //e에 stop 데이터 전송
+            addWorker.postMessage("stop");
+        }
+        addWorker.onmessage = function(e) {
+            document.getElementById("timer").innerHTML = e.data;
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+    var count = 0; 
+    var timerID = null;
+    ...
+    //1초 간격으로 호출
+    function myCallback() {}
+        //시작과 동시에 1씩 추가
+        count++;
+        //메인의 addWorker.onmessage로 데이터 넘김
+        postMessage(count);
+    }
+-->

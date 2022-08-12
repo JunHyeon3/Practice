@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1~10까지 더하는 워크 태스크 만들기</title>
+    <!-- 웹 워커
+    자바스크립트 코드를 백그라운드 코드로 추가하는 방법
+    백그라운드 코드를 워커 태스크 라고 하며 
+    일반적인 작업환경 처럼 실행하거나 사용자 인터페이스를 활요하는 것은 불가능 -->
+</head>
+<body>
+    <h3>1~10까지 더하는 워크 태스크 만들기</h3><hr>
+    <div>1에서 10까지의 합은 <span id="sum"></span></div>
+    <script>
+        //addWorker 워커 객체 생성 및 워크 태스크 시작
+        //addlto10.js 코드를 워커 태스크로 지정
+        var addWorker = new Worker("01_addlto10.js");
+        //워커 태스크로 부터 message 수신하여 e에 값을 넣고 함수를 실행
+        // e는 MessageEvent 객체
+        addWorker.onmessage = function(e) {
+            //이벤트 객체의 data(합)을 sum인 태그에 출력
+            document.getElementById("sum").innerHTML = e.data;
+        }
+    </script>
+</body>
+</html>
+<!-- 
+웹 워커
+자바스크립트는 싱글 쓰레드로 동작하지만 웹 워커를 사용하면 브라우저에서 멀티 쓰레드를 활용할 수 있다.
+싱글 쓰레드 방식에는 한 가지 큰 단점이 있는데 그것은 연산량이 많은 작업을 하는 경우, 
+그 작업이 완료되어야 다른 작업을 수행할 수 있다는 것이다.
+멀티 쓰레드는 새로운 쓰레드의 워커를 생성해 워커에게 계산을 맡기고, 
+메인 쓰레드는 다른 작업을 수행하기에 사용자가 기다리는 시간에 다른 작업을 할 수 있ek.
+워커는 DOM에 직접 접근하지 못하기 때문에 메인 쓰레드와 서로 메시지를 주고 받아서 통신해야 한다.
+
+<웹 워커 사용하는 방법>
+1. web worker 파일 생성
+web worker의 동작을 확인하기 위해 소수를 찾는 외부 자바스크립트 파일을 만든다.
+여기서 postMessage() 메소드는 HTML 문서에 결과를 전달하기 위해 사용. 
+
+2. web worker 객체 생성
+위에서 만든 web worker 파일을 불러올 HTML 파일을 만든다. 
+아래 if 문은 만약 파일이 존재하지 않는다면 새로운 객체를 만든다는 의미.
+
+3. web worker 객체와 연결
+onmessage 이벤트 리스너를 통해 web worker 파일과 메시지를 주고받을 수 있다. 
+web worker 파일이 메시지를 보내면 해당 이벤트 리스너가 실행된다.
+이 때 web worker 파일이 보낸 정보는 event.data에 저장된다. 
+
+<워커 태스크 종료 방법>
+close() : 워커 객체가 워커 태스크를 강제 종료, 워커 태스크 스스로 종료 
+
+terminate() 메소드 : 즉시 워커 태스크의 실행을 종료시킴
+ex) addWorker.terminate();
+워커 태스크가 종료하면 워커 객체는 더 이상 워커 태스크와 message 이벤트를 주고받을 수 없다.
+
+
+postMessage() 
+js에서 값을 계산하고 다시 html 파일에게 메시지를 보내는 메소드
+
+onmessage 리스너
+워커 태스크가 보내는 message 이벤트를 받는 코드
+
+onerror 리스너
+오류가 발생할 때 받는 이벤트 리스너
+-->
