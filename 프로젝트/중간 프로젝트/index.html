@@ -8,51 +8,84 @@
 <body>
     <nav class="nav_bar">
         <div class="nav_logo">
-            <i class="fa-solid fa-dice-d20"></i>
-            <a href="">HI RENT</a>
+            <i class="fa-solid fa-car-side"></i>
+            <!-- <i class="fa-solid fa-dice-d20"></i> -->
+            <a href="index.html">HI-RENT</a>
         </div>
-        
         <ul class="nav_menu">
             <li><a href="index.html">홈으로</a></li>
             <li><a href="">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="">찾아오시는 길</a></li>
         </ul>
-
+        
         <ul class="nav_login">
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
     </nav>
     
+    <div id="slide_img"> </div>
+
     <main class="main">
-        <div class="recommand_5">
-            <h3>Best Car <br>TOP 5</h3>
-        </div>
-        <div class="recommand">
-            <img src="./media/AVANTE.png" width="350px" >
-            <p>AVANTE</p>
-            <div>70,000 won</div>
-        </div>
-        <div class="recommand">
-            <img src="./media/Sonata.png" width="350px" >
-            <p>Sonata</p>
-            <div>80,000 won</div>
-        </div>
-        <div class="recommand">
-            <img src="./media/K7.png" width="350px">
-            <p>K7</p>
-            <div>100,000 won</div>
-        </div>
-        <div class="recommand">
-            <img src="./media/SantaFe.png" width="350px" >
-            <p>SantaFe</p>
-            <div>130,000 won</div>
-        </div>
-        <div class="recommand">
-            <img src="./media/G80.png" width="350px" >
-            <p>G80</p>
-            <div>150,000 won</div>
+        <div id="main_content">
+            <div id="reservation">
+                <h3>빠른 예약</h3>
+                <form>
+                    <div class="reservation_date">
+                        <input type="date" value="출발일"> ~ <input type="date">
+                    </div>
+                    <div class="reservation_time">
+                        <input type="time" step="1800">
+                    </div>
+                    <div class="reservation_time">
+                        <input type="time" step="1800">
+                    </div>
+                    <div class="reservation_car">
+                        <select class="car_type">
+                            <option value="차종" selected>차종</option>
+                            <option value="대형">대형</option>
+                            <option value="중형">중형</option>
+                            <option value="준중형">준중형</option>
+                            <option value="경차">경차</option>
+                        </select>
+                    </div>
+                    <div class="reservation_submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="submit" value="예약하기">
+                    </div>
+                </form>
+            </div>
+            <div id="recommend">
+                <div class="recommand_5">
+                    <h3>Best Car <br>TOP 5</h3>
+                </div>
+                <div class="recommand">
+                    <img src="./media/AVANTE.png" width="350px" >
+                    <p>AVANTE</p>
+                    <div>70,000 won</div>
+                </div>
+                <div class="recommand">
+                    <img src="./media/Sonata.png" width="350px" >
+                    <p>Sonata</p>
+                    <div>80,000 won</div>
+                </div>
+                <div class="recommand">
+                    <img src="./media/K7.png" width="350px">
+                    <p>K7</p>
+                    <div>100,000 won</div>
+                </div>
+                <div class="recommand">
+                    <img src="./media/SantaFe.png" width="350px" >
+                    <p>SantaFe</p>
+                    <div>130,000 won</div>
+                </div>
+                <div class="recommand">
+                    <img src="./media/G80.png" width="350px" >
+                    <p>G80</p>
+                    <div>150,000 won</div>
+                </div> 
+            </div>
         </div>
     </main>
 

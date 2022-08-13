@@ -8,17 +8,16 @@ ul {
 a {
     text-decoration: none;
 }
-body {
-    width: 1200px;
-    margin: 0 auto;
-}
-/* ------------------------상단 영역 *.html nav_bar------------------------ */
+/* ------------------------*.html 내비게이션 영역------------------------ */
 .nav_bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background-color: #263343;
+    background-color: #00000070;
     padding: 20px 12px;
+    position: absolute;
+    width: 100%;
+    /* position: fixed; */
 }
 .nav_bar a {
     color: white;
@@ -28,40 +27,120 @@ body {
 }
 
 .nav_logo {
-    font-size: 30px;
+    font-size: 40px;
+    margin-left: 35px;
 }
-
 .nav_menu {
     font-size: 20px;
     display: flex;
+    margin: 0 40px 0 40px;
 }
-.nav_menu li {
-    padding: 8px 25px;
-}
-.nav_menu li:hover {
-    background-color:orangered;
-    border-radius: 15px;
-}
-.nav_login a:hover {
-    background-color:orangered;
-    border-radius: 15px;
-}
-
 .nav_login {
     display: flex;
+    margin-right: 35px;
+}
+
+.nav_menu li {
+    padding: 8px 25px;
 }
 .nav_login li {
     font-size: 15px;
     padding: 0px 12px 50px;
 }
 
-/* ------------------------메인 영역 index.html------------------------ */
-.main {
+.nav_menu li a:hover {
+    color:orangered;
+    border-bottom: 2px orangered solid;
+}
+.nav_login a:hover {
+    color : orangered;
+    border-bottom: 2px orangered solid;
+}
+
+/* ------------------------index.html 배경 영역------------------------ */
+#slide_img {
+    width: 100%;
+    height: 700px;
+    background-image: url("media/background6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* ------------------------index.html 메인 영역------------------------ */
+#main_content {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#reservation {
+    padding: 20px;
+    text-align: center;
+    border: 3px solid #7fbbbd;
+}
+input[type=date] {
+    width: 130px;
+    font-size: 20px;
+    border: none;
+}
+input[type=time] {
+    width: 130px;
+    font-size: 18px;
+    border: none;
+}
+input[type=submit] {
+    background: none;
+    border: none;
+    
+    font-size: 20px;
+}
+.reservation_date {
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin-top: 15px;
+}
+.reservation_time {
+    border: 1px solid lightgray;
+    padding: 10px;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.reservation_car {
+    clear: both;
+    border: 1px solid lightgray;
+    padding: 0 10px;
+}
+.car_type {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    height: 45px;
+}
+.reservation_submit {
+    clear: both;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 10px;
+    background-color: #7fbbbd;
+    border-radius: 10px;
+}
+
+#recommend {
+    border: 1px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+/* .main {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 40px;
-}
+} */
 .recommand_5 {
     width: 350px;
     height: 300px;
@@ -102,7 +181,7 @@ body {
     background-color: blue;
 }
 
-/* ------------------------하단 영역 index.html------------------------ */
+/* ------------------------하단 영역 *.html footer------------------------ */
 .footer {
     height: 100px;
     background-color: #263343;
@@ -110,13 +189,11 @@ body {
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content:space-evenly;
     align-items: flex-end;
-    margin-top: 30px;
 }
 .footer div {
     margin-right: 25px;
-    margin-bottom: 10px;
 }
 
 /* ------------------------로그인 영역 login.html------------------------ */
