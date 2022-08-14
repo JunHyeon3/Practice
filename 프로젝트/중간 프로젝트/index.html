@@ -4,6 +4,9 @@
     <title>JH Company</title>
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    
+    
 </head>
 <body>
     <nav class="nav_bar">
@@ -13,10 +16,10 @@
             <a href="index.html">HI-RENT</a>
         </div>
         <ul class="nav_menu">
-            <li><a href="index.html">홈으로</a></li>
-            <li><a href="">제품소개</a></li>
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">찾아오시는 길</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
         </ul>
         
         <ul class="nav_login">
@@ -26,11 +29,11 @@
     </nav>
     
     <div id="slide_img"> </div>
-
+    
     <main class="main">
         <div id="main_content">
             <div id="reservation">
-                <h3>빠른 예약</h3>
+                <h1>간편 조회</h1>
                 <form>
                     <div class="reservation_date">
                         <input type="date" value="출발일"> ~ <input type="date">
@@ -42,7 +45,7 @@
                         <input type="time" step="1800">
                     </div>
                     <div class="reservation_car">
-                        <select class="car_type">
+                        <select class="reservation_type">
                             <option value="차종" selected>차종</option>
                             <option value="대형">대형</option>
                             <option value="중형">중형</option>
@@ -50,41 +53,119 @@
                             <option value="경차">경차</option>
                         </select>
                     </div>
+                    <div class="reservation_loc">
+                        <select class="reservation_type">
+                            <option value="지역" selected>지역</option>
+                            <option value="서울">서울</option>
+                            <option value="경기">경기</option>
+                            <option value="인천">인천</option>
+                            <option value="제주도">제주도</option>
+                        </select>
+                    </div>
                     <div class="reservation_submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="submit" value="예약하기">
+                        <input type="submit" value="조회">
                     </div>
                 </form>
             </div>
             <div id="recommend">
-                <div class="recommand_5">
-                    <h3>Best Car <br>TOP 5</h3>
+                <h1>인기 차종</h1>
+                <div class="recommend_car_list">
+                    <ul>
+                        <li class="recommend_car">
+                            <!-- <div class="plus"><i class="fas fa-plus"></i></div> -->
+                            <img src="media/G80.png" >
+                            <div class="recommend_info">
+                                <h3>G80</h3>
+                                <div>
+                                    <i class="fas fa-user"><br><span>5인승</span></i>
+                                    <i class="fas fa-car"><br><span>고급</span></i>
+                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recommend_car">
+                            <img src="media/K7.png" >
+                            <div class="recommend_info">
+                                <h3>K7</h3>
+                                <div>
+                                    <i class="fas fa-user"><br><span>5인승</span></i>
+                                    <i class="fas fa-car"><br><span>고급</span></i>
+                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recommend_car">
+                            <img src="media/Sonata.png" >
+                            <div class="recommend_info">
+                                <h3>Sonata</h3>
+                                <div>
+                                    <i class="fas fa-user"><br><span>5인승</span></i>
+                                    <i class="fas fa-car"><br><span>고급</i>
+                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recommend_car">
+                            <img src="media/SantaFe.png" >
+                            <div class="recommend_info">
+                                <h3>SantaFe</h3>
+                                <div>
+                                    <i class="fas fa-user"><br><span>5인승</span></i>
+                                    <i class="fas fa-car"><br><span>고급</span></i>
+                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recommend_car">
+                            <img src="media/AVANTE.png" >
+                            <div class="recommend_info">
+                                <h3>AVANTE</h3>
+                                <div>
+                                    <i class="fas fa-user"><br><span>5인승</span></i>
+                                    <i class="fas fa-car"><br><span>고급</span></i>
+                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="recommend_button">
+                        <button class="recommend_btn" onclick="changeShow(0), check()">&nbsp;</button>
+                        <button class="recommend_btn" onclick="changeShow(1)">&nbsp;</button>
+                        <button class="recommend_btn" onclick="changeShow(2)">&nbsp;</button>
+                        <button class="recommend_btn" onclick="changeShow(3)">&nbsp;</button>
+                        <button class="recommend_btn" onclick="changeShow(4)">&nbsp;</button>
+                        <button class="recommend_pause" onclick="pause()"><i class="fa-solid fa-forward-step"></i></button>
+                    </div>
+                    <script src="slide.js"></script>
                 </div>
-                <div class="recommand">
-                    <img src="./media/AVANTE.png" width="350px" >
-                    <p>AVANTE</p>
-                    <div>70,000 won</div>
+            </div>
+            <div id="recommend2">
+                <h1>추천 여행지</h1>
+                <div class="recommend_tour_list">
+                    <div class="recommend_tour">
+                        <img src="media/seoul.png">
+                        <h2>두물머리</h2>
+                        <p>서울과 가까운 최고의 드라이브 코스!</p>
+                    </div>
+                    <div class="recommend_tour">
+                        <div>
+                            <img src="media/incheon.png">
+                        </div>
+                        <h2>인천대교</h2>
+                        <p>우리나라에서 가장 긴 아름다운 다리!</p>
+                    </div>
+                    <div class="recommend_tour">
+                        <img src="media/jeju.png">
+                        <h2>가시리 유채꽃 길</h2>
+                        <p>꽃 구경하기 좋은 가장 아름다운 길!</p>
+                    </div>
                 </div>
-                <div class="recommand">
-                    <img src="./media/Sonata.png" width="350px" >
-                    <p>Sonata</p>
-                    <div>80,000 won</div>
-                </div>
-                <div class="recommand">
-                    <img src="./media/K7.png" width="350px">
-                    <p>K7</p>
-                    <div>100,000 won</div>
-                </div>
-                <div class="recommand">
-                    <img src="./media/SantaFe.png" width="350px" >
-                    <p>SantaFe</p>
-                    <div>130,000 won</div>
-                </div>
-                <div class="recommand">
-                    <img src="./media/G80.png" width="350px" >
-                    <p>G80</p>
-                    <div>150,000 won</div>
-                </div> 
             </div>
         </div>
     </main>

@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Yeon Sung', cursive;
 }
 ul {
     list-style: none;
@@ -21,6 +23,7 @@ a {
 }
 .nav_bar a {
     color: white;
+    /* font-family: FontAwesome; */
 }
 .nav_bar i {
     color: orangered;
@@ -59,18 +62,24 @@ a {
 
 /* ------------------------index.html 배경 영역------------------------ */
 #slide_img {
-    width: 100%;
-    height: 700px;
+    /* width: 100%; */
+    height: 500px;
     background-image: url("media/background6.jpg");
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-size: cover;
+    margin: 0 auto;
 }
 /* ------------------------index.html 메인 영역------------------------ */
-#main_content {
-    margin: 40px auto;
+.main {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+}
+#main_content {
+    width: 1000px;
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    /* align-items: flex-start; */
     flex-wrap: wrap;
 }
 
@@ -78,6 +87,8 @@ a {
     padding: 20px;
     text-align: center;
     border: 3px solid #7fbbbd;
+    border-radius: 19px;
+    margin: 10px;
 }
 input[type=date] {
     width: 130px;
@@ -92,27 +103,32 @@ input[type=time] {
 input[type=submit] {
     background: none;
     border: none;
-    
     font-size: 20px;
 }
 .reservation_date {
     border: 1px solid lightgray;
     padding: 10px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 .reservation_time {
     border: 1px solid lightgray;
     padding: 10px;
     float: left;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .reservation_car {
     clear: both;
     border: 1px solid lightgray;
-    padding: 0 10px;
+    padding: 0 15px;
 }
-.car_type {
+.reservation_loc {
+    clear: both;
+    border: 1px solid lightgray;
+    padding: 0 15px;
+    margin-top: 20px;
+}
+.reservation_type {
     width: 100%;
     font-size: 18px;
     border: none;
@@ -122,63 +138,88 @@ input[type=submit] {
     clear: both;
     height: 45px;
     line-height: 45px;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: #7fbbbd;
     border-radius: 10px;
 }
 
+
 #recommend {
-    border: 1px solid blue;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border: 3px solid #7fbbbd;
+    border-radius: 19px;
 }
-
-
-
-/* .main {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-top: 40px;
+.recommend_car img{
+    height: 205px;
+}
+/* .recommend_car .plus {
+    display: none;
 } */
-.recommand_5 {
-    width: 350px;
+/* .recommend_car:hover{
+    display:
+} */
+.recommend_info i{
+    font-size: 15px;
+    color: gray;
+    margin: 15px;
+    line-height: 20px;
+}
+
+.recommend_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recommend_btn {
+    background: none;
+    width: 30px;
+    height: 10px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin: 5px;
+}
+.recommend_pause {
+    width: 30px;
+    font-size: 15px;
+    border: none;
+    background: none;
+}
+
+
+#recommend2 {
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border: 3px solid #7fbbbd;
+    border-radius: 19px;
+}
+.recommend_tour_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.recommend_tour {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.recommend_tour img {
+    width: 250px;
     height: 300px;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 900;
-    color: orange;    
-    padding-top: auto;
+    margin: 20px 8px;
+    /* padding: 30px 9px 15px; */
+    transition: all 0.2s linear;
 }
-.recommand_5 h3 {
-    margin-top: 90px;
+.recommend_tour img:hover {
+    transform: scale(1.1);
 }
-.recommand {
-    background-color: #f3f3f3;
-    margin-bottom: 50px;
-}
-.recommand p {
-    font-size: 30px;
-    text-align: center;
-    font-weight: 900;
-    color: #263343;
-    padding: 10px;
-    margin: 30px;
-}
-.recommand div {
-    font-size: 25px;
-    background-color: #7fbbbd;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-.main .aside {
-    width: 200px;
-    background-color: red;
-}
-.main .section {
-    width: 867px;
-    background-color: blue;
+.recommend_tour p {
+    width: 250px;
+    margin-top: 9px;
+    font-size: 20px;
 }
 
 /* ------------------------하단 영역 *.html footer------------------------ */
