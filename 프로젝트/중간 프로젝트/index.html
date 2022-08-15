@@ -5,6 +5,7 @@
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+
     
     
 </head>
@@ -72,11 +73,12 @@
                 <h1>인기 차종</h1>
                 <div class="recommend_car_list">
                     <ul>
-                        <li class="recommend_car">
-                            <!-- <div class="plus"><i class="fas fa-plus"></i></div> -->
-                            <img src="media/G80.png" >
+                        <a href="#"><li class="recommend_car">
+                            <div class="plus"></div>
+                            <div class="plusi"><i class="fas fa-plus"></i></div>
+                            <img src="media/G80.png">
                             <div class="recommend_info">
-                                <h3>G80</h3>
+                                <h2>G80</h2>
                                 <div>
                                     <i class="fas fa-user"><br><span>5인승</span></i>
                                     <i class="fas fa-car"><br><span>고급</span></i>
@@ -84,11 +86,13 @@
                                     <i class="fas fa-cog"><br><span>오토</span></i>
                                 </div>
                             </div>
-                        </li>
-                        <li class="recommend_car">
+                        </li></a>
+                        <a href="#"><li class="recommend_car">
+                            <div class="plus"></div>
+                            <div class="plusi"><i class="fas fa-plus"></i></div>
                             <img src="media/K7.png" >
                             <div class="recommend_info">
-                                <h3>K7</h3>
+                                <h2>K7</h2>
                                 <div>
                                     <i class="fas fa-user"><br><span>5인승</span></i>
                                     <i class="fas fa-car"><br><span>고급</span></i>
@@ -96,11 +100,13 @@
                                     <i class="fas fa-cog"><br><span>오토</span></i>
                                 </div>
                             </div>
-                        </li>
-                        <li class="recommend_car">
+                        </li></a>
+                        <a href="#"><li class="recommend_car">
+                            <div class="plus"></div>
+                            <div class="plusi"><i class="fas fa-plus"></i></div>
                             <img src="media/Sonata.png" >
                             <div class="recommend_info">
-                                <h3>Sonata</h3>
+                                <h2>Sonata</h2>
                                 <div>
                                     <i class="fas fa-user"><br><span>5인승</span></i>
                                     <i class="fas fa-car"><br><span>고급</i>
@@ -108,11 +114,13 @@
                                     <i class="fas fa-cog"><br><span>오토</span></i>
                                 </div>
                             </div>
-                        </li>
-                        <li class="recommend_car">
+                        </li></a>
+                        <a href="#"><li class="recommend_car">
+                            <div class="plus"></div>
+                            <div class="plusi"><i class="fas fa-plus"></i></div>
                             <img src="media/SantaFe.png" >
                             <div class="recommend_info">
-                                <h3>SantaFe</h3>
+                                <h2>SantaFe</h2>
                                 <div>
                                     <i class="fas fa-user"><br><span>5인승</span></i>
                                     <i class="fas fa-car"><br><span>고급</span></i>
@@ -120,11 +128,13 @@
                                     <i class="fas fa-cog"><br><span>오토</span></i>
                                 </div>
                             </div>
-                        </li>
-                        <li class="recommend_car">
+                        </li></a>
+                        <a href="#"><li class="recommend_car">
+                            <div class="plus"></div>
+                            <div class="plusi"><i class="fas fa-plus"></i></div>
                             <img src="media/AVANTE.png" >
                             <div class="recommend_info">
-                                <h3>AVANTE</h3>
+                                <h2>AVANTE</h2>
                                 <div>
                                     <i class="fas fa-user"><br><span>5인승</span></i>
                                     <i class="fas fa-car"><br><span>고급</span></i>
@@ -132,7 +142,7 @@
                                     <i class="fas fa-cog"><br><span>오토</span></i>
                                 </div>
                             </div>
-                        </li>
+                        </li></a>
                     </ul>
                     <div class="recommend_button">
                         <button class="recommend_btn" onclick="changeShow(0), check()">&nbsp;</button>
@@ -152,6 +162,7 @@
                         <img src="media/seoul.png">
                         <h2>두물머리</h2>
                         <p>서울과 가까운 최고의 드라이브 코스!</p>
+                        <a href="#" onclick="$('.pop_seoul').css('height',$(document).height()).show();">more</a>
                     </div>
                     <div class="recommend_tour">
                         <div>
@@ -159,20 +170,54 @@
                         </div>
                         <h2>인천대교</h2>
                         <p>우리나라에서 가장 긴 아름다운 다리!</p>
+                        <a href="#" onclick="$('.pop_incheon').css('height',$(document).height()).show();">more</a>
                     </div>
                     <div class="recommend_tour">
                         <img src="media/jeju.png">
                         <h2>가시리 유채꽃 길</h2>
                         <p>꽃 구경하기 좋은 가장 아름다운 길!</p>
+                        <a href="#" onclick="$('.pop_jeju').css('height',$(document).height()).show();">more</a>
                     </div>
                 </div>
             </div>
+            <div class="popup_base pop_seoul">
+
+            </div>
+            <div class="popup_base pop_incheon">
+
+            </div>
+            <div class="popup_base pop_jeju">
+                <div class="pop_content">
+                    <div class="pop_btn">
+                        <a href="#" onclick="$(this).parent().parent().parent().hide();">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    <h1>가시리 유채꽃 길</h1><br>
+                    <div class="pop_img">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <img src="media/jeju2.png">
+                        <img src="media/jeju3.png">
+                        <img src="media/jeju4.png">
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <p><br>
+                        서귀포 가시리마을은 해마다 4월이면 진입로부터 10km구간에 펼쳐지는 
+                        유채꽃과 벚꽃이 어우러져 그림같은 드라이브 코스를 자랑하는 곳이다. <br>
+                        ‘한국의 아름다운 길 100선’ 에 선정되기도 한 가시리 녹산로는 
+                        조선시대 최고의 목마장이던 녹산장과 갑마장을 관통하는 길로 
+                        현재 제주에서도 손꼽히는 경관을 자랑하는 유채꽃길로 가시리 마을 10경 중 제1경으로 꼽히는 곳이다. <br>
+                        또한 가시리 마을은 따라비 오름, 큰사슴이 오름 등 제주의 아름다운 자연경관도 함께 즐길 수 있다.
+                    </p>
+                </div>
+            </div>
+            <script src="changeImg.js"></script>
         </div>
     </main>
-
     <footer class="footer">
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
+
 </body>
 </html>

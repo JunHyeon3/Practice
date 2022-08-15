@@ -3,11 +3,15 @@
     margin: 0;
     padding: 0;
     font-family: 'Yeon Sung', cursive;
+    color: black;
 }
 ul {
     list-style: none;
 }
 a {
+    text-decoration: none;
+}
+a:visited {
     text-decoration: none;
 }
 /* ------------------------*.html 내비게이션 영역------------------------ */
@@ -19,11 +23,9 @@ a {
     padding: 20px 12px;
     position: absolute;
     width: 100%;
-    /* position: fixed; */
 }
 .nav_bar a {
     color: white;
-    /* font-family: FontAwesome; */
 }
 .nav_bar i {
     color: orangered;
@@ -62,12 +64,9 @@ a {
 
 /* ------------------------index.html 배경 영역------------------------ */
 #slide_img {
-    /* width: 100%; */
     height: 500px;
     background-image: url("media/background6.jpg");
-    /* background-repeat: no-repeat; */
     background-size: cover;
-    margin: 0 auto;
 }
 /* ------------------------index.html 메인 영역------------------------ */
 .main {
@@ -79,7 +78,6 @@ a {
     margin: 40px;
     display: flex;
     justify-content: center;
-    /* align-items: flex-start; */
     flex-wrap: wrap;
 }
 
@@ -135,7 +133,7 @@ input[type=submit] {
     height: 45px;
 }
 .reservation_submit {
-    clear: both;
+    /* clear: both; */
     height: 45px;
     line-height: 45px;
     margin-top: 15px;
@@ -151,20 +149,48 @@ input[type=submit] {
     border: 3px solid #7fbbbd;
     border-radius: 19px;
 }
+
 .recommend_car img{
     height: 205px;
 }
-/* .recommend_car .plus {
-    display: none;
-} */
-/* .recommend_car:hover{
-    display:
-} */
+
 .recommend_info i{
     font-size: 15px;
     color: gray;
     margin: 15px;
     line-height: 20px;
+}
+.plus   {
+    position: absolute;
+    border-bottom: 33px solid transparent;
+    border-top: 33px solid #7fbbbd;
+    border-left: 33px solid #7fbbbd;
+    border-right: 33px solid transparent;
+    opacity: 0;
+    transition: 0.8s;
+}
+.plusi{
+    position: absolute;
+    font-size: xx-large;
+    margin: 3px;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.recommend_info button{
+    position: absolute;
+    /* left: 059px; */
+    margin-left: 29px;
+    margin-bottom: 025px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    /* margin: 0px 0 0 20px  ; */
+    border: 1px solid red;
+    border-radius: 100%;
+    background: none;
+    /* opacity: 0; */
+    transition: 0.8s;
 }
 
 .recommend_button {
@@ -221,12 +247,69 @@ input[type=submit] {
     margin-top: 9px;
     font-size: 20px;
 }
+.recommend_tour a {
+    margin-top: 15px;
+    border-top:  1px solid gray;
+}
+.recommend_tour a:hover {
+    color: orangered;
+}
+
+
+/* 팝업 */
+.popup_base {
+    position:absolute; 
+    left:0; 
+    top:0; 
+    width:100%; 
+    height:100%; 
+    background: #00000080; 
+    display:none;
+}
+.pop_content {
+    position:relative; 
+    width:50%; 
+    margin:200px auto 0; 
+    box-sizing:border-box; 
+    background:white;
+    text-align: center;
+    padding: 40px 25px 25px;
+}
+.pop_btn {
+    position:absolute; 
+    right: 10px; 
+    top:-55px; 
+    text-align: center;
+    font-size: 50px;
+}
+.pop_btn a i {
+    color: white
+}
+.pop_img {
+    display: flex;
+    justify-content: center;
+}
+.pop_img button {
+    width: 30px;
+    border: none;
+    background: none;
+    font-size: 30px;
+}
+.pop_img button i:hover {
+    color: orangered;
+}
+.pop_content img {
+    width: 90%;
+    display: none;
+}
+.pop_content p {
+    font-size: 20px;
+}
 
 /* ------------------------하단 영역 *.html footer------------------------ */
 .footer {
     height: 100px;
     background-color: #263343;
-    color: white;
     font-size: 20px;
     display: flex;
     flex-direction: column;
@@ -234,6 +317,7 @@ input[type=submit] {
     align-items: flex-end;
 }
 .footer div {
+    color: white;
     margin-right: 25px;
 }
 

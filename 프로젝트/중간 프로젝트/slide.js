@@ -2,10 +2,10 @@ window.onload = function(){
     slideShow();
 }
 var index = 0;
-var recommend = document.getElementsByClassName("recommend_car");
 var slide;
+var recommend = document.getElementsByClassName("recommend_car");
 var btn = document.getElementsByClassName("recommend_btn")
-
+//이미지 넘기기
 function slideShow() {
     for (var i = 0; i < recommend.length; i++) {
         recommend[i].style.display = "none";
@@ -19,17 +19,7 @@ function slideShow() {
     recommend[index-1].style.display = "block";
     slide = setTimeout(slideShow, 2000);
 }
-
-var doubleFlag = false;
-function check() {
-    if(doubleFlag) {return doubleFlag;}
-    else {
-        doubleFlag = true;
-        return false;
-    }
-
-}
-
+//아래 버튼으로 이미지 변경
 function changeShow(n) {
     for (var i = 0; i < recommend.length; i++) {
         recommend[i].style.display = "none";
@@ -61,7 +51,7 @@ function changeShow(n) {
     setTimeout(slideShow, 2000);
     
 }
-    
+//일시 정지
 var control = true;
 function pause(){
     if(control==true){
@@ -73,3 +63,21 @@ function pause(){
         control=true;
     }
 }
+
+//인기 차종 +버튼
+$(".recommend_car").mouseover(function(){
+    $(".plus, .plusi").css("opacity","1")
+}).mouseout(function(){
+    $(".plus, .plusi").css("opacity","0")
+})
+
+
+// var doubleFlag = false;
+// function check() {
+//     if(doubleFlag) {return doubleFlag;}
+//     else {
+//         doubleFlag = true;
+//         return false;
+//     }
+
+// }
