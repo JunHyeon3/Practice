@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+    /* 박스 크기를 border 테두리 기준 */
+    box-sizing: border-box;
+    list-style: none;
+}
+.container {
+    width: 1080px;
+    height: 100%;
+    padding: 0 20px;
+}
+li {
+    float: left;
+}
+a {
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+}
+body {
+    /* 문서의 최소 높이는 브라우저 뷰포트의 100% (꽉참) */
+    min-height: 100vh;
+    /* 요소 자기 자신의 원래 위치(static일 때의 위치)를 기준으로 배치 */
+    position: relative;
+}
+.clear {
+    /* float 사진 좌우에 글자가 붙지 않도록 */
+    clear: both;
+}
+section {
+    width: 100%;
+    height: 650px;
+    padding: 30px 0;
+    background: #fafafa;
+}
+#section1 > .container > div {
+    height: 100%;
+    float: left;
+}
+#section1 .leftBox {
+    width: calc(40% - 15px);
+    margin-right: 15px;
+}
+#section1 .leftBox > .graph1 {
+    width: 100%;
+    height: 280px;
+}
+.blue { 
+    color: white;
+    background: #43cbff;
+}
+.green {
+    color: white;
+    background: #81d733;
+}
+.yellow {
+    color: white;
+    background: yellow;
+}
+.orange {
+    color: white;
+    background: orange;
+}
+.red {
+    color: white;
+    background: red;
+}
