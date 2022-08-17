@@ -57,14 +57,18 @@ function pause(){
     if(control==true){
         clearTimeout(slide);
         control=false;
+        $(".fa-play").show();
+        $(".fa-pause").hide();
     }
     else {
         setTimeout(slideShow, 1000);
         control=true;
+        $(".fa-play").hide();
+        $(".fa-pause").show();
     }
 }
 
-//인기 차종 +버튼
+//인기 차종 + 모양 나타내기
 $(".recommend_car").mouseover(function(){
     $(".plus, .plusi").css("opacity","1")
 }).mouseout(function(){

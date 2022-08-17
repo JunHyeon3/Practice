@@ -4,40 +4,55 @@
     <title>JH Company</title>
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <nav class="nav_bar">
+    <nav class="nav_bar" style="position: relative;">
         <div class="nav_logo">
-            <i class="fa-solid fa-dice-d20"></i>
-            <a href="">HI RENT</a>
+            <i class="fa-solid fa-car-side"></i>
+            <a href="index.html">HI-RENT</a>
         </div>
-        
         <ul class="nav_menu">
-            <li><a href="index.html">홈으로</a></li>
-            <li><a href="">제품소개</a></li>
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
         </ul>
-
+        
         <ul class="nav_login">
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
+        <i class="fa-solid fa-bars"></i>
     </nav>
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
 
     <div class="login">
         <p>로그인</p>
-        <form id = "login_box" method = "post" action = "index.html">
+        <form id = "login_box" method = "post" action = "index.html" onsubmit="return check_login()">
             <div id="login_idpw">
-                <input type="text" name="id" size="20" maxlength="20" placeholder="  아이디"/><br>
-                <input type="password" name="pass" placeholder="  비밀번호">
+                <input id="idpw1" type="text" name="id" placeholder="아이디"/><br>
+                <input id="idpw2" type="password" name="pass" placeholder="비밀번호">
             </div>
             <div id="login_submit">
                 <input type="submit" value="로그인">
             </div>
             <div id="login_serve">
                 <div id="login_auto">
-                    <input type="checkbox" name="auto" id=""> 자동로그인
+                    <input type="checkbox" name="auto" id="auto"> 
+                    <label for="auto">자동로그인</label>
                 </div>
                 <div id="login_find">
                     <a href="#">ID/PW 찾기</a>
@@ -50,6 +65,9 @@
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
+
+    <script src="./hidden.js"></script>
+    <script src="./login.js"></script>
 </body>
 </html>
 

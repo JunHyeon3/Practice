@@ -5,15 +5,11 @@
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-
-    
-    
 </head>
 <body>
     <nav class="nav_bar">
         <div class="nav_logo">
             <i class="fa-solid fa-car-side"></i>
-            <!-- <i class="fa-solid fa-dice-d20"></i> -->
             <a href="index.html">HI-RENT</a>
         </div>
         <ul class="nav_menu">
@@ -27,9 +23,23 @@
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
+        <i  class="fa-solid fa-bars"></i>
     </nav>
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
+    <div id="background_img"> </div>
     
-    <div id="slide_img"> </div>
     
     <main class="main">
         <div id="main_content">
@@ -150,9 +160,11 @@
                         <button class="recommend_btn" onclick="changeShow(2)">&nbsp;</button>
                         <button class="recommend_btn" onclick="changeShow(3)">&nbsp;</button>
                         <button class="recommend_btn" onclick="changeShow(4)">&nbsp;</button>
-                        <button class="recommend_pause" onclick="pause()"><i class="fa-solid fa-forward-step"></i></button>
+                        <button class="recommend_pause" onclick="pause()">
+                            <i class="fa-solid fa-play"></i>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
                     </div>
-                    <script src="slide.js"></script>
                 </div>
             </div>
             <div id="recommend2">
@@ -189,11 +201,11 @@
                     </div>
                     <h1>두물머리</h1><br>
                     <div class="pop_img">
-                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button onclick="changeImg(-1)"><i class="fas fa-chevron-left"></i></button>
                         <img src="media/seoul2.png">
                         <img src="media/seoul3.png">
                         <img src="media/seoul4.png">
-                        <button><i class="fas fa-chevron-right"></i></button>
+                        <button onclick="changeImg(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <p><br>
                         경기도 양평군 양서면에 있는 곳으로 흔히 '양수리' 라고 부른다. <br>
@@ -215,11 +227,11 @@
                     </div>
                     <h1>인천대교</h1><br>
                     <div class="pop_img">
-                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button onclick="changeImg(-1)"><i class="fas fa-chevron-left"></i></button>
                         <img src="media/incheon2.png">
                         <img src="media/incheon3.png">
                         <img src="media/incheon4.png">
-                        <button><i class="fas fa-chevron-right"></i></button>
+                        <button onclick="changeImg(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <p><br>
                         인천광역시에 위치한 다리로, 연수구 송도국제도시와 인천국제공항의 소재지 중구 영종도를 잇는 다리이다. <br>
@@ -239,11 +251,11 @@
                     </div>
                     <h1>가시리 유채꽃 길</h1><br>
                     <div class="pop_img">
-                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button onclick="changeImg(-1)"><i class="fas fa-chevron-left"></i></button>
                         <img src="media/jeju2.png">
                         <img src="media/jeju3.png">
                         <img src="media/jeju4.png">
-                        <button><i class="fas fa-chevron-right"></i></button>
+                        <button onclick="changeImg(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <p><br>
                         서귀포 가시리마을은 해마다 4월이면 진입로부터 10km구간에 펼쳐지는 
@@ -255,14 +267,16 @@
                     </p>
                 </div>
             </div>
-            <script src="changeImg.js"></script>
         </div>
     </main>
-
+    
     <footer class="footer">
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
-
+    
+    <script src="hidden.js"></script>
+    <script src="slide.js"></script>
+    <script src="changeImg.js"></script>
 </body>
 </html>

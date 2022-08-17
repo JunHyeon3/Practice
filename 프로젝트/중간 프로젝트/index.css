@@ -1,6 +1,9 @@
+/***********************************/
+/*************공통 적용*************/
+/***********************************/
 @import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
 * {
-    margin: 0;
+    margin: 0 ;
     padding: 0;
     font-family: 'Yeon Sung', cursive;
     color: black;
@@ -14,13 +17,63 @@ a {
 a:visited {
     text-decoration: none;
 }
-/* ------------------------*.html 내비게이션 영역------------------------ */
+html, body {
+	width: 100%;
+}
+
+/************************* 반응형 ************************/
+/* 화면이 965px 이상일 때 */
+@media (min-width: 965px) {
+    .fa-bars {
+        display: none !important;
+    }
+    .nav_hidden {
+        display: none !important;
+    }
+}
+/* 화면이 964px 이하일 때 */
+@media (max-width: 964px) {
+    .nav_bar {
+        display: flex;
+        justify-content: space-between !important;
+    }
+    .nav_bar ul{
+        display: none;
+    }
+    .fa-bars {
+        margin-right: 50px;
+        font-size: 40px;
+        color: white !important; 
+    }
+    .fa-bars:hover {
+        color: orangered !important;
+    }
+    .pop_content {
+        width:90% !important; 
+    }
+    .nav_login {
+        margin:20px 0 !important;
+    }
+    .nav_login li {
+        padding: 0 10px 0 !important;
+    }
+}
+/* 화면이 561px 이하일 때 */
+@media (max-width: 561px) {
+    .nav_menu {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/*********************** index nav_bar 영역 **********************/
+/* nav_bar */
 .nav_bar {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #00000070;
-    padding: 20px 12px;
+    padding: 25px 0 12px 0 ;
     position: absolute;
     width: 100%;
 }
@@ -30,48 +83,71 @@ a:visited {
 .nav_bar i {
     color: orangered;
 }
-
+/* nav_bar 로고 */
 .nav_logo {
     font-size: 40px;
     margin-left: 35px;
 }
+/* nav_bar 메뉴 */
 .nav_menu {
     font-size: 20px;
     display: flex;
     margin: 0 40px 0 40px;
+    justify-content: center;
 }
+.nav_menu li {
+    padding: 8px 25px;
+}
+.nav_menu li a:hover {
+    color:orangered;
+    border-bottom: 2px orangered solid;
+}
+/* nav_bar 로그인&회원가입 */
 .nav_login {
     display: flex;
     margin-right: 35px;
-}
-
-.nav_menu li {
-    padding: 8px 25px;
+    justify-content: center;
 }
 .nav_login li {
     font-size: 15px;
     padding: 0px 12px 50px;
-}
-
-.nav_menu li a:hover {
-    color:orangered;
-    border-bottom: 2px orangered solid;
 }
 .nav_login a:hover {
     color : orangered;
     border-bottom: 2px orangered solid;
 }
 
-/* ------------------------index.html 배경 영역------------------------ */
-#slide_img {
+/*********************** index nav_bar 숨김영역 **********************/
+.nav_hidden{
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 85px;
+    background-color: #000000;
+    text-align: center;
+    padding-top: 15px;
+}
+.nav_hidden a{
+    color: white;
+}
+.fa-bars {
+    display: none;
+}
+
+/*********************** index nav_bar 배경 **********************/
+#background_img {
+    width: 100%;
     height: 500px;
     background-image: url("media/background6.jpg");
     background-size: cover;
+    background-position: center;
 }
-/* ------------------------index.html 메인 영역------------------------ */
+
+/*********************** index main 영역 **********************/
 .main {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 #main_content {
     width: 1000px;
@@ -81,6 +157,7 @@ a:visited {
     flex-wrap: wrap;
 }
 
+/*********************** index main 간편조회 영역 **********************/
 #reservation {
     padding: 20px;
     text-align: center;
@@ -88,26 +165,19 @@ a:visited {
     border-radius: 19px;
     margin: 10px;
 }
-input[type=date] {
-    width: 130px;
-    font-size: 20px;
-    border: none;
-}
-input[type=time] {
-    width: 130px;
-    font-size: 18px;
-    border: none;
-}
-input[type=submit] {
-    background: none;
-    border: none;
-    font-size: 20px;
-}
+/* 간편조회의 날짜선택 영역 */
 .reservation_date {
     border: 1px solid lightgray;
     padding: 10px;
     margin-top: 20px;
 }
+.reservation_date input[type=date] {
+    width: 130px;
+    font-size: 20px;
+    border: none;
+}
+
+/* 간편조회의 시간선택 영역 */
 .reservation_time {
     border: 1px solid lightgray;
     padding: 10px;
@@ -115,6 +185,13 @@ input[type=submit] {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.reservation_time input[type=time] {
+    width: 130px;
+    font-size: 18px;
+    border: none;
+}
+
+/* 간편조회의 차종선택과 지역선택 영역 */
 .reservation_car {
     clear: both;
     border: 1px solid lightgray;
@@ -132,6 +209,8 @@ input[type=submit] {
     border: none;
     height: 45px;
 }
+
+/* 간편조회의 조회버튼 영역 */
 .reservation_submit {
     /* clear: both; */
     height: 45px;
@@ -140,8 +219,13 @@ input[type=submit] {
     background-color: #7fbbbd;
     border-radius: 10px;
 }
+.reservation_submit input[type=submit] {
+    background: none;
+    border: none;
+    font-size: 20px;
+}
 
-
+/*********************** index main 인기차종 영역 **********************/
 #recommend {
     padding: 20px;
     text-align: center;
@@ -150,17 +234,8 @@ input[type=submit] {
     border-radius: 19px;
 }
 
-.recommend_car img{
-    height: 205px;
-}
-
-.recommend_info i{
-    font-size: 15px;
-    color: gray;
-    margin: 15px;
-    line-height: 20px;
-}
-.plus   {
+/* 차량에 마우스 오버시 나타는 삼각형과 + 모양 영역 */
+.recommend_car .plus   {
     position: absolute;
     border-bottom: 33px solid transparent;
     border-top: 33px solid #7fbbbd;
@@ -169,7 +244,7 @@ input[type=submit] {
     opacity: 0;
     transition: 0.8s;
 }
-.plusi{
+.recommend_car .plusi{
     position: absolute;
     font-size: xx-large;
     margin: 3px;
@@ -177,22 +252,34 @@ input[type=submit] {
     transition: 0.8s;
 }
 
-.recommend_info button{
-    position: absolute;
-    /* left: 059px; */
-    margin-left: 29px;
-    margin-bottom: 025px;
-    font-size: 18px;
-    width: 40px;
-    height: 40px;
-    /* margin: 0px 0 0 20px  ; */
-    border: 1px solid red;
-    border-radius: 100%;
-    background: none;
-    /* opacity: 0; */
-    transition: 0.8s;
+/* 차량 이미지와 그 아래의 간단한 사양 영역*/
+.recommend_car img{
+    height: 205px;
+}
+.recommend_info i{
+    font-size: 15px;
+    margin: 15px;
+    line-height: 20px;
+}
+.recommend_info i:nth-child(1){
+    color: green;
+}
+.recommend_info i:nth-child(2){
+    color: red;
+}
+.recommend_info i:nth-child(3){
+    color: blue;
+}
+.recommend_info i:nth-child(4){
+    color: black;
+}
+.recommend_info span{
+    font-size: 15px;
+    color: black;
+    margin: 5px;
 }
 
+/* 하단의 버튼들 */
 .recommend_button {
     display: flex;
     justify-content: center;
@@ -212,8 +299,11 @@ input[type=submit] {
     border: none;
     background: none;
 }
+.recommend_pause .fa-play {
+    display: none;
+}
 
-
+/*********************** index main 추천여행지 영역 **********************/
 #recommend2 {
     padding: 20px;
     text-align: center;
@@ -232,6 +322,8 @@ input[type=submit] {
     justify-content: center;
     align-items: center;
 }
+
+/* 추천 여행지의 이미지 영역*/
 .recommend_tour img {
     width: 250px;
     height: 300px;
@@ -242,21 +334,26 @@ input[type=submit] {
 .recommend_tour img:hover {
     transform: scale(1.1);
 }
+
+/* 추천 여행지의 간단 설명 영역 */
 .recommend_tour p {
     width: 250px;
     margin-top: 9px;
     font-size: 20px;
 }
+
+/* 추천 여행지의 more 영역 */
 .recommend_tour a {
     margin-top: 15px;
-    border-top:  1px solid gray;
+    border-top: 2px solid gray;
 }
 .recommend_tour a:hover {
     color: orangered;
+    border-top: 2px solid orangered;
 }
 
-
-/* 팝업 */
+/*********************** index main 추천여행지 팝업 영역 **********************/
+/* dimmed 처리(배경) */
 .popup_base {
     position:absolute; 
     left:0; 
@@ -266,6 +363,8 @@ input[type=submit] {
     background: #00000080; 
     display:none;
 }
+
+/* 내용이 담기는 틀 */
 .pop_content {
     position:relative; 
     width:50%; 
@@ -275,6 +374,8 @@ input[type=submit] {
     text-align: center;
     padding: 40px 25px 25px;
 }
+
+/* x(닫기) 버튼 */
 .pop_btn {
     position:absolute; 
     right: 10px; 
@@ -285,9 +386,15 @@ input[type=submit] {
 .pop_btn a i {
     color: white
 }
+
+/* 팝업창의 이미지 */
 .pop_img {
     display: flex;
     justify-content: center;
+}
+.pop_img img {
+    width: 90%;
+    display: none;
 }
 .pop_img button {
     width: 30px;
@@ -298,15 +405,12 @@ input[type=submit] {
 .pop_img button i:hover {
     color: orangered;
 }
-.pop_content img {
-    width: 90%;
-    display: none;
-}
+/* 상세 설명 */
 .pop_content p {
     font-size: 20px;
 }
 
-/* ------------------------하단 영역 *.html footer------------------------ */
+/*********************** index footer 영역 **********************/
 .footer {
     height: 100px;
     background-color: #263343;
@@ -315,56 +419,63 @@ input[type=submit] {
     flex-direction: column;
     justify-content:space-evenly;
     align-items: flex-end;
+    margin-top: 70px;
 }
 .footer div {
     color: white;
     margin-right: 25px;
 }
 
-/* ------------------------로그인 영역 login.html------------------------ */
+/**************************** login 로그인 영역 ***************************/
 .login p {
     text-align: center;
     font-size: 50px;
-    font-weight: 900;
-    color: #263343;
     margin-top: 70px;
-    margin-bottom: 30px;
 }
+/* form 틀 */
 #login_box {
-    width: 400px;
+    width: 380px;
     height: 250px;
-    border: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    margin: 0 auto;
-    padding-top: 40px;
+    margin: 20px auto;
+    border: 3px solid #7fbbbd;
+    border-radius: 19px;
+    padding: 20px;
 }
-#login_idpw {
-    font-size: 40px;
-    color: #263343;
-}
+
+/* id와 pw입력 부분 */
 #login_idpw input {
-    font-size: 20px;
+    width: 200px;
     height: 40px;
+    font-size: 20px;
+    padding-left: 8px;
+    margin-top: 20px;
 }
 #login_idpw input:focus {
-    box-shadow: 3px 3px 5px skyblue;
+    box-shadow: 0px 0px 20px skyblue;
 }
+
+/* 로그인 버튼 부분 */
 #login_submit input {
-    background-color: #7fbbbd;
-    border: none;
-    border-radius: 3px;
-    font-size: 20px;
-    width: 248px;
+    width: 210px;
     height: 40px;
-    margin-top: 15px;
+    font-size: 25px;
+    margin-top: 20px;
+    background: #7fbbbd;
+    border-radius: 5px;
+    border: none;
 }
 #login_submit input:hover{
     background-color: #263343;
     color: white;
 }
+
+/* 자동 로그인과 id/pw찾기 부분  */
 #login_serve {
-    margin: 10px auto;
-    width: 248px;
+    width: 210px;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
 }
