@@ -435,7 +435,6 @@ html, body {
 /* form 틀 */
 #login_box {
     width: 380px;
-    height: 250px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -480,62 +479,139 @@ html, body {
     justify-content: space-between;
 }
 
+/* 간편 로그인 부분 */
+#login_easy i{
+    font-size: 25px;
+    line-height: 40px;
+    color: white;
+}
+#login_easy div{
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    margin: 10px auto;
+    color: white;
+    text-align: left;
+    padding-left: 15px;
+    border-radius: 5px;
+}
+#login_google{
+    background-color: rgba(234, 65, 52, 0.9);
+}
+#login_naver {
+    background-color: rgba(4, 199, 90, 0.9);
+}
+#login_kakao {
+    background-color: rgba(244, 230, 1, 0.9);
+    color: black !important;
+}
+#login_kakao i{
+    font-size: 25px;
+    line-height: 40px;
+    color: black;
+}
+
 /* ------------------------회원가입 영역 join.html------------------------ */
+/* 화면이 670px 이하일 때  */
+@media (max-width : 670px ) {
+    .sign_box li {
+        display: block !important;
+        padding: 15px 0 !important;
+        text-align: left;
+    }    
+}
+
 .sign {
-    width: 900px;
+    max-width: 750px;
     margin: 0 auto;
 }
-.sign h3 {
+.sign p {
     text-align: center;
     font-size: 50px;
-    font-weight: 900;
-    color: #263343;
     margin-top: 70px;
-    margin-bottom: 30px;
 }
-.sign p {
+
+/* 필수사항 부분 */
+.sign h4 {
     color: red;
-    font-weight: bold;
     text-align: left;
-    border-bottom: 3px solid gray;
     padding: 10px;
 }
+.red {
+    color: red;
+}
+
+/* form 부분 */
+.sign_box {
+    text-align: center;
+}
 .sign_box ul{
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
+    border-top: 3px solid gray;
     border-bottom: 3px solid gray;
-    margin-bottom: 25px;
 }
 .sign_box li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 20px;
     padding: 15px 25px;
     border-bottom: 1px solid lightgray;
 }
+
+/* 입력사항 부분 */
+.enter_box {
+    width: 130px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+/* 입력해야 하는 부분 */
 .sign_box .txt {
-    width: 250px;
+    width: 130px;
     height: 40px;
     font-size: 20px;
+    padding-left: 10px;
 }
-.sign_box .txt1 {
-    width: 190px;
+
+/* 성별 체크 박스 */
+.sign_box .check {
+    width: 20px;
+    height: 20px;
+    vertical-align:bottom;
+    margin-left: 5px;
+}
+
+/* 메일주소 선택 박스 */
+.sign_box .select {
+    width: 130px;
     height: 40px;
     font-size: 20px;
+    border-radius: 5px;
+    margin-left: 15px;
 }
+
+/* 중복확인과 인증번호 버튼 */
 .sign_box .btn {
     width: 110px;
     height: 30px;
-    font-size: 15px;
+    font-size: 17px;
+    background-color: #7fbbbd;
     border-radius: 5px;
     border: none;
+    margin-left: 15px;
 }
 .sign_box .btn:hover{
     background-color: #263343;
     color: white;
 }
-.sign_box  .submit:hover{
-    background-color: #263343;
-    color: white;
+
+.sign_box #timer {
+    margin: 10px;
+    color: red;
 }
+
+/* 가입완료 버튼 */
 .sign_box  .submit {
     width: 150px;
     height: 40px;
@@ -543,99 +619,96 @@ html, body {
     background-color: #7fbbbd;
     border-radius: 5px;
     border: none;
-    margin-left: 390px;
+    margin: 25px auto;
 }
-
-.sign_box .check {
-    width: 20px;
-    height: 20px;
-    vertical-align:bottom;
-}
-.sign_box .select {
-    width: 150px;
-    height: 40px;
-    font-size: 20px;
-    border-radius: 5px;
-}
-
-.red {
-    color: red;
-}
-.enter_box {
-    width: 200px;
-    float: left;
-    padding-top: 5px;
-}
-
-
-/* ------------------------게시판 영역 board_main.html------------------------ */
-#board_main {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* 게시판 왼쪽영역 */
-#board_aside {
-    width: 250px;
-    padding-top: 50px;
-    text-align: center;
-}
-#board_aside h3 {      
-    font-size: 30px;
-    font-weight: 900;
-    color: #263343;
-    margin-bottom: 30px;
-    padding: 15px;
-    border-bottom: 5px solid #263343;
-}
-.aside_ul {
-    margin: 0 auto;
-    width: 200px;
-    height: 200px;
-}
-.aside_ul li {
-    font-weight: 900;
-    font-size: 20px;
-    height: 40px;
-    padding-top: 20px;
-}
-.aside_first {
-    border-top: 3px solid gray;
-    border-bottom: 1px solid lightgray;
-}
-.aside_last {
-    border-bottom: 3px solid gray;
-    border-top: 1px solid lightgray;
-}
-.aside_ul a:hover {
+.sign_box  .submit:hover{
     background-color: #263343;
     color: white;
 }
 
-
-/* 게시판 메인영역(문의하기) */
-#board_inquiry {
-    width: 900px;
-    padding-top: 50px;
+/* ------------------------게시판 영역 board_main.html------------------------ */
+/* 화면이 1057px 이하일 때 */
+@media (max-width:1057px) {
+    .board_aside {
+        width: auto !important;
+    }
+    .aside_ul {
+        width: 320px !important;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between;
+    }
+    .aside_li {
+        border-right: 1px solid lightgray;
+        border-bottom: none !important;
+    }
+    .aside_li:first-child {
+        border-left: 3px solid gray;
+        border-top: none !important;
+    }
+    .aside_li:last-child {
+        border-right: 3px solid gray;
+    }
+}
+/* 게시판 틀 및 타이틀 부분 */
+#board_main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 #board_main h3 {      
     font-size: 30px;
     font-weight: 900;
-    color: #263343;
+    margin-top: 50px;
     margin-bottom: 30px;
     padding: 15px;
     border-bottom: 5px solid #263343;
 }
 
-#board_inquiry table {
+/* 게시판 왼쪽영역 */
+.board_aside {
+    width: 200px;
+    text-align: center;
+    margin-right: 40px;
+}
+.aside_ul {
+    width: 180px;
+    flex-direction: column;
     margin: 0 auto;
+}
+.aside_li {
+    font-size: 22px;
+    padding: 15px;
+    border-bottom: 1px solid lightgray;
+}
+.aside_li:first-child {
+    border-top: 3px solid gray;
+}
+.aside_li:last-child {
+    border-bottom: 3px solid gray;
+}
+/* 선택되어 있는 소항목 표시 
+   (고객센터 누르면 첫 항목이 문의하기 게시판) */
+.aside_li:first-child a {
+    border-bottom: 2px orangered solid;
+    color: orangered;
+}
+/* 소항목에 마우스 오버시 */
+.aside_li a:hover {
+    border-bottom: 2px orangered solid;
+    color: orangered;
+}
+
+
+/* 게시판 메인영역(문의하기) */
+#board_inquiry table {
     font-size: 20px;
     border-collapse: collapse;
     border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
 }
 #board_inquiry .thead {
     background-color: #26334320;
-    border-bottom: 1px solid lightgray;
 }
 #board_inquiry .row {
     border-bottom: 1px solid lightgray;
@@ -646,7 +719,7 @@ html, body {
     text-align: center;
 }
 #board_inquiry .col2 {
-    width: 450px;
+    width: 350px;
     height: 50px;
     padding-left: 30px;
 }
@@ -667,8 +740,7 @@ html, body {
     justify-content: center;
 }
 .number {
-    width:  250px;
-    font-weight: 900;
+    width: 250px;
     font-size: 20px;
     margin-top: 20px;
     position: absolute;
@@ -676,15 +748,33 @@ html, body {
 .write_list_modify {
     text-align: center;
     font-size: 20px;
-    width: 100px;
+    width: 70px;
     border-radius: 10px;
-    background-color: #263343;
+    background-color: #7fbbbd;
     padding: 5px;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: auto;
-    margin-right: 40px;
+    margin-right: 20px;
 }
-.write_list_modify a {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.write_list_modify:hover {
+    background-color: #263343;
     color: white;
 }
 

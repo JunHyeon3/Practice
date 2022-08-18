@@ -4,90 +4,105 @@
     <title>JH Company</title>
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <nav class="nav_bar">
+    <nav class="nav_bar" style="position: relative;">
         <div class="nav_logo">
-            <i class="fa-solid fa-dice-d20"></i>
-            <a href="">HI RENT</a>
+            <i class="fa-solid fa-car-side"></i>
+            <a href="index.html">HI-RENT</a>
         </div>
-        
         <ul class="nav_menu">
-            <li><a href="index.html">홈으로</a></li>
-            <li><a href="">제품소개</a></li>
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
         </ul>
-
+        
         <ul class="nav_login">
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
+        <i class="fa-solid fa-bars"></i>
     </nav>
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="#">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
 
     <div class="sign">
-        <h3>회원가입</h3>
-        <p>* 필수입력</p>
-        <form class="sign_box" method = "post" action = "login.html">
+        <p>회원 가입</p>
+        <h4>* 필수사항</h4>
+        <form class="sign_box" method = "post" action = "login.html" onsubmit="return check_join()">
             <ul>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>아이디</label>
                     </div>
-                    <input type="text" class="txt" placeholder="  아이디">
-                    <input type="button" class="btn" value="중복확인">
+                    <input type="text" class="txt" placeholder="아이디">
+                    <button type="button" class="btn">중복 확인</button>
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>비밀번호</label>
                     </div>
-                    <input type="password" class="txt" placeholder="  비밀번호">                    
+                    <input type="password" class="txt" placeholder="비밀번호">
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>비밀번호 확인</label>
                     </div>
-                    <input type="password" class="txt" placeholder="  비밀번호 확인">                    
+                    <input type="password" class="txt" placeholder="비밀번호 확인">
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>이름</label>
                     </div>
-                    <input type="text" class="txt" placeholder="  이름">                    
+                    <input type="text" class="txt" placeholder="이름">
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>생년월일</label>
                     </div>
-                    <input type="text" class="txt" placeholder='  생년월일 "-" 없이'>                    
+                    <input type="text" class="txt" placeholder='생년월일 6자리'>
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for="">성별</label>
                     </div>
-                    <input type="radio" class="check" name="gender">남                  
-                    <input type="radio" class="check" name="gender">여                  
+                    <input type="radio" class="check" name="gender">&nbsp;남&nbsp;
+                    <input type="radio" class="check" name="gender">&nbsp;여
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>전화번호</label>
                     </div>
-                    <input type="text" class="txt" placeholder='  전화번호 "-" 없이'>
-                    <input type="button" class="btn" value="인증번호 전송">                
+                    <input type="text" class="txt" placeholder='전화번호 "-" 없이'>
+                    <button type="button" class="btn" onclick="send_number()">인증번호 전송</button>
+                    <div id="timer"></div>
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for=""><span class="red">*</span>인증번호</label>
                     </div>
-                    <input type="text" class="txt" placeholder="  인증번호">
-                    <input type="button" class="btn" value="인증번호 확인">                
+                    <input type="text" class="txt" placeholder="인증번호">
+                    <button type="button" class="btn">인증번호 확인</button>
                 </li>
                 <li>
                     <div class="enter_box">
                         <label for="">이메일</label>
                     </div>
-                    <input type="text" class="txt" placeholder="  이메일" > @ 
-                    <input type="text" class="txt1" placeholder="  직접 입력"> 
+                    <input type="text" class="txt" placeholder="이메일" >&nbsp;@&nbsp; 
+                    <input type="text" class="txt" placeholder="직접 입력"> 
                     <select name="" id="" class="select">
                         <option value="직접입력" selected>직접입력</option>
                         <option value="naver.com">naver.com</option>
@@ -96,12 +111,12 @@
                     </select>                
                 </li>
                 <li>
-                    <label for=""><span class="red">*</span>개인정보 수집동의</label>
-                    <input type="checkbox" class="check">
-                    &nbsp;&nbsp;<label for="">Email 수신동의</label>
-                    <input type="checkbox" class="check">
-                    &nbsp;&nbsp;<label for="">SNS 수신동의</label>
-                    <input type="checkbox" class="check">
+                    <label for="check1"><span class="red">*</span>개인정보 수집동의</label>
+                    <input type="checkbox" class="check" id="check1">&nbsp;
+                    <label for="check2">Email 수신동의</label>
+                    <input type="checkbox" class="check" id="check2">&nbsp;
+                    <label for="check3">SNS 수신동의</label> 
+                    <input type="checkbox" class="check" id="check3">
                 </li>
             </ul>
             <input type="submit" class="submit" value="가입완료">
@@ -112,5 +127,8 @@
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
+    
+    <script src="./hidden.js"></script>
+    <script src="./login.js"></script>
 </body>
 </html>
