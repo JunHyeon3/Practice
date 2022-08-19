@@ -4,41 +4,79 @@
     <title>JH Company</title>
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+
+    <style>
+        .panel, .flip {
+            padding: 5px;
+            text-align: center;
+            background-color: lightblue;
+            border: 1px solid red;
+        }
+        .panel {
+            padding: 70px;
+            display: none;
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
-    <nav class="nav_bar">
+    <nav class="nav_bar" style="position: relative;">
         <div class="nav_logo">
-            <i class="fa-solid fa-dice-d20"></i>
-            <a href="">HI RENT</a>
+            <i class="fa-solid fa-car-side"></i>
+            <a href="index.html">HI-RENT</a>
         </div>
-        
         <ul class="nav_menu">
-            <li><a href="index.html">홈으로</a></li>
-            <li><a href="">제품소개</a></li>
-            <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="#">예약하기</a></li>
+            <li><a href="product.html">제품소개</a></li>
+            <li><a  data-transition="fade" href="board_main.html">고객센터</a></li>
+            <li><a  data-transition="flow" href="location.html">찾아오시는 길</a></li>
         </ul>
-
+        
         <ul class="nav_login">
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
+        <i class="fa-solid fa-bars"></i>
     </nav>
 
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
+
     <div id="board_main">
-        <div id="board_aside">
+        <div class="board_aside">
             <h3>고객 센터</h3>
             <ul class="aside_ul">
-                <li class="aside_first"><a href="">공지사항</a></li>
-                <li class="aside_li"><a href="">자주묻는 질문</a></li>
-                <li class="aside_last"><a href="">문의하기</a></li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="inquiry" onclick="chooseBoard()">문의하기</label>
+                </li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="notice" onclick="chooseBoard()">공지사항</label>
+                </li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="QA" onclick="chooseBoard()">자주묻는 질문</label>
+                </li>
             </ul>
         </div>
         <div id="board_inquiry">
             <h3>문의하기</h3>
             <table>
                 <thead>
-                    <tr class="thead">
+                    <tr class="thead row">
                         <th class="col1">번호</th>
                         <th class="col2">제목</th>
                         <th class="col3">작성자</th>
@@ -92,26 +130,105 @@
             </table>
             <div class="page_move">
                 <div class="number">
-                    <a href=""> 이전</a>
-                    <a href=""> 1 </a>
-                    <a href=""> 2 </a>
-                    <a href=""> 3 </a>
-                    <a href=""> 4 </a>
-                    <a href=""> 5 </a>
-                    <a href=""> 6 </a>
-                    <a href=""> 7 </a>
-                    <a href=""> 다음 </a>
+                    <a href='javascript:void(0)'> 이전</a>
+                    <a href='javascript:void(0)'> 1 </a>
+                    <a href='javascript:void(0)'> 2 </a>
+                    <a href='javascript:void(0)'> 3 </a>
+                    <a href='javascript:void(0)'> 4 </a>
+                    <a href='javascript:void(0)'> 5 </a>
+                    <a href='javascript:void(0)'> 6 </a>
+                    <a href='javascript:void(0)'> 7 </a>
+                    <a href='javascript:void(0)'> 다음 </a>
                 </div>
-                <div class="write_list_modify">
-                    <a href="board_write.html">글쓰기</a>
-                </div>
+            </div>
+            <a href="board_write.html"><button class="write_list_modify">글쓰기</button></a>
         </div>
+        <div id="board_notice">
+            <h3>공지사항</h3>
+            <table>
+                <thead>
+                    <tr class="thead row">
+                        <th class="col1">번호</th>
+                        <th class="col2">제목</th>
+                        <th class="col3">작성자</th>
+                        <th class="col4">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row">
+                        <td class="col1">1</td>
+                        <td class="col2"><a href="#">공지사항</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">2</td>
+                        <td class="col2"><a href="#">공지사항2</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">3</td>
+                        <td class="col2"><a href="#">공지사항3</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">4</td>
+                        <td class="col2"><a href="#">공지사항4</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">5</td>
+                        <td class="col2"><a href="#">공지사항5</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">6</td>
+                        <td class="col2"><a href="#">공지사항6</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col1">7</td>
+                        <td class="col2"><a href="#">공지사항7</a></td>
+                        <td class="col3">관리자</td>
+                        <td class="col4">2022-08-06</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="page_move">
+                <div class="number">
+                    <a href='javascript:void(0)'> 이전</a>
+                    <a href='javascript:void(0)'> 1 </a>
+                    <a href='javascript:void(0)'> 2 </a>
+                    <a href='javascript:void(0)'> 3 </a>
+                    <a href='javascript:void(0)'> 4 </a>
+                    <a href='javascript:void(0)'> 5 </a>
+                    <a href='javascript:void(0)'> 6 </a>
+                    <a href='javascript:void(0)'> 7 </a>
+                    <a href='javascript:void(0)'> 다음 </a>
+                </div>
+            </div>
+        </div>
+        <div id="board_QA">
+            <h3>자주묻는 질문</h3>
+            <div class="flip flip1">질문1</div>
+            <div class="panel panel1">주유후 반납해주시면 됩니다.</div>
+            <div class="flip flip2">질문2</div>
+            <div class="panel panel2">주유후 반납해주시면 됩니다.</div>
+            <div class="flip flip3">질문3</div>
+            <div class="panel panel3">주유후 반납해주시면 됩니다.</div>
         </div>
     </div>
-
     <footer class="footer">
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
+    
+    <script src="./hidden.js"></script>
+    <script src="./board.js"></script>
 </body>
 </html>
