@@ -4,41 +4,65 @@
     <title>JH Company</title>
     <link type="text/css" rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <nav class="nav_bar">
+    <nav class="nav_bar" style="position: relative;">
         <div class="nav_logo">
-            <i class="fa-solid fa-dice-d20"></i>
-            <a href="">HI RENT</a>
+            <i class="fa-solid fa-car-side"></i>
+            <a href="index.html">HI-RENT</a>
         </div>
-        
         <ul class="nav_menu">
-            <li><a href="index.html">홈으로</a></li>
-            <li><a href="">제품소개</a></li>
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
-
+        
         <ul class="nav_login">
             <li><a href="login.html"">로그인</a></li>
             <li><a href="join.html">회원가입</a></li>
         </ul>
+        <i class="fa-solid fa-bars"></i>
     </nav>
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
 
     <div id="board_main">
-        <div id="board_aside">
+        <div class="board_aside">
             <h3>고객 센터</h3>
             <ul class="aside_ul">
-                <li class="aside_first"><a href="">공지사항</a></li>
-                <li class="aside_li"><a href="">자주묻는 질문</a></li>
-                <li class="aside_last"><a href="">문의하기</a></li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="inquiry" onclick="changeBoard()">문의하기</label>
+                </li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="notice" onclick="changeBoard()">공지사항</label>
+                </li>
+                <li class="aside_li">
+                    <label><input type="radio" name="board_choice" class="board_choice" 
+                        value="QA" onclick="changeBoard()">자주묻는 질문</label>
+                </li>
             </ul>
         </div>
         <div id="write_inquiry">
-            <h3>문의하기</h3>
-            <form class="write_box" method = "post" action = "board_main.html">
+            <h3>문의하기 - 수정하기</h3>
+            <form class="write_box" method = "post" action = "board_read.html">
                 <ul>
                     <li>제목</li>
+
                     <li><input class="write_title" type="text" value="질문합니다."></li>
                     <li>내용</li>
                     <li>
@@ -50,8 +74,9 @@ K7차량을 렌트하려고 합니다.
                         </textarea>
                     </li>
                 </ul>
-                <input type="submit" class="submit" value="수정하기">
-            </form>
+                <button type="submit" class="write_list_modify">수정완료</button>
+                <button type="submit" class="write_list_modify">취소</button>
+        </form>
         </div>
     </div>
 
@@ -59,5 +84,8 @@ K7차량을 렌트하려고 합니다.
         <div>하이미디어아카데미</div>
         <div>Made By 박준현</div>
     </footer>
+    
+    <script src="./hidden.js"></script>
+    <script src="./board.js"></script>
 </body>
 </html>

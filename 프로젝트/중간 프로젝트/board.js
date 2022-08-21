@@ -1,17 +1,16 @@
-var radios = document.getElementsByClassName("board_choice");
 $(document).ready(function(){
-    changeBoard();
-    radios[0].checked=true;
-    radios[0].parentNode.style.cssText = 'border-bottom: 2px orangered solid; color: orangered;';
-    // chooseBoard();
-    // document.getElementById('board_inquiry').style.display = 'block';
-    // for (var i = 0; i < radios.length; i++) {
-        //     document.getElementById('board_' + radios[i].value).style.display = 'none';
-        //     radios[i].parentNode.style.cssText = '';
-        // }
-    });
-    document.write('<script src="board_read.js"></script>');
-    
+    // radios[0].checked = true;
+    choice=sessionStorage.getItem("choice");
+    if(choice==null) {
+        radios[0].checked = true;
+    }
+    else { 
+        radios[choice].checked = true;
+    }
+    chooseBoard();
+});
+
+var radios = document.getElementsByClassName("board_choice");
 function chooseBoard() {
     for (var i = 0; i < radios.length; i++) {
         document.getElementById('board_' + radios[i].value).style.display = 'none';
@@ -21,7 +20,23 @@ function chooseBoard() {
             radios[i].parentNode.style.cssText = 'border-bottom: 2px orangered solid; color: orangered;';
         }
     }
+    sessionStorage.clear();
 }
+
+
+function changeBoard() {
+    if (radios[0].checked) {
+        sessionStorage.setItem("choice", "0");
+    }
+    else if (radios[1].checked) {
+        sessionStorage.setItem("choice", "1");
+    }
+    else if (radios[2].checked) {
+        sessionStorage.setItem("choice", "2");
+    }
+    location.href='board_main.html';
+}
+
 
 
 
@@ -34,5 +49,8 @@ $(document).ready(function(){
     });
     $(".flip3").click(function(){
         $(".panel3").slideToggle("slow");
+    });
+    $(".flip4").click(function(){
+        $(".panel4").slideToggle("slow");
     });
 });
