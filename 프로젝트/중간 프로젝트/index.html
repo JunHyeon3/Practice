@@ -16,7 +16,7 @@
             <li><a href="#">예약하기</a></li>
             <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="#">찾아오시는 길</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
         
         <ul class="nav_login">
@@ -30,7 +30,7 @@
             <li><a href="#">예약하기</a></li>
             <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="#">찾아오시는 길</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
         
         <ul class="nav_login">
@@ -44,7 +44,7 @@
     <main class="main">
         <div id="main_content">
             <div id="reservation">
-                <h1>간편 조회</h1>
+                <h2>간편 조회</h2>
                 <form>
                     <div class="reservation_date">
                         <input type="date" value="출발일"> ~ <input type="date">
@@ -73,14 +73,13 @@
                             <option value="제주도">제주도</option>
                         </select>
                     </div>
-                    <div class="reservation_submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="submit" value="조회">
+                    <div >
+                        <button class="reservation_submit"><i class="fa-solid fa-magnifying-glass"></i> 조회</button>
                     </div>
                 </form>
             </div>
             <div id="recommend">
-                <h1>인기 차종</h1>
+                <h2>인기 차종</h2>
                 <div class="recommend_car_list">
                     <ul>
                         <a href="#"><li class="recommend_car">
@@ -168,11 +167,11 @@
                 </div>
             </div>
             <div id="recommend2">
-                <h1>추천 여행지</h1>
+                <h2>추천 여행지</h2>
                 <div class="recommend_tour_list">
                     <div class="recommend_tour">
                         <img src="media/seoul.png">
-                        <h2>두물머리</h2>
+                        <h3>두물머리</h3>
                         <p>서울과 가까운 최고의 드라이브 코스!</p>
                         <a href="#" onclick="$('.pop_seoul').css('height',$(document).height()).show();">more</a>
                     </div>
@@ -180,13 +179,13 @@
                         <div>
                             <img src="media/incheon.png">
                         </div>
-                        <h2>인천대교</h2>
+                        <h3>인천대교</h3>
                         <p>우리나라에서 가장 긴 아름다운 다리!</p>
                         <a href="#" onclick="$('.pop_incheon').css('height',$(document).height()).show();">more</a>
                     </div>
                     <div class="recommend_tour">
                         <img src="media/jeju.png">
-                        <h2>가시리 유채꽃 길</h2>
+                        <h3>가시리 유채꽃 길</h3>
                         <p>꽃 구경하기 좋은 가장 아름다운 길!</p>
                         <a href="#" onclick="$('.pop_jeju').css('height',$(document).height()).show();">more</a>
                     </div>
@@ -278,5 +277,6 @@
     <script src="hidden.js"></script>
     <script src="slide.js"></script>
     <script src="changeImg.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

@@ -1,0 +1,86 @@
+<!-- geolocation.
+위도는 37.40936363666373
+경도는 127.09527604258811 -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JH Company</title>
+    <link type="text/css" rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/ab2917a7ab.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e87a34313e36ef4d6ab3ad81311fd81d"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_ipDIja2oNnc-gg0aQ60tsb4cKKtxdf4"></script>
+</head>
+<body>
+    <nav class="nav_bar" style="position: relative;">
+        <div class="nav_logo">
+            <i class="fa-solid fa-car-side"></i>
+            <a href="index.html">HI-RENT</a>
+        </div>
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+        <i class="fa-solid fa-bars"></i>
+    </nav>
+    <div class="nav_hidden">
+        <ul class="nav_menu">
+            <li><a href="#">예약하기</a></li>
+            <li><a href="#">제품소개</a></li>
+            <li><a href="board_main.html">고객센터</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
+        </ul>
+        
+        <ul class="nav_login">
+            <li><a href="login.html"">로그인</a></li>
+            <li><a href="join.html">회원가입</a></li>
+        </ul>
+    </div>
+
+    <div id="board_main">
+        <div id="board_location">
+            <h3>찾아오시는 길</h3>
+            <div id="map" style="width: 100%; height: 380px;"></div>
+            <div id="map_info">
+                <table>
+                    <tr>
+                        <td>주소</td>
+                        <td>
+                            서울특별시 구로구 경인로 557 <br>
+                            <span>(지번)서울 구로구 구로동 606-4</span> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>지하철<br>이용시</td>
+                        <td>
+                            1호선 구로역 3번출구 맞은편 신한은행 건물
+                        </td>
+                    </tr>
+                </table>
+                <button onclick="window.open('https://map.kakao.com/link/to/하이렌트카,37.503246,126.878935', 
+                                                '_blank', 'width=800, height=800, toolbars=no, scrollbars=yes'); return false;">
+                    <i class="fa-solid fa-location-dot"></i> 카카오맵 <br>길찾기
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div>하이미디어아카데미</div>
+        <div>Made By 박준현</div>
+    </footer>
+    
+    <script src="./hidden.js"></script>
+    <script src="./loc.js"></script>
+</body>
+</html>

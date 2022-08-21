@@ -5,7 +5,7 @@
 * {
     margin: 0 ;
     padding: 0;
-    font-family: 'Yeon Sung', cursive;
+    /* font-family: 'Yeon Sung', cursive; */
     color: black;
 }
 ul {
@@ -23,16 +23,16 @@ html, body {
 
 /************************* 반응형 ************************/
 /* 화면이 965px 이상일 때 */
-@media (min-width: 965px) {
+/* @media (min-width: 965px) {
     .fa-bars {
         display: none !important;
     }
     .nav_hidden {
         display: none !important;
     }
-}
+} */
 /* 화면이 964px 이하일 때 */
-@media (max-width: 964px) {
+@media (max-width: 1110px) {
     .nav_bar {
         display: flex;
         justify-content: space-between !important;
@@ -60,7 +60,7 @@ html, body {
     }
 }
 /* 화면이 561px 이하일 때 */
-@media (max-width: 561px) {
+@media (max-width: 665px) {
     .nav_menu {
         display: flex;
         flex-direction: column;
@@ -175,7 +175,7 @@ html, body {
 }
 .reservation_date input[type=date] {
     width: 130px;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
 }
 
@@ -273,7 +273,7 @@ html, body {
     color: black;
 }
 .recommend_info span{
-    font-size: 15px;
+    font-size: 13px;
     color: black;
     margin: 5px;
 }
@@ -294,7 +294,7 @@ html, body {
 }
 .recommend_pause {
     width: 30px;
-    font-size: 15px;
+    font-size: 20px;
     border: none;
     background: none;
 }
@@ -338,7 +338,7 @@ html, body {
 .recommend_tour p {
     width: 250px;
     margin-top: 9px;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 /* 추천 여행지의 more 영역 */
@@ -406,7 +406,10 @@ html, body {
 }
 /* 상세 설명 */
 .pop_content p {
-    font-size: 20px;
+    width: 90%;
+    text-align: left;
+    margin: 0 auto;
+    font-size: 15px;
 }
 
 /*********************** index footer 영역 **********************/
@@ -428,7 +431,7 @@ html, body {
 /**************************** login 로그인 영역 ***************************/
 .login p {
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     margin-top: 70px;
 }
 /* form 틀 */
@@ -447,7 +450,7 @@ html, body {
 #login_idpw input {
     width: 200px;
     height: 40px;
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 8px;
     margin-top: 20px;
 }
@@ -459,7 +462,7 @@ html, body {
 #login_submit input {
     width: 210px;
     height: 40px;
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 20px;
     background: #7fbbbd;
     border-radius: 5px;
@@ -480,7 +483,7 @@ html, body {
 
 /* 간편 로그인 부분 */
 #login_easy i{
-    font-size: 25px;
+    font-size: 20px;
     line-height: 40px;
     color: white;
 }
@@ -488,7 +491,7 @@ html, body {
     width: 200px;
     height: 40px;
     line-height: 40px;
-    font-size: 20px;
+    font-size: 15px;
     margin: 10px auto;
     color: white;
     text-align: left;
@@ -506,8 +509,6 @@ html, body {
     color: black !important;
 }
 #login_kakao i{
-    font-size: 25px;
-    line-height: 40px;
     color: black;
 }
 
@@ -527,7 +528,7 @@ html, body {
 }
 .sign p {
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     margin-top: 70px;
 }
 
@@ -553,7 +554,7 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
     padding: 15px 25px;
     border-bottom: 1px solid lightgray;
 }
@@ -568,8 +569,8 @@ html, body {
 /* 입력해야 하는 부분 */
 .sign_box .txt {
     width: 130px;
-    height: 40px;
-    font-size: 20px;
+    height: 30px;
+    font-size: 16px;
     padding-left: 10px;
 }
 
@@ -584,8 +585,8 @@ html, body {
 /* 메일주소 선택 박스 */
 .sign_box .select {
     width: 130px;
-    height: 40px;
-    font-size: 20px;
+    height: 30px;
+    font-size: 16px;
     border-radius: 5px;
     margin-left: 15px;
 }
@@ -594,7 +595,7 @@ html, body {
 .sign_box .btn {
     width: 110px;
     height: 30px;
-    font-size: 17px;
+    font-size: 15px;
     background-color: #7fbbbd;
     border-radius: 5px;
     border: none;
@@ -612,7 +613,7 @@ html, body {
 
 /* 가입완료 버튼 */
 .sign_box  .submit {
-    width: 150px;
+    width: 110px;
     height: 40px;
     font-size: 20px;
     background-color: #7fbbbd;
@@ -628,14 +629,19 @@ html, body {
 /* ------------------------게시판 영역 board_main.html------------------------ */
 /* 화면이 1057px 이하일 때 */
 @media (max-width:1057px) {
+    #board_main h3 {
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+    }
     .board_aside {
         width: auto !important;
+        margin: 0 !important;
     }
     .aside_ul {
-        width: 320px !important;
+        width: 389px !important;
         display: flex;
         flex-direction: row !important;
-        justify-content: space-between;
+        justify-content: center;
     }
     .aside_li {
         border-right: 1px solid lightgray;
@@ -656,7 +662,7 @@ html, body {
     justify-content: center;
 }
 #board_main h3 {      
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 900;
     margin-top: 50px;
     margin-bottom: 30px;
@@ -671,18 +677,18 @@ html, body {
     margin-right: 40px;
 }
 .aside_ul {
-    width: 180px;
+    width: 160px;
     flex-direction: column;
     margin: 0 auto;
 }
 .aside_li {
-    font-size: 22px;
+    font-size: 18px;
     padding: 15px;
     border-bottom: 1px solid lightgray;
 }
-/* .aside_li input {
+.aside_li input {
     display: none;
-} */
+}
 .aside_li:first-child {
     border-top: 3px solid gray;
 }
@@ -697,11 +703,11 @@ html, body {
 
 
 /* 게시판 메인영역(문의하기) */
-/* #board_inquiry {
-    display: none;
-} */
+#board_inquiry {
+    min-height: 611px;
+}
 #board_inquiry table {
-    font-size: 20px;
+    font-size: 16px;
     border-collapse: collapse;
     border-top: 3px solid gray;
     border-bottom: 3px solid gray;
@@ -735,10 +741,10 @@ html, body {
 
 /* 게시판 메인영역(공지사항) */
 #board_notice {
-    display: none;
+    min-height: 611px;
 }
 #board_notice table {
-    font-size: 20px;
+    font-size: 16px;
     border-collapse: collapse;
     border-top: 3px solid gray;
     border-bottom: 3px solid gray;
@@ -772,10 +778,30 @@ html, body {
 
 /* 게시판 메인영역(자주묻는 질문) */
 #board_QA {
-    display: none;
-}
-#board_QA {
     width: 730px;
+    min-height: 611px;
+}
+#board_QA span{
+    color: rgb(0, 95, 171);
+    font-size: 45px;
+    line-height: 59px;
+    font-weight: 900;
+}
+#board_QA .panel span{
+    color: gray;
+}
+#board_QA .flip,.panel {
+    margin-top: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid;
+    color: rgb(0, 95, 171);
+}
+#board_QA .panel {
+    display: none;
+    margin: 0;
+    padding-left: 40px;
+    border: none;
+    color: gray;
 }
 
 /* 모든 게시판에서 페이지 이동 
@@ -786,7 +812,7 @@ html, body {
 }
 .number {
     width: 250px;
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 20px;
     position: absolute;
 }
@@ -794,14 +820,13 @@ html, body {
     공용으로 사용 */
 .write_list_modify {
     float: right;
-    font-size: 20px;
-    width: 70px;
+    font-size: 15px;
+    width: 80px;
     border: none;
     border-radius: 10px;
     background-color: #7fbbbd;
     padding: 5px;
     margin-top: 10px;
-    margin-left: auto;
     margin-right: 20px;
 }
 .write_list_modify:hover {
@@ -814,9 +839,9 @@ html, body {
 
 #read_inquiry {
     width: 700px;
+    min-height: 611px;
 }
 #read_inquiry table {
-    font-size: 17px;
     width: 100%;
     border-collapse: collapse;
     border-top: 3px solid gray;
@@ -826,17 +851,17 @@ html, body {
     padding: 15px;
 }
 .title {
-    font-weight: 400;
     font-size: 20px;
 }
 .content {
-    height: 200px;
+    height: 250px;
     border-bottom: 3px solid gray;
 }
 
 /* ------------------------게시판 영역 board_write.html------------------------ */
 #write_inquiry {
     width: 700px;
+    min-height: 611px;
 }
 .write_box ul {
     border-top: 3px solid gray;
@@ -844,22 +869,56 @@ html, body {
 }
 .write_box li {
     border-bottom: 1px solid lightgray;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 900;
-    padding: 6px
+    padding: 8px
 }
 .write_box li input {
     width: 100%;
     border: none;
     height: 30px;
-    font-size: 15px;
+    font-size: 17px;
     padding-left: 10px;
 }
 .write_box li textarea {
     width: 100%;
     border: none;
-    font-size: 15px;
+    font-size: 17px;
     resize: none;
     padding-left: 10px;
+}
+
+/* ------------------------찾아오시는 길 영역 location.html------------------------ */
+#board_location {
+    width: 730px;
+}
+#map_info {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#map_info button{
+    width: 200px;
+    height: 80px;
+    font-size: 20px;
+    background-color: rgba(244, 230, 1, 0.9);
+    border: none;
+    border-radius: 10px;
+    margin: 20px;
+}
+#map_info tr {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+#map_info td {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #00000010;
+}
+#map_info tr td:first-child {
+    text-align: center;
+    background-color: #00000050;
 }
 
