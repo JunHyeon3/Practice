@@ -1,11 +1,16 @@
 /***********************************/
 /*************공통 적용*************/
 /***********************************/
-@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 * {
     margin: 0 ;
     padding: 0;
     /* font-family: 'Yeon Sung', cursive; */
+    /* font-family: 'Aboreto', cursive; */
+    /* font-family: 'Nanum Pen Script', cursive; */
+    font-family: 'Gowun Dodum', sans-serif;
     color: black;
 }
 ul {
@@ -22,17 +27,14 @@ html, body {
 }
 
 /************************* 반응형 ************************/
-/* 화면이 965px 이상일 때 */
-/* @media (min-width: 965px) {
-    .fa-bars {
-        display: none !important;
-    }
+/* 화면이 970px 이상일 때 */
+@media (min-width: 970px) { 
     .nav_hidden {
         display: none !important;
     }
-} */
-/* 화면이 964px 이하일 때 */
-@media (max-width: 1110px) {
+}
+/* 화면이 970px 이하일 때 */
+@media (max-width: 970px) {
     .nav_bar {
         display: flex;
         justify-content: space-between !important;
@@ -59,7 +61,7 @@ html, body {
         padding: 0 10px 0 !important;
     }
 }
-/* 화면이 561px 이하일 때 */
+/* 화면이 665px 이하일 때 */
 @media (max-width: 665px) {
     .nav_menu {
         display: flex;
@@ -90,6 +92,7 @@ html, body {
 
 /* nav_bar 로고 */
 .nav_logo {
+    font-family: 'Aboreto', cursive;
     font-size: 40px;
     margin-left: 35px;
 }
@@ -101,7 +104,7 @@ html, body {
     justify-content: center;
 }
 .nav_menu li {
-    padding: 8px 25px;
+    padding: 8px 10px;
 }
 .nav_menu li a:hover {
     color:orangered;
@@ -115,11 +118,11 @@ html, body {
 }
 .nav_login li {
     font-size: 15px;
-    padding: 0px 12px 50px;
+    padding: 0px 8px 50px;
 }
 .nav_login a:hover {
     color : orangered;
-    border-bottom: 2px orangered solid;
+    border-bottom: 2px solid orangered;
 }
 
 /*********************** index nav_bar 숨김영역 **********************/
@@ -245,8 +248,9 @@ html, body {
 }
 .recommend_car .plusi{
     position: absolute;
+    float: left;
     font-size: xx-large;
-    margin: 3px;
+    margin-left: 3px;
     opacity: 0;
     transition: 0.8s;
 }

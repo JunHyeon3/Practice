@@ -20,8 +20,10 @@
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
         <i class="fa-solid fa-bars"></i>
     </nav>
@@ -34,8 +36,10 @@
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
 
@@ -85,7 +89,7 @@ K7차량을 렌트하려고 합니다.
         <div>Made By 박준현</div>
     </footer>
     
-    <script src="./hidden.js"></script>
-    <script src="./board.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/board.js"></script>
 </body>
 </html>

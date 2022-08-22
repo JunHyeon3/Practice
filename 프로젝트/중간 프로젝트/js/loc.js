@@ -1,8 +1,9 @@
-// 구글 맵 api
-var myCenter = new google.maps.LatLng(37.50324579472511, 126.87893517055778);
 $(document).ready(function(){
     myMap()
 });
+
+// 구글 맵 api
+var myCenter = new google.maps.LatLng(37.50324579472511, 126.87893517055778);
 function myMap() {
     var mapProp = {
         center:myCenter,

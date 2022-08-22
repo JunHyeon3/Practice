@@ -20,8 +20,10 @@
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
         <i  class="fa-solid fa-bars"></i>
     </nav>
@@ -34,8 +36,10 @@
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
     <div id="background_img"> </div>
@@ -45,9 +49,9 @@
         <div id="main_content">
             <div id="reservation">
                 <h2>간편 조회</h2>
-                <form>
+                <form onsubmit="return reservation_search()">
                     <div class="reservation_date">
-                        <input type="date" value="출발일"> ~ <input type="date">
+                        <input id="date1" type="date" value="출발일"> ~ <input type="date">
                     </div>
                     <div class="reservation_time">
                         <input type="time" step="1800">
@@ -57,8 +61,8 @@
                     </div>
                     <div class="reservation_car">
                         <select class="reservation_type">
-                            <option value="차종" selected>차종</option>
-                            <option value="대형">대형</option>
+                            <option value="차종" >차종</option>
+                            <option value="대형" >대형</option>
                             <option value="중형">중형</option>
                             <option value="준중형">준중형</option>
                             <option value="경차">경차</option>
@@ -74,7 +78,7 @@
                         </select>
                     </div>
                     <div >
-                        <button class="reservation_submit"><i class="fa-solid fa-magnifying-glass"></i> 조회</button>
+                        <button class="reservation_submit" onclick="reservation_search2()"><i class="fa-solid fa-magnifying-glass"></i> 조회</button>
                     </div>
                 </form>
             </div>
@@ -274,9 +278,8 @@
         <div>Made By 박준현</div>
     </footer>
     
-    <script src="hidden.js"></script>
-    <script src="slide.js"></script>
-    <script src="changeImg.js"></script>
-    <script src="search.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/slide.js"></script>
+    <script src="js/changeImg.js"></script>
 </body>
 </html>

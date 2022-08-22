@@ -10,6 +10,7 @@ $(document).ready(function(){
     chooseBoard();
 });
 
+// 우측의 메뉴에서 선택시 해당 메뉴의 내용을 출력하는 함수
 var radios = document.getElementsByClassName("board_choice");
 function chooseBoard() {
     for (var i = 0; i < radios.length; i++) {
@@ -20,10 +21,10 @@ function chooseBoard() {
             radios[i].parentNode.style.cssText = 'border-bottom: 2px orangered solid; color: orangered;';
         }
     }
-    sessionStorage.clear();
+    sessionStorage.removeItem("choice");
 }
 
-
+// 다른 동작(글쓰기, 글읽기, 수정하기)중 게시판을 이동하는 함수
 function changeBoard() {
     if (radios[0].checked) {
         sessionStorage.setItem("choice", "0");

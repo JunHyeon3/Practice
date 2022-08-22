@@ -16,12 +16,14 @@
             <li><a href="#">예약하기</a></li>
             <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="#">찾아오시는 길</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
         <i class="fa-solid fa-bars"></i>
     </nav>
@@ -30,12 +32,14 @@
             <li><a href="#">예약하기</a></li>
             <li><a href="#">제품소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="#">찾아오시는 길</a></li>
+            <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
         
         <ul class="nav_login">
-            <li><a href="login.html"">로그인</a></li>
-            <li><a href="join.html">회원가입</a></li>
+            <li class="before_login"><a href="login.html"">로그인</a></li>
+            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
+            <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
 
@@ -43,8 +47,8 @@
         <p>로그인</p>
         <form id = "login_box" method = "post" action = "index.html" onsubmit="return check_login()">
             <div id="login_idpw">
-                <input id="idpw1" type="text" name="id" placeholder="아이디"/><br>
-                <input id="idpw2" type="password" name="pass" placeholder="비밀번호">
+                <input id="login_id" type="text" name="id" placeholder="아이디"/><br>
+                <input id="login_pw" type="password" name="pass" placeholder="비밀번호">
             </div>
             <div id="login_submit">
                 <input type="submit" value="로그인">
@@ -58,6 +62,12 @@
                     <a href="#">ID/PW 찾기</a>
                 </div>
             </div>
+            <div id="login_easy">
+                <h3>sns간편 로그인</h3>
+                <a href="#"><div id="login_google"><i class="fa-brands fa-google"></i> 구글 아이디로 로그인</div></a>
+                <a href="#"><div id="login_naver"><i class="fa-solid fa-n"></i> 네이버 아이디로 로그인</div></a>
+                <a href="#"><div id="login_kakao"><i class="fab fa-kickstarter-k"></i> 카카오 아이디로 로그인</div></a>
+            </div>
         </form>
     </div>
     
@@ -66,10 +76,7 @@
         <div>Made By 박준현</div>
     </footer>
 
-    <script src="./hidden.js"></script>
-    <script src="./login.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
-
-<!-- <i class="fa-solid fa-circle-user"></i>
-<i class="fa-solid fa-lock"></i> -->

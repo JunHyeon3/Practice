@@ -1,4 +1,3 @@
-var pop_btn = document.querySelectorAll(".pop_img button")
 var count=1; 
 var seoul_img = document.querySelectorAll(".pop_seoul img")
 var incheon_img = document.querySelectorAll(".pop_incheon img")
@@ -11,16 +10,12 @@ $(document).ready(function(){
 });
 
 // 두번째 방법
+// 추천 여행지의 레이아웃 팝업에서 이미지를 변경하는 함수
 function changeImg(n) {
-    // for(var i=0; i<seoul_img.length; i++){
-    //     $(seoul_img[i]).hide();
-    //     $(incheon_img[i]).hide();
-    //     $(jeju_img[i]).hide();
-    // };
     $(seoul_img).hide();
     $(incheon_img).hide();
     $(jeju_img).hide();
-
+    
     count = count + n;
     if(count>seoul_img.length) { 
         count=1; 
@@ -35,6 +30,7 @@ function changeImg(n) {
 
 
 // 첫 번째 방법
+// var pop_btn = document.querySelectorAll(".pop_img button")
 // $(pop_btn[0]).click(function(){
     //     for(var i=0; i<seoul_img.length; i++){
         //         $(seoul_img[i]).hide();
