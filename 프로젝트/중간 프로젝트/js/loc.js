@@ -8,7 +8,7 @@ function myMap() {
     var mapProp = {
         center:myCenter,
         zoom:17,
-        mapTypeId:google.maps.MapTypeId.HYBRID
+        mapTypeId:google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map"), mapProp);
     var marker = new google.maps.Marker({
