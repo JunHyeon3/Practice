@@ -1,21 +1,31 @@
 $(document).ready(function(){
-    myMap()
+    myMap();
 });
 
 // 구글 맵 api
-var myCenter = new google.maps.LatLng(37.50324579472511, 126.87893517055778);
 function myMap() {
+    var myCenter = new google.maps.LatLng(37.50324579472511, 126.87893517055778);
     var mapProp = {
         center:myCenter,
         zoom:17,
         mapTypeId:google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map"), mapProp);
+
     var marker = new google.maps.Marker({
-        position:myCenter,
-        animation:google.maps.Animation.BOUNCE
+        position : myCenter,
+        title : "하이 렌트카",
+        animation : google.maps.Animation.BOUNCE
     });
     marker.setMap(map);
+
+    var contentString = "하이 렌트카 구로점 <br> 서울특별시 구로구 경인로 557";
+    var infowindow = new google.maps.InfoWindow({ content: contentString });
+    marker.addListener("click", function() {
+        infowindow.open({
+            anchor: marker
+        });
+    });
 }
 
 // 네이버 맵 api
