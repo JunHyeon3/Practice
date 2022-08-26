@@ -1,15 +1,10 @@
 /***********************************/
 /*************공통 적용*************/
 /***********************************/
-/* @import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Nanum+Pen+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Myeongjo:wght@800&display=swap');
 * {
     margin: 0 ;
     padding: 0;
-    /* font-family: 'Yeon Sung', cursive; */
-    /* font-family: 'Aboreto', cursive; */
-    /* font-family: 'Nanum Pen Script', cursive; */
     font-family: 'Gowun Dodum', sans-serif;
     color: black;
 }
@@ -72,13 +67,17 @@ html, body {
 /*********************** index nav_bar 영역 **********************/
 /* nav_bar */
 .nav_bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #00000070;
+    background-color: #263343;
     padding: 25px 0 12px 0 ;
     position: absolute;
     width: 100%;
+}
+.nav_bar .nav_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 970px;    
+    margin: 0 auto;
 }
 .nav_bar a {
     color: white;
@@ -92,7 +91,7 @@ html, body {
 
 /* nav_bar 로고 */
 .nav_logo {
-    font-family: 'Aboreto', cursive;
+    font-family: 'Nanum Myeongjo', serif;
     font-size: 40px;
     margin-left: 35px;
 }
@@ -101,7 +100,7 @@ html, body {
     font-size: 20px;
     display: flex;
     margin: 0 40px 0 40px;
-    justify-content: center;
+    justify-content: space-around;
 }
 .nav_menu li {
     padding: 8px 10px;
@@ -244,7 +243,7 @@ html, body {
     border-left: 33px solid #7fbbbd;
     border-right: 33px solid transparent;
     opacity: 0;
-    transition: 0.8s;
+    transition: 0.5s;
 }
 .recommend_car .plusi{
     position: absolute;
@@ -252,7 +251,7 @@ html, body {
     font-size: xx-large;
     margin-left: 3px;
     opacity: 0;
-    transition: 0.8s;
+    transition: 0.5s;
 }
 
 /* 차량 이미지와 그 아래의 간단한 사양 영역*/
@@ -426,6 +425,8 @@ html, body {
     justify-content:space-evenly;
     align-items: flex-end;
     margin-top: 70px;
+    position: relative;
+bottom: 0;
 }
 .footer div {
     color: white;
@@ -433,6 +434,9 @@ html, body {
 }
 
 /**************************** login 로그인 영역 ***************************/
+.login {
+    margin-bottom: 130px;
+}
 .login p {
     text-align: center;
     font-size: 40px;
@@ -708,7 +712,7 @@ html, body {
 
 /* 게시판 메인영역(문의하기) */
 #board_inquiry {
-    min-height: 611px;
+    min-height: 690px;
 }
 #board_inquiry table {
     font-size: 16px;
@@ -745,7 +749,7 @@ html, body {
 
 /* 게시판 메인영역(공지사항) */
 #board_notice {
-    min-height: 611px;
+    min-height: 690px;
 }
 #board_notice table {
     font-size: 16px;
@@ -783,7 +787,7 @@ html, body {
 /* 게시판 메인영역(자주묻는 질문) */
 #board_QA {
     width: 730px;
-    min-height: 611px;
+    min-height: 690px;
 }
 #board_QA span{
     color: rgb(0, 95, 171);
@@ -843,7 +847,7 @@ html, body {
 
 #read_inquiry {
     width: 700px;
-    min-height: 611px;
+    min-height: 690px;
 }
 #read_inquiry table {
     width: 100%;
@@ -865,7 +869,7 @@ html, body {
 /* ------------------------게시판 영역 board_write.html------------------------ */
 #write_inquiry {
     width: 700px;
-    min-height: 611px;
+    min-height: 690px;
 }
 .write_box ul {
     border-top: 3px solid gray;

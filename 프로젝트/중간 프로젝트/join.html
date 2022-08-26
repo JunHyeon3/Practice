@@ -8,24 +8,24 @@
 </head>
 <body>
     <nav class="nav_bar" style="position: relative;">
-        <div class="nav_logo">
-            <i class="fa-solid fa-car-side"></i>
-            <a href="index.html">HI-RENT</a>
+        <div class="nav_content">
+            <div class="nav_logo">
+                <a href="index.html">HI-RENT</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a href="#">예약하기</a></li>
+                <li><a href="#">차량소개</a></li>
+                <li><a href="board_main.html">고객센터</a></li>
+                <li><a href="location.html">찾아오시는 길</a></li>
+            </ul>
+            <ul class="nav_login">
+                <li class="before_login"><a href="login.html"">로그인</a></li>
+                <li class="before_login"><a href="join.html">회원가입</a></li>
+                <li class="after_login"><a class="login_name" href="#""></a></li>
+                <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
+            </ul>
+            <i  class="fa-solid fa-bars"></i>
         </div>
-        <ul class="nav_menu">
-            <li><a href="#">예약하기</a></li>
-            <li><a href="#">제품소개</a></li>
-            <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="location.html">찾아오시는 길</a></li>
-        </ul>
-        
-        <ul class="nav_login">
-            <li class="before_login"><a href="login.html"">로그인</a></li>
-            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
-            <li class="before_login"><a href="join.html">회원가입</a></li>
-            <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
-        </ul>
-        <i class="fa-solid fa-bars"></i>
     </nav>
     <div class="nav_hidden">
         <ul class="nav_menu">
@@ -37,8 +37,8 @@
         
         <ul class="nav_login">
             <li class="before_login"><a href="login.html"">로그인</a></li>
-            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
             <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login" style="display: none;"><a class="login_name" href="#""></a></li>
             <li class="after_login" style="display: none;"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
@@ -50,7 +50,7 @@
             <ul>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>아이디</label>
+                        <label><span class="red">*</span>아이디</label>
                     </div>
                     <input type="text" class="txt" placeholder="아이디">
                     <button type="button" class="btn" onclick="overlap()">중복 확인</button>
@@ -58,38 +58,38 @@
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>비밀번호</label>
+                        <label><span class="red">*</span>비밀번호</label>
                     </div>
                     <input type="password" class="txt" placeholder="비밀번호">
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>비밀번호 확인</label>
+                        <label><span class="red">*</span>비밀번호 확인</label>
                     </div>
                     <input type="password" class="txt" placeholder="비밀번호 확인">
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>이름</label>
+                        <label><span class="red">*</span>이름</label>
                     </div>
                     <input type="text" class="txt" placeholder="이름">
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>생년월일</label>
+                        <label><span class="red">*</span>생년월일</label>
                     </div>
                     <input type="text" class="txt" placeholder='생년월일 6자리'>
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for="">성별</label>
+                        <label>성별</label>
                     </div>
                     <input type="radio" class="check" name="gender">&nbsp;남&nbsp;
                     <input type="radio" class="check" name="gender">&nbsp;여
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>전화번호</label>
+                        <label><span class="red">*</span>전화번호</label>
                     </div>
                     <input type="text" class="txt" placeholder='전화번호 "-" 없이'>
                     <button type="button" class="btn" onclick="send_number()">인증번호 전송</button>
@@ -97,14 +97,14 @@
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for=""><span class="red">*</span>인증번호</label>
+                        <label><span class="red">*</span>인증번호</label>
                     </div>
                     <input type="text" class="txt" placeholder="인증번호">
                     <button type="button" class="btn" onclick="confirm()">인증번호 확인</button>
                 </li>
                 <li>
                     <div class="enter_box">
-                        <label for="">이메일</label>
+                        <label>이메일</label>
                     </div>
                     <input type="text" class="txt" placeholder="이메일" >&nbsp;@&nbsp; 
                     <input type="text" class="txt" placeholder="직접 입력"> 

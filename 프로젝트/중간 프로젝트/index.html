@@ -7,43 +7,43 @@
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <nav class="nav_bar">
-        <div class="nav_logo">
-            <i class="fa-solid fa-car-side"></i>
-            <a href="index.html">HI-RENT</a>
+    <nav class="nav_bar" style="background-color: #00000050;">
+        <div class="nav_content">
+            <div class="nav_logo">
+                <a href="index.html">HI-RENT</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a href="#">예약하기</a></li>
+                <li><a href="#">차량소개</a></li>
+                <li><a href="board_main.html">고객센터</a></li>
+                <li><a href="location.html">찾아오시는 길</a></li>
+            </ul>
+            <ul class="nav_login">
+                <li class="before_login"><a href="login.html"">로그인</a></li>
+                <li class="before_login"><a href="join.html">회원가입</a></li>
+                <li class="after_login"><a class="login_name" href="#""></a></li>
+                <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
+            </ul>
+            <i  class="fa-solid fa-bars"></i>
         </div>
-        <ul class="nav_menu">
-            <li><a href="#">예약하기</a></li>
-            <li><a href="#">제품소개</a></li>
-            <li><a href="board_main.html">고객센터</a></li>
-            <li><a href="location.html">찾아오시는 길</a></li>
-        </ul>
-        
-        <ul class="nav_login">
-            <li class="before_login"><a href="login.html"">로그인</a></li>
-            <li class="after_login"><a class="login_name" href="#""></a></li>
-            <li class="before_login"><a href="join.html">회원가입</a></li>
-            <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
-        </ul>
-        <i  class="fa-solid fa-bars"></i>
     </nav>
+
     <div class="nav_hidden">
         <ul class="nav_menu">
             <li><a href="#">예약하기</a></li>
-            <li><a href="#">제품소개</a></li>
+            <li><a href="#">차량 소개</a></li>
             <li><a href="board_main.html">고객센터</a></li>
             <li><a href="location.html">찾아오시는 길</a></li>
         </ul>
-        
         <ul class="nav_login">
             <li class="before_login"><a href="login.html"">로그인</a></li>
-            <li class="after_login"><a class="login_name" href="#""></a></li>
             <li class="before_login"><a href="join.html">회원가입</a></li>
+            <li class="after_login"><a class="login_name" href="#""></a></li>
             <li class="after_login"><a href="" onclick="logout()">로그아웃</a></li>
         </ul>
     </div>
+
     <div id="background_img"> </div>
-    
     
     <main class="main">
         <div id="main_content">
@@ -78,7 +78,9 @@
                         </select>
                     </div>
                     <div >
-                        <button class="reservation_submit" onclick="reservation_search2()"><i class="fa-solid fa-magnifying-glass"></i> 조회</button>
+                        <button class="reservation_submit" onclick="check_search()">
+                            <i class="fa-solid fa-magnifying-glass"></i> 조회
+                        </button>
                     </div>
                 </form>
             </div>
@@ -86,76 +88,86 @@
                 <h2>인기 차종</h2>
                 <div class="recommend_car_list">
                     <ul>
-                        <a href="#"><li class="recommend_car">
-                            <div class="plus"></div>
-                            <div class="plusi"><i class="fas fa-plus"></i></div>
-                            <img src="media/G80.png">
-                            <div class="recommend_info">
-                                <h2>G80</h2>
-                                <div>
-                                    <i class="fas fa-user"><br><span>5인승</span></i>
-                                    <i class="fas fa-car"><br><span>고급</span></i>
-                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
-                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                        <a href="#">
+                            <li class="recommend_car">
+                                <div class="plus"></div>
+                                <div class="plusi"><i class="fas fa-plus"></i></div>
+                                <img src="media/G80.png">
+                                <div class="recommend_info">
+                                    <h2>G80</h2>
+                                    <div>
+                                        <i class="fas fa-user"><br><span>5인승</span></i>
+                                        <i class="fas fa-car"><br><span>고급</span></i>
+                                        <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                        <i class="fas fa-cog"><br><span>오토</span></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </li></a>
-                        <a href="#"><li class="recommend_car">
-                            <div class="plus"></div>
-                            <div class="plusi"><i class="fas fa-plus"></i></div>
-                            <img src="media/K7.png" >
-                            <div class="recommend_info">
-                                <h2>K7</h2>
-                                <div>
-                                    <i class="fas fa-user"><br><span>5인승</span></i>
-                                    <i class="fas fa-car"><br><span>고급</span></i>
-                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
-                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="recommend_car">
+                                <div class="plus"></div>
+                                <div class="plusi"><i class="fas fa-plus"></i></div>
+                                <img src="media/K7.png" >
+                                <div class="recommend_info">
+                                    <h2>K7</h2>
+                                    <div>
+                                        <i class="fas fa-user"><br><span>5인승</span></i>
+                                        <i class="fas fa-car"><br><span>고급</span></i>
+                                        <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                        <i class="fas fa-cog"><br><span>오토</span></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </li></a>
-                        <a href="#"><li class="recommend_car">
-                            <div class="plus"></div>
-                            <div class="plusi"><i class="fas fa-plus"></i></div>
-                            <img src="media/Sonata.png" >
-                            <div class="recommend_info">
-                                <h2>Sonata</h2>
-                                <div>
-                                    <i class="fas fa-user"><br><span>5인승</span></i>
-                                    <i class="fas fa-car"><br><span>고급</i>
-                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
-                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="recommend_car">
+                                <div class="plus"></div>
+                                <div class="plusi"><i class="fas fa-plus"></i></div>
+                                <img src="media/Sonata.png" >
+                                <div class="recommend_info">
+                                    <h2>Sonata</h2>
+                                    <div>
+                                        <i class="fas fa-user"><br><span>5인승</span></i>
+                                        <i class="fas fa-car"><br><span>고급</i>
+                                        <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                        <i class="fas fa-cog"><br><span>오토</span></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </li></a>
-                        <a href="#"><li class="recommend_car">
-                            <div class="plus"></div>
-                            <div class="plusi"><i class="fas fa-plus"></i></div>
-                            <img src="media/SantaFe.png" >
-                            <div class="recommend_info">
-                                <h2>SantaFe</h2>
-                                <div>
-                                    <i class="fas fa-user"><br><span>5인승</span></i>
-                                    <i class="fas fa-car"><br><span>고급</span></i>
-                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
-                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="recommend_car">
+                                <div class="plus"></div>
+                                <div class="plusi"><i class="fas fa-plus"></i></div>
+                                <img src="media/SantaFe.png" >
+                                <div class="recommend_info">
+                                    <h2>SantaFe</h2>
+                                    <div>
+                                        <i class="fas fa-user"><br><span>5인승</span></i>
+                                        <i class="fas fa-car"><br><span>고급</span></i>
+                                        <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                        <i class="fas fa-cog"><br><span>오토</span></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </li></a>
-                        <a href="#"><li class="recommend_car">
-                            <div class="plus"></div>
-                            <div class="plusi"><i class="fas fa-plus"></i></div>
-                            <img src="media/AVANTE.png" >
-                            <div class="recommend_info">
-                                <h2>AVANTE</h2>
-                                <div>
-                                    <i class="fas fa-user"><br><span>5인승</span></i>
-                                    <i class="fas fa-car"><br><span>고급</span></i>
-                                    <i class="fas fa-tint"><br><span>휘발유</span></i>
-                                    <i class="fas fa-cog"><br><span>오토</span></i>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="recommend_car">
+                                <div class="plus"></div>
+                                <div class="plusi"><i class="fas fa-plus"></i></div>
+                                <img src="media/AVANTE.png" >
+                                <div class="recommend_info">
+                                    <h2>AVANTE</h2>
+                                    <div>
+                                        <i class="fas fa-user"><br><span>5인승</span></i>
+                                        <i class="fas fa-car"><br><span>고급</span></i>
+                                        <i class="fas fa-tint"><br><span>휘발유</span></i>
+                                        <i class="fas fa-cog"><br><span>오토</span></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </li></a>
+                            </li>
+                        </a>
                     </ul>
                     <div class="recommend_button">
                         <button class="recommend_btn" onclick="changeShow(0), check()">&nbsp;</button>
@@ -164,8 +176,7 @@
                         <button class="recommend_btn" onclick="changeShow(3)">&nbsp;</button>
                         <button class="recommend_btn" onclick="changeShow(4)">&nbsp;</button>
                         <button class="recommend_pause" onclick="pause()">
-                            <i class="fa-solid fa-play"></i>
-                            <i class="fa-solid fa-pause"></i>
+                            <i class="fa-solid fa-play"></i> <i class="fa-solid fa-pause"></i>
                         </button>
                     </div>
                 </div>
@@ -281,5 +292,6 @@
     <script src="js/common.js"></script>
     <script src="js/slide.js"></script>
     <script src="js/changeImg.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>
