@@ -938,11 +938,11 @@ html, body {
     text-align: center;
     padding: 10px;
 }
-#map_info tr {
-    border-bottom: 2px solid gray;
-}
 #map_info tr:first-child{
     border-top: 2px solid gray;
     border-bottom: 1px solid gray;
+}
+#map_info tr:last-child {
+    border-bottom: 2px solid gray;
 }
 

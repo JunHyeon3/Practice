@@ -1,6 +1,7 @@
-window.onload = function(){
+$(document).ready(function() {
     slideShow();
-}
+})
+
 var index = 0;
 var slide = null;
 var car = document.getElementsByClassName("recommend_car");
@@ -62,7 +63,7 @@ function pause(){
         $(".fa-pause").hide();
     }
     else {
-        setTimeout(slideShow, 1000);
+        setTimeout(slideShow, 2000);
         control=true;
         $(".fa-play").hide();
         $(".fa-pause").show();
@@ -70,8 +71,5 @@ function pause(){
 }
 
 //인기 차종에 마우스 오버시 + 모양 나타내기
-$(".recommend_car").mouseover(function(){
-    $(".plus, .plusi").css("opacity","1")
-}).mouseout(function(){
-    $(".plus, .plusi").css("opacity","0")
-})
+$(".recommend_car").mouseover(function(){ $(".plus, .plusi").css("opacity","1") })
+                    .mouseout(function(){ $(".plus, .plusi").css("opacity","0") })

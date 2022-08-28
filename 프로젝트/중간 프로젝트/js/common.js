@@ -1,17 +1,17 @@
-var name1 = sessionStorage.getItem("name")
-var before_login = document.getElementsByClassName("before_login")
-var after_login = document.getElementsByClassName("after_login")
-var login_name = document.getElementsByClassName("login_name")
 
 // 상단바의 =아이콘을 눌렀을 때 상당 메뉴가 나오도록
 $(document).ready(function(){
     $(".fa-bars").click(function(){
         $(".nav_hidden").slideToggle("slow");   
     });
-
+    
     login();
 });
 
+var name1 = sessionStorage.getItem("name")
+var before_login = document.getElementsByClassName("before_login")
+var after_login = document.getElementsByClassName("after_login")
+var login_name = document.getElementsByClassName("login_name")
 // 로그인이 되었으면 동작하는 함수
 function login() {
     if(name1 != null) {
@@ -21,6 +21,7 @@ function login() {
         $(after_login).show();
     }
     else {
+        $(before_login).show();
         $(after_login).hide();
     }
 }

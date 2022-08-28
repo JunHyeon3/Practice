@@ -7,6 +7,7 @@ $(document).ready(function(){
     else { 
         radios[choice].checked = true;
     }
+    sessionStorage.removeItem("choice");
     chooseBoard();
 });
 
@@ -18,10 +19,10 @@ function chooseBoard() {
         radios[i].parentNode.style.cssText = '';
         if (radios[i].checked) {
             document.getElementById('board_' + radios[i].value).style.display = 'block';
-            radios[i].parentNode.style.cssText = 'border-bottom: 2px orangered solid; color: orangered;';
+            radios[i].parentNode.style.cssText = 
+                'border-bottom: 2px orangered solid; color: orangered;';
         }
     }
-    sessionStorage.removeItem("choice");
 }
 
 // 다른 동작(글쓰기, 글읽기, 수정하기)중 게시판을 이동하는 함수
