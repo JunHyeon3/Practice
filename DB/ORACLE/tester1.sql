@@ -5,7 +5,7 @@ select * from tab;
 --작성된 테이블 목록 확인
 
 --DUAL 테이블이란?
---DUAL 테이블을 바로 산술 연산의 결과를 한 줄로 얻기 위해서 오라클에서
+--DUAL 테이블을 바로 산술 연산의 결과를 한 줄로 얻기 위해서 오라클에서d
 --제공하는 테이블 입니다.
 SELECT * FROM DUAL;
 --DUAL 테이블은 사용자가 함수(계산)를 실행할 때 임시로 사용하는데 적합
@@ -53,32 +53,32 @@ DROP TABLE EMP;
 DROP TABLE DEPT;
 --급여 테이블 제거하기
 DROP TABLE SALGRADE;
-DROP TABLE EMPLOYEE;
-DROP TABLE DEPARTMENT;
-DROP TABLE SALGRADE;
 
 --부서 테이블 생성하기
 CREATE TABLE DEPT(
     DEPTNO NUMBER(2) CONSTRAINT PK_DEPT PRIMARY KEY,
     DNAME VARCHAR2(14),
-    LOC VARCHAR2(13) );
+    LOC VARCHAR2(13) 
+);
 
 -- 사원 테이블 생성하기
 CREATE TABLE EMP( 
-  	 EMPNO NUMBER(4) CONSTRAINT PK_EMP PRIMARY KEY,
-	 ENAME VARCHAR2(10),
- 	 JOB   VARCHAR2(9),
-	 MGR  NUMBER(4),
-	 HIREDATE DATE,
-	 SAL NUMBER(7,2),
-	 COMM NUMBER(7,2),
-	 DEPTNO NUMBER(2) CONSTRAINT FK_DEPTNO REFERENCES DEPT);
+    EMPNO NUMBER(4) CONSTRAINT PK_EMP PRIMARY KEY,
+    ENAME VARCHAR2(10),
+    JOB   VARCHAR2(9),
+    MGR  NUMBER(4),
+    HIREDATE DATE,
+    SAL NUMBER(7,2),
+    COMM NUMBER(7,2),
+    DEPTNO NUMBER(2) CONSTRAINT FK_DEPTNO REFERENCES DEPT
+);
 
  -- 급여 테이블 생성하기
 CREATE TABLE SALGRADE(
-	 GRADE NUMBER,
-	 LOSAL NUMBER,
-	 HISAL NUMBER );
+    GRADE NUMBER,
+    LOSAL NUMBER,
+    HISAL NUMBER 
+);
 
 -- 부서 테이블에 샘플 데이터 추가하기
 INSERT INTO DEPT VALUES(10, '경리부', '서울');
@@ -118,22 +118,21 @@ COMMIT;
 --DUAL 테이블을 바로 산술 연산의 결과를 한 줄로 얻기 위해서 오라클에서 제공하는 테이블
 --DUAL 테이블은 사용자가 함수(계산)를 실행할 때 임시로 사용하는데 적합
 --함수에 대한 쓰임을 알고 싶을 때 특정 테이블을 생성할 필요 없이 DUAL 테이블을 이용하여 함수의 값을 return 받을 수 있다.
-
 desc emp;
 
 --사원테이블 조회하기
-SELECT * FROM emp;
+    SELECT * FROM emp;
 
 --사원테이블에서 empno, ename 조회하기
-SELECT empno, ename FROM emp;
+    SELECT empno, ename FROM emp;
 
 --연봉구하기 : ename,sal,연봉 사원테이블에서
-SELECT ename, sal*12 연봉 FROM emp;
-SELECT ename, sal*12 as 연봉 FROM emp;
-SELECT ename, sal*12 ANNUAL FROM emp;
+    SELECT ename, sal*12 FROM emp;
+    SELECT ename, sal*12 as 연봉 FROM emp;
+    SELECT ename, sal*12 ANNUAL FROM emp;
 
 --컬럼이름에 별칭 지정해서 출력하기 FROM DEPT (부서 테이블)
-SELECT deptno as "부서번호", dname "부서명" FROM dept;
+    SELECT deptno as 부서번호, dname "부서명" FROM dept;
 
 --SELECT는 데이터베이스 내에 저장되어 있는 테이블을 조회하기 위한 명령어이다
 --SELECT 다음에는 보고자 하는 대상의 컬럼명을 기술한다.
@@ -168,27 +167,27 @@ SELECT ename, sal*12+nvl(comm,0) AS "A n n s a l" FROM emp;
 
 --중복된 데이터를 한번씩만 출력하게 하는 DISTINCT
 --중복되는 부서번호를 한번씩만 출려하기 위해서는 키워드 DISTINCT를 사용한다.
-SELECT DISTINCT DEPTNO FROM EMP;
+    SELECT DISTINCT DEPTNO FROM EMP;
 
 --오라클에서는 여러개의 컬럼을 연결할 때 사용하기 위해서 CONCATENATION
 --연산자를 제공해 줍니다. 영 문장처럼 보이도록 하기 위해서 "||"를 컬럼과
 --문자열 사이에 기술하여 하나로 연결하여 출력하면 된다.
 SELECT ENAME || '의 직급은' || JOB || '입니다' AS "직급" FROM EMP;
 
---EMP테이블에서 SAL>=500 조회
-SELECT * FROM EMP WHERE SAL >= 500;
+--EMP테이블에서 SAL>=500 조회하기
+    SELECT * FROM EMP WHERE SAL >= 500;
 --SAL != 500
-SELECT * FROM EMP WHERE SAL ^= 500;
-
-SELECT * FROM EMP WHERE NOT DEPTNO = 10;
+    SELECT * FROM EMP WHERE SAL ^= 500;
+--부서번호가 10인 사람 조회하기
+    SELECT * FROM EMP WHERE NOT DEPTNO = 10;
 
 --특정 조건의 데이터만 조회하는 where 조건
 --원하는 로우만 얻으려면 로우를 제한하는 조건을 select 문에 where 절을 추가하여 제시해야 한다.
 
 --이문세인 사람만 조회하기
-SELECT * FROM EMP WHERE ename = '이문세';
+    SELECT * FROM EMP WHERE ename = '이문세';
 --invalid identifier 부정확한 식별자
-SELECT * FROM EMP WHERE ename = "이문세";
+    SELECT * FROM EMP WHERE ename = "이문세";
 
 --입사일이 2005/03/20 이전
 SELECT * FROM EMP WHERE hiredate < to_date('2005/03/20', 'yyyy/mm/dd');
@@ -197,22 +196,26 @@ SELECT * FROM EMP WHERE hiredate < to_date('2005/03/20', 'yyyy/mm/dd');
 --문자열이 작성된 형식과 날짜포맷 형식을 동일하게 맞춰야 한다.
 
 --emp 테이블로부터 조건절에서 부서번호가 10인 부서를 조회하기
-SELECT * FROM EMP WHERE DEPTNO = 10;
+    SELECT * FROM EMP WHERE DEPTNO = 10;
 
 --비교 및 논리 연산자를 사용하여 10번 부서이고, 직급이 과장인 사람을 조회하기
-SELECT * FROM EMP WHERE DEPTNO = 10 and job = '과장';
+    SELECT * FROM EMP WHERE DEPTNO = 10 and job = '과장';
+--비교 및 논리 연산자를 사용하여 10번 부서이거나, 직급이 과장인 사람을 조회하기
+    SELECT * FROM EMP WHERE DEPTNO = 10 OR job = '과장';
+--비교 및 논리 연산자를 사용하여 10번 부서가 아니고, 직급이 과장인 사람을 조회하기
+    SELECT * FROM EMP WHERE NOT DEPTNO = 10 AND job = '과장';
 --논리 연산자 
 --조건을 여러개 조합해서 결과를 얻어야 할 경우, 조건을 연결해주는 논리 연산자를 사용한다
 --오라클에서 사용가능한 논리 연산자 and, or, not(<>) 이 있다.
 
 --급여가 400~500인 사원 출력하기
-SELECT * FROM EMP where sal between 400 and 500;
+    SELECT * FROM EMP where sal between 400 and 500;
 --between and 연산자
 --특정 범위내에 속하는 데이터인지를 알아보기 위해서
 --비교 연산자와 논리 연산자를 결합하여 표현할 수 있다.
 
 --in연산자를 사용하여 커미션이 80이거나 100이거나 200인 사원 조회하기
-SELECT * FROM EMP where comm in(80, 100, 200);
+    SELECT * FROM EMP where comm in(80, 100, 200);
 --in 연산자
 --특정 필드의 값이 a이거나 b이거나 c중에 어느 하나만 만족하더라도 출력하는 연산자이다.
 
@@ -237,29 +240,29 @@ select * from emp where comm not in(80, 100, 200);
 --_ : 하나의 문자가 어떤값이 와도 상관없다.
 
 --이씨성을 가진 사람을 like를 이용하여 출력하기
-select * from emp where ename like '이%';
+    select * from emp where ename like '이%';
 
 --'성'이 아무데나 들어가기만 해도 되는 이름을 조회하기
-select * from emp where ename like '%성%';
+    select * from emp where ename like '%성%';
 
 --'성'이 뒤에만 들어가는 이름을 출력하기
-select * from emp where ename like '%성';
+    select * from emp where ename like '%성';
 
 --'성'이 가운데만 들어가는 이름을 출력하기
-select * from emp where ename like '_성_';
+    select * from emp where ename like '_성_';
 
 --'성'이 가운데 안들어가는 이름을 출력하기
-select * from emp where not ename like '_성_';
+    select * from emp where not ename like '_성_';
 
 --null인 값을 찾기 위한 is null
 --대상 칼럼 is(연산자) null(비교값);
 
 --잘못된 방법이라 결과가 안나온다.
-select * from emp where comm=null;
+    select * from emp where comm=null;
 --커미션이 null인 사람을 조회하기
-select * from emp where comm is null;
+    select * from emp where comm is null;
 --커미션이 null이 아닌 사람을 조회하기
-select * from emp where not comm is null;
+    select * from emp where not comm is null;
 
 --정렬을 위한 order by
 --select 칼럼1, 칼럼2, ... from 테이블명 where 조건 order by 칼럼명 정렬방식
@@ -363,3 +366,170 @@ COMMIT;
     
 --그룹활동도 하고 싱글활동도 하는 가수이름을 출력하기
     select * from group_star intersect select * from single_star;
+    
+    
+----------------------------------------09/05--------------------------------------
+
+--ltrim(), rtrim()
+--ltrim(문자열, 지울 문자열)
+--문자열의 왼쪽에서 지울 문자열을 지운 값을 반환
+--왼쪽 끝의 글자부터 순서대로 지울 수 있으며, 중간이나 오른쪽의 문자는 못지우고 원래 값을 반환
+    select ltrim('goodbye','g'), ltrim('goodbye','o'), ltrim('goodbye','go') from dual;
+                                 --o는 중간에 있기 때문에 지울 수 없다.
+
+--rtrim(문자열, 지울 문자열)
+--문자열의 오른쪽에서 지울 문자열을 지운 값을 반환
+    select rtrim('goodbye','e'), rtrim('goodbye','o'), rtrim('goodbye','ye') from dual;
+    
+--substr(문자열, 시작위치, 추출할 개수)
+--문자열의 시작위치 인덱스부터 추출할 개수 만큼의 문자열을 반환
+--시작위치 값이 양수일  경우 인덱스는 왼쪽에서 1부터 시작
+--시작위치 값이 음수일 경우 인덱스는 오른쪽에서 -1부터 시작
+--한글의 경우도 똑같이 동작한다.
+    select substr('good morning john', 8, 4) from dual;
+--r부터 나머지를 출력    
+    select substr('good morning john', 8) from dual;
+--오른쪽 부터 4글자
+    select substr('good morning john', -4) from dual;    
+--0인 경우는 null
+    select substr('good morning john', -4, 0) from dual;
+    
+--substrb(문자열, 시작위치, 바이트수)
+--문자열의 시작 인덱스 부터 바이트 수 만큼 문자를 추출
+    select substrb('good morning john', 8, 4) from dual;    
+--한글은 인덱스를 2씩 차지하며, 각 글자당 3~4바이트를 차지한다.
+    select substrb('일이삼사오육칠팔구십', 8, 17) from dual;    
+    
+--replace(문자열, 기존 문자열, 바꿀 문자열)    
+--문자열 안에서 기존 문자열들을 바꿀 문자열로 변경한다
+--replace는 지정된 문자열 단위로 교체
+    select replace('good morning john', 'morning', 'evening') from dual;
+    
+--translate(문자열, 기존 문자, 바꿀 문자)
+--기존 문자들과 바꿀 문자들은 각 인덱스 순서대로 1:1 매칭되어 변경된다.
+--translate는 문자 단위로 바꿈
+    select translate('you are not alone', 'you', 'we') from dual;
+--y문자를 w로 변경, o문자를 e로 변경, u문자를 없앰
+
+--trim()
+--trim() 함수는 사용하는 인수 3종류에 따라 해당 문자열의 앞 or 뒤 or 양쪽의 지정 값을 제거한다.
+--기본적으로 trim은 공백을 제거하는 것이 기본 값이며 해당 용도로 많이 사용된다.
+    select trim('      trim     ') from dual; 
+    
+    select trim(leading from '   good   '), 
+           trim(trailing from '   good   '),
+           trim(both from '   good   ')
+    from dual;
+--왼쪽의 지정 문자를 제거
+    select trim(leading 't' from 'trimm  ') from dual;
+
+    
+--length()    
+--  왼쪽 공백제거 후 길이
+    select length(trim(leading from '   good   ')), 
+--  오른쪽 공백제거 후 길이
+            length(trim(trailing from '   good   ')),
+--  양쪽 공백제거 후 길이
+            length(trim(both from '   good   ')),
+--  양쪽 공백제거
+            trim(both from '   good   ')
+    from dual;
+
+--instr(문자열, 찾을 문자 값, 찾기를 시작할 위치, 찾은 결과의 순번)
+--문자열에서 원하는 문자의 위치를 찾기 위한 함수
+--대소문자를 구별하여 검색한다
+--여러개의 문자를 찾을때는 or연산자 사용
+--1번부터 탐색하여, 첫 번째 or가 시작하는 위치
+    select instr('good morning john','or',1) from dual;
+--1번부터 탐색하여, 두 번째 o가 나오는 위치    
+    select instr('good morning john','o',1, 2) from dual; 
+    
+--숫자형을 문자형으로 변환하기
+--0   자릿수, 자릿수가 맞지 않으면 0으로 채움
+--9   자릿수, 자릿수가 맞지 않아도 채우지 않음
+--L   각 지역별 통화기호를 앞에 표시
+--.   소숫점
+--,   천 자리 구분
+
+--날짜형으로 변환하는 TO_DATA 함수
+--TO_DATE('문자', 'format');
+--emp테이블에서 2007년 4월 2일에 입사한 사원 검색하기
+    select * from emp where hiredate = to_date('2007/04/02', 'yyyy-mm-dd');
+
+--숫자형으로 변환하는 to_number 함수
+    select to_number('20,000', '99,999') - to_number('80,000', '99,999') from dual;
+    
+--입사일 달 기준으로 잘라내기 (to_char 2007/04/02 -> 2007/04/01 )
+    select ename, hiredate, to_char(trunc(hiredate,'month'),'yyyy/mm/dd') from emp ;
+    
+--두 날짜 사이 간격을 구하는 months_between 함수
+--months_between(date1, date2)
+--오늘부터 입사일 사이의 개월수 구하기
+    select ename, trunc(months_between(sysdate, hiredate)) 근무달수 from emp;
+    
+--개월수를 더하는 add_months 함수
+--add_months(date,number)
+--입사 날짜에 6개월 더하기
+    select ename, hiredate, add_months(hiredate,6) from emp;
+    
+--해당 날짜에서 가장 가까운 요일의 날짜를 반환하는 next_day 함수
+--next_day(date, 요일)
+--1일요일 2월요일 3화요일 4수요일 5목요일 6금요일 7토요일
+--오늘을 기준으로 최초로 도래하는 금요일은 언제인가
+    select sysdate 오늘, next_day(sysdate, 6) 금요일 from dual;
+    
+    
+--substr을 사용하여 9월에 입사한 사원 출력하기
+    select * from emp where substr(hiredate, 4, 2) = '09';
+--substr을 사용하여 2003년에 입사한 사원 출력
+    select * from emp where substr(hiredate, 1, 2) = '03';
+--substr을 사용하여 입사일자 년도(두자리), 월(두자리), 일(두자리)을 나누어 출력
+    select hiredate, substr(hiredate,1,2) 년도, substr(hiredate,4,2) 월, substr(hiredate,7,2) 일 from emp;
+--substr을 사용하여 '기'로 끝나는 사원 출력
+    select * from emp where substr(ename,2,1) = '기' or substr(ename, 3) = '기';
+--substr을 사용하여 이름의 두번째에 '동'이 있는 사원 출력    
+    select * from emp where substr(ename,2,1) = '동';
+--instr을 사용하여 이름의 두번째에 '동'이 있는 사원의 empno,ename 출력    
+    select empno,ename from emp where instr(ename,'동',1) = 2;
+    
+--decode 함수    
+--swith, case와 같은 기능을 한다.
+--여러가지 경우에 대해서 선택할 수 있다.
+--decode(표현식, 조건1, 결과1, 조건2, 결과2, ...,기본결과)
+    select ename, deptno, decode(deptno,10,'경리부', 
+                                        20,'인사과', 
+                                        30,'전산부') 
+    as DNAME from emp order by dname;
+
+--case 함수
+--if else if else와 유사한 구조를 갖는다.
+--decode가 제공하지 못하는 비교연산의 단점을 해결한 함수
+--다양한 비교연산자를 사용하여 조건을 제시할 수 있어 범위를 지정할 수도 있다.
+--CASE WHEN 조건1 THEN 결과1 WHEN 조건2 THEN 결과2 ... ELSE 결과 END;
+    select ename, deptno, case when deptno = 10 then '경리부'
+                               when deptno = 20 then '인사과'
+                               when deptno = 30 then '전산부'
+                               end
+    as dname2 from emp order by dname2;
+
+
+--직급에 따라 부장인 사원은 5%, 과장인 사원은 10%, 대리인 사원은 15%, 사원인 사원은 20% 급여인상하기
+--EMPNO, ENAME, JOB, SAL Upsal로 출력하기
+    select empno, ename, job, sal, decode(job,'부장', sal*1.05, 
+                                              '과장', sal*1.10, 
+                                              '대리', sal*1.15, 
+                                              '사원', sal*1.20) 
+    as "SAL Upsal" from emp order by job;
+    
+--decode와 mod를 사용하여 홀수 사번들의 입사날짜를 조회하기 (짝수 사번은 null)   
+    select empno, ename, decode(mod(empno, 2), 1, hiredate, null) 입사일 from emp;
+    
+--round를 사용하여 근무일수 구하기    
+--round(date, fromat)처럼 format을 지정하면 날짜에 대해서도 반올림 할 수 있다.
+    select ename, to_char(sysdate) 현재날짜, to_char(hiredate) 입사날짜, to_char(round(sysdate-hiredate)) 근무일수 from emp;
+    
+--입사일을 연도는 2자리, 월은 숫자(MON), 요일은 약어(DY)로 지정하여 출력하기
+    select hiredate, to_char(hiredate, 'yy/mon/dy') from emp;
+
+--nvl을 사용하여 직속상관이 없는 근무자 empno,ename,직속상관
+    select empno, ename, nvl(to_char(mgr,'9999'),'ceo') as "직속 상관" from emp where mgr is null;

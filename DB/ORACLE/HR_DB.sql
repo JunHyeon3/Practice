@@ -3,17 +3,17 @@ select * from tab;
 desc tab;
 
 --last_name의 ' ' 안에는 대소문자 구별해야 한다.
-select employee_id, salary from employees where last_name = 'Smith';
+    select employee_id, salary from employees where last_name = 'Smith';
 --잘못된 방식
-select employee_id, FIRST_NAME, salary from employees where last_name = 'smith';
+    select employee_id, FIRST_NAME, salary from employees where last_name = 'smith';
 
 --별칭 저장하는 방법
-select employee_id as "준이", salary as "샐러리" from employees;
-select employee_id "준이", salary "샐러리" from employees;
-select employee_id as "준이" from employees where last_name = 'Smith';
+    select employee_id as "준이", salary as "샐러리" from employees;
+    select employee_id "준이", salary "샐러리" from employees;
+    select employee_id as "준이" from employees where last_name = 'Smith';
 
 --중복 제거
-select distinct job_id from employees;
+    select distinct job_id from employees;
 
 --sum()
     select sum(salary) from employees;
@@ -23,10 +23,8 @@ select distinct job_id from employees;
 --count(칼럼) : 칼럼의 값이 null인 행은 카운트 하지 않음
 --count(distinct 칼럼) : 칼럼 값의 중복을 제거하고, 칼럼의 값 건수를 반환
     select count(*) from employees;
-    select count(all employee_id) from employees;
-    select count(all employee_id), count(distinct employee_id) from employees;
-    select count(all first_name) from employees;
-    select count(all first_name), count(distinct first_name) from employees;
+    select count(first_name) from employees;
+    select count(distinct first_name) from employees;
 
 --avg()
     select avg(salary)from employees;
@@ -36,17 +34,20 @@ select distinct job_id from employees;
 --max()
     select max(salary) from employees;
     select max(hire_date) from employees;
+    select max(first_name) from employees;
+    select max(salary), max(hire_date), max(first_name) from employees;
 
 --min()
     select min(salary) from employees;
     select min(hire_date) from employees; 
+    select min(first_name) from employees;
+    select min(salary), min(hire_date), min(first_name) from employees;
 
 ----숫자형 함수
 --dual 테이블은 사용하지 않는데 제공하는 dummy 테이블
 
 --abs() 절대값
-    select abs(-23) from dual;
-    select abs(23) from dual;
+    select abs(23), abs(-23) from dual;
 
 --sign() 양수는 1, 음수는 -1, 0은 0
     select sign(23) from dual;
@@ -67,12 +68,10 @@ select distinct job_id from employees;
     select trunc(1234.123456, -1) from dual;
 
 --ceil() 무조건 올려서 정수로
-    select ceil(32.8) ceil from dual;
-    select ceil(32.3) ceil from dual;
+    select ceil(32.3), ceil(-32.3) from dual;
 
 --floor() 소숫점 자리를 무조건 버림
-    select floor(32.8) floor from dual;
-    select floor(32.3) floor from dual;
+    select floor(32.3), floor(-32.3) floor from dual;
 
 --power() 제곱
     select power(4,2) power from dual;
@@ -86,13 +85,13 @@ select distinct job_id from employees;
 ----날짜형 함수
 
 --add_months() 개월수 더하기
-    select add_months(sysdate, 7) from dual;    
+    select sysdate, add_months(sysdate, 7) from dual;    
 
 --next_day() 현재 날짜에서 다음 일요일
-    select next_day(sysdate, '일요일') from dual;
+    select sysdate, next_day(sysdate, '목요일') from dual;
 
 --last_day() 해당 월의 마지막 날짜
-    select last_day(sysdate) from dual;
+    select sysdate, last_day(sysdate) from dual;
     
 --months_between(date, date2) 두 날짜 사이의 개월 수를 반환
     select months_between(to_date('2022/11/10', 'yyyy/mm/dd'), to_date('2022/01/10', 'yyyy/mm/dd')) months from dual;
@@ -140,6 +139,24 @@ select rpad('good', 6) "rpad1", rpad('good', 7, '#') "rpad2", rpad('좋은이', 8, 
 --만약 추출할 개수를 생략하면, 시작위치 인덱스부터 나머지 문자열의 끝까지 반환한다
 --추출 할 개수를 0으로 설정하면, 아무것도 추출하지 않기 때문에 null을 반환한다.
 --시작위치 인덱스를 0으로 적으면 문자열의 인덱스가 0부터 시작한다.
+    SELECT SUBSTR('ABCDEFG', 2, 3) FROM dual;
+    SELECT SUBSTR('ABCDEFG', -5, 3) FROM dual;    
+    SELECT SUBSTR('ABCDEFG', 2) FROM dual;    
+    SELECT SUBSTR('ABCDEFG', -5, 0) FROM dual;    
+    
+--length( 문자 값 )
+--문자의 길이를 반환하는 함수     
+    select length('ABCDEFG') from dual;
+
+--instr(문자 값, 검색 문자 값, 시작위치, 개수)
+--문자 값을 전달받아 검색문자를 시작위치부터 검색하여 원하는 개수의 시작위치를 반환하는 함수
+    select instr('ABCDEFGABCDEFG', 'B', 1, 2) instr from dual;
+
+--treim( leading or trailing 제거문자 from 문자 값)
+--문자 값을 전달받아 앞(leading) 또는 뒤(trailing)에 존재하는 제거문자를 모두 제거하는 함수
+    select treim(leading 'B' from 'ABCDEFG') from dual;
+
+    
 
 ----null처리 함수
 
@@ -168,33 +185,39 @@ select rpad('good', 6) "rpad1", rpad('good', 7, '#') "rpad2", rpad('좋은이', 8, 
 --to_date : 문자형을 날짜형으로 변환
 
 --to_char('날짜 데이터', '출력형식')
-select to_char(sysdate, 'yyyy/mm/dd') from dual;
-select to_char(sysdate, 'day') from dual;
-select to_char(sysdate, 'dd') from dual;
-select to_char(sysdate, 'dy') from dual;
-select to_char(sysdate, 'mm') from dual;
-select to_char(sysdate, 'mon') from dual;
-select to_char(sysdate, 'mi') from dual;
+    select to_char(sysdate, 'yyyy'),to_char(sysdate, 'mm') from dual;
+    select to_char(sysdate, 'day'), to_char(sysdate, 'dy') from dual;
+    select to_char(sysdate, 'mm'), to_char(sysdate, 'mon') from dual;
+    select to_char(sysdate, 'mi'), to_char(sysdate, 'ss') from dual;
+--to_char('숫자형', '출력형식')
+    select to_char(1000, '00000')from dual;
+    select to_char(1000, '99999')from dual;
+    select to_char(1000, 'L00000')from dual;
+    select to_char(1000, '00000.00')from dual;
+    select to_char(1000, '99,999')from dual;
 
 --to_number('문자열', '출력형식')
 --출력 형식의 자리 수와 형식은 바꿀 문자열과 같거나 많아야 한다.
+SELECT TO_NUMBER('100,000', '999,999') FROM DUAL;
+SELECT TO_NUMBER('80,000', '999,999') FROM DUAL;
+SELECT TO_NUMBER('100,000', '999,999') - TO_NUMBER('80,000', '999,999') FROM DUAL;
 --1000 : 정상적인 방법
-select to_number('1000', '0000') from dual;
+    select to_number('1000', '0000') from dual;
 --에러 : 0은 남는 자리 0으로 표시
-select to_number('1000', '00000') from dual;
+    select to_number('1000', '00000') from dual;
 --1000 : 정상적인 방법
-select to_number('1,000', '9,999') from dual;
+    select to_number('1,000', '9,999') from dual;
 --1000 : 9는 남는 자리 표시 안함
-select to_number('1,000', '99,999') from dual;
+    select to_number('1,000', '99,999') from dual;
 
---to_number('문자열', '출력형식')
+--to_date('문자열', '출력형식')
 --문자열의 날짜 형식과 출력형식의 날짜 형식이 같아야 한다.
-select to_date('20070402', 'yyyy/mm/dd') from dual;
-select to_date('2007/04/02', 'yy-mm-dd') from dual;
-select to_date('0402', 'mm-dd') from dual;
-select to_date('04-02', 'mm/dd') from dual;
-select to_date('02', 'yy') from dual; 
-select to_date('02', 'mm') from dual;
-select to_date('02', 'dd') from dual;
+    select to_date('20070402', 'yyyy/mm/dd') from dual;
+    select to_date('2007/04/02', 'yy-mm-dd') from dual;
+    select to_date('0402', 'mm-dd') from dual;
+    select to_date('04-02', 'mm/dd') from dual;
+    select to_date('02', 'yy') from dual; 
+    select to_date('02', 'mm') from dual;
+    select to_date('02', 'dd') from dual;
 --년도 혹은 월을 생략하면, 현재 시스템의 년도와 월을 입력하여 표시한다.
 --하지만 일을 생략하면, 그냥 1일을 표시한다.
