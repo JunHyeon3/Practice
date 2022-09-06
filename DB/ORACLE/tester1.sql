@@ -487,6 +487,7 @@ COMMIT;
     select hiredate, substr(hiredate,1,2) 년도, substr(hiredate,4,2) 월, substr(hiredate,7,2) 일 from emp;
 --substr을 사용하여 '기'로 끝나는 사원 출력
     select * from emp where substr(ename,2,1) = '기' or substr(ename, 3) = '기';
+    select * from emp where substr(ename,-1,1) = '기'; --다른 풀이법
 --substr을 사용하여 이름의 두번째에 '동'이 있는 사원 출력    
     select * from emp where substr(ename,2,1) = '동';
 --instr을 사용하여 이름의 두번째에 '동'이 있는 사원의 empno,ename 출력    
@@ -522,7 +523,8 @@ COMMIT;
     as "SAL Upsal" from emp order by job;
     
 --decode와 mod를 사용하여 홀수 사번들의 입사날짜를 조회하기 (짝수 사번은 null)   
-    select empno, ename, decode(mod(empno, 2), 1, hiredate, null) 입사일 from emp;
+    select empno, ename, decode(mod(empno, 2), 1, hiredate, null) 입사일 from emp; 
+    --,null은 없어도 됨
     
 --round를 사용하여 근무일수 구하기    
 --round(date, fromat)처럼 format을 지정하면 날짜에 대해서도 반올림 할 수 있다.
@@ -530,6 +532,370 @@ COMMIT;
     
 --입사일을 연도는 2자리, 월은 숫자(MON), 요일은 약어(DY)로 지정하여 출력하기
     select hiredate, to_char(hiredate, 'yy/mon/dy') from emp;
+    select hiredate, to_char(hiredate, 'yy'),
+           to_char(hiredate, 'mon'), to_char(hiredate, 'dy') from emp;
 
---nvl을 사용하여 직속상관이 없는 근무자 empno,ename,직속상관
+--nvl을 사용하여 직속상관이 없는 사원의 empno,ename,직속상관을 ceo로 출력하기
     select empno, ename, nvl(to_char(mgr,'9999'),'ceo') as "직속 상관" from emp where mgr is null;
+
+----------------------------------------09/06--------------------------------------
+----그룹함수
+--테이블의 전체 데이터에서 통계적인 결과를 구하기 위한 함수
+--하나이상의 행을 묶어 그룹으로 만들어 연산하여 결과를 나타냄
+--행 집합에 적용하여 하나의 결과를 생산함
+--sum : 그룹의 누적 함계
+--avg : 그룹의 평균
+--count : 그룹의 총 개수
+--max : 그룹의 최댓값
+--min : 그룹의 최솟값
+--stddev : 그룹의 표준편차
+--variance : 그룹의 분산
+
+--group by 절
+--특정 칼럼을 기준으로 그룹함수를 사용할 경우 어떤 칼럼 값을 기준으로 그룹함수를 줄 지를 결정할때 사용한다.
+--select 칼럼명, 그룹함수 from 테이블명 where 조건 group by 칼럼명
+--사원 테이블을 부서 번호로 그룹 만들기
+    select deptno from emp group by deptno;
+
+--소속 부서별 최대 급여와 최소 급여 구하기     
+    select deptno, max(sal), min(sal) from emp group by deptno;
+    
+    select deptno, sal from emp order by deptno,sal desc;
+--위의 두개를 합친 그룹과 정렬
+    select deptno, max(sal), min(sal) from emp group by deptno order by deptno;
+
+--최고 급여(평균) 출력하기
+    select max(avg(sal)) from emp group by deptno;
+    
+--having 절    
+--select절에서는 조건을 사용하여 결과를 제한할 때 where을 사용하지만
+--그룹의 결과를 제한할 때는 having 절을 사용한다.
+
+--부서별 급여 평균이 500이상인 부서의 번호와 급여 평균 구하기
+    select deptno, avg(sal) from emp group by deptno having avg(sal)>=500;
+    
+--에러 이유를 알아보고 올바르게 구해보기  ?????
+    select deptno, ename, avg(sal) from emp group by deptno;
+    --에러이유 : 목록이 group by 목록과 일치하지 않아 에러 발생
+    select deptno, ename, avg(sal) from emp group by deptno, ename;
+   
+--having절을 사용하여 사원을 제외하고 급여 총액이 1000이상인 직급별 숫자를 구하고 급여 총액 구하기 (sal순으로 정렬)
+    select job, count(*), sum(sal) from emp where job != '사원' group by job having sum(sal) >= 1000 order by sum(sal);
+    select job, count(*), sum(sal) from emp group by job having job != '사원' and sum(sal) >= 1000 order by sum(sal);   
+   
+--급여 최고액, 최저액, 총액, 평균 출력하기 (round사용)    
+    select max(sal) 최고액, min(sal) 최저액, sum(sal) 총액, round(avg(sal)) 평균 from emp group by deptno;
+    
+--직급별 사원수를 출력하기    
+    select job, count(job) from emp group by job;
+    
+--과장의 수를 조회해 보기    
+    select job, count(job) from emp group by job having job = '과장';
+    
+--급여 최고액, 급여 최저액의 차액 출력하기
+    select max(sal)-min(sal) 차액 from emp;
+    
+--부서별 사원수 평균 급여를 반올림하기 ( 부서그룹 정렬과, 부서번호를 오름차순으로 정렬 )   
+    select deptno 부서번호, count(*) 사원수, round(avg(sal)) 평균급여 from emp group by deptno order by deptno asc;
+    
+--부서번호, 이름, 지역명, 부서내의 모든 사원의 평균 급여 출력 (decode 사용)
+    select deptno, decode(deptno, 10, '경리부'
+                                , 20, '인사부'
+                                , 30, '영업부'
+                                , 40, '전산부') DNAME,
+                   decode(deptno, 10, '서울'
+                                , 20, '인천'
+                                , 30, '용산'
+                                , 40, '수원') LOCATION,
+           count(*) as "Number of People", round(avg(sal)) sal                
+    from emp group by deptno;
+    
+    
+--데이터 딕셔너리 ????
+--데이터 딕셔너리는 사용자가 테이블을 생성하거나 사용자를 변경하는 등의 작업을 할 때
+--데이터 베이스 서버에 의해 자동으로 갱신되는 테이블이다.
+--사용자는 데이터 딕셔너리의 내용을 직접 수행하거나 삭제할 수 없고
+--사용자가 이해할 수 있는 데이터를 산출해 줄 수 있도록 하기 위해서 읽기 전용 뷰 형태로 정보를 제공한다.
+--용어 사전은 엔티티, 속성의 이름의 의미를 설명해 놓은 사전을 의미한다.
+
+--USER_ : 자신의 계정이 소유한 객체 등에 관한 정보 조회
+--ALL_ : 자신 계정 소유 또는 권한을 부여받은 객체 등에 관한 정보 조회
+--DBA_ : 데이터 베이스 관리자만 접근 가능한 객체 등의 정보 조외
+
+--ALL_
+    select owner, table_name from all_tables;
+--DBA_ : dba나 시스템 권한을 가진 사용자만 접근가능, 권한이 없으면 오류 발생
+    select owner, table_name from dba_tables;
+    
+--데이터 베이스 관리자만 접근 가능, 권한에 대한 정보를 갖는 딕셔너리
+    select * from dba_sys_privs;
+    
+--테이블 기술서 <<프로젝트 추가 서류입니다>>
+--테이블 기술서는 개별 테이블에 대한 보다 자세한 문서화 수단이 된다.
+--모델링 도구에 테이블에 대한 정보가 저장되어 있지만 테이블 하나하나에 대한 출력된 문서가 필요하다.
+
+--대표적인 시스템 권한
+--create session : 데이터베이스에 접속할 수 있는 권한
+--create table : 테이블을 생성할 수 있는 권한
+--create any table : 다른 user의 이름으로 테이블을 생성할 수 있는 권한
+--create tablespace : 테이블 스페이스를 만들 수 있는 권한
+--unlimited tablespace : 사용량을 무제한으로 허용하는 권한
+--select any table : 어느 테이블, 뷰라도 검색을 할 수 있는 권한
+--create user : 새로운 사용자를 생성
+--create view : 사용자 스키마에서 뷰를 생성할 수 있는 권한
+--create sequence : 사용자 스키마에서 시퀀스를 생성할 수 있는 권한
+--create procedure : 사용자 스키마에서 함수를 생성할 수 있는 권한
+--drop user : 사용자를 삭제하는 권한
+--drop any table : 임의의 테이블을 삭제할 수 있는 권한
+--
+--권한 부여 명령 grant
+--권한 회수 명령 revoke
+
+--role 생성
+--  create role 롤이름:
+--role 권한 부여
+--  grant 권한 to 롤이름
+--권한이 부여된 롤을 유저에게 부여
+--  grant 롤이름 to 유저1, 유저2,...;
+
+--connect 롤 : 사용자가 접속하기 위하여 가장 기본적인 권한 8가지를 묶어 놓음
+--resource 롤 : 사용자가 객체(테이블, 뷰, 인덱스)를 생성할 수 있도록 시스템 권한을 묶어 놓음
+--dba 롤 : 시스템 관리에 필요한 모든 권한을 부여할 수 있는 가장 강력한 권한
+
+--DDL(Data Definition Language) : create 문, drop 문, alter 문
+--테이블 구조를 만드는 create table 문
+--create table 테이블이름( 열이름 데이터형 [default 표현식], [열이름 데이터형...]);
+
+--스테레오 타입이란
+--설계 모델에 의미(또는 분류)를 부여하고 싶을 때 사용
+--<< 와 >> 사이에 스테레오명 정의
+--클래스명 뿐만 아니라 모든 요소에 적용가능
+--uml에서의 스테레오 타입이 이미 정의되어 있음
+--설계자가 임의로 지정할 수도 있음
+
+
+--사원정보를 저장하기 위한 테이블 생성하기
+    drop table emp01;
+    
+    create table emp01(
+        eno number(4),
+        ename varchar2(14),
+        sal number(7,3)
+    );
+    
+    desc emp01;
+    select * from emp01;
+    
+--사원테이블에 날짜 타입을 가지는 birth 칼럼 추가하기    
+    alter table emp01 add(birth date);
+    desc emp01;
+    select * from emp01;
+    
+--사원이름 칼럼 크기 30으로 변경하기
+    alter table emp01 modify ename varchar2(30);
+    desc emp01;
+    
+--사원테이블에서 이름 컬럼 제거하기    
+    alter table emp01 drop column ename;
+    desc emp01;
+    
+--시스템의 요구가 적을 때 칼럼을 제거할 수 있도록 하나 이상의 칼럼을 unused로 표시
+--실제로는 테이블에서 해당 칼럼이 제거되지는 않음
+    alter table emp01 set unused(eno);    
+    desc emp01;
+    
+--테이블에서 unused로 표시된 모든 칼럼을 제거하기
+    alter table emp01 drop unused columns;
+    desc emp01;
+    
+--테이블 명을 변경하는 rename문
+--rename 이전이름 to 바꿀이름
+    rename emp01 to emp02;
+    desc emp02;
+    desc emp01;
+    
+    drop table emp02;
+    desc emp02;
+    
+--rownum    
+--내장 함수는 아니지만 자주 사용되는 문법임
+--오라클에서 내부적으로 생성되는 가상 칼럼으로 sql조회 결과의 순번을 나타냄
+--자료를 이부분만 확인하여 처리할때 유용함
+    select rownum "순번", empno, ename, sal from emp where rownum<=3;
+    
+--insert문 : 데이터 삽입
+--insert into 테이블이름[(속성 리스트)] values(속성값_리스트);
+--into 키워드와 함께 투플을 삽입할 테이블의 이름과 속성의 이름을 나열
+--속성 리스트를 생략하면 테이블을 정의할 때 지정한 속성의 순서대로 값이 삽임됨
+--values 키워드와 함께 삽입할 속성 값들을 나열
+--into 절의 속성 이름과 values 절의 속성 값은 순서대로 일대일 대응되어야함
+    select * from dept01;
+    drop table dept01;
+    
+    create table dept01(
+        deptno number(02),
+        dname varchar2(14),
+        loc varchar2(13)
+    );
+    desc dept01;
+    
+    insert into dept01 values(10, '경리부', '서울');
+    select * from dept01;
+    
+    insert into dept01 (deptno, loc, dname) values(20, '인천', '인사부');
+    select * from dept01;
+
+    insert into dept01 values(40, '전산부', null);
+    select * from dept01;
+
+    insert into dept01 values(50, '기획부', '');
+    select * from dept01;
+    
+    desc dept01;
+    
+    
+    drop table emp02;
+    
+    create table emp02(
+        empno number(4),
+        ename varchar2(10),
+        job varchar2(9),
+        hiredate date,
+        deptno number(2)
+    );
+    desc emp02;
+    
+    insert into emp02 values(1001, '김사랑', '사원', '2015/03/01', 20);
+    select * from emp02;
+
+    insert into emp02 values(1002, '한예슬', '대리', to_date('2014,05,01','yyyy,mm,dd'), 20);
+    select * from emp02;
+
+    insert into emp02 values(1003, '오지호', '과장', sysdate, 30);
+    select * from emp02;
+    
+    desc emp02;
+    
+
+--테이블에 내용을 수정하는 update문
+--update 테이블이름 set 속성이름1=값1, 속성이름2=값2,... where 검색조건;
+
+--dept01 테이블에서 10번 부서의 부서명을 생산부로 업데이트 하기
+    update dept01 set dname='생산부'where deptno=10;
+    select * from dept01;
+--dept01 테이블에서 20번 부서의 부서명은 생산부2, 위치를 부산으로 업데이트 하기
+    update dept01 set dname='생산부2',loc='부산' where deptno=20;
+    select * from dept01;
+    
+    commit;
+    
+--모든 dname을 생산부3로 업데이트하기
+    update dept01 set dname='생산부3';
+    select * from dept01;
+
+--업데이트 하기 전으로 되돌리기
+    rollback;
+    select * from dept01;
+    commit;
+
+--delete문
+--테이블에 있는 기존 튜플을 삭제하는 명령
+--delete from 테이블명 where 검색조건;
+--where절을 생략하면 모든행이 삭제됨
+--10번 부서의 특정 로우만 삭제하기
+    delete dept01 where deptno=10;
+    select * from dept01;
+    
+    rollback;
+    commit;
+
+    delete emp02 where deptno=20;    
+    select * from emp02;
+
+    rollback;
+    commit;
+    
+    
+--테이블 생성
+    drop table employee03;
+    
+    create table employee03(
+        empno number(4),
+        ename varchar2(20),
+        job varchar2(20),
+        sal number(7,3)
+    );
+    desc employee03;
+    
+    insert into employee03 values(1000, '한용운', '승려', 100);
+    insert into employee03 values(1010, '허준', '외관', 150);
+    insert into employee03 values(1020, '주시경', '국어학자', 250);
+    insert into employee03 values(1030, '계백', null, 250);
+    insert into employee03 values(1040, '선덕여왕', '', 200);
+    select * from employee03;
+    
+    commit;
+    
+--급여가 200이 안되는 사원에게 50을 인상하기
+    update employee03 set sal=sal+50 where sal<200;
+    select * from employee03;
+
+    rollback;
+    
+--테이블에 직업이 null인 사람의 사원정보를 삭제하기
+    delete employee03 where job is null;
+    select * from employee03;
+
+    rollback;
+    
+    
+    
+    desc employees2;
+    create table employees2(
+        employee_id number(10),
+        name varchar2(20),
+        salary number(7,2)
+    );
+    desc employees2;
+
+--employees2와 동일하게 테이블 생성하기    
+    create table employees3 as select *from employees2;
+    desc employees3;
+
+--purge recyclebin;
+--쓰레기 테이블을 삭제, 휴지통을 비운다.
+--남은 명령어 테이블에 대한 정보를 지운다.
+    purge recyclebin;
+    
+--false 구조만 만들어짐    
+    drop table dept02;
+    create table dept02 as select * from dept where 1=0;
+--true 데이터 내용을 복사한다    
+    drop table dept02;
+    create table dept02 as select * from dept where 1=1;
+    
+    desc dept02;
+    select * from dept02;
+    
+--employees2에 manager_id 추가        
+    desc employees2;
+    alter table employees2 add (
+        manager_id varchar2(10)
+    );
+    desc employees2;
+    
+--테이블 구조를 매니저 아이디 필드 항목을 수정        
+    desc employees2;
+    alter table employees2 modify (
+        manager_id varchar2(20)
+    );
+    desc employees2;
+
+--칼럼을 삭제
+    desc employees2;
+    alter table employees2 drop column manager_id;
+    desc employees2;
+    
+--문자형 데이터
+--char, varchar, nchar 유니코드 고정길이 문자형데이터.
+--nvarchar 유니코드 가변길이 문자형 데이터, long(2GB) 가변길이
