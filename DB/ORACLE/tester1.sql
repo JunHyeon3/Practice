@@ -899,3 +899,400 @@ COMMIT;
 --문자형 데이터
 --char, varchar, nchar 유니코드 고정길이 문자형데이터.
 --nvarchar 유니코드 가변길이 문자형 데이터, long(2GB) 가변길이
+
+
+----------------------------------------09/07--------------------------------------
+
+--데이터의 무결성 제약조건(Data Integrity Constraint Rule)이란
+--테이블에 부적절한 자료가 입력되는 것을 방지하기 위해서 테이블을 생성할 때
+--각 칼럼에 대해서 정의하는 여러가지 규칙을 말한다.
+
+--무결성 제약조건의 종류
+--not null : null을 허용하지 않는다.
+--unique : 항상 유일한 값을 갖도록 중복된 값을 허용하지 않는다.
+--primary key : null을 허용하지 않고, 중복된 값을 허용하지 않는다.
+--              not null과 unique 조건이 결합한 형태
+--foreign key : 참조되는 테이블의 칼럼의 값이 존재하면 허용한다.
+--check : 저장 가능한 데이터 값이 범위나 조건을 지정하여, 설정한 값만 허용한다.
+
+--제약조건 확인하기
+--오라클은 user_constraints 데이터 딕셔너리로 제약조건에 관한 정보들을 알려준다.
+--user_constraints 데이터 딕셔너리를 조회하면 내가만든 제약조건의 정보들을 조회할 수 있다.
+
+--해당 계정이 소유한 제약조건 조회    
+    desc user_constraints;
+    select * from user_constraints;
+    
+--특정 칼럼만 조회
+    select owner, constraint_name, constraint_type, table_name, search_condition, r_constraint_name from user_constraints;
+    --user_constraints : 데이터 딕셔너리의 자주 사용되는 칼럼
+    --owner : 제약조건을 소유한 계정
+    --constraint_name : 제약조건 명
+    --constraint_type : 제약조건 유형
+    --table_name : 제약조건이 속한 테이블명
+    --search_condition : check 조건일 경우에는 어떤 내용이 조건으로 사용되었는지 설명
+    --r_constraint_name : foreign key인 경우 primary key를 참조 했는지에 대한 정보
+
+--constraint_type은 제약조건 유형을 저장하는 칼럼
+    select constraint_name, constraint_type, table_name from user_constraints; 
+    --p : primary key
+    --r : foreign key
+    --u : unique
+    --c : check, not null
+    
+--in 연산자를 사용하여 두개의 테이블에 대한 현재 사용자의 제약조건 조회하기
+    select * from user_constraints where table_name in ('EMP', 'DEPT');
+
+--기본적인 무결성 제약
+--의미 : 관계형 데이터 모델에서 정의한 무결성 제약
+--기본키 무결성 제약, 참조 무결성 제약
+
+--테이블의 무결성 제약
+--의미 : 테이블을 정의하거나 변경 과정에서 실행 가능한 무결성 제약
+--not null, unique, check, default
+
+--기타 무결성 제약
+--위에 해당 안되는 제약들
+--주장, 트리거
+
+--기본키 무결성 제약
+--테이블에서 레코드들이 반드시 유일하게 식별될 수 있어야 한다는 조건
+--정의 : 기본키 무결성 제약
+--기본키는 null값을 가질 수 없으며, 
+--기본키의 값이 동일한 레코드가 하나의 테이블에 동시에 두개 이상 존재할 수 없다.
+
+--제약 조건 설정
+--(1) 제약조건 명명 규칙 (constraint name)
+--    [테이블명]_[칼럼명]_[제약조건유형]
+--(2) 칼럼 레벨 제약조건 설정
+--    [column_name] [data_type] constraint [constraint_name] [constraint_type]
+
+--제약조건 추가하기
+--alter table 테이블명 add constraint 제약명 제약조건 (칼럼명);
+--제약조건 변경하기
+--alter table 테이블명 modify constraint 제약명 제약조건 (칼럼명);
+--제약조건 삭제하기
+--alter table 테이블명 drop constraint 제약조건; 
+
+
+-- 제약조건이 없을 때 
+    drop table emp01;       
+    create table emp01(
+        empno number(4),
+        ename varchar2(10),
+        job varchar2(9),
+        deptno number(2) );
+    desc emp01;    
+    insert into emp01 values(null, null, '사원', 30);
+    select * from emp01;
+    
+    -- 특정 칼럼만 조회    
+    select owner, constraint_name, constraint_type, table_name, search_condition, r_constraint_name
+    --테이블 이름으로 조건을 조회
+    from user_constraints where table_name = 'EMP01';
+    --테이블 생성시 아무런 제약조건을 주지 않았으므로 조회 결과가 없다.
+
+
+--not null
+--특정 필드에 대해서 null 값의 입력을 허용하지 않는다
+--기본키로 정의된 필드에 대해서는 명시적으로 not null 조건을 설정하지 않아도 된다
+--형식 : 칼럼명 자료형 not null;
+--칼럼 레벨로만 정의할 수 있다.   
+    drop table emp01;
+    create table emp01(
+        empno number(4) not null,
+        ename varchar2(10) not null,
+        job varchar2(9),
+        deptno number(2) );
+    desc emp01;   
+    
+    select owner, constraint_name, constraint_type, table_name, search_condition, r_constraint_name
+    from user_constraints where table_name = 'EMP01';
+    
+    insert into emp01 values(null, null, '사원', 30);
+    --ORA-01400: cannot insert NULL into ("TESTER1"."EMP01"."EMPNO") 오류 발생
+    --이유는 첫 번째 칼럼과 두번째 칼럼에 not null제약조건이 있기때문에 null값을 삽입할 수 없다.
+    insert into emp01 values(1000, '허준', '사원', 30);
+    commit;
+    select * from emp01;
+    
+    insert into emp01 values(1000, '홍길동', '과장', 20);
+    --첫번째 칼럼이 not null 제약조건이지만 중복된 값은 허용 되므로 값이 삽입된다.
+    select * from emp01;
+    
+
+--unique
+--특정 칼럼에 대해 자료가 중복되지 않도록, 유일한 값만 허용하는 제약조건
+--null값은 예외
+--null값도 입력되지 않도록 제한 하려면, not null 제약조건도 기술하면 된다.
+--constraint 제약명 unique (필드 리스트)
+    drop table emp03;
+    create table emp03(
+        empno number(4) unique,
+        ename varchar2(10) not null,
+        job varchar2(9),
+        deptno number(2) );
+    desc emp03;  
+    
+    insert into emp03 values(1000, '허준', '사원', 30);
+    select * from emp03;
+    
+    insert into emp03 values(1000, '홍길동', '과장', 30);
+    --ORA-00001: unique constraint (TESTER1.SYS_C007026) violated 오류발생
+    --첫번째 칼럼의 값에 unique 제약조건이 있기 때문에 중복된 값을 허용하지 않는다.
+
+    insert into emp03 values(null, '안중근', '대리', 20);
+    insert into emp03 values(null, '이순신', '부장', 20);
+    --첫번째 칼럼은 중복된 값을 허용하지 않지만 null은 허용된다.
+    
+    
+    drop table emp04;
+    create table emp04(
+        empno number(4) constraint emp04_empno_uk unique,
+        ename varchar2(10) constraint emp04_ename_nn not null,
+        job varchar2(9),
+        deptno number(2) );
+    desc emp04;      
+    
+    -- emp04 테이블의 제약조건을 살펴보기
+    select constraint_name, constraint_type, table_name
+    from user_constraints where table_name = 'emp04';
+    --왜 안나오는지 이유 : table_name을 emp04로 소문자로 적어서 안나온다.
+    
+    insert into emp04 values(1000, '허준', '사원', 30);
+    insert into emp04 values(1000, '홍길동', '과장', 20);
+    --ORA-00001: unique constraint (TESTER1.EMP04_EMPNO_UK) violated 오류 발생
+    --첫번째 칼럼에 unique 제약조건이 있기 때문에 1000이 입력될 수 없다.
+ 
+ 
+--primary key
+    drop table emp05;
+    create table emp05(
+        empno number(4) constraint emp05_empno_pk primary key,
+        ename varchar2(10) constraint emp05_ename_nn not null,
+        job varchar2(9),
+        deptno number(2) );
+    desc emp05;   
+    
+    select constraint_name, constraint_type, table_name
+    from user_constraints where table_name = 'EMP05';
+    
+    insert into emp05 values(1000, '허준', '사원', 30);
+    select * from emp05;
+    
+    insert into emp05 values(1000, '홍길동', '과장', 20);
+    --ORA-00001: unique constraint (TESTER1.EMP05_EMPNO_PK) violated 오류발생
+    --첫번째 칼럼은 primary key로 not null과 unique가 합쳐진 형태이므로 중복된 값이 입력될 수 없다.
+    
+    insert into emp05 values(NULL, '이순신', '부장', 30);
+    --ORA-01400: cannot insert NULL into ("TESTER1"."EMP05"."EMPNO") 오류발생   
+    --첫번째 칼럼은 primary key로 not null과 unique가 합쳐진 형태이므로 null 값이 입력될 수 없다.
+    
+
+--참조 무결성을 위한 제약조건 foreign key
+--자식 테이블인 사원 테이블(emp)의 부서번호(deptno)칼럼을 
+--부모테이블인 부서테이블(dept)의 부서번호(deptno)를 부모키로 설정하는 것이다.
+--한 테이블의 레코드가 다른 테이블을 참조하여, 
+--참조되는 테이블에 해당 레코드가 반드시 존재하거나 null값을 가진다.
+--이 조건이 지켜지지 않는다면 참조하는 레코드는 실제로 존재하지 않는 레코드를 참조하게 되는 오류가 발생한다.
+--실제 존재하지 않는 잘못된 값이 저장되지 않도록 보장하는 수단이다.
+--형식 : constraint 제약명 foreign key (필드리스트1) references 테이블명 (필드리스트2)
+--필드리스트1 : 외래키로 정의하는 필드들의 리스트
+--테이블명 : 참조 대상인 테이블의 이름
+--필드리스트2 : 참조 대상 테이블의 기본키
+--constraint emp_empno_fk foreign key (deptno) references dept (deptno)
+
+--alter table문을 사용하여 외래키를 별도로 설정
+--ex) alter table student
+--    add constraint fk_dept foreign key (dept_id) references department (dept_id)
+--    학생테이블에서 부서테이블의 부서아이디를 참조하는 외래키인 fk_dept를 추가한다
+--외래키 삭제
+--ex) alter table student drop constraint fk_dept;
+--    학생테이블에서 fk_dept 제약 조건을 없앤다.
+
+--테이블 이름으로 제약조건 살펴보기
+    select constraint_name, constraint_type, table_name
+    from user_constraints where table_name = 'EMP01';
+    --SYS_C007029	C	EMP01 C는 not null이 걸려있다.
+--제약조건이 지정된 칼럼 살펴보기
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name = 'EMP01';
+    
+--alter를 사용하여 emp01_empno_fk 제약조건을 추가하기    
+    alter table emp01
+    add constraint emp01_empno_fk foreign key (deptno)
+    references dept (deptno);
+--추가한 emp01_empno_fk 제약조건을 제거하기    
+    alter table emp01
+    drop constraint emp01_empno_fk;
+    
+    
+--테이블 이름으로 제약조건 살펴보기
+    select constraint_name, constraint_type, table_name
+    from user_constraints where table_name = 'EMP';
+--제약조건이 지정된 칼럼 살펴보기    
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name = 'EMP';
+    
+    insert into dept(deptno, dname, loc) values (50,'기획부', 'LA');
+    select * from dept;
+        
+    drop table emp06;
+    create table emp06(
+        empno number(4) constraint emp06_empno_pk primary key,
+        ename varchar2(10) constraint emp06_ename_nn not null,
+        job varchar2(9),
+        deptno number(2) constraint emp06_deptno_fk references dept(deptno) 
+    );
+    desc emp06;  
+    select * from emp06;
+    select * from dept;
+    
+--테이블 이름으로 제약조건 살펴보기
+    select constraint_name, constraint_type, table_name
+    from user_constraints where table_name = 'EMP06';
+--제약조건이 지정된 칼럼 살펴보기    
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name = 'EMP06';
+    
+    insert into emp06 values(1010, '홍길동', '사원', 50);
+    --여기서 알수 있는 제약조건 명은 명명 규칙이다
+    --dept(deptno) 50번 부서 기획부가 참조 제약 조건이 걸린것이다.
+    --emp06 테이블에서 1010 홍길동 사원 50 <== deptno
+    --references dept(deptno) dept 테이블에서 50번 부서 기획부 LA
+    insert into emp06 values(1011, '이소룡', '부장', 60);
+    --ORA-02291: integrity constraint (TESTER1.EMP06_DEPTNO_FK) violated - parent key not found
+    --부모키로 설정된 dept 테이블의 deptno에 60번 부서가 존재하지 않아 오류가 발생한다.
+    select * from user_constraints where table_name = 'EMP06';
+    select * from emp06;
+
+
+--check 제약조건
+--입력되는 값을 체크하여 설정된 값 이외의 값이 들어오면
+--오류 메시지와 함께 명령이 수행되지 못하게 한다
+--조건으로 데이터의 값의 범위나 특정 패턴의 숫자나 문자 값을 설정할 수 있다.
+--형식 : constraint 제약명 check (조건식)
+--      constraint emp_year_ck check (year >= 1 and year <=4)
+    
+    drop table emp07;
+    create table emp07(
+        empno number(4) constraint emp07_empno_pk primary key,
+        ename varchar2(10) constraint emp07_ename_nn not null,
+        sal number(7,2)constraint emp07_sal_ck check (sal between 500 and 5000),
+        gender varchar2(1) constraint emp07_gender_ck check (gender in('M','F')) 
+    );
+    desc emp07; 
+    
+    select constraint_name, constraint_type, r_constraint_name, table_name
+    from user_constraints where table_name = 'EMP07';
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name = 'EMP07';
+
+    insert into emp07 values(1000, '허준', 500, 'M');
+    select * from emp07;
+    
+    insert into emp07 values(1000, '허준', 200, 'A');
+    --ORA-02290: check constraint (TESTER1.EMP07_GENDER_CK) violated
+    --세번째 칼럼과 네번째 칼럼의 제약조건이 check이기 때문에
+    --해당 check조건에 맞이 않아 데이터 삽입이 되지 않는다
+    --sal의 check조건은 500이상 5000이하의 데이터
+    --gender의 check 조건은 'M'또는 'F'의 데이터
+    --empno도 pk라 제약조건에 걸리긴한다.
+    
+
+--default 제약조건
+--아무런 값을 입력하지 않았을 때 null값 대신 지정한 값이 입력이 되도록 한다.
+
+    drop table dept01;
+    create table dept01(
+        deptno number(2) primary key,
+        dname varchar2(14),
+        loc varchar2(13) default '서울'
+    );
+    desc dept01;
+    
+    select constraint_name, constraint_type, r_constraint_name, table_name
+    from user_constraints where table_name = 'DEPT01';
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name = 'DEPT01';
+    
+--디폴트를 별도로 설정할 수 있다.
+--alter table student 
+--alter column year set default 1;
+--디폴트를 해제할 수도 있다.
+--alter table student 
+--alter column year drop default;
+
+--오라클은 default에 대한 별도의 설정 및 해제에 sql을 표준을 따르지 않는다
+--alter table student modify (year int default 1);
+--alter table student modify (year int default null);
+
+    insert into dept01(deptno, dname) values(10, '경리부');
+    select * from dept01;
+    
+    
+    
+    select * from emp01;
+    drop table emp01;
+    
+    create table emp01(
+        empno number(4) primary key,
+        ename varchar2(10) not null,
+        job varchar2(9) unique,
+        deptno number(2) references dept(deptno)
+            --foreign key 제약조건을 설정한다. dept테이블의 deptno칼럼을 emp01테이블의 deptno칼럼이 참조한다.
+    );
+    desc emp01;
+    select * from user_constraints where table_name = 'EMP01';
+   
+    
+
+--테이블레벨 방식으로 제약조건 지정하기
+--테이블 레벨의 제약조건 지정은 칼럼을 모두 정의하고 나서
+--테이블 정의를 마무리 짓기 전에 따로 생성된 칼럼들에 대한 제약조건을 한꺼번에 지정하는 것이다.
+--복합키로 기본키를 지정할 경우 칼럼 형식은 안되고 반드시 테이블 레벨 방식으로 형식을 작성해야만 한다.
+--간단히 두개 이상의 칼럼이 하나의 기본키로 구성할때 작성하는것이라고 보면된다.
+    drop table emp02;
+    
+    create table emp02(
+        empno number(4),
+        ename varchar2(10) not null,
+        job varchar2(9),
+        deptno number(2),
+        unique(job),
+        foreign key(deptno) references dept(deptno)
+        --칼럼을 정의하고 난 후 다시 제약조건을 지정한 형태
+    );
+    select constraint_name, constraint_type, r_constraint_name, table_name
+    from user_constraints where table_name = 'EMP02';
+
+    
+    drop table emp03;
+    
+    create table emp03(
+        empno number(4),
+        ename varchar2(10) constraint emp03_ename_nn not null,
+        job varchar2(9),
+        deptno number(2),
+        constraint emp03_empno_pk primary key (empno),
+        constraint emp03_job_pk unique (job),
+        constraint emp03_deptno_fk foreign key (deptno) references dept(deptno)
+        --테이블 레벨 방식으로 제약조건 지정하기
+    );   
+    select constraint_name, constraint_type, r_constraint_name, table_name
+    from user_constraints where table_name = 'EMP03';
+    
+    drop table member01;
+    create table member01(
+        name varchar2(10),
+        address varchar2(30),
+        hphome varchar2(16),
+        constraint member01_combo_pk primary key(name, hphome)
+    );   
+    
+    select constraint_name, constraint_type, r_constraint_name, table_name
+    from user_constraints where table_name in('MEMBER01');
+    --제약조건이 지정된 칼럼 살펴보기 (복합키인지 살펴보려고)        
+    select constraint_name, table_name, column_name
+    from user_cons_columns where table_name in('MEMBER01');   
+    
