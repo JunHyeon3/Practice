@@ -1296,3 +1296,342 @@ COMMIT;
     select constraint_name, table_name, column_name
     from user_cons_columns where table_name in('MEMBER01');   
     
+    
+----------------------------------------09/08--------------------------------------    
+    
+----제약조건을 변경, 제거 할 때 제약명은 대문자로 입력해야한다
+    drop table emp01;       
+    create table emp01(
+        empno number(4) unique,
+        ename varchar2(10),
+        job varchar2(9),
+        deptno number(2) 
+    );
+
+--제약조건 변경하기
+--alter table 테이블명 modify constraint 제약조건명 제약조건(칼럼명);
+    alter table emp01 modify empno constraint EMP01_EMPNO_NN not null;
+    select * from user_constraints where table_name in('EMP01');
+
+--제약조건 제거하기
+--alter table 테이블명 drop constraint 제약조건명;
+    alter table emp01 drop constraint EMP01_EMPNO_NN;
+    select * from user_constraints where table_name in('EMP01');
+ 
+--제약조건 추가하기
+--alter table 테이블명 add constraint 제약조건명 제약조건(칼럼명);
+    alter table emp01 add constraint EMP01_DEPTNO_FK 
+    foreign key(deptno) references dept01(deptno) on delete cascade;
+    select * from user_constraints where table_name in('EMP01');    
+    
+----알아두면 간편한 것
+--종속된 모든 제약조건을 삭제하기
+    select * from user_constraints where table_name in('EMP01');
+--제약조건이 걸려있는 칼럼명을 확인하기
+    select * from user_cons_columns where table_name = 'EMP01';   
+    
+    
+
+--FK인 데이터를 삭제할 때 발생하는 문제 알아보기
+    drop table emp01;       
+    create table emp01(
+        empno number(4),
+        ename varchar2(10) constraint emp01_ename_nn not null,
+        job varchar2(9),
+        deptno number(2), 
+        constraint emp01_empno_pk primary key(empno),
+        constraint emp01_job_uk unique(job),
+        constraint emp01_deptno_fk foreign key(deptno) references dept01(deptno)
+    );
+    
+    insert into dept01(deptno, dname) values(10, '경리부');
+    insert into emp01 values(1000,'허준','사원',10);
+    
+    select * from emp01;
+    select * from dept01;
+
+    delete from dept01 where deptno=10;
+    --ORA-02292: integrity constraint (TESTER1.EMP01_DEPTNO_FK) violated - child record found 오류발생
+    --why? 자식 키인 emp01 테이블의 deptno 칼럼에서 10이라는 부서의 값을 사용중이라서 삭제할 때 오류가 발생한다.
+    commit;
+    
+--해결방법1. 참조중인 칼럼인 emp01의 deptno의 데이터를 먼저 삭제한다.      
+    delete from emp01 where deptno=10;
+    delete from dept01 where deptno=10;
+    rollback;
+  
+--해결방법2. emp01테이블을 생성할 때 deptno 칼럼에 제약조건 지정서 cascade옵션을 부여한다.
+    drop table emp01;       
+    create table emp01(
+        empno number(4),
+        ename varchar2(10) constraint emp01_ename_nn not null,
+        job varchar2(9),
+        deptno number(2), 
+        constraint emp01_empno_pk primary key(empno),
+        constraint emp01_job_uk unique(job),
+        constraint emp01_deptno_fk foreign key(deptno) references dept01(deptno) on delete cascade
+        --cascade 옵션은 참조한 부모테이블의 칼럼값이 삭제될 때 같이 삭제한다
+    );
+    insert into emp01 values(1000,'허준','사원',10);
+    delete from dept01 where deptno=10;
+    commit;
+    
+    
+--join이란?
+--둘 이상의 테이블을 연결하여 데이터를 검색하는 방법
+
+--join 조건이란?
+--여러 테이블에서 특정 열 선택
+--where절 안에 두 데이블의 공통되는 칼럼 비교
+--둘 이상의 테이블을 쿼리하여 결과 집합 생성
+--기본 키 및 외래 키를 조인 조건으로 사용
+--테이블을 조인하려면 지정한 테이블에서 공통적으로 사용하는 열 사용
+    
+--조인의 필요성
+--관계형 데이터베이스에서는 테이블간의 관계가 중요하기 때문에 
+--하나 이상의 테이블이 빈번히 결합하여 사용된다.
+--한개 이상의 테이블에서 데이터를 조회하기 위해서 사용되는 것이 조인이다.
+--특정 부서 번호에 대한 부서이름은 무엇인지는 부서 테이블(dept)에 있다
+--특정 사원에 대한 부서명을 알아내기 위해서는 부서 테이블에서 정보를 얻어 와야 한다.
+--sql에서 두개 이상의 테이블을 결합해야만 원하는 결과를 얻을수 있을 때
+--한번의 질의로 원하는 결과를 얻을 수 있는 조인 기능을 제공한다.
+
+--cross join
+--특별한 키워드 없이 select 문의 from절에 두개의 테이블을 콤마로 연결해서 조회하는 방법이다.
+    select ename, deptno from emp order by deptno;
+    select deptno, dname from dept;
+--사원테이블과 부서테이블로 크로스 조인하기
+    select * from emp,dept;
+    
+--table join
+--join 조건
+--여러 결과 집합의 결합
+--equi join : 동일 칼럼을 기준으로 조인
+--non-equi join :  통일 칼럼이 없이 다른 조건을 사용하여 조인
+--self join : 한 테이블내에서 조인
+--outer join : 조인 조건에 만족하지 않는 행도 나타냄
+
+
+--여러 테이블의 집합
+--테이블에 예명(alias) 사용
+--카디션 곱
+--테이블 이름에 별칭사용
+--테이블 예명(alias) - 테이블 alias로 column을 단순 명확히 할 수 있음
+--    현재의 select문자에 대해서만 유효함
+--    테이블 alias는 길이가 30자까지 가능하나 짧을수록 더욱 좋음
+--    테이블 alias는 의미가 있어야함
+--    from 절에 테이블 alias 설정 시 해당 테이블
+--    alias는 select 문장에서 테이블 이름 대신에 사용해야 함
+    
+    
+--equl join
+--equl join은 가장 많이 사용하는 조인 방법으로서
+--조인 대상이 되는 두 테이블에서 공통으로 존재하는 칼럼의 값이 일치되는
+--행을 연결하여 결과를 생성하는 조인 방법이다.
+--조인 대상 테이블에서 공통 칼럼을 '='(equl) 비교를 통해
+--같은 값을 가지는 행을 연결
+--형식 : select table1.column, table2.column from table1, table2 where table1.column1 = table2.column2;
+
+    select * from emp,dept where emp.deptno= dept.deptno;
+
+--이문세인 사람의 정보만을 출력하는 이름과 소속 부서명 출력하기
+--emp테이블을 사용하면 emp.ename, dept.dname, emp.deptno
+--equl join 방식으로
+    select emp.ename, dept.dname, emp.deptno
+    from emp, dept
+    where emp.deptno = dept.deptno and ename = '이문세';
+    
+--칼럼 앞에 테이블을 명시하기 --> 칼럼의 모호성 해결한 결과
+--테이블에 별칭 부여하기
+--from emp e, dept d
+--테이블명 별칭 테이블명 별칭
+--사원테이블의 별칭으도 e를 부서테이블의 별칭으로 d를 부여
+--반드시 별칭을 부여해야함
+    select e.ename, d.dname, e.deptno
+    from emp e, dept d
+    where e.deptno = d.deptno and e.ename = '이문세';
+    
+    select * from salgrade;    
+    select ename, sal, grade
+    from emp, salgrade
+    where sal between losal and hisal
+    order by grade;
+    
+--as사용 부서를 추가해서 조인하기
+    select e.ename, d.dname, e.sal, s.grade
+    from emp e, dept d, salgrade s
+    where e.deptno = d.deptno and e.sal between s.losal and s.hisal
+    order by grade;
+    
+    
+--non-equl join
+--조인 조건에 특정 범위 내에 있는지를 조사하기 위해
+--where절에 조인 조건을 = 연산자 이외의 비교 연산자를 사용한다.
+    select ename, sal, grade from emp, salgrade 
+    where sal >= losal and sal <= hisal;
+
+
+--셀프조인
+--조인은 두 개 이상의 서로 다른 테이블을 서로 연결하는 것 뿐만 아니라
+--하나의 테이블 내에서 조인을 해야만 원하는 자료를 얻는 경우가 생긴다.
+--self join이란 말 그대로 자기 자신과 조인을 맺는것을 말한다.
+
+--특정 사원의 매니저가 누구인지 알아내기 as "사원이름" "직속상관이름"
+--특정 사원은 매니저의 정보는 mgr 칼럼에 등록
+    select employee.ename as "사람이름", manager.ename as "직속상관이름"
+    from emp employee, emp manager
+    where employee.mgr = manager.empno;    
+    
+
+--ANSI join
+--sql developer 뿐만 아니라 대부분의 사용 데이터 베이스 시스템에서 
+--표준언어로 ANSI(미국 표준 연구소) SQL에서 제시한 표준 기능을 대부분 준수하고 있다.
+--ANSI표준 SQL 조인 구문은 몇 가지 새로운 키워드와 절을 제공하여,
+--SELECT 문의 FROM 절에서 조인을 완벽하게 지정할 수 있다.
+
+--inner join 내부조인, outer join 외부조인
+--inner join 형식 : select * from table1 inner join table2 on table1.column1 = table2.column2;
+--아래의 예제를 inner join으로 바꿔서 해보기    
+    select ename, dname
+    from emp,dept
+    where emp.deptno = dept.deptno;
+    
+    select ename, dname
+    from emp inner join dept
+    on emp.deptno = dept.deptno;
+    
+--아까나온 이문제 경리부 10도 inner join으로 바꿔보기
+    select ename, dname, dept.deptno
+    from emp inner join dept
+    on emp.deptno = dept.deptno and ename = '이문세';
+    
+    
+--ANSI outer join
+--외부 조인에서는 full까지 지원하여 left,right,full 3가지를 지원한다.
+--외부 조인의 정의 : 
+--조인할 한쪽테이블에 조인 조건을 만족하는 행이 없어도,
+--그 테이블에 null행을 추가해서 결과 테이블에 포함시키는 연산이다.
+--외부 조인 연산자 : + 는 정보가 부족한 테이블에 null행을 추가시키기 위한 연산자이다.
+--외부조인 형식 : 
+--selecet문의 where 절에 조인 조건을 기술할 때 어느 한쪽 열 이름에 외부조인 연산자를 명시한다.
+--유의사항 : 
+--반드시 조인할 한 쪽 테이블에만 조인 연산자를 지정해야 한다.
+--외부 조인의 예 1 : emp테이블에 널 행을 주가한 외부 조인 모든 사원의
+--이름과 부서번호, 부서이름을 부서번호의 오름차순으로 출력하되, 아직 아무도 근무하지 않는 신설부서의 부서번호와 부서이름도 출력한다
+--외부 조인의 예 2 : dept 테이블에 널 행을 추가한 외부 조인 모든 사원의 이름과 부서번호,
+--부서이름을 부서번호의 오름차순으로 출력하되, 아직 부서가 정해지지 않은 신입사원의 이름도 출력한다.
+--형식 : select * from table1 [left | right | full] outer join table2
+
+    select member.ename as "사원이름", manager.ename as "직속상관이름"
+    from emp member left outer join emp manager
+    on member.mgr = manager.empno;
+    --안성기의 직속상관이름이 null로 나타남
+    
+--join은 두개 이상의 테이블들을 조합한 결과이다
+--inner join은 테이블의 관계가 일치하는 경위의 결과이고
+--outer join은 테이블의 관계가 일치하는 것과 일치하지 않는 것 중 한 쪽의 테이블을 결과로 가진다.
+--left outer join은 왼쪽 테이블을 기준으로 right outer join은 오른쪽 테이블을 기준임
+--inner join은 교집합
+--outer join은 교집합 + 한 쪽의 차집합 or 하나의 테이블 전체 + 교집합
+
+--join은 일반적으로 내부조인 방식을 의미, on은 조인에 대한 조건
+--where은 결과에 대한 필터 조건
+
+    select member.ename as "사원이름", manager.ename as "직속상관이름"
+    from emp member right outer join emp manager
+    on member.mgr = manager.empno;
+    
+    select member.ename as "사원이름", manager.ename as "직속상관이름"
+    from emp member full outer join emp manager
+    on member.mgr = manager.empno;
+   
+   
+   
+   
+--메인쿼리와 서브쿼리
+--서브쿼리
+--내부 질의(내부 select문, 중첩된 select문)를 의미한다
+--메인쿼리에서 사용할 값을 반환한다.
+--메인쿼리
+--외부 질의를 의미한다.
+--서브쿼리가 반환한 값을 이용해서 메인쿼리가 완성된다.
+
+--서브쿼리의 형식 
+--where 절의 연산자 뒤에, 괄호 안에 서브쿼리를 기술한다.
+--select  선택리스트1 from 테이블 이름1 where 표현식 op (select 선택리스트2 from 테이블 이름2);
+--서브쿼리의 특징
+--서브쿼리는 메인쿼리가 실행되기 전에 한번만 실행된다
+--서브쿼리의 실행 결과는 메인쿼리를 완성하는데 사용된다
+--서브쿼리는 select 문의 from절 where절 having절에서 사용할 수 있다.
+--where나 having 절에 하나 이상의 서브쿼리를 논리연산자인 and나 or로연결하여 사용할 수 있다.
+--서브쿼리 작성 규칙
+--서브쿼리를 작성할 때는 반드시 아래 작성 규칙을 따라야 한다.
+--서브쿼리는 괄호로 묶어서 기술해야 한다
+--서브쿼리는 비교 연산자의 우측에 위치해야 한다.
+--서브쿼리에 ORDER BY 절을 포함할 수 없다. (TOP연산자와 함께 있을때는 사용할 수 있다.)
+--단일 행 서브쿼리에는 단일 행 비교 연산자(>,=, >=, <, <=, <>)만 사용 가능하다.
+--다중 행 서브쿼리에는 다중 행 비교 연산자(IN, ANY, ALL)만 사용 가능하다.
+--SELECT 문의 FROM절, WHERE절, HAVING 절에서만 사용할 수 있다.
+--5) 서브쿼리를 SELECT 하지 않는 컬럼은 주 쿼리에서 사용할 수 없다
+--서브쿼리 안에 서브쿼리가 들어갈수 있다 --네스팅이라 하며,메모리가 허용하면 무제한 중첩이 가능하다
+
+--서브쿼리의 유형
+--서브쿼리는 크게 세가지 유형으로 구분할 수 있다.
+--1) 단일 행 서브쿼리 : 내부 질의에서 단 하나의 행만 반환
+--2) 다중 행 서브쿼리 : 내부 질의에서 하나 이상의 행 반환      
+--                   다중행연산자를 사용하여 IN,ANY,SOME,ALL,EXIST 반대는 NOT EXISTS 사용가능함
+--3) 다중 열 서브쿼리 : 내부 질의에서 하나 이상의 열 반환
+
+--단일 행 서브쿼리의 특징
+--내부 질의에서 단 하나의 행만 반환한다.
+--단일 행 서브쿼리를 포함하는 질의문에서는 단일 행 비교 연산자만(=,>,>=,<,<=,<>) 사용 가능하다.  
+--서브쿼리의 SELECT 절에서 그룹 함수를 사용할 수 있다.
+--단일 행 비교 연산자를 사용한다
+--단일 행(Single Row) 서브 쿼리는 수행 결과가 오직 하나의 로우(행, row)만을 반환하는 서브 쿼리를 갖는 것을 말한다
+
+--이문세의 부서명 구하기
+    select dname from dept
+    where deptno = (select deptno from emp where ename = '이문세');
+--이문세의 부서번호 구하기
+    select deptno from emp where ename = '이문세';
+    --서브쿼리의 결과는 메인쿼리에 보내게 되는데 메인쿼리의 메읹
+    
+--다중 행 서브쿼리의 특징
+--내부 질의에서 하나 이상의 행을 반환한다.
+--다중 행 서브쿼리를 포함하는 질의문에서는 다중 행 비교 연산자만 사용 가능하다.
+--서브쿼리의 select 절에서 그룹 함수를 사용할 수 있다.
+--다중 행 서브쿼리는 서브쿼리에서 반환되는 결과가 하나 이상의 행일 때 사용하는 서브쿼리이다.
+--다중 행 서브쿼리는 반드시 다중 행 연산자와 함께 사용해야 한다.
+
+--다중 행 비교 연산자
+--in 메인쿼리 비교조건이 서브쿼리가 반환한 목록의 어떤 값이 같은지 비교한다
+--결과중 하나라도 일치하면 참 값
+--in 연산자는 메인 쿼리의 비교 조건에서 서브쿼리의 출력 결과와 하나라도 일치하면
+--메인쿼리의 where 절의 참이 되도록 하는 연산자 이다.
+--any, some 메인 쿼리 비교조건이 서브쿼리가 반환한 목록의 각각의 값과 비교한다.
+--결과와 하나 이상이 일치하면 참 값
+--all메인쿼리 비교 조건이 서브쿼리가 반환한 목록의 모든 값과 비교한다.
+--결과와 모든 값이 일치하면 참 값
+--exist 메인쿼리 비교조건이 서브쿼리가 반환한 목록의 어떤 값과 같은지 비교한다
+--결과중 값이 하나라도 존재하면 참 값
+    
+    select round(avg(sal)) "평균급여" from emp;
+--평균 급여보다 더 많은 급여를 받는 사람 출력하기
+    select ename, sal from emp
+    where sal > (select avg(sal) from emp);
+    
+--급여가 500을 초과하는 사원의 소속된 부서의 부서번호 출력
+    select distinct deptno from emp 
+    where sal > 500;
+    
+--다중 열 비교 방식 
+--다중 열을 비교하는 방식은 pairwise와 non-pairwise 방식으로 구분된다.
+--pairwise 비교 : 
+--두개 이상의 열이 쌍을 이루어 비교되는 것을 의미한다.
+--하나의 where절을 사용할 때 이런 비교 결과를 얻을 수 있다.
+--non-pairwise 비교 : 
+--각각의 열이 별개로 비교되는 것을 의미한다.
+--여러개의 where 절을 사용할 때 이런 비교 결과를 얻을 수 있다.
+
+--급여는 30번부서의 어떤 사원과 같고, 업무는 20번부서의 어떤 사원과 같은 모든사원을 검색하기
+    
