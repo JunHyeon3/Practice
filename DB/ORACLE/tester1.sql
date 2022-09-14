@@ -1558,7 +1558,7 @@ COMMIT;
 
 --서브쿼리의 형식 
 --where 절의 연산자 뒤에, 괄호 안에 서브쿼리를 기술한다.
---select  선택리스트1 from 테이블 이름1 where 표현식 op (select 선택리스트2 from 테이블 이름2);
+--select 선택리스트1 from 테이블 이름1 where 표현식 op (select 선택리스트2 from 테이블 이름2);
 --서브쿼리의 특징
 --서브쿼리는 메인쿼리가 실행되기 전에 한번만 실행된다
 --서브쿼리의 실행 결과는 메인쿼리를 완성하는데 사용된다
@@ -1633,5 +1633,993 @@ COMMIT;
 --각각의 열이 별개로 비교되는 것을 의미한다.
 --여러개의 where 절을 사용할 때 이런 비교 결과를 얻을 수 있다.
 
---급여는 30번부서의 어떤 사원과 같고, 업무는 20번부서의 어떤 사원과 같은 모든사원을 검색하기
     
+    
+----------------------------------------09/13--------------------------------------    
+--급여는 30번부서의 어떤 사원과 같고, 업무는 20번부서의 어떤 사원과 같은 모든사원을 검색하기
+    SELECT ename, deptno, sal, job FROM emp 
+    WHERE sal in(select sal from emp where deptno = 30)
+    and job in (select job from emp where deptno = 20);
+--30번 부서의 모든 급여리스트
+--한예슬 대리 250, 오지호 과장 500, 신동엽 과장 450
+--장동건 부장 480, 감우성 차장 500, 조향기 사원 280
+--20번 부서의 모든 업무리스트
+--김사랑 사원, 이변형 부장, 강혜정 null사원, 박중훈 부장
+
+
+--ALL연산자
+--ALL조건은 메인쿼리의 비교조건이 서브쿼리의 검색결과와 모든 값이 일치하면 참이다. 
+--찾아진 값에 대해서 AND연산을 해서 모두 참이면 참이되는 셈이다. 
+--ALL은 "모든 비교값 보다 크냐" 이고, 묻는 것이 되므로 최대값보다 더 크면 참이 된다.
+
+--30번부서의 최대급여 구하기
+    SELECT MAX(SAL) "최대급여" FROM EMP WHERE DEPTNO = 30;
+    
+--문제) 서브쿼리와 ALL 연산자를 사용하여 30번 부서의 최대급여보다 많은 사원 조회하기   
+    SELECT ENAME, SAL FROM EMP 
+    WHERE SAL > ALL(SELECT MAX(SAL) FROM EMP WHERE DEPTNO = 30);
+    
+--문제) 서브쿼리를 사용하여 30번 부서의 평균급여보다 많은 사원 조회하기   
+    SELECT ENAME, SAL FROM EMP
+    WHERE SAL > (SELECT AVG(SAL) FROM EMP WHERE DEPTNO = 30);
+    
+    
+--ANY 연산자   
+--ANY 조건은 메인쿼리의 비교조건이 서브쿼리의 검색결과와 하나 이상만 일치하면 참이다.
+--ANY는 찾아진 값 중에서 최소값 보다 크면 참이 된다.
+
+--문제) ANY연산자를 사용하여 30번 부서의 최소급여보다 많은 급여를 받는 사원 구하기
+    SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30;
+    SELECT ENAME, SAL FROM EMP
+    WHERE SAL > ANY(SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30);
+    
+--문제) 다중행 비교방식으로 30번 부서의 최소급여보다 큰 급여를 조회하기
+    SELECT ENAME, SAL FROM EMP
+    WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30);
+    
+    SELECT ENAME, SAL FROM EMP
+    WHERE SAL > ANY(SELECT MIN(SAL) FROM EMP) 
+    AND SAL > ANY(SELECT SAL FROM EMP WHERE DEPTNO = 30);
+    
+   
+--EXISTS 연산자
+--EXISTS 연산자는 서브쿼리문에서 주로 사용하며
+--서브쿼리의 결과 값이 참이 나오기만 하면 바로 메인쿼리의 결과 값을 리턴한다.
+--서브쿼리의 결과 값이 존재하지 않는다면 메인쿼리의 어떠한 값도 리턴되지 않는다.
+--쿼리 속도 면에서는 서브쿼리 사용 시 IN 보다는 EXISTS가 훨씬 빠르다.
+--EXISTS의 반대로 NOT EXISTS도 사용이 가능하다.
+
+    SELECT * FROM DEPT 
+    WHERE EXISTS(SELECT * FROM EMP WHERE DEPTNO = 10);
+
+    SELECT * FROM DEPT 
+    WHERE EXISTS(SELECT * FROM EMP WHERE EMP.DEPTNO = DEPT.DEPTNO);    
+
+    SELECT * FROM DEPT 
+    WHERE NOT EXISTS(SELECT * FROM EMP WHERE EMP.DEPTNO = DEPT.DEPTNO);    
+    
+    SELECT * FROM EMP;
+    SELECT * FROM DEPT;
+    
+--문제) 직급이 과장인 사원이 속한 부서의 부서번호와 부서명과 지역을 조회하기 (IN 사용)
+    SELECT DEPTNO, DNAME, LOC FROM DEPT
+    WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE JOB = '과장');
+    
+--문제) 과장보다 급여를 많이 받는 사원들의 이름과 급여와 직급을 조회하기 (ALL 사용, 과장 생략)
+    SELECT ENAME, SAL, JOB FROM EMP
+    WHERE SAL > ALL (SELECT SAL FROM EMP WHERE JOB = '과장');
+    --과장인 사람의 급여는 500, 450 두가지가 나온다.
+    --ALL을 쓰면 두개의 값이 참일 때 성립되므로 최대값인 500 이상인 사람들이 조회되고,
+    --ANY를 쓰게되면 하나만 성립되도 실행되므로 최소값인 450 이상인 사람들이 조회된다.
+
+
+
+--뷰의 개념
+--VIEW는 물리적인 테이블을 근거한 논리적인 가상 테이블이다.
+--뷰는 기본테이블에서 파생된 객체로서 기본테이블에 대한 하나의 쿼리문이다.
+--뷰란 '보다'란 의미를 갖고 있는 점을 감안해보면 알 수 있듯이
+--실제 테이블에 저장된 데이터를 뷰를 통해서 볼 수 있도록 한다.
+--사용자에게 주어진 뷰를 통해서 기본 테이블을 제한적으로 사용하게 된다.
+--뷰의 정의와 특징
+--정의 : 하나 이상의 테이블의 데이터의 부분집합으로 구성되는 논리적인 테이블
+--특징 : 테이블 뿐만 아니라 다른 뷰를 기초로 생성 가능
+--    뷰 자체는 데이터를 직접 포함하지는 않지만, 
+--    창문역할을 하는 뷰를 통해서 데이터의 검색 및 수정이 가능
+--    열 별칭을 사용해서 생성된 뷰에 대해서는 열 별칭을 사용한 조작만 가능
+--장점 : 보안을 위해서 DB에 대한 접근을 제한할 수 있음
+--        사용자는 특정 테이블의 데이터 가운데 뷰로 정의된 특정 부분만을 보게 된다.
+--    복잡한 질의를 단순한 질의로 변환할 수 있음
+--        다중 테이블에서 뷰를 생성하면 테이블 조인이 불필요하게 된다.
+--        즉, 주로 사용하는 정보만을 대상으로 데이터 조작을 수행할 수 있다.
+--    데이터 독립성을 허용
+--        테이블이 변경되어도 뷰는 그대로 유지할 수 있으므로,
+--        사용자와 응용프로그램에 대한 데이터 독립성을 제공할 수 있다.
+--    동일한 데이터에 대해서 다른 뷰를 생성할 수 있음
+--        조건에 따라 데이터에 접근하는 사용자 그룹을 분류해서,
+--        각각 동일한 테이블의 다른 뷰를 기초로 데이터 조작을 할 수 있게 한다.
+--종류 : 크게 단순 뷰와 복합 뷰로 구분된다.
+--    단순 뷰(single view) : 오직 하나의 테이블만을 기초로 생성된 뷰
+--        표현식 등에 의해 데이터가 조작된 경우를 제외하면, 뷰를 통한 모든 DML연산의 수행이 가능
+--    복합 뷰(complex or join view) : 다중 테이블을 기초로 생성된 뷰
+--        데이터 그룹핑 또는 그룹함수를 사용해서 뷰 생성 가능
+--        뷰를 통한 모든 DML이 항상 가능하지 않음
+--생성 : CREATE VIEW 명령문에 서브쿼리를 이용해서 생성하고
+--    뷰가 생성된 다음 뷰 이름과 뷰 정의는 데이터 사전의 USER_VIEWS 테이블에 저장된다.
+--    (1) CREATE VIEW 명령의 형식 서브쿼리를 수행해서 가져온 열들만으로 뷰를 생성한다.
+--형식) CREATE [FORCE | NOFORCE] VIEW 뷰이름 [(열별칭1[, 열별칭2, ...])] 
+--    AS 서브쿼리 [WITH CHECK OPTION [CONSTRAINT 제약이름]] [WITH READ ONLY];
+--    열 별칭 : 서브쿼리에 의해 선택된 열이나 표현식에 대한 별칭을 지정
+--    FORCE : 기본 테이블의 존재 여부와 무관하게 뷰를 생성
+--    NOFORCE : 기본테이블이 존재할 때만 뷰를 생성
+--    WITH CHECK OPTION : 뷰에 의해 접근 가능한 행만 삽입 또는 수정될 수 있음을 명시
+--    WITH READ ONLY : 뷰에 대해서 SELECT만 가능하고 다른 DML연산은 불가능함을 명시
+    
+--EMP테이블과 똑같은 테이블을 생성    
+    CREATE TABLE EMP_COPY AS SELECT * FROM EMP;
+    
+--뷰의 동작원리
+--1. 사용자가 뷰에 대해서 질의를 하면 USER_VIEWS에서 뷰에 대한 정의를 조회
+--2. 기본 테이블에 대한 뷰의 접근 권한을 살핌
+--3. 뷰에 대한 질의를 기본 테이블에 대한 질의로 변환
+--4. 기본 테이블에 대한 질의를 통해 데이터를 검색함
+--5. 검색된 결과를 출력함
+
+    SELECT * FROM EMP_COPY;
+    SELECT EMPNO, ENAME, DEPTNO FROM EMP_COPY WHERE DEPTNO = 30;
+    DESC USER_VIEWS;
+    --뷰의 내부 구조와 USER_VIEWS 데이터 딕셔너리
+    
+    SELECT VIEW_NAME, TEXT FROM USER_VIEWS;
+    --정의된 뷰 확인하기
+
+    CREATE VIEW EMP_VIEW30 AS SELECT EMPNO, ENAME, DEPTNO FROM EMP_COPY WHERE DEPTNO = 30;
+    --ORA-01031: insufficient privileges 오류 발생
+    --뷰를 생성하기 위한 권한이 없어 오류가 발생한다.
+    GRANT CREATE VIEW TO TESTER1;
+    --SYSTEM에서 뷰를 생성하기 위한 권한을 부여한다.
+    
+    SELECT VIEW_NAME, TEXT FROM USER_VIEWS;
+    --정의된 뷰 확인하기
+    SELECT * FROM EMP_VIEW30;
+    --서브쿼리로 만들어진 뷰 조회
+    
+--뷰를 사용하는 이유
+--1. 복잡하고 긴 쿼리문을 뷰로 정의하면 접근을 단순화 시킨다.
+--2. 보안에 유리하다.
+--뷰의 수정 및 삭제와 복합 뷰 생성
+--1. 뷰의 수정 
+--2. 뷰의 삭제
+--3. 복합 뷰 생성
+
+--뷰 수정 : 뷰를 생성할 때 사용한 명령인 CREATE OR REPLACE VIEW 명령을 사용해서,
+--    이미 존재하는 뷰를 대체함으로써 뷰를 수정하게 된다.
+--    (1) CREATE OR REPLACE VIEW 명령의 형식 이미 존재하는 뷰를 없애고 같은 이름의 뷰를 새로 생성한다.
+--        단 기존뷰가 없는 경우에도 새로운 뷰를 생성한다.
+--    뷰 수정의 특징
+--    (1) 이미 생성된 뷰를 그대로 두고 수정하는 것이 아니라, 이미 생성된 뷰를 제거하고 새로운 뷰를 생성해서
+--        대체 함으로써 수정하는 효과를 얻게 된다.
+--    (2) 뷰가 존재하지 않는 경우에도 오류가 발생하지 않고 뷰를 새로 생성한다.
+
+--뷰 삭제 : DROP VIEW 명령으로 뷰를 삭제할 수 있다.
+--    (1) DROP VIEW 멸영의 형식 삭제할 뷰의 이름을 명시한다.
+--    (2) VIEW 삭제의 특징
+--        1. 뷰가 기초하는 기본 테이블에는 영향을 주지 않고 뷰만 삭제된다.
+--        2. 즉, 데이터에 전혀 손실을 주지 않고 논리적인 테이블인 뷰만 삭제한다.
+--        3. 삭제된 뷰를 기반으로 생성된 뷰나 어플리케이션은 무효화 된다.
+--        4. 뷰의 생성자 또는 DROP ANY VIEW 권한을 가진 사용자만 삭제가 가능하다.
+
+--뷰 활용
+--    1. 뷰의 확인
+--    2. 뷰를 통한 데이터 검색
+--    3. 뷰 질의의 수행 과정
+--    4. 뷰에서의 dml연산 수행 규칙
+--    5. WITH CHECK OPTION 옵션
+--    6. WITH READ ONLY 옵션
+--    7. 뷰 수정하기 위한 OR REPLACE 옵션
+    
+    INSERT INTO EMP_VIEW30 VALUES(1111,'AAAA',30);
+    --뷰가 만들어진 기본테이블에 데이터 삽입
+    
+--복합 뷰 생성
+    SELECT E.EMPNO, E.ENAME, E.SAL, E.DEPTNO, D.DNAME, D.LOC
+    FROM EMP_COPY E, DEPT D
+    WHERE E.DEPTNO = D.DEPTNO; 
+    
+    CREATE VIEW EMP_VIEW_DEPT
+    AS SELECT E.EMPNO, E.ENAME, E.SAL, E.DEPTNO, D.DNAME, D.LOC
+    FROM EMP_COPY E, DEPT D 
+    WHERE E.DEPTNO = D.DEPTNO;
+    --두 테이블을 JOIN한 서브쿼리로 복합 뷰 생성
+    --EMP_COPY 테이블의 부서번호와 DEPT 테이블의 부서번호가 같은 
+    --사원번호, 사원명, 급여, 부서번호, 부서이름, 위치를 조회하는 뷰를 생성한다.
+    
+    SELECT * FROM EMP_VIEW_DEPT;
+    --복합 뷰 조회
+    
+--뷰 생성
+    CREATE VIEW EMP_VIEW
+    AS SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, DEPTNO FROM EMP;
+    
+    SELECT * FROM EMP_VIEW;
+    --뷰 조회
+    
+--뷰 제거
+    DROP VIEW EMP_VIEW_DEPT;
+
+    SELECT * FROM EMP_VIEW_DEPT;
+
+--뷰 수정 OR REPLACE
+    CREATE OR REPLACE VIEW EMP_VIEW30
+    AS SELECT EMPNO, ENAME, SAL, COMM, DEPTNO FROM EMP_COPY
+    WHERE DEPTNO = 30;
+    --기존 뷰를 삭제하고 새로 만든다.
+    SELECT * FROM EMP_VIEW30;
+    
+    DROP VIEW EMP_VIEW30;
+
+    CREATE OR REPLACE VIEW EMP_VIEW30
+    AS SELECT EMPNO, ENAME, SAL, COMM, DEPTNO FROM EMP_COPY
+    WHERE DEPTNO = 30;
+    --존재하지 않는 뷰를 수정해도 오류가 발생하지 않는다.
+
+    
+--기본 테이블 없이 뷰를 생성하기 위한 FORCE 옵션
+--뷰를 생성하는 경우에 일반적으로 기본 테이블이 존재한다는 가정하에서 쿼리문을 작성한다.
+--극히 드물기는 하지만, 기본 테이블이 존재하지 않는 경우에도 뷰를 생성해야할 경우 사용하는 것이 FORCE 옵션이다.
+--경고와 함께 뷰를 생성한다.
+
+    CREATE OR REPLACE FORCE VIEW EMPLOYEES_VIEW
+    AS SELECT EMPNO, ENAME, DEPTNO FROM EMPLOYEES
+    WHERE DEPTNO = 30;
+    --경고 : 컴파일 오류와 함께 뷰가 생성된다.
+    SELECT * FROM EMPLOYEES_VIEW;
+    
+    DROP VIEW EMPLOYEES_VIEW;
+    SELECT VIEW_NAME, TEXT FROM USER_VIEWS;
+    
+--문제) EMP_VIEW30에 급여가 500이상인 사원을 20번 부서로 이동하기
+    UPDATE EMP_VIEW30 SET DEPTNO = 20 WHERE SAL >= 500;
+    SELECT * FROM EMP_VIEW30;    
+    --위의 SQL이 뷰가 참조하는 기본 테이블에 반영되며, 뷰에는 위의 SQL로 변경된 데이터가 보이지 않게된다.
+    --뷰의 데이터 변경 시 삽입 때와 마찬가지로 기본 테이블에 반영되고, 그 변경점이 뷰에 반영됨        
+    
+    --뷰에 보이지 않는 이유는 뷰 생성시 서브퀄이의 조건절에 WHERE DEPTNO = 30 라는 조건이 달려 있기 때문에
+    --이 뷰는 기본테이블인 EMP_COPY 테이블에서 조건이 WHERE DEPTNO = 30 인 데이터만 보여줄 수 있다.
+    --즉 위의 UPDATE 구문으로 DEPTNO 값이 20으로 변경된 데이터는 뷰의 조건을 만족하지 않기 때문에 보이지 않는다.
+    
+--문제) 변경된 사원들이 있는 20번 부서를 조회하기
+    SELECT * FROM EMP_VIEW30 WHERE DEPTNO = 20;
+    --EMP_VIEW30 생성시 30번 부서만 포함시켜서 20번 부서는 안나온다.
+    
+    SELECT * FROM EMP_VIEW WHERE DEPTNO = 20;
+    
+    SELECT * FROM EMP_COPY WHERE DEPTNO = 30;
+    --DEPT가 30인 EMP_VIEW30에 있는건데 부서번호가 30인 중에서는 급여가 500이상인 사원이 없어서 변경사항이 없다.
+    SELECT * FROM EMP_COPY WHERE DEPTNO = 20;
+    --7명
+    SELECT * FROM EMP WHERE DEPTNO = 20;
+    --5명 그대로이다.
+
+--조건 칼럼 값 변경 못하게 하는 WITH CHECK OPTION
+--뷰를 정의하는 서브 쿼리문에 WHERE절을 추가하여
+--기본 테이블 중 특정 조건에 만족하는 로우(행) 만으로 구성된 뷰를 생성할 수 있다.
+--뷰를 생성할 때 WHERE절을 추가하여 기본 테이블에서 정보가 추출되는
+--조건을 제시하게 되는데 여기에 연속적으로 WITH CHECK OPTION을 기술하여
+--조건제시를 위해 사용한 칼럼의 값이 뷰를 통해서 변경되지 못하도록 할 수 있다.
+
+    SELECT * FROM EMP_VIEW30;
+    
+    CREATE OR REPLACE VIEW EMP_VIEW30
+    AS SELECT EMPNO, ENAME, SAL, COMM, DEPTNO FROM EMP_COPY
+    WHERE DEPTNO = 30 WITH CHECK OPTION;
+    
+    UPDATE EMP_VIEW30 SET DEPTNO = 20 WHERE SAL >=200;
+    --ORA-01402: view WITH CHECK OPTION where-clause violation 오류 발생
+    --WHY? WITH CHECK OPTION으로 WHERE 절로 지정한 DEPTNO = 30 조건에 대한 내용은 변경 불가능
+    
+    CREATE TABLE EMP_COPY2
+    AS SELECT * FROM EMP;
+    
+    SELECT * FROM EMP_COPY2;
+    
+    CREATE OR REPLACE VIEW VIEW_CHK30
+    AS SELECT EMPNO, ENAME, SAL, COMM, DEPTNO FROM EMP_COPY2
+    WHERE DEPTNO = 30 WITH CHECK OPTION;
+    
+    SELECT * FROM VIEW_CHK30;
+    
+    UPDATE VIEW_CHK30 SET COMM = 1000;
+    --WITH CHECK OPTION으로 인해 서브쿼리 조건이 추가된다.
+    --부서번호가 30인 사원의 COMM만 1000으로 설정
+    --WITH CHECK OPTION으로 지정된 WHERE절의 조건이 아닌 데이터는 변경이 가능하다.
+    
+--WITH READ ONLY 옵션
+--뷰에 대해서 SELECT만 가능하고 다른 DML 연산은 불가능하게 하는 옵션이다.
+--WITH CHECK OPTION과 마찬가지로 뷰 생성시 참조하는 서브 쿼리의 WHERE 절에 기술한다.
+    CREATE OR REPLACE VIEW VIEW_READ30
+    AS SELECT EMPNO, ENAME, SAL, COMM, DEPTNO FROM EMP_COPY2
+    WHERE DEPTNO = 30 WITH READ ONLY;
+    
+    UPDATE VIEW_READ30 SET COMM = 2000;
+    --SQL 오류: ORA-42399: cannot perform a DML operation on a read-only view 오류발생
+    --읽기 전용 뷰 이기 때문에 해당 DML 명령을 수행할 수 없다.
+    
+    
+    CREATE OR REPLACE VIEW VIEW_HIRE
+    AS SELECT EMPNO, ENAME, HIREDATE FROM EMP_COPY
+    ORDER BY HIREDATE;
+    
+    SELECT * FROM VIEW_HIRE;
+       
+        
+--ROWNUM 칼럼 성격 파악하기
+--ROWNUM 칼럼은 오라클의 내부적으로 부여되는 INSERT문을 이용하여 입력하면
+--입력한 순서에 따라 1씩 증가되면서 값이 지정된다.
+--데이터가 입력된 시점에서 결정되는 ROWNUM 칼럼 값은 바뀌지 않는다.
+
+--문제) 입사일을 기준으로 오름차순 정렬한 후 ROWNUM 칼럼을 출력하기
+--      (입사일이 빠른 5명을 VIEW_HIRE에서 조회하기)
+    SELECT ROWNUM, EMPNO, ENAME, HIREDATE 
+    FROM VIEW_HIRE WHERE ROWNUM <= 5;
+    
+    SELECT ROWNUM, EMPNO, ENAME, HIREDATE 
+    FROM EMP_COPY WHERE ROWNUM <= 5;
+
+    SELECT ROWNUM, EMPNO, ENAME, HIREDATE 
+    FROM EMP_COPY WHERE ROWNUM <= 5 ORDER BY HIREDATE;
+
+--뷰와 ROWNUM 칼럼으로 TOP-N 구하기
+--입사일이 빠른 사원 5명만을 얻어오기 위해서 입사일 순으로 뷰를생성하고,
+--이를 다시 상위 5명만 얻어오기 위해서 뷰를 SELECT 문으로 조회하면서
+--뷰를 ROWNUM 칼럼을 WHERE 절의 조건으로 제시
+
+--인라인 뷰로 TOP-N 구하기
+--인라인 뷰는 SQL문장에서 사용하는 서브쿼리의 일종이다.
+--보통 FROM절에 위치해서 테이블처럼 사용한다.
+--형식) SELECT ... FROM ... (SELECT ...) ALIAS ... ;
+--메인쿼리 (바깥쪽 쿼리문) 서브쿼리 (안쪽 쿼리문)
+--SELECT 조회 구문의 FROM 절에 테이블 명이 아닌 특정 조건의 SELECT 문으로 데이터를 조회하여,
+--조회를 위한 일회용 테이블 형식을 만드는 것이 인라인 뷰이다.
+
+--문제) 입사일순으로 5명 조회하는 위의 예제를 인라인 뷰로 바꾸어 보기
+    SELECT ROWNUM, EMPNO, ENAME, HIREDATE
+    --인라인뷰
+    FROM (SELECT EMPNO, ENAME, HIREDATE FROM EMP_COPY ORDER BY HIREDATE)
+    WHERE ROWNUM <= 5;
+    
+--문제) 부서별 최대급여와 최소급여를 출력하는 SAL_VIEW 만들기
+    CREATE VIEW SAL_VIEW
+    AS SELECT D.DNAME, MAX(E.SAL) "MAX_SAL", MIN(E.SAL) "MIN_SAL"
+    FROM EMP_COPY E, DEPT D
+    WHERE E.DEPTNO = D.DEPTNO
+    GROUP BY D.DNAME;
+    
+    SELECT * FROM SAL_VIEW;
+    
+--문제) 급여를 많이 받는 순서대로 3명만 AS RANKING, EMPNO, ENAME, SAL조회하는 인라인뷰
+    SELECT ROWNUM AS RANKING, EMPNO, ENAME, SAL
+    FROM (SELECT EMPNO, ENAME, SAL FROM EMP_COPY ORDER BY SAL DESC)
+    WHERE ROWNUM <= 3;
+
+--복습 설명 
+--OR REPLACE : 새로운 뷰를 만들 수 있을 뿐만 아니라 이미 만든 뷰를 삭제하지 안혹 새로운 구조의 뷰로 변경가능
+--FORCE : 기본 테이블의 존재 여부에 상관없이 뷰를 생성
+--WITH CHECK : 해당 뷰를 통해서 볼 수 있는 범위 내에서만 UPDATE 또는 INSERT가 가능하게 하는 조건
+--WITH READ ONLY : 뷰를 통해서는 기본 테이블의 어떤 필드에 대해서도 내용을 절대 변경할 수 없도록 하는 조건
+
+
+--시퀀스
+--시퀀스는 테이블 내의 유일한 숫자를 자동으로 생성하는 자동 번호 발생기 이므로
+--시퀀스를 기본키로 사용하게 되면 사용자의 부담을 줄일 수 있다.
+--오라클하고 MYSQL이 부여하는 방식이 다르다.
+
+--시퀀스 생성에 대한 형식
+--CREATE SEQUENCE 시퀀스_이름
+--    [START WITH n]
+--    [INCREMENT BY n]
+--    [(MAXVALUE n | NOMAXVALUE)]
+--    [(MINVALUE n | NOMINVALUE)]
+--    [(CYCLE n | NOCYCLE)]
+--    [(CACHE n | NOCACHE)]
+
+--시퀀스 제거
+    DROP SEQUENCE DEPT_DEPTNO_SEQ;
+--시퀀스 생성    
+    CREATE SEQUENCE DEPT_DEPTNO_SEQ
+    INCREMENT BY 10
+    START WITH 10;
+--시퀀스 구조 확인    
+    DESC USER_SEQUENCES;
+--해당 계정의 시퀀스 조회    
+    SELECT * FROM USER_SEQUENCES;
+    SELECT SEQUENCE_NAME, MIN_VALUE, MAX_VALUE, INCREMENT_BY, CYCLE_FLAG
+    FROM USER_SEQUENCES;
+
+--START WITH 
+--시퀀스 번호의 시작 값을 지정할 때 사용
+--INCREMENT BY 
+--연속적인 시퀀스 번호의 증가치를 지정할 때 사용
+--CYCLE | NOCYCLE
+--CYCLE은 최대값까지 증가하고 나면, 시작값에서 다시 시작한다.
+--NOCYCLE은 증가가 완료되면 에러를 유발시킨다.
+--CACHE | NOCACHE 
+--CACHE는 메모리상의 시퀀스 관리값을 관리, 기본값은 20
+--NOCACHE는 메모리상에서 시퀀스를 관리하지 않음
+
+--NEXTVAL : 다음 시퀀스 값 
+    SELECT DEPT_DEPTNO_SEQ.NEXTVAL FROM DUAL;
+--CURRVAL : 현재 시퀀스 값
+    SELECT DEPT_DEPTNO_SEQ.CURRVAL FROM DUAL;
+--NEXTVAL, CURRVAL을 사용할 수 있는경우
+--서브쿼리가 아닌 SELECT 문
+--INSERT문의 SELECT 절
+--UPDATE문의 SET절
+
+--시퀀스 객체 생성하기
+    CREATE SEQUENCE SAMPLE_SEQ;
+    SELECT SAMPLE_SEQ.CURRVAL FROM DUAL;
+    --실행되지 않는다. WHY? NEXTVAL을 먼저 실행해 주어야 한다.
+    SELECT SAMPLE_SEQ.NEXTVAL FROM DUAL;
+
+    
+--시퀀스 오류
+--다음과 같은 이유때문에 시퀀스 값에서 불규칙한 간격이 생기는 오류가 발생한다.
+
+--롤백이 발생한 경우
+--시퀀스를 포함한 문장을 롤백하면 커밋 이후 롤백된다.
+--이전에 생성된 시퀀스 번호를 모두 잃게 되므로 이후 시퀀스에 간격이 발생
+
+--시스템이 손상된 경우 
+--CACHE 옵션으로 미리 시퀀스를 생성해서 메모리에 저장해둔 경우, 
+--시스템의 손상으로 비정상적인 종료가 되면
+--미리 생성한 시퀀스 값을 모두 잃어버리게 되므로 이후 시퀀스에 간격이 발생
+
+--동일한 시퀀스가 다중테이블에서 사용된 경우 시퀀스 값이 불규칙적으로 변경될 수 있다.
+    
+--문제) 시작값1, 값이 1씩 증가, 최대값이 100000인 EMP_SEQ 시퀀스 생성하고 조회하기    
+    CREATE SEQUENCE EMP_SEQ
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 100000;
+    
+    SELECT * FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'EMP_SEQ';
+    
+    DROP TABLE EMP01;
+    CREATE TABLE  EMP01(
+        EMPNO NUMBER(4) PRIMARY KEY,
+        ENAME VARCHAR2(10),
+        HIREDATE DATE
+    );
+    INSERT INTO EMP01 VALUES(EMP_SEQ.NEXTVAL, '홍길동', SYSDATE);
+    INSERT INTO EMP01 VALUES(EMP_SEQ.NEXTVAL, '강감찬', SYSDATE);
+    INSERT INTO EMP01 VALUES(EMP_SEQ.NEXTVAL, 'JULIA', SYSDATE);    
+    
+    SELECT * FROM EMP01;
+    
+    
+--시퀀스 수정   
+--ALTER SEQUENCE 명령으로 시퀀스의 증가치, 최대값, 최소값, 사이클 및 캐쉬 옵션을 변경할 수 있다.
+--시퀀스 생성자나 ALTER권한을 가진 사용자만 수정할 수 있다.
+--형식) ALTER SEQUENCE 시퀀스_이름 
+--      [START WITH n]
+--      [INCREMENT BY n]
+--      [(MAXVALUE n | NOMAXVALUE)]
+--      [(MINVALUE n | NOMINVALUE)]
+--      [(CYCLE n | NOCYCLE)]
+--      [(CACHE n | NOCACHE)];
+--시퀀스 수정 지침
+--시퀀스를 수정하면 수정 이후 생성되는 시퀀스 번호에만 영향을 미친다.
+--시퀀스를 생성할 때 다른 시작 번호부터 다시 생성하려면 기존 시퀀스를 삭제하고 다시 생성해야 한다.
+--유효성 검사를 자동으로 수행한다.
+--예) 현재 시퀀스 번호보다 작은 수로 MAXVALUE를 수정하면 수정이 허용되지 않는다.
+
+    DROP SEQUENCE DEPT_DEPTNO_SEQ;
+
+    CREATE SEQUENCE DEPT_DEPTNO_SEQ
+    START WITH 10
+    INCREMENT BY 10
+    MAXVALUE 30;
+
+    SELECT * FROM USER_SEQUENCES;
+    
+    SELECT DEPT_DEPTNO_SEQ.NEXTVAL FROM DUAL;
+    SELECT DEPT_DEPTNO_SEQ.CURRVAL FROM DUAL;    
+    
+    ALTER SEQUENCE DEPT_DEPTNO_SEQ
+    MAXVALUE 100
+    CYCLE
+    CACHE 2;
+
+    SELECT * FROM USER_SEQUENCES;
+
+
+----------------------------------------09/14--------------------------------------    
+
+
+    DROP TABLE DEPT_EXAMPLE;
+    CREATE TABLE DEPT_EXAMPLE (
+        DEPTNO NUMBER(2) PRIMARY KEY,
+        DNAME VARCHAR2(15),
+        LOC VARCHAR2(15)
+    );
+    SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME
+    FROM USER_CONSTRAINTS
+    WHERE TABLE_NAME IN('DEPT_EXAMPLE');
+    
+    SELECT CONSTRAINT_NAME, TABLE_NAME, COLUMN_NAME
+    FROM USER_CONS_COLUMNS
+    WHERE TABLE_NAME IN('DEPT_EXAMPLE');
+    
+    
+    DROP SEQUENCE DEPT_EXAMPLE_SEQ;
+    CREATE SEQUENCE DEPT_EXAMPLE_SEQ
+    INCREMENT BY 10
+    START WITH 10
+    NOCYCLE;
+    SELECT * FROM USER_SEQUENCES;   
+    
+    INSERT INTO DEPT_EXAMPLE VALUES(DEPT_EXAMPLE_SEQ.NEXTVAL, '인사과', '서울');
+    INSERT INTO DEPT_EXAMPLE VALUES(DEPT_EXAMPLE_SEQ.NEXTVAL, '경리과', '서울');
+    INSERT INTO DEPT_EXAMPLE VALUES(DEPT_EXAMPLE_SEQ.NEXTVAL, '총무과', '대전');
+    INSERT INTO DEPT_EXAMPLE VALUES(DEPT_EXAMPLE_SEQ.NEXTVAL, '기술과', '인천');
+    SELECT * FROM DEPT_EXAMPLE;   
+    SELECT DEPT_EXAMPLE_SEQ.CURRVAL FROM DUAL;
+    
+
+--1. 인덱스란?
+--2. 인덱스 생성방법
+--3. 인덱스가 유용한 경우와 불필요한 경우
+--4. 인덱스 확인
+--5. 인덱스 삭제
+    
+--1. 인덱스란?
+--(1) 인덱스의 정의
+--    포인터를 사용하여 행의 검색을 촉진할 수 있는 DB 객체이다.    
+--(2) 인덱스의 특징
+--    테이블 행에 대한 직접적이고 빠른 엑세스를 제공함
+--    인덱스는 오라클 서버에 의해서 자동으로 생성되거나 사용자에 의해 명시적으로 생성될 수 있음
+--    인덱스는 오라클 서버에 의해서 자동으로 사용되고 유지됨
+--    인덱스는 테이블과는 논리적, 물리겆으로 독립적
+--    기본 테이블에 영향을 주지 않고 생성하거나 제거할 수 있음
+--    기본 테이블을 제거하면, 인덱스도 자동으로 제거됨
+--    인덱스를 너무 많이 생성하면 오히려 DML처리의 효율을 저하시킴
+
+--2. 인덱스 생성방법
+--    자동 인덱스 생성
+--        테이블을 생성할 때 PRIMARY KEY나 UNIQUE 제약조건이 정의된 열에 대해서
+--        오라클 서버가 유일한 인덱스를 자동으로 생성한다.
+--    수동 인덱스 생성    
+--        검색 속도의 향상을 위해 사용자가 CREATE INDEX 명령을 사용해서
+--        명시적으로 유일하지 않는 인덱스를 생성할 수 있다.
+--        하나 이상의 열에 대해서 하나의 인덱스를 생성할 수 있다.
+--    CREATE INDEX 인덱스명 ON 테이블명(열이름1,...);
+--        ON절에 어떤 테이블의 어떤 열에 대해 인덱스를 생성할지 명시한다,
+--    수동 인덱스 생성 예)
+--        EMP테이블의 EMP_NAME 열에 대한 검색이 빈번히 발생하므로
+--        이 검색 속도를 향상 시킬 수 있도록 인덱스를 생성한다.
+        
+--3. 인덱스가 유용한 경우와 불필요한 경우
+--    유용한 경우
+--    (1) 열이 WHERE 절이나 조인 조건에서 자주 사용되는 경우
+--    (2) 열이 광범위한 값을 포함하는 경우
+--    (3) 열이 많은 수의 NULL값을 포함하는 경우
+--    (4) NULL 값에 대해서는 인덱스가 생성되지 않으므로 NULL값이 많을수록 인덱스의 크기가 작아짐
+--    (5) 둘 또는 그 이상의 열들이 WHERE 절 또는 조인 조건에서 자주 함께 사용되는 경우
+--    (6) 테이블이 대형이고 대부분의 질의가 행의 2~4% 보다 적게 읽어 들일 것으로 예상되는 경우
+--    불필요한 경우
+--    (1) 테이블 사이즈가 작은경우
+--    (2) 해당 열이 질의의 조건으로 자주 사용되지 않는 경우
+--    (3) 테이블이 자주 갱신되는 경우(인덱스 유지를 위해 DML의 효율이 나빠짐)
+--    (4) 대부분의 질의가 행의 2~4% 이상을 읽어 들일 것으로 예상되는 경우
+--        (인덱스를 생성하는 대신 테이블 전체를 검색하는 것이 좋음)
+
+--4. 인덱스 확인
+--    데이터 사전의 USER_INDEXES 및 USER_IND_COLUMNS 뷰에 저장된 인덱스 정보를 확인한다.
+--    USER_INDEXES 데이터 사전 뷰
+--        인덱스 이름과 인덱스의 유일성 정보등을 포함한다.
+--    USER_IND_COLUMNS 데이터 사전 뷰
+--        인덱스 이름, 테이블 이름, 열 이름, 열 위치 등의 정보 등을 포함한다.
+    
+--5. 인덱스 삭제
+--    DROP INDEX 명령을 사용해서 데이터 사전에서 인덱스를 삭제한다.
+--    DROP INDEX 인덱스 명;
+
+--주의사항
+--    인덱스 소유자나 DROP ANY INDEX 권한을 가진 사용자만 삭제할 수 있음
+--    인덱스는 수정될 수 없으며, 수정이 필요한 경우 삭제하고 다시 생성해야함
+    
+    
+    DROP TABLE DEPT01;
+    CREATE TABLE DEPT01 AS SELECT * FROM DEPT WHERE 1 = 0;
+    --WHERE1=0은 데이터는 가져오지않고 테이블 구조만 가져온다.
+    DESC DEPT01;
+    SELECT * FROM DEPT01;
+    
+    INSERT INTO DEPT01 VALUES(10, '인사과', '서울');
+    INSERT INTO DEPT01 VALUES(20, '총무과', '대전');
+    INSERT INTO DEPT01 VALUES(30, '교육팀', '대전');   
+    SELECT * FROM DEPT01;
+    
+    
+--인덱스 종류    
+--고유 인덱스
+--비고유 인덱스
+--단일 인덱스
+--결합 인덱스
+--함수기반 인덱스
+
+--고유 인덱스(유일 인덱스) 
+--    유일키 처럼 유일한 값을 갖는 칼럼에 대해서 생성하는 인덱스
+--    고유 인덱스를 지정하려면 UNIQUE 옵션을 지정해야 한다.
+--    예) DEPTNO는 고유/비고유 인덱스 둘다 설정 가능
+    CREATE UNIQUE INDEX IDX_DEPT01_DEPTNO ON DEPT01(DEPTNO);
+    
+--비고유 인덱스
+--    중복된 데이터가 저장된 칼럼을 인덱스로 지정할 경우 비고유 인덱스로 지정해야 한다.
+--    UNIQUE 옵션은 생략하고 지정한다.
+    CREATE INDEX IDX_DEPT01_LOC ON DEPT01(LOC);
+
+--결합 인덱스
+--    부서번호와 부서명을 결합하여 인덱스를 설정할 수 있다.
+    CREATE INDEX IDX_DEPT01_COM ON DEPT01(DEPTNO, DNAME);
+
+--함수기반 인덱스
+    CREATE INDEX IDX_EMP07_ANNSAL ON EMP07(SAL*12);
+
+--인덱스 조회
+    SELECT INDEX_NAME, TABLE_NAME, COLUMN_NAME FROM USER_IND_COLUMNS
+    WHERE TABLE_NAME IN('EMP07', 'DEPT01');
+    
+    SELECT * FROM USER_INDEXES
+    WHERE TABLE_NAME IN('DEPT01');
+    
+    SELECT * FROM USER_IND_COLUMNS
+    WHERE TABLE_NAME IN('DEPT01');
+    
+    
+--PL/SQL (Procedural Language/ SQL) --엔진
+--오라클에서 제공하는 프로그래밍 언어
+--일반 프로그래밍 언어적인 요소를 다 가지고 있고 데이터베이스 업무를 처리하기 위한 최적화된 언어
+--기본구조
+--선언부(Declare) (옵션): 모든 변수나 상수를 선언하는 부분
+--실행부(Executable) (필수): begin ~ end 제어문, 반복문, 함수 정의 등의 로직을 기술하는 부분
+--예외처리부(Exeption) (옵션): 실행도중에 에러 발생시 해결하기 위한 명령들을 기술하는 부분
+--선언부, 실행부, 예외처리부는 ;을 붙이지 않고 나머지 문장들은 ;을 붙인다.
+--익명블록(anonymous block) : 주로 일회성으로 사용할 경우 많이 사용
+--저장블록(stored block) : 서버에 저장해 놓고 주기적으로 반복해서 사용할 경우 사용
+
+--출력문을 스크립트 출력에서 보여주는 명령어
+    set serveroutput on;
+--반대
+    set serveroutput off;
+    
+--PL/SQL은 ORACLE'S Procedural Language extension to SQL의 약자
+--SQL문장에서 변수정의, 조건처리, 반복처리 등을 지원하며,
+--오라클 자체에 내장되어 있는 절차적 언어로서 SQL의 단점을 보완해준다.
+
+--현재 오라클 포트번호 확인 8080
+    SELECT DBMS_XDB.GETHTTPPORT() FROM DUAL;
+    
+--포트 번호 변경
+    EXEC DBMS_XDB.SETHTTPPORT(9090);
+    --SYSTEM에서 포트번호를 변경해야 한다.
+    
+--<Hello World 만들기>
+    SET SERVEROUTPUT ON;
+    
+    BEGIN
+    DBMS_OUTPUT.PUT_LINE('Hello World');
+    END;
+    
+--변수의 생성 규칙    
+--반드시 문자로 시작해야 한다.
+--문자나 숫자, 특수문자를 포함할 수 있다.
+--변수명은 30byte 이하여야 한다.
+--예약어(키워드)를 사용하면 안된다.
+
+--변수의 선언은 선언부(declare)에서 선언되고 값으로 초기화가 가능하다
+--실행부에서 실행될 경우 값이 할당 된다.
+--서브 프로그램의 파라미터로 전달 되기도 하며, 서브 프로그램의 출력 결과를 저장하기도 한다.
+
+--변수의 선언 예)
+--    emp_no number(6,3) : 숫자로 저장하는 변수로 총 6자리를 의미하며 소수점이하 3자리를 의미한다.
+--    emp_name varchar2(5) : 문자를 저장하는 변수로 총 바이트 길이가 5바이트를 저장할 수 있다.
+--    emp_date date : 날짜를 저장하는 변수
+
+--변수의 데이터 타입
+--    char : 고정 길이의 문자를 저장, 기본 최소값 1, 최대 32,767바이트 값을 저장
+--    varchar2 : 가변 길이의 문자를 저장, 기본값은 없고, 최대 32,767바이트 값을 저장
+--    number(전체 자리수, 소수점 이하 자리수) : 전체 자리수와 소수점 이하 자리수를 가진 숫자를 저장
+--        전체 자리수는 1~38까지 가능하고, 소수점 자리수의 범위는 -84~127까지 가능
+--    binary_double : 부동 소수점 수를 저장, 9바이트 필요함
+--    date : 날짜 및 시간을 저장, 초단위로 저장, 날짜의 범위는 4712 B.C ~ 9999 A.D
+--    timestamp : date 타입을 확장, 연도, 월, 일, 시, 분, 초, 소수로 표시되는 초단위를 저장
+--        자리수를 표현할때는 0~9 범위의 정수를 사용, 기본값은 6
+
+--참조 변수
+--    테이블명.필드명%Type
+--    empNo employees.employee_id%TYPE
+--    : EMPLOYEES 테이블의 EMPLOYEE_ID와 동일한 데이터 타입으로 선언
+
+--    empRow employees%ROWTYPE
+--    : EMPLOYEES 테이블의 모든 칼럼을 한꺼번에 저장하기위한 변수로 선언
+--    /(슬래시) : 블럭 단위로 실행
+    / 
+    --선언부
+    DECLARE 
+    CNT INTEGER;
+    --실행부
+    BEGIN
+    --할당연산자 := 
+    CNT := CNT + 1;
+    IF CNT IS NULL THEN
+        DBMS_OUTPUT.PUT_LINE('결과 : CNT는 널이다');
+    END IF;
+    END;
+    /
+    
+    DECLARE
+    --사이즈 4의 NUMBER 타입 변수 선언
+        VEMPNO NUMBER(4);
+    --사이즈 10의 VARCHAR2 타입 변수 선언
+        VENAME VARCHAR2(10);
+    BEGIN
+        VEMPNO := 1001;
+        VENAME := '김사랑';
+        DBMS_OUTPUT.PUT_LINE('  사번  이름');
+        DBMS_OUTPUT.PUT_LINE('---------------');
+        DBMS_OUTPUT.PUT_LINE(VEMPNO || ' ' || VENAME);
+    END;
+    /
+    
+--IF문
+    DECLARE
+    --VEMPNO 변수는 EMP테이블의 EMPNO 칼럼의 데이터 타입을 참조
+        VEMPNO EMP.EMPNO%TYPE;
+    --VENAME 변수는 EMP테이블의 ENAME 칼럼의 데이터 타입을 참조
+        VENAME EMP.ENAME%TYPE;
+    --VDEPTNO 변수는 EMP테이블의 DEPTNO 칼럼의 데이터 타입을 참조
+        VDEPTNO EMP.DEPTNO%TYPE;
+    --VDNAME 변수는 VARCHAR2(20) 데이터타입으로 선언하고 NULL값을 대입
+        VDNAME VARCHAR2(20) := NULL;
+    BEGIN
+        --조회한 값을
+        SELECT EMPNO, ENAME, DEPTNO  
+        --각 변수에 대응하여 대입
+        INTO VEMPNO, VENAME, VDEPTNO
+        FROM EMP WHERE EMPNO = 1001;
+        VEMPNO := 1001;
+        --만일 VDEPTNO가 10이면
+        IF (VDEPTNO = 10) THEN
+            --VDNAME 변수에 'ACCOUNTING' 대입
+            VDNAME := 'ACCOUNTING';
+        END IF;
+        --만일 VDEPTNO가 20이면
+        IF (VDEPTNO = 20) THEN
+            --VDNAME 변수에 'RESEARCH' 대입
+            VDNAME := 'RESEARCH';
+        END IF;
+        --만일 VDEPTNO가 30이면
+        IF (VDEPTNO = 30) THEN
+            --VDNAME 변수에 'SALES' 대입
+            VDNAME := 'SALES';
+        END IF;
+        --만일 VDEPTNO가 40이면
+        IF (VDEPTNO = 40) THEN
+            --VDNAME 변수에 'OPERATIONS' 대입
+            VDNAME := 'OPERATIONS';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('  사번  이름  부서명');
+        DBMS_OUTPUT.PUT_LINE('---------------');
+        DBMS_OUTPUT.PUT_LINE(VEMPNO || ' ' || VENAME || ' ' || VDNAME);
+    END;    
+    /
+    
+--IF문
+    DECLARE
+        --VEMP 변수는 EMP테이블의 모든 데이터 타입을 참조한다.
+        VEMP EMP%ROWTYPE;
+        --ANNSAL 변수는 NUMBER(7,2) 데이터 타입으로 선언한다.
+        ANNSAL NUMBER(7,2);
+    BEGIN
+        --모든 데이터를 VEMP 변수에 대입
+        SELECT * INTO VEMP
+        FROM EMP
+        WHERE ENAME = '김사랑';
+        
+        --VEMP변수의 COMM칼럼 값이 NULL인 경우
+        IF(VEMP.COMM IS NULL) THEN
+            --ANNSAL 변수에 VEMP변수의 SAL칼럼 값의 *12한 값을 대입
+            ANNSAL := VEMP.SAL*12;
+        --VEMP변수의 COMM칼럼 값이 NULL이 아닌 경우
+        ELSE 
+            --ANNSAL 변수에 VEMP변수의 SAL칼럼 값의 *12와 COMM칼럼 값을 더한 값을 대입
+            ANNSAL := VEMP.SAL*12 + VEMP.COMM;
+        END IF;
+        
+        --출력문
+        DBMS_OUTPUT.PUT_LINE('  사번  이름  연봉');
+        DBMS_OUTPUT.PUT_LINE('---------------');
+        DBMS_OUTPUT.PUT_LINE(VEMP.EMPNO || ' ' || VEMP.ENAME || ' ' || ANNSAL);
+    END;
+    /
+    
+--LOOP 반복문
+    DECLARE
+        --N변수를 NUMBER 타입으로 선언후 1을 대입
+        N NUMBER := 1;
+    BEGIN 
+        LOOP
+            DBMS_OUTPUT.PUT_LINE(N);
+            N := N + 1;
+            IF N > 5 THEN
+                EXIT;
+            END IF;
+        END LOOP;    
+    END;
+    /
+    
+--FOR 반복문
+    DECLARE
+    BEGIN 
+        --변수 N을 선언하고 1부터 4까지 1씩 증가하며 반복한다.
+        FOR N IN 1..4 LOOP
+            DBMS_OUTPUT.PUT_LINE(N);
+        END LOOP;
+    END;
+    /
+
+--WHILE 반복문
+    DECLARE
+        N NUMBER := 1;
+    BEGIN 
+        --N의 값이 5보다 작거나 같으면 반복한다.
+        WHILE N <= 5 LOOP
+            DBMS_OUTPUT.PUT_LINE(N);
+            N := N + 1;
+        END LOOP;
+    END;
+    /
+
+    
+    DROP TABLE S_EMP;
+    CREATE TABLE S_EMP
+    AS SELECT * FROM EMP;
+    
+    SELECT * FROM S_EMP;
+    
+    SELECT ENAME, SAL FROM S_EMP
+    WHERE ENAME = '김사랑';
+    
+--문제) 영업이면 급여를 10퍼 인상하고 아니면 5퍼 인상하기 (PL/SQL)
+    DECLARE
+        VEMP S_EMP%ROWTYPE;
+        VDEPTNO S_EMP.DEPTNO%TYPE;
+        VPERCENT NUMBER(2);
+    BEGIN
+        --DEPT 테이블에서 조회된 DEPTNO의 값을 VDEPTNO 변수에 저장
+        SELECT DEPTNO INTO VDEPTNO FROM DEPT WHERE DNAME LIKE '%영업%';
+        --S_EMP 테이블에서 조회된 모든 데이터를 VEMP 변수에 저장
+        SELECT * INTO VEMP FROM S_EMP WHERE ENAME = '김사랑';
+        
+        IF VEMP.DEPTNO = VDEPTNO THEN
+            VPERCENT := 10;
+        ELSE
+            VPERCENT := 5;
+        END IF;
+
+        UPDATE S_EMP SET SAL = SAL + SAL*VPERCENT/100
+        WHERE ENAME = '김사랑';
+        COMMIT;
+    END;
+    /
+    SELECT ENAME, SAL FROM S_EMP WHERE ENAME = '김사랑';
+    
+--문제) 연봉계산 하기
+--COMM 칼럼 값이 NULL이면 연산 결과 역시 NULL이 나온다.
+--그러므로 COMM이 NULL이면 0으로 바꾸기
+    DECLARE
+        VEMP EMP%ROWTYPE;
+        ANNSAL NUMBER(7,2);
+    BEGIN
+        SELECT * INTO VEMP
+        FROM EMP
+        WHERE ENAME = '김사랑';
+        
+        IF(VEMP.COMM IS NULL) THEN
+            VEMP.COMM := 0;
+        END IF;
+        
+        ANNSAL := VEMP.SAL*12 + VEMP.COMM;
+        
+        DBMS_OUTPUT.PUT_LINE('  사번  이름  연봉');
+        DBMS_OUTPUT.PUT_LINE('---------------');
+        DBMS_OUTPUT.PUT_LINE(VEMP.EMPNO || ' /' || VEMP.ENAME || ' /' || ANNSAL);
+    END;
+    /
+    
+--문제) LOOP문으로 구구단 5단 출력
+    DECLARE
+        DAN NUMBER := 5;
+        I NUMBER := 1;
+    BEGIN
+        LOOP
+            DBMS_OUTPUT.PUT_LINE( DAN || '*' || I || '=' || (DAN*I) );
+            I := I + 1;
+            IF I > 9 THEN
+                EXIT;
+            END IF; 
+        END LOOP;
+    END;    
+    /
+    
+--문제) 부서번호를 10씩 증가시키며 출력하기    
+    DECLARE
+        VDEPT DEPT%ROWTYPE;
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('부서번호 / 부서명 / 지역명');
+        DBMS_OUTPUT.PUT_LINE('------------------------');
+    
+        FOR CNT IN 1..4 LOOP
+            SELECT * INTO VDEPT
+            FROM DEPT WHERE DEPTNO = 10 * CNT;
+            DBMS_OUTPUT.PUT_LINE(VDEPT.DEPTNO || '/' || VDEPT.DNAME || '/' || VDEPT.LOC);
+        END LOOP;
+    END;
+    /       
+    
+--문제) *기호를 한개씩 추가시키며 출력하기    
+    DECLARE
+        V_CNT NUMBER := 1;
+        V_STR VARCHAR2(10) := NULL;
+    BEGIN
+        WHILE V_CNT <= 5 LOOP
+            V_STR := V_STR || '*';
+            DBMS_OUTPUT.PUT_LINE(V_STR);
+            V_CNT := V_CNT + 1;
+        END LOOP;
+    END;
+    /    
+    
+
+--계층형 쿼리
+--BOM 자재 명세서 계층구조, 부모노드 자식노드 리프(마지막)노드
+    DROP TABLE BOM_SPHONE;
+    
+    CREATE TABLE BOM_SPHONE(
+        ITEM_ID NUMBER(3) NOT NULL,
+        PARENT_ID NUMBER(3),
+        ITEM_NAME VARCHAR(20) NOT NULL,
+        PRIMARY KEY (ITEM_ID)
+    );
+    
+    --부모가 없는 최상위 루트
+    INSERT INTO BOM_SPHONE VALUES(100, NULL, '스마트폰');
+    --100 부모
+    INSERT INTO BOM_SPHONE VALUES(101, 100, '메인 PCD');
+    INSERT INTO BOM_SPHONE VALUES(102, 100, '배터리');
+    --101 부모
+    INSERT INTO BOM_SPHONE VALUES(103, 101, 'CPU');
+    --101 부모
+    INSERT INTO BOM_SPHONE VALUES(104, 101, '메모리');
+    INSERT INTO BOM_SPHONE VALUES(105, 101, '블루투스');
+
+    SELECT * FROM BOM_SPHONE;
+    
+    --셀프조인
+    SELECT S1.ITEM_NAME, S1.ITEM_ID, S2.ITEM_NAME PARENT_NAME
+    FROM  BOM_SPHONE S1, BOM_SPHONE S2
+    --외부조인 (+)을 이용해서 연결되어 있지 않은 NULL값도 모두 나오도록 조회한다.
+    WHERE S1.PARENT_ID = S2.PARENT_ID (+)
+    ORDER BY S1.ITEM_ID;
+    
+    --계층 구조로 나오지 않는다. 메인PCD 밑에 CPU 순으로 나와야 하므로 아래 방식으로 해준다. 
+
+--START WITH, CONNECT BY 절을 이용해서 계층형 쿼리를 할수 있다.
+    --LPAD(공백, 2*(LEVEL-1)) 계층형으로 보여주는 공식
+    --계층형이 3개라면 2로 조회한다.
+    SELECT LPAD('', 2*(LEVEL-1)) || ITEM_NAME INEMNAME
+    FROM BOM_SPHONE
+    --최상위 루트가 NULL인 값으로 지정
+    START WITH PARENT_ID IS NULL
+    CONNECT BY PARENT_ID = PRIOR ITEM_ID;

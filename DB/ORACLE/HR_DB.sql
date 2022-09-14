@@ -221,3 +221,40 @@ SELECT TO_NUMBER('100,000', '999,999') - TO_NUMBER('80,000', '999,999') FROM DUA
     select to_date('02', 'dd') from dual;
 --년도 혹은 월을 생략하면, 현재 시스템의 년도와 월을 입력하여 표시한다.
 --하지만 일을 생략하면, 그냥 1일을 표시한다.
+
+
+
+-------------------------------------------------------------------------------------
+--계층형 쿼리    
+    SELECT LEVEL, LPAD('',4*(LEVEL-1)) || FIRST_NAME || ' ' || LAST_NAME "이름"
+    FROM EMPLOYEES
+    START WITH MANAGER_ID IS NULL
+    CONNECT BY MANAGER_ID = PRIOR EMPLOYEE_ID;
+    
+    SELECT JB.JOB_TITLE "직위", LPAD('',4*(LEVEL-1)) || EMP.FIRST_NAME || ' ' || LAST_NAME "이름"
+    FROM EMPLOYEES EMP, JOBS JB
+    WHERE EMP.JOB_ID = JB.JOB_ID
+    START WITH EMP.MANAGER_ID IS NULL
+    CONNECT BY EMP.MANAGER_ID = PRIOR EMP.EMPLOYEE_ID;
+    
+
+--ROLLUP : 집계 쿼리에 대한 계층화 구조의 부분합
+--rollup : 그룹별 합계 정보를 추가해서 보여주는 함수
+--조회 순서가 FROM 절 -> WHERE 절 -> SELECT 절 이기 때문에
+--FROM 절에서 정의한 별칭을 SELECT 절에서 사용가능
+
+    SELECT L.CITY, D.DEPARTMENT_NAME, E.JOB_ID,
+    COUNT(*) 사원수, SUM(E.SALARY) 총급여
+    FROM EMPLOYEES E, DEPARTMENTS D, LOCATIONS L
+    WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+    AND D.LOCATION_ID = L.LOCATION_ID
+    --도시별, 부서별, 직급별로 합계를 구하고 전체 합계를 구한다
+    --도시 안에 부서안에 직급별로 합계를 구하고
+    --도시 안에 부서 별로 합계를 구하고,
+    --도시 별로 합계를 구하고
+    --위에서 구해진 도시 별 합계를 모두 더해 전체 합계를 구한다.
+    --각 합계는 해당 그룹별로 마지막 행에 표시된다.
+    GROUP BY ROLLUP(L.CITY, D.DEPARTMENT_NAME, E.JOB_ID)
+    --ROLLUP을 사용하면 부서별로 각각의 합계, 전체 합계가 나온다.
+    ORDER BY L.CITY, D.DEPARTMENT_NAME, E.JOB_ID;
+    

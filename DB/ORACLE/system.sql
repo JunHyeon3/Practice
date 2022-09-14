@@ -1,1 +1,3 @@
-show user;
+show user
+
+    EXEC DBMS_XDB.SETHTTPPORT(9090);
