@@ -2623,3 +2623,161 @@ COMMIT;
     --최상위 루트가 NULL인 값으로 지정
     START WITH PARENT_ID IS NULL
     CONNECT BY PARENT_ID = PRIOR ITEM_ID;
+    
+    
+----------------------------------------09/14--------------------------------------    
+
+  
+--트리거
+--오라클에서 트리거 역시 해당 단어의 의미처럼 어떤 이벤트가 발생하면 자동적으로 
+--방아쇠가 당겨져 총알이 발사되듯이 특정 테이블이 변경되면 이를 이벤트로 
+--다른 데이블이 자동으로 변경되도록 하기 위해서 사용한다.
+--트리거는 테이블이나 뷰가 INSERT, UPDATE, DELETE 등의 DML 문에 의해 
+--데이터가 입력, 수정, 삭제될 경우 자동으로 실행되어 진다.
+
+--트리거란
+--INSERT, UPDATE, DELETE 문이 TABLE에 대해 행해질 때 묵시적으로 수행되는 PROCEDURE 이다.
+--트리거는 TABLE과는 별도로 DATABASE에 저장된다.
+--
+--트리거는 VIEW에 대해서가 아니라 TABLE에 관해서만 정의될 수 있다.
+--행 트리거 : 칼럼의 각각의 행의 데이터 행 변화가 생길때 마다 실행되며, 그 데이터 행의 실제값을 제어할 수 있다.
+--문장 트리거 : 트리거 사건에 의해 단 한번만 실행되며, 칼럼의 각 데이터 행을 제어 할 수 없다.
+
+--트리거의 타이밍
+--BEFORE : INSERT, UPDATE, DELETE 문이 실행되기 전에 트리거가 실행된다.
+--AFTER : INSERT, UPDATE, DELETE 문이 실행된 후 트리거가 실행된다.
+--TRIGGER_EVENT : INSERT, UPDATE, DELETE 중에서 한개 이상 올 수 있다.
+--FOR EACH ROW : 이 옵션이 있으면 행 트리거가 된다.
+
+--트리거
+--어떤 조건에 맞는 이벤트가 일어나면 후속 이벤트를 발생시킴
+
+--트리거의 5가지 요소
+--트리거 유형 : DML 단위의 트리거, 변경된 레코드 단위의 트리거
+--트리거 동작시점 : 트리거 동작 시점은 BEFORE, AFTER
+--트리거 이벤트 : 트리거를 발생시킬 것 인지를 결정
+--트리거 조건 : 레코드 단위의 트리거에서만 설정할 수 있는 UPDATE 작업시 특정 조건을 명시하여
+--            조건에 맞는 레코드의 변경에서만 트리거 이벤트를 발생
+--트리거 몸체 : BEGIN-END 절로 동작 정의
+
+--트리거 형식
+--CREATE [OR REPLACE] TRIGGER 트리거 명 
+--BEFORE|AFTER EVENT ON 테이블명 
+--[FOR EACH ROW] [WHEN CONDITION] 
+--BEGIN
+--...
+--END;
+
+    SET SERVEROUTPUT ON;
+    
+    DROP TABLE SAMPLE_DEPT;
+    CREATE TABLE SAMPLE_DEPT (
+        DEPT_ID NUMBER,
+        DEPT_NAME VARCHAR2(15),
+        LOC VARCHAR2(10)
+    );
+    DESC SAMPLE_DEPT;
+    
+--AFTER 트리거    
+    --PRINT_MSG라는 트리거 생성
+    CREATE OR REPLACE TRIGGER PRINT_MSG
+    --SAMPLE_DEPT 테이블에 INSERT 명령이 수행되면 트리거를 나중에 실행
+    AFTER INSERT ON SAMPLE_DEPT
+    BEGIN
+        DBMS_OUTPUT.PUT_LINE('부서가 추가되었습니다.');
+    END;
+    /
+    
+    INSERT INTO SAMPLE_DEPT VALUES(10, '마케팅부', '서울');
+    INSERT INTO SAMPLE_DEPT VALUES(20, '홍보부', '인천');    
+    
+    SELECT * FROM SAMPLE_DEPT;
+    
+    
+    DROP TABLE ITEM;
+    CREATE TABLE ITEM ( --상품
+        CODE CHAR(6) PRIMARY KEY, --물품 코드
+        NAME VARCHAR2(15) NOT NULL,
+        COMPANY VARCHAR2(15),
+        PRICE NUMBER(8),
+        CNT NUMBER DEFAULT 0 --재고수량
+    );
+    DESC ITEM;
+    
+    DROP TABLE WAREHOUSE;
+    CREATE TABLE WAREHOUSE ( --물류창고
+        NUM NUMBER(6) PRIMARY KEY, --입고 번호
+        CODE CHAR(6) REFERENCES ITEM(CODE),
+        INDATE DATE DEFAULT SYSDATE, --입고 날짜
+        INCNT NUMBER(6),
+        INPRICE NUMBER(6), --단가
+        TOTALPRICE NUMBER(8) --총액
+    );
+    DESC WAREHOUSE;
+    
+    INSERT INTO ITEM (CODE, NAME, COMPANY, PRICE)
+    VALUES('C0001', '에어컨', '삼성', 1000000);
+    INSERT INTO ITEM (CODE, NAME, COMPANY, PRICE)
+    VALUES('C0002', '선풍기', 'LG', 50000);
+    
+    SELECT * FROM ITEM;
+    SELECT * FROM WAREHOUSE;
+
+--해당 계정의 트리거 조회    
+    SELECT * FROM USER_TRIGGERS;
+
+--재고수령 추가를 위한 트리거 생성    
+    DROP TRIGGER CNT_ADD;
+    --CNT_ADD라는 트리거 생성
+    CREATE OR REPLACE TRIGGER CND_ADD
+    --WAREHOUSE 테이블에 INSERT 명령이 실행되면 트리거를 이후에 실행
+    AFTER INSERT ON WAREHOUSE
+    --각 로우마다 반복
+    FOR EACH ROW
+    --트리거가 발동되면 실행되는 부분
+    BEGIN
+        --바인딩 변수, NEW 선언문, CNT칼럼에 INSERT를 삽입한 데이터를 더해서(NEW.INCNT) 설정한다.
+        --NEW 선언은 INSERT, UPDATE문에서 사용, OLD 선언은 DELETE문에서만 사용
+        UPDATE ITEM SET CNT = CNT +:NEW.INCNT
+        WHERE CODE =:NEW.CODE;
+    END;
+    /
+    
+    INSERT INTO WAREHOUSE (NUM, CODE, INCNT, INPRICE, TOTALPRICE)
+    VALUES(1, 'C0001', 10, 900000, 9000000);
+
+    SELECT * FROM ITEM;
+    SELECT * FROM WAREHOUSE;
+    
+--재고수령 변경을 위한 트리거 생성    
+    DROP TRIGGER CNT_UPDATE;
+    CREATE OR REPLACE TRIGGER CNT_UPDATE
+    AFTER UPDATE ON WAREHOUSE
+    FOR EACH ROW
+    BEGIN
+        --CNT칼럼 값을 수정전 INCNT 값과 수정후 INCNT 값을 더해서 수정한다.
+        UPDATE ITEM SET CNT = CNT - :OLD.INCNT + :NEW.INCNT
+        WHERE CODE =:NEW.CODE;
+    END;
+    / 
+    
+    UPDATE WAREHOUSE SET INCNT = 7, INPRICE = 800000 WHERE CODE = 'C0001';
+    
+    SELECT * FROM ITEM;
+    SELECT * FROM WAREHOUSE;    
+    
+--재고수령 제거를 위한 트리거 생성    
+    DROP TRIGGER CNT_SUB;
+    CREATE OR REPLACE TRIGGER CNT_SUB
+    AFTER DELETE ON WAREHOUSE
+    FOR EACH ROW
+    BEGIN
+        UPDATE ITEM SET CNT = CNT-:OLD.INCNT
+        WHERE CODE =:OLD.CODE;
+    END;
+    /
+    
+    DELETE FROM WAREHOUSE WHERE CODE = 'C0001';
+    
+    SELECT * FROM ITEM;
+    SELECT * FROM WAREHOUSE;    
