@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 태그3</title>
+</head>
+
+<body>
+  <div>HTML5에서 추가된 type</div>
+  <form action="test.html">
+    <fieldset>
+      <legend>HTML form</legend>
+      <div>
+        <label for="userName">사용자 이름 : </label>
+        <input type="text" id="userName" name="userName" autofocus required>
+      </div>
+
+      <div>
+        <label for="userEmail">이메일 : </label>
+        <input type="email" id="userEmail" name="userEmail" autocomplete="off">
+      </div>
+
+      <div>
+        <label for="userUrl">웹 사이트 : </label>
+        <input type="url" id="userUrl" name="userUrl" placeholder="이메일을 입력하세요">
+      </div>
+
+      <div>
+        <label for="order">주문 수량 : </label>
+        <input type="number" id="order" name="order" min="1" max="10" value="5">
+      </div>
+
+      <div>
+        <label for="calender">마감일 : </label>
+        <input type="date" id="calender" name="calender" value="2022-09-11">
+      </div>
+
+      <div>
+        <label for="userColor">색 선택 : </label>
+        <input type="color" name="userColor" id="userColor" value="#ff0000">
+      </div>
+    </fieldset>
+    <input type="submit" value="전송">
+    <input type="reset" value="취소">
+  </form>
+</body>
+
+</html>
+
+<!-- 
+  [type]
+  email   : 이메일 양식 
+  url     : 프로토콜 http://
+  number  : 숫자 입력, min과 max 속성을 사용하여 숫자의 최소/최대 값을 지정, value로 초기 숫자를 지정할 수 있음
+  date    : 달력, value로 초기 날짜를 지정할 수 있음 (yyyy-mm-dd 양식)
+  color   : 색 선택, 3개의 형태로 색상 코드를 확인할 수 있음, value로 초기 선택 색을 지정할 수 있음
+  reset   : 입력된 값들을 초기화 시킴, 잘 사용하지 않는 추세
+
+  [속성]
+  autofocus     : 페이지 로드시 자동으로 해당 요소에 커서가 위치
+                  한 페이지에서 한 요소에만 사용 가능
+  placeholder   : 사용자에게 힌드를 주는 속성
+                  placeholder 텍스트는 값을 입력하면 사라짐
+  autocomplete  : 자동 완성 기능을 설정하는 속성
+                  속성 값으로 on/off를 입력
+  required      : 필수 항목으로 지정하는 속성
+                  지정된 요소에 값이 입력되지 않으면 제출이 안됨
+ -->

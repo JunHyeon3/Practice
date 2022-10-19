@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 태그1</title>
+</head>
+
+<body>
+  <div>form 태그</div>
+  <form action="test.html" method="get">
+    <div>
+      <label for="userId">아이디 : </label>
+      <input type="text" id="userId" name="userId">
+    </div>
+
+    <div>
+      <label for="userPassword">비밀번호 : </label>
+      <input type="password" id="userPassword" name="userPassword">
+    </div>
+
+    <div>
+      <span>성별 : </span>
+      <label for="male">남</label>
+      <input type="radio" id="male" name="gender" value="male" checked>
+      <label for="female">여</label>
+      <input type="radio" id="female" name="gender" value="female">
+    </div>
+
+    <div>
+      <span>취미 : </span>
+      <label>독서
+        <input type="checkbox" name="hobby1" value="read">
+      </label>
+      <label>영화 감상
+        <input type="checkbox" name="hobby2" value="watch">
+      </label>
+    </div>
+
+    <input type="submit" value="로그인">
+  </form>
+</body>
+
+</html>
+
+<!-- 
+  [form 태그]
+  사용자로부터 입력을 받을 수 있는 입력 폼을 정의할 때 사용
+  action 속성 : 제출 될 때 데이터가 도착할 페이지를 명시
+  method 속성 : 데이터가 서버로 제출될 때 사용되는 HTTP 메소드를 명시
+                get방식   : key=value 형태로 주소에 덧붙혀서 전송하는 방식, 빠르지만 보안에 취약하고 전송되는 양이 제한됨
+                post방식  : 눈에 보이지 않는 파일에 기록되어 전송하는 방식, 비교적 느리지만 보안에 강하고 전송되는 양의 제한이 없음
+
+  [input 태그]
+  사용자로부터 입력을 받을 수 있는 입력 필드를 정의할 때, form 태그 내부에서 사용
+  type 속성 : 값을 달리함으로써 여러 가지 모양을 가짐
+  name 속성 : input 태그의 이름(key)을 명시
+
+  [type 속성]
+  text      : 사용자로 부터 텍스트를 입력받음, 입력한 값이 value가 됨
+  password  : 사용자가 입력하는 텍스트를 볼 수 없도록 기호로 표시
+  radio     : 여러개의 옵션 중 단 하나의 옵션만 선택 가능
+              모든 옵션들의 name값이 동일해야 함
+              value는 선택된 radio버튼이 전송 될 때의 값
+              checked 속성으로 미리 선택해둘 수 있음
+  checkbox  : 라디오 버튼과 달리 여러 개의 옵션을 선택 가능
+              모든 옵션들의 name값이 동일해야 함
+              checked 속성으로 미리 선택해둘 수 있음
+  submit    : 제출 버튼, value 속성 값으로 버튼의 글자를 변경 가능
+
+  [label 태그]
+  사용자 인터페이스(UI) 요소의 라벨(label)을 정의할 때 사용
+  for 속성을 사용하여 다른 요소와 결합
+  for 속성 값은 결합하고자 하는 요소의 id 속성 값과 동일하게 지정
+  label 태그 내부에 있으면 for 속성을 사용하지 않아도 결합
+  라벨을 클릭할 경우, 연결된 요소를 바로 선택할 수 있어 사용자의 편의성을 높임
+ -->

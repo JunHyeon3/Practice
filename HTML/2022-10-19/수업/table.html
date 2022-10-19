@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>table 태그</title>
+</head>
+
+<body>
+  <!-- 
+    [table 태그]
+    thead : 테이블의 구조상 가장 위 행
+    tbody : 테이블의 구조상 중간의 여러 행
+    tfoot : 테이블의 구조상 가장 아래 행
+
+    tr 태그 : 행을 생성하는 태그
+    th 태그 : 테이블의 head 행의 열에 데이터를 입력하는 태그 (bold체) 
+    td 태그 : 생성된 행의 열에 데이터를 입력하는 태그
+    
+
+    행/열을 합치는 속성 
+    합치고싶은 행/열의 개수를 속성의 값으로 입력 
+    rowspan 속성 : 행을 합치는 속성 
+    colspan 속성 : 열을 합치는 속성
+   -->
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>과일명</th>
+        <th>수량</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>사과</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>키위</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">총 수량</td>
+        <td>15</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>

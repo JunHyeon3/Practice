@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form_quiz</title>
+</head>
+
+<body>
+  <h1>다양한 폼 입력</h1>
+  <form action="#" method="get">
+    <hr>
+    <div>
+      <label for="userName">성명 : </label>
+      <input type="text" name="userName" id="userName">
+    </div>
+
+    <div>
+      <span>성별 : </span>
+      <input type="radio" name="gender" id="male" value="male">
+      <label for="male">남성</label>
+      <input type="radio" name="gender" id="female" value="female">
+      <label for="female">여성</label>
+    </div>
+
+    <div>
+      <label for="job">직업 : </label>
+      <select name="job" id="job">
+        <option value="student">학생</option>
+        <option value="officeWorker">회사원</option>
+        <option value="publicWorker">공무원</option>
+        <option value="etc">기타</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <div>구입희망분야<small>(복수선택 가능)</small></div>
+      <span>분야 : </span>
+      <input type="checkbox" name="field" id="computer" value="computer">
+      <label for="computer">컴퓨터</label>
+      <input type="checkbox" name="field" id="economy" value="economy">
+      <label for="economy">경제</label>
+      <input type="checkbox" name="field" id="commonSense" value="commonSense">
+      <label for="commonSense">상식</label>
+    </div>
+    <br>
+    <div>
+      <label for="note">비고 : </label><br>
+      <textarea name="note" id="note" cols="35" rows="5"></textarea>
+    </div>
+    <hr>
+    <input type="submit" value="신청">
+    <input type="reset" value="취소">
+  </form>
+</body>
+
+</html>
