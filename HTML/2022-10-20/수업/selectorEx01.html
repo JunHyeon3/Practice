@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선택자 연습 1</title>
+  <style>
+    /* 모든 span 태그 */
+    span {
+      color: #ff0000;
+    }
+
+    /* div태그의 자식인 span태그만 
+      자식 태그를 표현할 때는 > 사용 */
+    div>span {
+      color: #999999;
+    }
+
+    /* id가 ex_css인 요소안의 모든 span태그 
+      자손 태그를 표현할 때는 공백을 사용
+      요소가 추가될 경우가 있어 자식보다는 자손을 찾아가는 것이 좋을 수 있음 */
+    #ex_css span {
+      background-color: #ffff00;
+    }
+
+    /* class가 second_tag인 요소안의 span태그 */
+    .second_tag span {
+      background-color: #00ffff;
+    }
+
+    /* 선택자는 다르지만 속성이 같을 때 두개의 태그를 ,로 연결 */
+    h1,
+    h2 {
+      border-style: solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ex_css">
+    <h1>첫번째 h1</h1>
+    <div class="first_tag">
+      <span>span tag1</span>
+      <p>
+        <span>span tag2</span>
+      </p>
+    </div>
+    <span>span tag3</span>
+  </div>
+  <div class="second_tag">
+    <h2>두번째 h2</h2>
+    <span>span tag4</span>
+  </div>
+  <span>span tag5</span>
+</body>
+
+</html>

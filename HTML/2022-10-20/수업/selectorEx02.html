@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선택자 연습 2</title>
+  <style>
+    /* 태그명 뒤에 [속성="값"]을 입력하여 특정 요소를 지정
+      =   : "값"과 완전히 일치
+      ^=  : "값"으로 시작 
+      $=  : "값"으로 끝
+      *=  : "값"과 일부 문자 일치
+      ~=  : "값"과 일부 단어 일치
+    */
+    a[href^="http"] {
+      background-color: purple;
+      color: white;
+    }
+
+    a[href$="kr"] {
+      background-color: black;
+      color: yellow;
+    }
+
+    a[href*="naver"] {
+      color: red;
+    }
+
+    li[title~="ipsum"] {
+      color: aqua;
+    }
+
+    li[title="lorem"] {
+      color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li><a href="https://www.daum.net">daum</a></li>
+    <li><a href="https://www.naver.com">naver</a></li>
+    <li><a href="mailto:help@host.co.kr">help</a></li>
+    <li title="lorem ipsum">Lorem ipsum dolor sit amet.</li>
+    <li title="lorem">Lorem ipsum dolor sit amet.</li>
+  </ul>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>선택자 문제</title>
+  <style>
+    #header h1 em {
+      background-color: orange;
+    }
+
+    #header div p {
+      border: 3px solid black;
+    }
+
+    #header div p+p {
+      background-color: yellow;
+    }
+
+    #content #lead {
+      background-color: lime;
+    }
+
+    /* p.lead는 class가 lead인 곳 중에서 p태그 에만 적용 */
+    #content p.lead {
+      color: red;
+    }
+
+    /* +의 의미는 ol 태그 바로 다음에 있는 형태 태그를 의미
+      ~의 의미는 ol 태그 다음에 있는 모든 형제 태그를 의미 */
+    #content ol~p {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div id="header">
+      <h1>CSS <em>selector</em></h1>
+      <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta labore quas ducimus voluptatibus, excepturi
+          odio
+          itaque saepe suscipit et. Explicabo recusandae earum quos, distinctio repellendus praesentium quo modi porro
+          illum?</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+    <div id="content">
+      <p id="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, doloremque!</p>
+      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, doloremque!</p>
+      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, doloremque!</p>
+      <!-- 하나의 요소의 클래스에 띄어쓰기로 두 개이상의 클래스를 지정하여
+        2개 이상의 스타일을 적용할 수 있음 -->
+      <ol class="list lead">
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+        <li>Lorem ipsum dolor sit amet.</li>
+      </ol>
+      <p>1Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore ratione, omnis earum nostrum corporis
+        accusamus! Minus quod, vero quisquam veniam alias molestiae earum error amet itaque consequatur provident dolor.
+        Hic!</p>
+      <p>2Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore ratione, omnis earum nostrum corporis
+        accusamus! Minus quod, vero quisquam veniam alias molestiae earum error amet itaque consequatur provident dolor.
+        Hic!</p>
+    </div>
+  </div>
+</body>
+
+</html>
