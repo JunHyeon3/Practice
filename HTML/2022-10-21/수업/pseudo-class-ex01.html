@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상 클래스</title>
+    <style>
+      /* 
+      [가상 클래스]
+      선택하고자 하는 HTML 요소의 특별한 '상태(state)'를 명시할 때 사용
+      선택자 뒤에 :을 붙여 가상클래스를 사용
+      가상클래스는 순서가 중요
+    */
+
+      /* 방문하지 않은 링크 */
+      a:link {
+        color: #0f0;
+        text-decoration: none;
+      }
+
+      /* 방문한 링크 */
+      a:visited {
+        color: #ddd;
+      }
+
+      /* 마우스를 올려 놨을 때 */
+      a:hover {
+        color: #f00;
+      }
+
+      /* 클릭했을 때 */
+      a:active {
+        color: #00f;
+      }
+
+      /* 포커스 : 탭키와 클릭을 포함 */
+      a:focus {
+        background-color: #ff0;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>pseudo-class</h1>
+    <ol>
+      <li><a href="https://www.naver.com">naver</a></li>
+      <li><a href="www.daum.net">daum</a></li>
+      <li><a href="www.atom.io">atom</a></li>
+    </ol>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit minima
+      itaque voluptates quibusdam illo perferendis velit, laboriosam architecto
+      ut, rem fugiat ipsa officiis porro sunt iusto nemo alias. Sed, asperiores?
+    </p>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>텍스트 속성</title>
+    <style>
+      /* 
+        text-transform
+        영어를 대문자 혹은 소문자로 설정하는 속성
+        uppercase : 대문자, lowercase : 소문자, capitalize : 단어의 첫 글자만 대문자
+      */
+      h1 {
+        text-transform: capitalize;
+      }
+
+      /* 
+        text-align
+        텍스트의 정렬 방식을 설정하는 속성
+        left : 왼쪽 정렬(기본), right : 오른쪽 정렬, 
+        center : 가운데 정렬, justify : 양쪽 끝에 맞춰 늘림
+      */
+      /* 
+        text-decoration
+        텍스트에 나타나는 줄을 설정하는 속성
+        underline : , overline : , line-through : , none :
+      */
+      /* 
+        text-indent
+        들여쓰기, 내어쓰기를 설정하는 속성
+        양수는 들여쓰기, 음수는 내어쓰기
+      */
+      /*
+        letter-spacing
+        글자 사이 간격(자간)을 설정하는 속성 
+      */
+      /*
+        word-spacing
+        단어 사이 간격을 설정하는 속성 
+      */
+      /*
+        white-space
+        자동 줄 바꿈을 설정하는 속성
+        nowrap : 자동 줄 바꿈 중지
+      */
+      #p2 {
+        background-color: lime;
+        text-align: center;
+        text-decoration: line-through;
+        text-indent: 20px;
+        letter-spacing: 5px;
+        word-spacing: 10px;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>Heading h1</h1>
+      <p id="p1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
+        enim.
+      </p>
+      <p id="p2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
+        enim.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>색</title>
+    <style>
+      h1 {
+        /* 3가지 모두 동일한 방법 */
+        /* 색상 명으로는 잘 사용하지 않음 */
+        /* color: red; */
+        /* rgb 각각 2개의 16진수 값으로 색상 표현 */
+        /* color: #ff0000; */
+        /* rgb각각에서 2개의 코드가 동일하면 1글자로 축약 갸능 */
+        color: #f00;
+      }
+
+      h1.one {
+        color: rgb(0, 255, 0);
+      }
+
+      /* 투명도 조절 : 0에 가까울 수록 투명함 */
+      h1.two {
+        color: rgba(255, 0, 0, 0.1);
+      }
+
+      /*
+      hsl(색조, 채도, 명도)
+      색조 
+        : 0~360 사이의 각도로 색상 표현
+        : 0 red, 120 green, 240 blue
+      채도
+        : 백분율 값으로 색의 강도 표현
+        : 0% 회색, 100% 풀 컬러
+      명도
+        : 백분율 값으로 빛의 밝기 표현
+        : 0% 검정, 50% 밝거나 어둡지 않음, 100% 흰색
+    */
+      h1.three {
+        color: hsl(240, 50%, 50%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>CSS basic</h1>
+    <h1 class="one">CSS basic</h1>
+    <h1 class="two">CSS basic</h1>
+    <h1 class="three">CSS basic</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quisquam
+      consectetur ipsa iste voluptas fugit, magnam nulla excepturi corporis
+      dignissimos architecto id, quis dolores voluptatum cupiditate molestiae
+      saepe nobis? Porro?
+    </p>
+  </body>
+</html>

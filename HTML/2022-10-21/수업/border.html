@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>테두리 속성</title>
+    <style>
+      .wrap {
+        /* border-style : 선 종류를 설정하는 속성 */
+        /* solid : 실선, dashed : 파선, dotted : 점선, double : 이중실선  */
+        /* border-style: solid; */
+
+        /* border-width : 선 두께를 설정하는 속성 */
+
+        /* 하나의 크기만 입력하면 모든 선 두께가 동일 */
+        /* border-width: 5px; */
+
+        /* top, right, bottom, left 순으로 두께를 다르게 설정 가능 */
+        /* border-width: 5px 10px 15px 20px; */
+
+        /* top, right와 left가 한 묶음, bottom */
+        /* border-width: 5px 10px 20px; */
+
+        /* top과 bottom, right와 left가 한 묶음 */
+        /* border-width: 5px 10px; */
+
+        /* border-color : 선 색을 설정하는 속성 */
+        /* border-color: red; */
+
+        /* border : 선 종류, 선 두께, 선 색을 한 줄로 축약할 수 있는 속성 */
+        border: 5px solid red;
+
+        /* border-radius : 테두리의 모서리를 둥글게 설정하는 속성*/
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea aspernatur ab
+      natus blanditiis porro molestias quibusdam, eaque mollitia, quia deserunt
+      eos hic maiores necessitatibus velit aperiam voluptas laborum in!
+      Deleniti.
+    </div>
+  </body>
+</html>

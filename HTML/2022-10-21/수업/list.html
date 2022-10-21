@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리스트 속성</title>
+    <style>
+      .list {
+        /* 
+          list-style
+          리스트의 블릿을 설정하는 속성
+          none : 블릿을 없앰, 블릿이 있던 공백은 남음
+        */
+        /* list-style: none; */
+
+        /* 
+          list-style-position
+          inside, outside
+        */
+        list-style-position: inside;
+
+        /* 
+          list-style-type
+          disc : 속이 찬 원, circle : 속이 빈 원, square : 속이 찬 네모
+          decimal : 숫자, lower-alpha : 소문자
+          hangul : 가나다, hangul-consonant : ㄱㄴㄷ
+        */
+        list-style-type: hangul-consonant;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>Lorem ipsum dolor sit.</li>
+      <li>Itaque facilis earum vero?</li>
+      <li>Fugiat vitae eligendi esse.</li>
+    </ul>
+    <ul class="list">
+      <li>Lorem ipsum dolor sit.</li>
+      <li>Itaque facilis earum vero?</li>
+      <li>Fugiat vitae eligendi esse.</li>
+    </ul>
+  </body>
+</html>

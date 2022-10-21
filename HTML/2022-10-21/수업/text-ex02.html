@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>텍스트 속성</title>
+    <style>
+      .content1,
+      .content2 {
+        width: 200px;
+        border: 3px solid black;
+      }
+      /* 
+        word-break
+        영어 단어를 깨서 단어가 길어져도 쪼개서 출력 되도록 하는 설정
+      */
+      .content1 {
+        word-break: break-all;
+      }
+      /* 
+        white-space
+        nowrap    : 자동 줄바꿈 해제
+        pre       : pre 태그처럼 입력된 대로 표현
+        pre-wrap  : pre + 자동 줄 바꿈
+        pre-line  : wrap + 왼쪽 공백 제거
+      */
+      .white {
+        width: 400px;
+        background-color: lime;
+        white-space: pre-line;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content1">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
+        molestias.
+      </p>
+    </div>
+    <div class="content2">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi,
+        molestias.
+      </p>
+    </div>
+    <div class="white">
+      lorem 
+      Lorem, ipsum dolor. 
+      Lorem ipsum dolor sit amet. 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+  </body>
+</html>
