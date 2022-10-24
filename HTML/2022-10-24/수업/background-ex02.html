@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background 2</title>
+    <style>
+      .box {
+        border: 5px solid #00f;
+        padding: 20px;
+        background-color: #ff0;
+        width: 1800px;
+        height: 1000px;
+        /* background-image : 배경 이미지를 설정, 개발자 도구에서 이미지에 대한 정보가 보여지지 않음 */
+        background-image: url(img/bridge.jpg);
+        /* reapeat(기본) | no-repeat(반복x) | repeat-x(x축 반복) | repeat-y(y축 반복) */
+        background-repeat: no-repeat;
+        /* 
+          [위치 지정]
+          방법1)
+          가로        x       세로
+          left|center|right x top|center|bottom 
+          ex) background-position: center center;
+          방법2)
+          수평(왼|오) x 수직(위|아래) : %
+          ex) background-position: 50% 50%;
+          방법3)
+          수평(왼|오) x 수직(위|아래) : px
+          미세하게 이동 시 사용, -로도 이동 가능
+          ex) background-position: -100px -100px  ;
+          
+          left top      = 0% 0%
+          center center = 50% 50%
+          right bottom  = 100% 100%
+        */
+        background-position: center center;
+
+        /* background-attachment : 스크롤바가 이동해도 이미지를 고정시킬 때 사용 */
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis vel
+      eum eveniet similique atque tempore magnam provident fugit voluptatibus!
+      Quasi ab sapiente non optio qui modi error quas delectus accusantium.
+    </div>
+  </body>
+</html>

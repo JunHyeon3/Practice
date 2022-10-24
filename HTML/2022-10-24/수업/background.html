@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background</title>
+    <style>
+      .box:hover {
+        opacity: 1;
+      }
+      .box {
+        border: 3px solid #00f;
+        padding: 20px;
+        background-color: #ff0;
+        /* 
+          [투명도]
+          0과 1 사이의 값 (0: 투명, 1: 불투명)
+          투명도는 자식 요소에 상속됨
+          텍스트 읽기가 힒듬
+        */
+        opacity: 0.1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      Lorem.
+      <span>보이나요?</span>
+    </div>
+  </body>
+</html>

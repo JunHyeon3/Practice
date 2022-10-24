@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float</title>
+    <style>
+      body,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font: 12px sans-serif;
+      }
+      #wrap {
+        background-color: #ff0;
+        width: 500px;
+        /* 
+          [요소를 가운데 정렬]
+          왼쪽 오른쪽의 여백을 auto로 하면, 페이지의 너비에 맞춰 왼쪽 오른쪽의 여백을 같게 설정
+        */
+        margin: 0 auto;
+      }
+      #wrap .thumb {
+        /* float: left | right */
+        float: left;
+        margin: 0 15px 15px 0;
+      }
+      #wrap .text {
+        /* text영역에 마진을 주어 이미지 아래쪽에 텍스트가 없도록 하기 */
+        margin-left: 220px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>float 예제</h1>
+      <div class="thumb">
+        <img src="https://via.placeholder.com/200?text=sample" alt="dummy" />
+      </div>
+      <div class="text">
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat
+          soluta blanditiis perspiciatis earum voluptatum unde iusto. Dolores
+          laudantium eius laborum. Aliquam corporis totam eos vero, perferendis
+          odit nisi dolores sint? Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Placeat soluta blanditiis perspiciatis earum
+          voluptatum unde iusto. Dolores laudantium eius laborum. Aliquam
+          corporis totam eos vero, perferendis odit nisi dolores sint? Lorem
+          ipsum dolor, sit amet consectetur adipisicing elit. Placeat soluta
+          blanditiis perspiciatis earum voluptatum unde iusto. Dolores
+          laudantium eius laborum. Aliquam corporis totam eos vero, perferendis
+          odit nisi dolores sint? Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Placeat soluta blanditiis perspiciatis earum
+          voluptatum unde iusto. Dolores laudantium eius laborum. Aliquam
+          corporis totam eos vero, perferendis odit nisi dolores sint? Lorem
+          ipsum dolor, sit amet consectetur adipisicing elit. Placeat soluta
+          blanditiis perspiciatis earum voluptatum unde iusto. Dolores
+          laudantium eius laborum. Aliquam corporis totam eos vero, perferendis
+          odit nisi dolores sint? sint? Lorem ipsum dolor, sit amet consectetur
+          adipisicing elit. Placeat soluta blanditiis perspiciatis earum
+          voluptatum unde iusto. Dolores laudantium eius laborum. Aliquam
+          corporis totam eos vero, perferendis odit nisi dolores sint? sint?
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat
+          soluta blanditiis perspiciatis earum voluptatum unde iusto. Dolores
+          laudantium eius laborum. Aliquam corporis totam eos vero, perferendis
+          odit nisi dolores sint?
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

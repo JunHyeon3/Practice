@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>table style</title>
+    <style>
+      .tbl {
+        /* table 요소에서 테두리를 설정하지 않고, td와 th 요소에서 함 */
+        /* border-collapse: collapse;는 셀 사이의 간격없이 테두리를 생성함 */
+        border-collapse: collapse;
+        /* 테이블의 너비를 설정하면, n등분되어 각 셀의 너비가 설정됨 */
+        width: 800px;
+      }
+      .tbl caption {
+        /* display: none;은 숨기고 싶은 요소를 숨길 때 사용함 */
+        display: none;
+      }
+      .tbl td,
+      .tbl th {
+        border: 1px solid #000;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="tbl">
+      <!-- 웹 접근성을 위해 caption을 넣어줌 -->
+      <caption>
+        table caption
+      </caption>
+      <thead>
+        <tr>
+          <th>table header cell-1</th>
+          <th>table header cell-2</th>
+          <th>table header cell-3</th>
+          <th>table header cell-4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

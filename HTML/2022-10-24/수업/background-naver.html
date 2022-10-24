@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>네이버 top 버튼</title>
+    <style>
+      #wrap {
+        width: 200px;
+        background-color: #ff0;
+      }
+      /* .content-top {
+        display: inline-block;
+        width: 457px;
+        height: 434px;
+        background-image: url(img/sp_main_4f8ccb.png);
+        background-repeat: no-repeat;
+        background-size: 457px 434px;
+      } */
+      /* 가상 엘리먼트와 가상 클래스를 동시에 사용하면, 가상 클래스를 먼저 작성 */
+      /* .content-top:hover::before {
+        display: inline-block;
+        width: 51px;
+        height: 51px;
+        background-size: 457px 434px;
+        background-image: url(img/sp_main_4f8ccb.png);
+        background-repeat: no-repeat;
+        background-position: -201px -212px;
+        content: " ";
+      }
+      .content-top::before {
+        display: inline-block;
+        width: 51px;
+        height: 51px;
+        background-size: 457px 434px;
+        background-image: url(img/sp_main_4f8ccb.png);
+        background-repeat: no-repeat;
+        background-position: -150px -212px;
+        content: " ";
+      } */
+      /* 공통되는 속성이 있으므로 ,로 연결하고, 다른 속성만 따로 작성 */
+      .content-top::before,
+      .content-top:hover::before {
+        display: inline-block;
+        width: 51px;
+        height: 51px;
+        background-size: 457px 434px;
+        background-image: url(img/sp_main_4f8ccb.png);
+        background-repeat: no-repeat;
+        background-position: -150px -212px;
+        content: " ";
+      }
+      .content-top:hover::before {
+        background-position: -201px -212px;
+        content: " ";
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum neque,
+      doloremque aliquid fugiat dolore qui minus voluptatum, reiciendis
+      architecto iste quos nisi distinctio aspernatur expedita delectus
+      cupiditate. Maxime, rem incidunt? Lorem ipsum dolor sit amet consectetur,
+      adipisicing elit. Id corporis officiis provident laboriosam eius numquam
+      at cupiditate vitae, modi quisquam laudantium deserunt, distinctio
+      consectetur explicabo. Blanditiis corporis repellendus fuga dolore. A,
+      veritatis quo? Illum fugiat, voluptatem alias ea esse at fugit. Officiis
+      distinctio eius esse, placeat recusandae dolore autem minima, iste natus
+      eum quaerat ea animi quisquam cumque ipsam obcaecati! Dolorem recusandae
+      dolorum architecto deserunt explicabo commodi, itaque doloremque
+      laudantium voluptas porro, tempore illo? Velit, sit? Deserunt dignissimos
+      at ratione est, a officiis magni atque ullam et vero veritatis velit. Quia
+      hic, vitae placeat nesciunt rerum maiores ipsum. Perferendis harum a
+      quaerat nemo dolorum? Aspernatur quasi accusantium omnis fugiat libero,
+      illum consequuntur nemo obcaecati eligendi veniam numquam iste
+      exercitationem necessitatibus. Quae natus obcaecati architecto distinctio?
+      Temporibus omnis reprehenderit veniam mollitia nihil dolor deleniti eaque
+      aperiam recusandae! Voluptates beatae tempore corporis excepturi nulla!
+      Aperiam illum quisquam doloribus accusamus quis odit rerum. Saepe ea, sunt
+      architecto ab nobis asperiores ut dolor nam nostrum magnam rem sint minus
+      at quod perspiciatis impedit quisquam animi. Dicta vitae laboriosam
+      recusandae. Totam sit sequi enim dicta! Dicta amet dolor, consectetur
+      sapiente eveniet sunt, natus consequatur mollitia non cupiditate voluptate
+      porro, autem culpa aliquam obcaecati architecto. Error iure explicabo
+      aspernatur dolores qui ratione sunt tempora, molestias similique? Iusto
+      alias quaerat error? Minus, pariatur dolorum! Delectus, nesciunt. Saepe
+      error aut ea obcaecati exercitationem maiores libero odio laborum?
+      Accusantium fugit dolorum et ullam beatae sequi necessitatibus vel,
+      pariatur suscipit? Qui, soluta! A ratione necessitatibus magni facilis
+      tempora, voluptates quos iusto similique aliquid assumenda nemo nulla
+      dolore quae dicta cumque quia? Voluptas quos mollitia debitis dolorum
+      libero numquam id ipsam! Alias omnis a id dolores fugit sed amet,
+      molestiae deserunt perspiciatis iure aliquam architecto? Impedit quae
+      pariatur deleniti temporibus illo quam molestiae voluptas repudiandae
+      dignissimos. Velit ullam ipsam suscipit accusantium?
+    </div>
+    <div><a href="#wrap" class="content-top"></a></div>
+  </body>
+</html>

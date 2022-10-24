@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background 4</title>
+    <style>
+      .box {
+        color: #f00;
+        width: 400px;
+        height: 100px;
+        padding: 20px;
+        margin: 30px;
+        border: 3px solid #00f;
+        background: url(img/bridge.jpg) no-repeat center center;
+      }
+      .box2 {
+        /* 
+          [background-size] : 배경 이미지의 크기 설정
+          100% 100% : 배경 이미지를 꽉차게(비율 깨짐) 표현
+          100% auto : 가로는 꽉차게, 세로는 비율에 맞게 표현
+          auto 100% : 세로는 꽉차게, 가로는 비율에 맞게 표현
+          contain:  : 비율을 유지하면서 영역 내에서 이미지가 꽉차게 표현 
+                    : 영역에 따라 다르게 표현되고 여백이 생길 수 있음
+          cover     : 비율을 유지하면서 여백을 만들지 않고 이미지를 꽉차게 표현
+                    : 이미지의 가로 세로 중 한 곳이 잘릴 수 있음
+        */
+        background-size: 100% 100%;
+      }
+      .box3 {
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+    <div class="box box2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+    <div class="box box3">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+  </body>
+</html>

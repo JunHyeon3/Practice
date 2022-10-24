@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>display</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        border: 5px solid #00f;
+        /* 인라인 요소는 width와 height 지정이 안됨 */
+        width: 150px;
+        height: 50px;
+
+        padding: 10px;
+        margin: 20px;
+
+        /* block : 인라인 요소를 블록 요소로 변경 */
+        display: block;
+
+        /* inline-block : 너비와 높이를 지정하면서 인라인 요소처럼 사용 */
+        display: inline-block;
+
+        text-align: center;
+        line-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta commodi
+      unde eum debitis quasi impedit numquam assumenda, tenetur iste, saepe
+      illum asperiores eaque delectus minima laborum et, corrupti quo
+      blanditiis?
+    </div>
+    <span class="box">Lorem, ipsum.</span>
+    <span class="box">Lorem, ipsum.</span>
+    <span class="box">Lorem, ipsum.</span>
+    <span class="box">Lorem, ipsum.</span>
+  </body>
+</html>
