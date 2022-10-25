@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+/* 초기화 */
+html,
+body,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+p,
+address {
+  margin: 0;
+  padding: 0;
+}
+/* 폰트 지정 */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: sans-serif, serif;
+  font-size: 12px;
+}
+/* 블릿 제거 */
+ul,
+ol,
+li {
+  list-style: none;
+}
+/* 이미지 테두리 제거 */
+img {
+  border: 0;
+  vertical-align: top;
+}
+/* 수평선 제거 */
+hr {
+  display: none;
+}
+address,
+em {
+  font-style: normal;
+}
+.blind {
+  position: absolute;
+  left: 0;
+  top: -4999em;
+}
+/* 스타일 적용 */
+.skip-nav a:focus {
+  top: 0;
+}
+.skip-nav a {
+  background-color: #000080;
+  color: #fff;
+  line-height: 2.5em;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: -50px;
+  z-index: 100;
+}
+#wrap {
+  width: 760px;
+  margin: 0 auto;
+}
+/* 헤더 */
+#header {
+  position: relative;
+  padding-bottom: 150px;
+  background: url(../image/b_about.png) no-repeat 0 100%;
+}
+#header .logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#header .lnb::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#header .lnb li {
+  float: left;
+}
+#header .lnb li a:hover {
+  background-position: 0 -50px;
+}
+#header .lnb li a.on {
+  background-position: 0 -100px;
+}
+#header .lnb li a {
+  display: block;
+  height: 50px;
+  background-repeat: no-repeat;
+  text-indent: -99em;
+}
+#header .lnb li.mm1 a {
+  width: 71px;
+  background-image: url(../image/m_about.gif);
+}
+#header .lnb li.mm2 a {
+  width: 84px;
+  background-image: url(../image/m_services.gif);
+}
+#header .lnb li.mm3 a {
+  width: 95px;
+  background-image: url(../image/m_portfolio.gif);
+}
+#header .lnb li.mm4 a {
+  width: 106px;
+  background-image: url(../image/m_contact.gif);
+}
+
+/* 본문 */
+#container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#container #content {
+  float: left;
+  width: 480px;
+  line-height: 1.6em;
+}
+#container #content h2 {
+  text-transform: uppercase;
+}
+#container #aside {
+  float: right;
+  width: 280px;
+  line-height: 1.6em;
+}
+#container .inner {
+  padding: 25px 25px 0;
+}
+
+/* 푸터 */
+#footer {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  height: 200px;
+  padding: 20px;
+}
+#footer::after {
+  overflow: hidden;
+}
+#footer .btm_menu {
+  float: right;
+}
+#footer .btm_menu li {
+  display: inline-block;
+}
+#footer .btm_menu li a {
+  color: #999;
+  text-decoration: none;
+}
+#footer .copy {
+  float: left;
+}
