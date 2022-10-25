@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+html, body, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, ul, ol, li {
+	margin: 0;
+	padding: 0;
+	/* font: 14px Malgun Gothic, sans-serif; */
+	font-size: 14px;
+	font-family: '맑은 고딕', 'Malgun Gothic', sans-serif;
+}
+ul, ol, li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: #666;
+}
+
+#skip-menu a:focus {
+	top: 0;
+}
+#skip-menu a{
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	left: 0;
+	top: -40px;
+	z-index: 100;
+}
+
+#wrap {
+	width: 1100px;
+	margin: 0 auto;
+}
+#header {
+	position: relative;
+	height: 120px;
+	background-color: #f6f5ef;
+}
+#header .logo {
+	width: 75px;
+	height: 75px;
+	position: absolute;
+	background-image: url(../img/logo.png);
+	text-indent: -99em;
+	top: 22px;
+	left: 22px;
+}
+#header #gnb::after {
+	content: " ";
+	display: block;
+	clear: both;
+}
+#header #gnb ul {
+	float: right;
+}
+#header #gnb ul li {
+	display: inline-block;
+	margin-top: 50px;
+	margin-right: 10px;
+}
+#header #gnb ul li a{
+	padding: 10px;
+}
+
+#container #content .intro .coffee1 {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 30px 0;
+}
+#container #content .intro .coffee2 {
+	font-size: 20px;
+	font-style: italic;
+	color: #063;
+}
+#container #content .intro .coffee3 {
+	padding: 20px 0;
+}
+
+#footer {
+	height: 100px;
+	background-color: #2c2a29;
+	text-align: center;
+	margin-top: 60px;
+}
+#footer .copyright ul li {
+	display: inline-block;
+	margin: 20px 10px;
+}
+#footer .copyright ul li a, #footer .copyright p{
+	color: #fff;
+	font-size: 12px;
+}
+#footer .copyright p {
+	text-transform: capitalize;
+}
