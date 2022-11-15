@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>second.html 파일입니다.</h1>
+	<!-- thymeleaf의 content가 태그에 작성되어있는 content를 덮어쓴다. -->
+	<p th:text="과일은 + ${fruit} + 이다.">과일이름</p>
+</body>
+</html>

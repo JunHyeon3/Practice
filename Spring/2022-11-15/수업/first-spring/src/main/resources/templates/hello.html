@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--  이 파일에서 thymeleaf를 사용한다는 것을 명시해준다. -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>동적 컨텐츠입니다.</h1>
+	<p>hello.html 페이지입니다.</p>
+	<!-- Controller로 부터 전달되는 데이터를 사용한다.
+		 th:text="${키 명}을 태그내에 작성하면 키에 대응하는 값이 출력된다. -->
+	<p th:text="${name}">안녕하세요~</p>
+</body>
+</html>
