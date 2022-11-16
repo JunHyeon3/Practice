@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:text="${name} + ' 고객님께서 선택한 상품은 ' + ${item} + ' 입니다.'"></h1>
+	<a href="/">첫 페이지로 이동</a>
+	<a href="order/order-detail">주문 상세 정보</a>
+</body>
+</html>
