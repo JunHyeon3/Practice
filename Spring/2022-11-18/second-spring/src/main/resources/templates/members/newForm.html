@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- post방식은 데이터를 body에 담아서 전송한다. 
+		이 데이터를 받을 class(도메인)가 필요하다.-->
+	<form action="/members/new" method="post">
+		<label for="name">이름</label>
+		<input type="text" id="name" name="userName" placeholder="이름을 입력하세요...">
+		<input type="submit" value="입력 완료">
+	</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- th:each는 향상된 for문 처럼 동작
+				member변수에 members로 넘어오는 객체의 주소가 한번씩 저장됨
+				Member객체에 id와 name이 있고 그 값을 .id와 .name으로 출력함 -->
+			<tr th:each="member : ${members}">
+				<td th:text="${member.id}"></td>
+				<td th:text="${member.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
