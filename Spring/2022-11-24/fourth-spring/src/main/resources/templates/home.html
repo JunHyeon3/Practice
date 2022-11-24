@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>행복한 마켓</h1>
+	<p>회원 관리</p>
+	<p>
+		<a href="/member/new">회원 가입</a>
+		<a href="/member/list">회원 목록</a>
+	</p>
+	<form action="/member/search" method="post">
+		<label>검색할 아이디 : </label>
+		<input type="text" name="id">
+		<br>
+		<label>검색할 이름 : </label>
+		<input type="text" name="name">
+		<br>
+		<input type="submit" value="검색">
+	</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- member.id와 member.name은 field에 접근하는 것이 아니라 getter임
+				field는 아니지만 getter의 형태도 아님
+				이것을 field와 getter/setter의 중간에 있는 형태, "프로퍼티(property)"라고 부른다.-->
+			<tr th:each="member: ${members}">
+				<td th:text="${member.id}"></td>
+				<td th:text="${member.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
