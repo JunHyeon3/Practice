@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>동물명 검색 결과</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>순번</th>
+				<th>동물명</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td th:text="${member?.id}"></td>
+				<td th:text="${member?.name}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/">첫 페이지로 이동</a>
+</body>
+</html>
