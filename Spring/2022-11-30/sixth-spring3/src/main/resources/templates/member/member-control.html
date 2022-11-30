@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>member-control.html</h1>
+	<h2>[형태 1]</h2>
+	<div th:text="${feeling}"></div>
+	<div th:text="${weather}"></div>
+	<h2>[형태 2]</h2>
+	<div th:text="${goodDay?.feeling}"></div>
+	<div th:text="${goodDay?.weather}"></div>
+	<h2>[형태 3]</h2>
+	<div th:text="${day?.feeling}"></div>
+	<div th:text="${day?.weather}"></div>
+</body>
+</html>
