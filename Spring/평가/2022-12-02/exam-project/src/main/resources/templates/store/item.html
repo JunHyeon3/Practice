@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>상품 상세</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td th:text="${findItem.id}"><a></a></td>
+		</tr>
+		<tr>
+			<th>상품 명</th>
+			<td th:text="${findItem.itemName}"></td>
+		</tr>
+		<tr>
+			<th>가격</th>
+			<td th:text="${findItem.price}"></td>
+		</tr>
+		<tr>
+			<th>수량</th>
+			<td th:text="${findItem.quantity}"></td>
+		</tr>
+	</table>
+	<!-- <a th:href="@{/store/items/{itemId}(itemId=${findItem.id})/edit}">상품 수정</a> -->
+	<a th:href="@{/store/items/edit/{itemId}(itemId=${findItem.id})}">상품 수정</a>
+	<a href="/store/items">목록으로</a>
+</body>
+</html>

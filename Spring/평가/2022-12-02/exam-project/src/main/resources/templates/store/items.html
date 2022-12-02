@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>상품 목록</h1>
+	<hr>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>상품 명</th>
+				<th>가격</th>
+				<th>수량</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${items}">
+				<td><a th:href="@{/store/items/{itemId}(itemId=${item.id})}" th:text="${item.id}"></a></td>
+				<td><a th:href="@{/store/items/{itemId}(itemId=${item.id})}" th:text="${item.itemName}"></a></td>
+				<td th:text="${item.price}"></td>
+				<td th:text="${item.quantity}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/store/items/add">상품 등록</a>
+</body>
+</html>
