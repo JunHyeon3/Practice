@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<style type="text/css">
+	.col {
+		background-color: #eee;
+		border : #ddd 2px solid;
+	}
+</style>
+</head>
+<body>
+	<!-- 기본 : 12개로 나뉘어짐 -->
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">1</div>
+			<div class="col">2</div>
+			<div class="col">3</div>
+			<div class="col">4</div>
+			<div class="col">5</div>
+			<div class="col">6</div>
+			<div class="col">7</div>
+			<div class="col">8</div>
+			<div class="col">9</div>
+			<div class="col">10</div>
+			<div class="col">11</div>
+			<div class="col">12</div>
+		</div>
+	</div>
+	
+	<!-- 칼럼 3개인 경우, 3개의 열이 12개를 균등한 크기로 나눔 -->
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">1</div>
+			<div class="col">2</div>
+			<div class="col">3</div>
+		</div>
+	</div>
+	
+	<!-- col-md-auto : content 크기만큼 지정되고, 나머지 열이 균등한 크기로 나눠가짐 -->
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">1</div>
+			<div class="col col-md-auto">hi</div>
+			<div class="col">3</div>
+		</div>
+	</div>
+	
+	<!-- col-md-2 : 12개중 2개를 차지하고, 나머지 열이 균등한 크기로 나눠가짐 -->
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">1</div>
+			<div class="col col-md-2">2</div>
+			<div class="col">3</div>
+		</div>
+	</div>
+	
+	<!-- col-8 : 12개중 8개를 차지 -->
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-8">1</div>
+			<div class="col">3</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<!-- Boot Strap의 Example에서 header 양식 가져옴 -->
+	<div class="b-example-divider"></div>
+	
+	<header class="p-3 text-bg-dark">
+	  <div class="container">
+	    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+	      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+	        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+	      </a>
+	
+	      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+	      </ul>
+	
+	      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+	        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+	      </form>
+	
+	      <div class="text-end">
+	        <button type="button" class="btn btn-outline-light me-2">Login</button>
+	        <button type="button" class="btn btn-warning">Sign-up</button>
+	      </div>
+	    </div>
+	  </div>
+	</header>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container-sm" style="max-width:600px">
+		<!-- 
+			text-center로 class : 가운데 정렬
+			my-5 : margin top, bottom 
+			row, col : 한 행으로 설정
+			form-label, form-control : form 양식 설정
+		 -->
+		<div class="text-center my-5">
+			<h1>상품 등록 폼</h1>
+		</div>
+		<form action="/add" method="post">
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="itemName" class="form-label fw-bold">상품명</label>
+				</div>
+				<div class="col">
+					<input type="text" id="itemName" class="form-control" name="itemName" placeholder="이름을 입력하세요">
+				</div>
+			</div>
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="price" class="form-label fw-bold">가격</label>
+				</div>
+				<div class="col">
+					<input type="text" id="price" class="form-control" name="price" placeholder="가격을 입력하세요">
+				</div>
+			</div>
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="quantity" class="form-label fw-bold">수량</label>
+				</div>
+				<div class="col">
+					<input type="text" id="quantity" class="form-control" name="quantity" placeholder="수량을 입력하세요">
+				</div>
+			</div>
+			
+			<hr>
+			
+			<div class="row">
+				<div class="d-grid gap-2 col">
+					<button type="button" class="btn btn-outline-dark btn-lg" 
+						onclick="location.href='/html/items.html'">취소</button>
+				</div>
+				<div class="d-grid gap-2 col">
+					<button type="submit" class="btn btn-secondary btn-lg">상품등록</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- END : CONTAINER -->
+	
+	<!-- START : FOOTER -->
+	<footer class="bg-dark position-absolute bottom-0 start-50 translate-middle-x w-100 py-3">
+	    <ul class="nav justify-content-center pb-3 mb-3">
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Features</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+	    	<li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
+	    </ul>
+	    <p class="text-center text-white">&copy; 2022 Company, Inc</p>
+  	</footer>
+	<!-- END : FOOTER -->
+</body>
+</html>

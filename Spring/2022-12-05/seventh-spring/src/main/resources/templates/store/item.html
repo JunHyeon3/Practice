@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+	th:href를 사용하면 기존의 href는 인식이 되지 않는다.
+	th:href안의 주소인 css파일을 static에서 찾는다.
+-->
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<div class="b-example-divider"></div>
+	
+	<header class="p-3 text-bg-dark">
+	  <div class="container">
+	    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+	      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+	        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+	      </a>
+	
+	      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+	      </ul>
+	
+	      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+	        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+	      </form>
+	
+	      <div class="text-end">
+	        <button type="button" class="btn btn-outline-light me-2">Login</button>
+	        <button type="button" class="btn btn-warning">Sign-up</button>
+	      </div>
+	    </div>
+	  </div>
+	</header>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container-sm" style="max-width:600px">
+		<div class="text-center my-5">
+			<h1>상품 상세</h1>
+		</div>
+		<!-- 
+			row, col : 한 행으로 설정
+			form-label, form-control : form 양식 설정
+		 -->
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="id" class="form-label fw-bold">상품 ID</label>
+			</div>
+			<div class="col">
+				<input type="text" id="id" class="form-control" name="id" th:value="${findItem.id}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="itemName" class="form-label fw-bold">상품명</label>
+			</div>
+			<div class="col">
+				<input type="text" id="itemName" class="form-control" name="itemName" th:value="${findItem.itemName}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="price" class="form-label fw-bold">가격</label>
+			</div>
+			<div class="col">
+				<input type="text" id="price" class="form-control" name="price" th:value="${findItem.price}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="quantity" class="form-label fw-bold">수량</label>
+			</div>
+			<div class="col">
+				<input type="text" id="quantity" class="form-control" name="quantity" th:value="${findItem.quantity}" readonly="readonly">
+			</div>
+		</div>
+		
+		<hr>
+		
+		<!-- 
+			th:onclick에서는 리터럴 치환(||)이 필요하다. 
+			변수가 있을 경우, URI의 마지막에 소괄호를 열어 변수에 대한 정보를 입력한다.
+		-->
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-outline-dark btn-lg w-100" 
+					th:onclick="|location.href='@{/store/items/{itemId}/edit(itemId=${findItem.id})}'|">상품 수정</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-secondary btn-lg w-100" 
+					th:onclick="|location.href='@{/store/items}'|">목록으로</button>
+			</div>
+		</div>
+	</div>
+	<!-- END : CONTAINER -->
+	
+	<!-- START : FOOTER -->
+	<footer class="bg-dark position-absolute bottom-0 start-50 translate-middle-x w-100 py-3">
+	    <ul class="nav justify-content-center pb-3 mb-3">
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Features</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+		    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+	    	<li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
+	    </ul>
+	    <p class="text-center text-white">&copy; 2022 Company, Inc</p>
+  	</footer>
+	<!-- END : FOOTER -->
+</body>
+</html>
