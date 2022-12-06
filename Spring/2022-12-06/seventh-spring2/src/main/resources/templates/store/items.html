@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<div th:replace="fragments/header::header"></div>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container" style="max-width:600px">
+		<!-- 
+			text-center로 class : 가운데 정렬
+			my-5 : margin top, bottom 
+		 -->
+		<div class="text-center my-5">
+			<h1>상품 목록</h1>
+		</div>
+		<hr>
+		<div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>상품명</td>
+						<td>가격</td>
+						<td>수량</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item: ${itemList}">
+						<!-- 리터럴 치환(||) : + 를 사용하지 않고 문자열과 변수를 이어줄 때 사용한다. -->
+						<td><a th:href="@{|/store/items/${item.id}|}" th:text="${item.id}"></a></td>
+						<td><a th:href="@{|/store/items/${item.id}|}"  th:text="${item.itemName}"></a></td>
+						<td th:text="${item.price}"></td>
+						<td th:text="${item.quantity}"></td>
+					</tr>
+				</tbody>				
+			</table>
+		</div>
+		<div class="d-grid gap-2">
+			<button type="button" class="btn btn-secondary btn-lg"
+				th:onclick="|location.href='@{/store/items/add}'|">상품 등록</button>
+		</div>
+		
+	</div>
+	<!-- END : CONTAINER -->
+	
+	<!-- START : FOOTER -->
+	<div th:replace="fragments/footer::footer"></div>
+	<!-- END : FOOTER -->
+</body>
+</html>

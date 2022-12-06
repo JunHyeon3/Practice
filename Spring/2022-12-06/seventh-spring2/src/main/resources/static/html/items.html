@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<div class="b-example-divider"></div>
+	
+	<header class="p-3 text-bg-dark">
+	  <div class="container">
+	    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+	      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+	        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+	      </a>
+	
+	      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+	        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+	        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+	      </ul>
+	
+	      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+	        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+	      </form>
+	
+	      <div class="text-end">
+	        <button type="button" class="btn btn-outline-light me-2">Login</button>
+	        <button type="button" class="btn btn-warning">Sign-up</button>
+	      </div>
+	    </div>
+	  </div>
+	</header>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container" style="max-width:600px">
+		<!-- 
+			text-center로 class : 가운데 정렬
+			my-5 : margin top, bottom 
+		 -->
+		<div class="text-center my-5">
+			<h1>상품 목록</h1>
+		</div>
+		<hr>
+		<!-- 테이블 -->
+		<div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>상품명</td>
+						<td>가격</td>
+						<td>수량</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="item.html">1</a></td>
+						<td><a href="item.html">마카롱</a></td>
+						<td>2000</td>
+						<td>35</td>
+					</tr>
+				</tbody>				
+			</table>
+		</div>
+		<!-- 상품 등록 버튼 -->
+		<div class="d-grid gap-2">
+			<button type="button" class="btn btn-secondary btn-lg"
+				onclick="location.href='/html/addForm.html'">상품 등록</button>
+		</div>
+	</div>
+	<!-- END : CONTAINER -->
+</body>
+</html>

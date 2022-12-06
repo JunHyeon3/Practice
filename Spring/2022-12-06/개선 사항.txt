@@ -1,0 +1,13 @@
+[seventh-spring 개선사항]
+[view]
+ - index	: 우측 상단 menu - HOME, 상품 목록, 상품 등록 
+
+ - 4개의 view에서 header와 footer 반복 : Thymeleaf 사용
+ - header 	: 좌상단 menu - HOME, 상품 목록, 상품 등록 
+	: 우상단 search - 상품명 입력하고 검색(Login을 변경)을 누르면 상세 페이지 표시 
+ - footer 	: menu - HOME, 상품 목록, 상품 등록 
+ - 상품 수정 폼, 등록 폼 : 가격, 수량 숫자(정수)만 입력, 반드시 입력되도록
+
+[DB]
+ - H2 : 연동
+ - repository 변경 : ItemRepository -> JdbcItemRepository로 변경
