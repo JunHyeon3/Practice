@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+	th:href를 사용하면 기존의 href는 인식이 되지 않는다.
+	th:href안의 주소인 css파일을 static에서 찾는다.
+-->
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<div th:replace="fragments/header::header"></div>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container-sm" style="max-width:600px">
+		<div class="text-center my-5">
+			<h1>상품 상세</h1>
+		</div>
+		<!-- 
+			row, col : 한 행으로 설정
+			form-label, form-control : form 양식 설정
+		 -->
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="id" class="form-label fw-bold">상품 ID</label>
+			</div>
+			<div class="col">
+				<input type="text" id="id" class="form-control" name="id" th:value="${findItem?.id}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="itemName" class="form-label fw-bold">상품명</label>
+			</div>
+			<div class="col">
+				<input type="text" id="itemName" class="form-control" name="itemName" th:value="${findItem?.itemName}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="price" class="form-label fw-bold">가격</label>
+			</div>
+			<div class="col">
+				<input type="text" id="price" class="form-control" name="price" th:value="${findItem?.price}" readonly="readonly">
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="quantity" class="form-label fw-bold">수량</label>
+			</div>
+			<div class="col">
+				<input type="text" id="quantity" class="form-control" name="quantity" th:value="${findItem?.quantity}" readonly="readonly">
+			</div>
+		</div>
+		
+		<hr>
+		
+		<!-- 
+			th:onclick에서는 리터럴 치환(||)이 필요하다. 
+			변수가 있을 경우, URI의 마지막에 소괄호를 열어 변수에 대한 정보를 입력한다.
+		-->
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-outline-dark btn-lg w-100" 
+					th:if="${findItem?.id}" th:onclick="|location.href='@{/store/items/{itemId}/edit(itemId=${findItem?.id})}'|">상품 수정</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-secondary btn-lg w-100" 
+					th:onclick="|location.href='@{/store/items}'|">목록으로</button>
+			</div>
+		</div>
+	</div>
+	<!-- END : CONTAINER -->
+	
+	<!-- START : FOOTER -->
+	<div th:replace="fragments/footer::footer"></div>
+	<!-- END : FOOTER -->
+</body>
+</html>

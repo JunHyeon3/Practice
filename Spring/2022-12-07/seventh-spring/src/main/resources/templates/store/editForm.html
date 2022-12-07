@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<!-- START : HEADER -->
+	<div th:replace="fragments/header::header"></div>
+	<!-- END : HEADER -->
+	
+	<!-- START : CONTAINER -->
+	<div class="container-sm" style="max-width:600px">
+		<!-- 
+			text-center로 class : 가운데 정렬
+			my-5 : margin top, bottom 
+			row, col : 한 행으로 설정
+			form-label, form-control : form 양식 설정
+		 -->
+		<div class="text-center my-5">
+			<h1>상품 수정 폼</h1>
+		</div>
+		<!-- editForm으로 오는 요청과 form에서 보내는 요청 URI가 같을 경우, th:action의 경로는 생략 가능 -->
+		<form th:action method="post">
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="id" class="form-label fw-bold">상품 ID</label>
+				</div>
+				<div class="col">
+					<input type="text" id="id" class="form-control" name="id" th:value="${findItem.id}" readonly="readonly" required="required">
+				</div>
+			</div>
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="itemName" class="form-label fw-bold">상품명</label>
+				</div>
+				<div class="col">
+					<input type="text" id="itemName" class="form-control" name="itemName" th:value="${findItem.itemName}" required="required">
+				</div>
+			</div>
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="price" class="form-label fw-bold">가격</label>
+				</div>
+				<div class="col">
+					<input type="number" id="price" class="form-control" name="price" th:value="${findItem.price}" required="required">
+				</div>
+			</div>
+			<div class="row my-2">		
+				<div class="col-2">
+					<label for="quantity" class="form-label fw-bold">수량</label>
+				</div>
+				<div class="col">
+					<input type="number" id="quantity" class="form-control" name="quantity" th:value="${findItem.quantity}" required="required">
+				</div>
+			</div>
+			
+			<hr>
+			
+			<div class="row">
+				<div class="d-grid gap-2 col">
+					<button type="button" class="btn btn-outline-dark btn-lg" 
+						th:onclick="|location.href='@{/store/items/{itemId}(itemId=${findItem.id})}'|">취소</button>
+				</div>
+				<div class="d-grid gap-2 col">
+					<button type="submit" class="btn btn-secondary btn-lg">저장</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- END : CONTAINER -->
+	
+	<!-- START : FOOTER -->
+	<div th:replace="fragments/footer::footer"></div>
+	<!-- END : FOOTER -->
+</body>
+</html>
