@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<div th:replace="fragments/header::header"></div>
+	
+	<div class="container-sm" style="max-width:600px">
+		<div class="text-center my-5">
+			<h1>상품 상세</h1>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="id" class="form-label fw-bold">상품 ID</label>
+			</div>
+			<div class="col">
+				<input type="text" id="id" class="form-control" name="id" th:value="${findItem?.id}" disabled readonly>
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="itemName" class="form-label fw-bold">상품명</label>
+			</div>
+			<div class="col">
+				<input type="text" id="itemName" class="form-control" name="itemName" th:value="${findItem?.itemName}" disabled readonly>
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="price" class="form-label fw-bold">가격</label>
+			</div>
+			<div class="col">
+				<input type="text" id="price" class="form-control" name="price" th:value="${findItem?.price}" disabled readonly>
+			</div>
+		</div>
+		<div class="row my-2">		
+			<div class="col-2">
+				<label for="quantity" class="form-label fw-bold">수량</label>
+			</div>
+			<div class="col">
+				<input type="text" id="quantity" class="form-control" name="quantity" th:value="${findItem?.quantity}" disabled readonly>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<div class="row">
+			<div class="col">
+				<button type="button" class="btn btn-outline-dark btn-lg w-100" 
+					th:onclick="|location.href='@{/store/items/{itemId}/edit(itemId=${findItem?.id})}'|">상품 수정</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-secondary btn-lg w-100" 
+					th:onclick="|location.href='@{/store/items}'|">목록으로</button>
+			</div>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/footer::footer"></div>
+</body>
+</html>
